@@ -1,1 +1,1 @@
-{"version":3,"file":"styles.css","sources":["styles.scss"],"sourcesContent":["/*\r\n* \tOwl Carousel Owl 2sic Theme\r\n*/\r\n\r\n// Variables (Import the skins variables.scss file when you use the 2sic standard skin)\r\n$brand-primary: #5C4483;\r\n\r\n"],"names":[],"mappings":"AAAA;;EAEE","sourceRoot":"../src/"}
+{"version":3,"file":"styles.css","sources":["styles.scss"],"sourcesContent":["// Variables (Import the skins variables.scss file when you use the 2sic standard skin)\r\n$brand-primary: #5C4483;\r\n\r\n"],"names":[],"mappings":"","sourceRoot":"../src/"}
