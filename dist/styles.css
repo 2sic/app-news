@@ -1,2 +1,59 @@
+.container-fluid {
+  background: #EFEFEF !important; }
+
+.app-news.app-news-column-view .app-news-container {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: row;
+  flex-direction: row;
+  flex-flow: row wrap; }
+  .app-news.app-news-column-view .app-news-container .app-news-item {
+    position: relative;
+    flex-basis: 33%;
+    padding: 20px; }
+    .app-news.app-news-column-view .app-news-container .app-news-item > div {
+      background: #ffffff;
+      width: 100%;
+      height: 100%;
+      padding: 20px 20px 20px 20px; }
+    .app-news.app-news-column-view .app-news-container .app-news-item h2 {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 0; }
+    .app-news.app-news-column-view .app-news-container .app-news-item p {
+      font-size: 16px;
+      margin-bottom: 40px; }
+    .app-news.app-news-column-view .app-news-container .app-news-item .app-news-date,
+    .app-news.app-news-column-view .app-news-container .app-news-item .app-news-categories {
+      font-size: 12px;
+      letter-spacing: 1px; }
+    .app-news.app-news-column-view .app-news-container .app-news-item .app-news-date {
+      color: #999999; }
+    .app-news.app-news-column-view .app-news-container .app-news-item .app-news-categories > span {
+      color: #1BC48E;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: .3s ease color; }
+      .app-news.app-news-column-view .app-news-container .app-news-item .app-news-categories > span:hover {
+        color: #000; }
+    .app-news.app-news-column-view .app-news-container .app-news-item .btn.btn-primary {
+      position: absolute;
+      bottom: 40px; }
+    @media (max-width: 960px) {
+      .app-news.app-news-column-view .app-news-container .app-news-item {
+        flex-basis: 50%; } }
+    @media (max-width: 530px) {
+      .app-news.app-news-column-view .app-news-container .app-news-item {
+        flex-basis: 100%; } }
+
+.app-news .btn.btn-primary {
+  background: transparent;
+  color: #1BC48E;
+  padding: 0;
+  margin: 0;
+  border: none;
+  transition: .3s ease color; }
+  .app-news .btn.btn-primary:hover {
+    color: #000; }
 
 /*# sourceMappingURL=styles.css.map */
