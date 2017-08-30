@@ -1,17 +1,30 @@
 <link rel="stylesheet" href="@App.Path/dist/styles.css" />
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700" rel="stylesheet">
 <script src="@App.Path/dist/lib/syncheight/jquery.syncHeightResponsive.min.js"></script>
 
 <div class="app-news app-news-column-view">
     @Edit.Toolbar(actions: "new", contentType: "News")
-
+    <h2>Debug: Column View</h2>
     <div class="app-news-container">
         @foreach (var item in  @AsDynamic(Data["Default"]))
         {
             <div class="app-news-item sync-height-with-neighbors sc-element">
                 <div>
                     @Edit.Toolbar(item)
-                    <div>
-                    </div>
+                    @if (!String.IsNullOrEmpty(@item.Image))
+                    {
+                        <div>
+                            <img src="@item.Image" alt />
+                        </div>
+                    }
+                    else
+                    {
+                        <div>
+                            <div class="app-news-imgplaceholder">
+                                <span><span class"glyphicon glyphicon-picture"></span> no image</span>
+                            </div>
+                        </div>
+                    }
                     <div>
                         <h2>@item.Title</h2>
                         <span class="app-news-date">@item.Date.ToString("dd.MM.yyyy")</span>
@@ -22,7 +35,7 @@
                         } 
                         @foreach (var cat in  @item.Categories)
                         {
-                            <span> @cat.Name</span> 
+                            <span>@cat.Name&ensp;&ensp;&ensp;</span> 
                         }
                         </span>
                         <p>

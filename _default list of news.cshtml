@@ -1,9 +1,37 @@
-<p>You successfully created your own template. Start editing it by hovering the "Manage" button and opening the "Edit Template" dialog.</p>
+<link rel="stylesheet" href="@App.Path/dist/styles.css" />
 
-<h2>todo</h2>
+<div class="app-news app-news-default-list">
+    @Edit.Toolbar(actions: "new", contentType: "News")
+    <h2>Debug: Default List</h2>
+    <div class="app-news-container">
+        @foreach (var item in  @AsDynamic(Data["Default"]))
+        {
+            <div class="app-news-item sc-element">
+                <div>
+                    @Edit.Toolbar(item)
+                    <div>
+                    </div>
+                    <div>
+                        <h2>@item.Title</h2>
+                        <span class="app-news-date">@item.Date.ToString("dd.MM.yyyy")</span>
+                        <span class="app-news-categories">
+                        @if (@item.Categories.Count >  0)
+                        {
+                            @: |
+                        } 
+                        @foreach (var cat in  @item.Categories)
+                        {
+                            <span>@cat.Name&ensp;&ensp;&ensp;</span> 
+                        }
+                        </span>
+                        <p>
+                            @item.Teaser    
+                        </p>
 
-<ol>
-    <ul>Create this view and details view</ul>
-    <ul>ensure only editors sees future items (use similar code as blog)</ul>
-    <ul>ensure nice preview of image - if there is one</ul>
-</ol>
+                        <a class="btn btn-primary">@App.Resources.LabelReadMore</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
