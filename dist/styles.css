@@ -114,6 +114,19 @@
     .app-news.app-news-default-list .app-news-container .app-news-item .btn.btn-primary {
       position: absolute;
       bottom: 20px; }
+    .app-news.app-news-default-list .app-news-container .app-news-item .app-news-contentcontainer,
+    .app-news.app-news-default-list .app-news-container .app-news-item .app-news-imagecontainer {
+      display: inline-block; }
+    .app-news.app-news-default-list .app-news-container .app-news-item .app-news-contentcontainer {
+      max-width: 80%;
+      max-width: 79%;
+      padding-left: 20px; }
+    .app-news.app-news-default-list .app-news-container .app-news-item .app-news-imagecontainer {
+      max-width: 20%;
+      vertical-align: top; }
+    .app-news.app-news-default-list .app-news-container .app-news-item img {
+      height: auto;
+      max-width: 100%; }
     @media (max-width: 960px) {
       .app-news.app-news-default-list .app-news-container .app-news-item {
         flex-basis: 50%; } }

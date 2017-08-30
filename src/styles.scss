@@ -173,6 +173,27 @@ $brand-primary: #1BC48E;
 					bottom: 20px;
 				}
 
+				.app-news-contentcontainer,
+				.app-news-imagecontainer {
+					display: inline-block
+				}
+
+				.app-news-contentcontainer {
+					max-width: 80%;
+					max-width: 79%;
+					padding-left: 20px;
+				 }
+
+				.app-news-imagecontainer {
+					max-width: 20%;
+					vertical-align: top;
+				}
+
+				img {
+					height: auto;
+					max-width: 100%;
+				}
+
 				@media (max-width: 960px) {
 					flex-basis: 50%;
 				}

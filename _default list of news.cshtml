@@ -9,9 +9,13 @@
             <div class="app-news-item sc-element">
                 <div>
                     @Edit.Toolbar(item)
-                    <div>
-                    </div>
-                    <div>
+                     @if (!String.IsNullOrEmpty(@item.Image))
+                    {
+                        <div class="app-news-imagecontainer">
+                            <img src="@item.Image?w=400&h=300&mode=crop" alt />
+                        </div>
+                    }
+                    <div class="@(!String.IsNullOrEmpty(@item.Image) ? "app-news-contentcontainer" : "")">
                         <h2>@item.Title</h2>
                         <span class="app-news-date">@item.Date.ToString("dd.MM.yyyy")</span>
                         <span class="app-news-categories">
