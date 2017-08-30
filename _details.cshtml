@@ -1,1 +1,35 @@
-<p>You successfully created your own template. Start editing it by hovering the "Manage" button and opening the "Edit Template" dialog.</p>
+@{
+    var item = @AsDynamic(App.Data["News"]).Where(x => x.UrlKey == Request.QueryString["event"]).FirstOrDefault();
+}
+
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700" rel="stylesheet">
+<link rel="stylesheet" href="@App.Path/dist/detailstyles.css" />
+
+<div class="app-news app-news-detail">
+    @if (!String.IsNullOrEmpty(@item.Image))
+    {
+        <div class="app-news-detail-imagecontainer">
+            <img src="@item.Image" alt />
+        </div>
+    }
+    <div class="app-news-detail-contentcontainer @(!String.IsNullOrEmpty(@item.Image) ? "app-news-detail-withimage" : "")">
+        <h1>@item.Title</h1>
+        <span class="app-news-date">@item.Date.ToString("dd.MM.yyyy")</span>
+        <span class="app-news-categories">
+        @if (@item.Categories.Count >  0)
+        {
+            @: |
+        } 
+        @foreach (var cat in  @item.Categories)
+        {
+            <span>@cat.Name&ensp;&ensp;&ensp;</span> 
+        }
+        </span>
+        <p class="app-news-detail-teaser">
+            @item.Teaser
+        </p>
+        <p class="app-news-detail-body">
+            @Html.Raw(item.Body)
+        </p>
+    </div>
+</div>

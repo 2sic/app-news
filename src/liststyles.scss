@@ -4,7 +4,7 @@ $brand-primary: #1BC48E;
 // Only for debug
 .container-fluid { background: #EFEFEF !important; }
 * { font-family: 'Roboto', sans-serif !important; }
-
+// ----------------------------------------------------
 
 .app-news {
 	// General Styles
@@ -73,6 +73,7 @@ $brand-primary: #1BC48E;
 				.btn.btn-primary {
 					position: absolute;
 					bottom: 40px;
+					color: $brand-primary;
 				}
 
 				img {
@@ -131,6 +132,7 @@ $brand-primary: #1BC48E;
 				.btn.btn-primary {
 					position: absolute;
 					bottom: 40px;
+					color: $brand-primary;
 				}
 
 				img {
@@ -171,6 +173,7 @@ $brand-primary: #1BC48E;
 				.btn.btn-primary {
 					position: absolute;
 					bottom: 20px;
+					color: $brand-primary;
 				}
 
 				.app-news-contentcontainer,
@@ -205,7 +208,8 @@ $brand-primary: #1BC48E;
 		}
 	}
 
-	.btn.btn-primary {
+	.btn.btn-primary,
+	.btn.btn-primary:link {
 		background: transparent;
 		color: $brand-primary;
 		padding: 0;

@@ -1,0 +1,64 @@
+// Variables (Import the skins variables.scss file when you use the 2sic standard skin)
+$brand-primary: #1BC48E;
+
+// Only for debug
+.container-fluid { background: #EFEFEF !important; }
+* { font-family: 'Roboto', sans-serif !important; }
+// ------------------
+
+.app-news.app-news-detail {
+	.app-news-detail-imagecontainer {
+		width: 40%;
+		display: inline-block;
+		vertical-align: top;
+
+		img {
+			max-width: 100%;
+		}
+	}
+
+	.app-news-detail-contentcontainer {
+		&.app-news-detail-withimage {
+			width: 57%;
+			display: inline-block;
+			margin: 0 0 0 20px;
+			vertical-align: top;
+		}
+
+		h1 {
+			margin-top: 0;
+			font-size: 36px;
+			color: #000;
+		}
+
+		.app-news-detail-teaser {
+			font-weight: 700;
+		}
+	}
+
+	.app-news-date,
+	.app-news-categories {
+		font-size: 10px;
+		letter-spacing: 1px;
+		display: inline-block;
+		margin: 15px 0 12px 0;
+		font-weight: 700;
+	}
+
+	.app-news-date {
+		color: #999999;
+	}
+
+	.app-news-categories > span {
+		color: $brand-primary;
+		text-transform: uppercase;
+		cursor: pointer;
+		
+		transition: .3s ease color;
+
+		&:hover {
+			color: #000;
+		}
+	}
+
+}

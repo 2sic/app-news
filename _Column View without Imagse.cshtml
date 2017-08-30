@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="@App.Path/dist/styles.css" />
+<link rel="stylesheet" href="@App.Path/dist/liststyles.css" />
 <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700" rel="stylesheet">
 
 <div class="app-news app-news-column-view">
@@ -27,7 +27,7 @@
                             @item.Teaser    
                         </p>
 
-                        <a class="btn btn-primary">@App.Resources.LabelReadMore</a>
+                        <a class="btn btn-primary" href="@Link.To(parameters: "Detail/event=" + item.UrlKey)">@App.Resources.LabelReadMore</a>
                     </div>
                 </div>
             </div>
