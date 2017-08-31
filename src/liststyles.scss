@@ -59,8 +59,7 @@ $brand-primary: #1BC48E;
 			margin: 0 -20px;
 
 			.app-news-item {
-				//position: relative;
-				flex-basis: 33%;
+				width: 33%;
 				padding: 20px;
 				
 				> div {
@@ -99,11 +98,11 @@ $brand-primary: #1BC48E;
 				}
 
 				@media (max-width: 960px) {
-					flex-basis: 50%;
+					width: 50%;
 				}
 
 				@media (max-width: 530px) {
-					flex-basis: 100%;
+					width: 100%;
 				}
 			}
 		}
@@ -142,11 +141,11 @@ $brand-primary: #1BC48E;
 				}
 
 				@media (max-width: 960px) {
-					flex-basis: 50%;
+					width: 50%;
 				}
 
 				@media (max-width: 530px) {
-					flex-basis: 100%;
+					width: 100%;
 				}
 			}
 		}
@@ -198,11 +197,11 @@ $brand-primary: #1BC48E;
 				}
 
 				@media (max-width: 960px) {
-					flex-basis: 50%;
+					width: 50%;
 				}
 
 				@media (max-width: 530px) {
-					flex-basis: 100%;
+					width: 100%;
 				}
 			}
 		}
