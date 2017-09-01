@@ -2,7 +2,6 @@
 
 <div class="app-news app-news-default-list">
     @Edit.Toolbar(actions: "new", contentType: "News")
-    <h2>Debug: Default List</h2>
     <div class="app-news-container">
         @foreach (var item in  @AsDynamic(Data["Default"]))
         {
