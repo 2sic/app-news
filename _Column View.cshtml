@@ -4,7 +4,7 @@
 <div class="app-news app-news-column-view">
     @Edit.Toolbar(actions: "new", contentType: "News")
     <div class="app-news-container">
-        @foreach (var item in  @AsDynamic(Data["Default"]))
+        @foreach (var item in @AsDynamic(Data["Default"]))
         {
             <div class="app-news-item sc-element">
                 <div>
@@ -33,14 +33,14 @@
                         } 
                         @foreach (var cat in  @item.Categories)
                         {
-                            <span>@cat.Name&ensp;&ensp;&ensp;</span> 
+                            <span><a href="@(App.Settings.NewsPage + "/sort/" + cat.UrlKey)">@cat.Name</a>&ensp;&ensp;&ensp;</span> 
                         }
                         </span>
                         <p>
                             @item.Teaser    
                         </p>
 
-                        <a class="btn btn-primary" href="@Link.To(parameters: "Detail/event=" + item.UrlKey)">@App.Resources.LabelReadMore</a>
+                        <a class="btn btn-primary" href="@(App.Settings.DetailPage + "/event/" + item.UrlKey)">@Html.Raw(App.Resources.LabelReadMore)</a>
                     </div>
                 </div>
             </div>

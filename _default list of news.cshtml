@@ -1,9 +1,21 @@
 <link rel="stylesheet" href="@App.Path/dist/liststyles.css" />
 
+@{
+    var needle = Request.QueryString["sort"];
+    var allData = AsDynamic(Data["Default"]);
+
+    if (!String.IsNullOrEmpty(needle)) {
+        allData = AsDynamic(Data["Default"]).Where(x => ((IEnumerable<dynamic>)x.Categories).Any(t => t.UrlKey.ToLower() == needle.ToLower()));
+    }
+}
+
 <div class="app-news app-news-default-list">
     @Edit.Toolbar(actions: "new", contentType: "News")
     <div class="app-news-container">
-        @foreach (var item in  @AsDynamic(Data["Default"]))
+        @if (!String.IsNullOrEmpty(needle)) {
+            <p class="app-news-catinfo">Category: @needle</p>
+        }
+        @foreach (var item in allData)
         {
             <div class="app-news-item sc-element">
                 <div>
@@ -24,17 +36,20 @@
                         } 
                         @foreach (var cat in  @item.Categories)
                         {
-                            <span>@cat.Name&ensp;&ensp;&ensp;</span> 
+                            <span><a href="@(App.Settings.NewsPage + "/sort/" + cat.UrlKey)">@cat.Name</a>&ensp;&ensp;&ensp;</span> 
                         }
                         </span>
                         <p>
                             @item.Teaser    
                         </p>
 
-                        <a class="btn btn-primary" href="@Link.To(parameters: "Detail/event=" + item.UrlKey)">@App.Resources.LabelReadMore</a>
+                        <a class="btn btn-primary" href="@(App.Settings.DetailPage + "/event/" + item.UrlKey)">@App.Resources.LabelReadMore</a>
                     </div>
                 </div>
             </div>
+        }
+        @if (!String.IsNullOrEmpty(needle)) {
+            <a class="btn btn-primary app-news-backtolist" href="@App.Settings.NewsPage">@App.Resources.LabelBackToList</a>
         }
     </div>
 </div>
