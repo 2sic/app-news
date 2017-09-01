@@ -26,7 +26,7 @@
                             @item.Teaser    
                         </p>
 
-                        <a class="btn btn-primary" href="@(App.Settings.DetailPage + "/event/" + item.UrlKey)">@App.Resources.LabelReadMore</a>
+                        <a class="btn btn-primary" href="@(App.Settings.DetailPage + "/event/" + item.UrlKey)">@Html.Raw(App.Resources.LabelReadMore)</a>
                     </div>
                 </div>
             </div>

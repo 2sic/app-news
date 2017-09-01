@@ -5,13 +5,8 @@
 <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700" rel="stylesheet">
 <link rel="stylesheet" href="@App.Path/dist/detailstyles.css" />
 
-<div class="app-news app-news-detail">
-    @if (!String.IsNullOrEmpty(@item.Image))
-    {
-        <div class="app-news-detail-imagecontainer">
-            <img src="@item.Image" alt />
-        </div>
-    }
+<div class="app-news app-news-detail sc-element">
+    @Edit.Toolbar(item)
     <div class="app-news-detail-contentcontainer @(!String.IsNullOrEmpty(@item.Image) ? "app-news-detail-withimage" : "")">
         <h1>@item.Title</h1>
         <span class="app-news-date">@item.Date.ToString("dd.MM.yyyy")</span>
@@ -28,8 +23,21 @@
         <p class="app-news-detail-teaser">
             @item.Teaser
         </p>
-        <p class="app-news-detail-body">
-            @Html.Raw(item.Body)
-        </p>
     </div>
+    @if (!String.IsNullOrEmpty(@item.Image))
+    {
+        <div class="app-news-detail-imagecontainer">
+            <img src="@item.Image" alt />
+        </div>
+    }
+
+    <a class="btn btn-primary app-news-backtolist" href="@App.Settings.NewsPage">@Html.Raw(App.Resources.LabelBackToList)</a>
+
+    <p class="app-news-detail-body">
+        @Html.Raw(item.Body)
+        @ToSic.SexyContent.ContentBlocks.Render.All(item, field: "BodyContentBlocks", merge: item.Body)
+    </p>
+
+    <a class="btn btn-primary app-news-backtolist" href="@App.Settings.NewsPage">@Html.Raw(App.Resources.LabelBackToList)</a>
 </div>
+

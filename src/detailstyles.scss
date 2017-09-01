@@ -1,5 +1,6 @@
 // Variables (Import the skins variables.scss file when you use the 2sic standard skin)
 $brand-primary: #1BC48E;
+$grid-guther-width: 20px;
 
 // Only for debug
 .container-fluid { background: #EFEFEF !important; }
@@ -7,22 +8,33 @@ $brand-primary: #1BC48E;
 // ------------------
 
 .app-news.app-news-detail {
+	background: #fff;
+	padding: #{2 * $grid-guther-width};
+
 	.app-news-detail-imagecontainer {
-		width: 40%;
+		width: 48%;
 		display: inline-block;
 		vertical-align: top;
 
 		img {
 			max-width: 100%;
 		}
+
+		@media (max-width: 985px) {
+			width: 100%;
+		}
 	}
 
 	.app-news-detail-contentcontainer {
 		&.app-news-detail-withimage {
-			width: 57%;
+			width: 49%;
 			display: inline-block;
-			margin: 0 0 0 20px;
+			margin: 0 $grid-guther-width 0 0;
 			vertical-align: top;
+
+			@media (max-width: 985px) {
+				width: 100%;
+			}
 		}
 
 		h1 {
@@ -49,7 +61,7 @@ $brand-primary: #1BC48E;
 		color: #999999;
 	}
 
-	.app-news-categories > span {
+	.app-news-categories > span > a{
 		color: $brand-primary;
 		text-transform: uppercase;
 		cursor: pointer;
@@ -61,4 +73,26 @@ $brand-primary: #1BC48E;
 		}
 	}
 
+	a.btn.btn-primary,
+	a.btn.btn-primary:link {
+		background: transparent;
+		color: $brand-primary;
+		padding: 0;
+		margin: 0;
+		border: none;
+
+		transition: .3s ease color;
+
+		&:hover {
+			color: #000;
+		}
+	}
+
+	a.btn.btn-primary:active {
+		box-shadow: none;
+	}
+
+	a.app-news-backtolist {
+		margin-top: $grid-guther-width !important;
+	}
 }

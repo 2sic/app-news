@@ -3,17 +3,21 @@
 @{
     var needle = Request.QueryString["sort"];
     var allData = AsDynamic(Data["Default"]);
-
-    if (!String.IsNullOrEmpty(needle)) {
-        allData = AsDynamic(Data["Default"]).Where(x => ((IEnumerable<dynamic>)x.Categories).Any(t => t.UrlKey.ToLower() == needle.ToLower()));
-    }
+    var paging = AsDynamic(Data["Paging"]).FirstOrDefault();
+    var allCategories = AsDynamic(App.Data["Category"]);
 }
 
 <div class="app-news app-news-default-list">
     @Edit.Toolbar(actions: "new", contentType: "News")
     <div class="app-news-container">
         @if (!String.IsNullOrEmpty(needle)) {
-            <p class="app-news-catinfo">Category: @needle</p>
+            <div class="app-news-catinfo">
+                <h2>@allCategories.Where(x => x.UrlKey == needle).FirstOrDefault().Name</h2>
+                @foreach (var c in allCategories)
+                {
+                    <span><a href="@(App.Settings.NewsPage + "/sort/" + c.UrlKey)">@c.Name</a>&ensp;|&ensp;</span>
+                }
+            </div>
         }
         @foreach (var item in allData)
         {
@@ -43,13 +47,45 @@
                             @item.Teaser    
                         </p>
 
-                        <a class="btn btn-primary" href="@(App.Settings.DetailPage + "/event/" + item.UrlKey)">@App.Resources.LabelReadMore</a>
+                        <a class="btn btn-primary" href="@(App.Settings.DetailPage + "/event/" + item.UrlKey)">@Html.Raw(App.Resources.LabelReadMore)</a>
                     </div>
                 </div>
             </div>
         }
         @if (!String.IsNullOrEmpty(needle)) {
-            <a class="btn btn-primary app-news-backtolist" href="@App.Settings.NewsPage">@App.Resources.LabelBackToList</a>
+            <a class="btn btn-primary app-news-backtolist" href="@App.Settings.NewsPage">@Html.Raw(App.Resources.LabelBackToList)</a>
         }
+        <div class="app-news-paging">
+            @if (!(paging.PageNumber <= 1))
+            {
+                <a class="app-news-prev-pager" href="@LinkToPageNumber(paging.PageNumber - 1)">&lsaquo;</a>
+            }
+            @if (@paging.PageSize >= 0)
+            {
+                for(int i = 1; i <= @paging.PageCount; i++)
+                {
+                    if (i == paging.PageNumber)
+                    {
+                        <a class="app-news-paging-active">@i</a>
+                    }
+                    else
+                    {
+                        <a href="@LinkToPageNumber(i)">@i</a>
+                    }
+                }
+            }
+            @if (!(paging.PageNumber >= paging.PageCount))
+            {
+                <a class="app-news-next-pager" href="@LinkToPageNumber(paging.PageNumber + 1)">&rsaquo;</a>
+            }
+        </div>
     </div>
 </div>
+
+@functions {
+	// generate a paging-link number, preserving current category parameters
+    public string LinkToPageNumber(int pageNumber){
+        string url = (@App.Settings.NewsPage + "/" + (!String.IsNullOrEmpty(Request.QueryString["sort"]) ? "sort/" + (Request.QueryString["sort"] + "/") : "") + "page/" + pageNumber);
+        return url.ToLower();
+    }
+}

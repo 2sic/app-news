@@ -1,5 +1,6 @@
 // Variables (Import the skins variables.scss file when you use the 2sic standard skin)
 $brand-primary: #1BC48E;
+$grid-guther-width: 20px;
 
 // Only for debug
 .container-fluid { background: #EFEFEF !important; }
@@ -56,7 +57,10 @@ $brand-primary: #1BC48E;
 			-webkit-flex-direction: row;
 			flex-direction: row;
 			flex-flow: row wrap;
-			margin: 0 -20px;
+			margin: 0 -$grid-guther-width;
+			@media (max-width: 1240px) {
+				margin: 0;
+			}
 
 			.app-news-item {
 				width: 33%;
@@ -66,7 +70,7 @@ $brand-primary: #1BC48E;
 					background: #ffffff;
 					width: 100%;
 					height: 100%;
-					padding: 20px 20px 20px 20px;
+					padding: $grid-guther-width;
 				}
  
 				.btn.btn-primary {
@@ -80,24 +84,30 @@ $brand-primary: #1BC48E;
 				}
 
 				img {
-					max-width: calc(100% + 40px);
+					max-width: calc(100% + #{2 * $grid-guther-width});
 					max-height: 100%;
-					margin: -20px 0 20px -20px;
+					margin-top: -$grid-guther-width;
+					margin-right: 0;
+					margin-bottom: $grid-guther-width;
+					margin-left: -$grid-guther-width;
 					height: 210px;
 				}
 
 				.app-news-imgplaceholder {
-					width: calc(100% + 40px);
+					width: calc(100% + #{2 * $grid-guther-width});
 					max-height: 100%;
-					margin: -20px 0 20px -20px;
+					margin-top: -$grid-guther-width;
+					margin-right: 0;
+					margin-bottom: $grid-guther-width;
+					margin-left: -$grid-guther-width;
 					height: 210px;
-					background: #cccccc;
-					color: #aaaaaa;
+					background: #E1E1E1;
 					text-align: center;
 
-					> span {
-						padding-top: 100px;
-						display: block;
+					> img {
+						padding-top: 70px;
+						max-width: 150px;
+						height: auto;
 					}
 				}
 
@@ -116,20 +126,23 @@ $brand-primary: #1BC48E;
 	&.app-news-masonry-grid {
 		.app-news-container {
 			column-count: 3;
-			column-gap: 20px;
-			margin: 0 -40px;
+			column-gap: $grid-guther-width;
+			margin: 0 -#{2 * $grid-guther-width};
+			@media (max-width: 1240px) {
+				margin: 0 -$grid-guther-width;
+			}
 
 			.app-news-item {
 				background-color: #eee;
 				display: inline-block;
 				width: 100%;
-				padding: 10px 0;
+				padding: #{$grid-guther-width / 2} 0;
 				
 				> div {
 					background: #ffffff;
 					width: 100%;
 					height: 100%;
-					padding: 20px 20px 20px 20px;
+					padding: $grid-guther-width;
 				}
 
 				.btn.btn-primary {
@@ -139,9 +152,12 @@ $brand-primary: #1BC48E;
 				}
 
 				img {
-					max-width: calc(100% + 40px);
+					max-width: calc(100% + #{2 * $grid-guther-width});
 					max-height: 100%;
-					margin: -20px 0 20px -20px;
+					margin-top: -$grid-guther-width;
+					margin-right: 0;
+					margin-bottom: $grid-guther-width;
+					margin-left: -$grid-guther-width;
 				}
 
 				@media (max-width: 960px) {
@@ -159,23 +175,26 @@ $brand-primary: #1BC48E;
 	&.app-news-default-list {
 		.app-news-container {
 			display: block;
-			margin: 0 -40px;
+			margin: 0 -#{2 * $grid-guther-width};
+			@media (max-width: 1240px) {
+				margin: 0 -$grid-guther-width;
+			}
 
 			.app-news-item {
 				display: block;
 				width: 100%;
-				margin-top: 20px;
+				margin-top: $grid-guther-width;
 				
 				> div {
 					background: #ffffff;
 					width: 100%;
 					height: 100%;
-					padding: 20px 20px 20px 20px;
+					padding: $grid-guther-width;
 				}
 
 				.btn.btn-primary {
 					position: absolute;
-					bottom: 20px;
+					bottom: $grid-guther-width;
 					color: $brand-primary;
 				}
 
@@ -187,7 +206,7 @@ $brand-primary: #1BC48E;
 				.app-news-contentcontainer {
 					max-width: 80%;
 					max-width: 79%;
-					padding-left: 20px;
+					padding-left: $grid-guther-width;
 				 }
 
 				.app-news-imagecontainer {
@@ -198,14 +217,6 @@ $brand-primary: #1BC48E;
 				img {
 					height: auto;
 					max-width: 100%;
-				}
-
-				@media (max-width: 960px) {
-					width: 50%;
-				}
-
-				@media (max-width: 530px) {
-					width: 100%;
 				}
 			}
 		}
@@ -226,14 +237,69 @@ $brand-primary: #1BC48E;
 		}
 	}
 
+	a.btn.btn-primary:active {
+		box-shadow: none;
+	}
+
 	a.app-news-backtolist {
-		margin-top: 20px !important;
+		margin-top: $grid-guther-width !important;
 	}
 
 	.app-news-catinfo {
-		font-size: 12px;
-		color: $brand-primary;
-		text-transform: uppercase;
-		letter-spacing: 1px;
+		> span {
+			font-size: 10px;
+
+			> a {
+				font-size: 10px;
+				color: $brand-primary;
+				text-transform: uppercase;
+				letter-spacing: 1px;
+				transition: color .2s ease;
+
+				&:hover {
+					color: #000;
+				}
+			}
+
+			&:last-of-type {
+				color: transparent;
+			}
+		}
+	}
+
+	.app-news-paging {
+		width: 100%;
+		text-align: center;
+		margin-top: $grid-guther-width;
+
+		> a {
+			display: inline-block;
+			height: 30px;
+			width: 30px;
+			text-align: center;
+			border-radius: 50%;
+			font-size: 16px;
+			padding-top: 4px;
+			color: #666;
+			transition: background .2s ease, color .2s ease; 
+
+			&:hover {
+				background: $brand-primary;
+				color: #fff;
+			}
+
+			&.app-news-paging-active {
+				background: $brand-primary;
+				color: #fff;
+			}
+
+			&.app-news-prev-pager {
+				background: #fff;
+			}
+
+			&.app-news-next-pager {
+				background: #fff;
+			}
+		}
 	}
 }
