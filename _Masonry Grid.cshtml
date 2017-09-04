@@ -1,4 +1,12 @@
 <link rel="stylesheet" href="@App.Path/dist/liststyles.css" />
+<script src="@App.Path/dist/script.js"></script>
+
+@{
+    var newsPage = @Dnn.Tab.FullUrl;
+}
+@if (!String.IsNullOrEmpty(App.Settings.NewsPage)) {
+    newsPage = App.Settings.NewsPage;
+}
 
 <div class="app-news app-news-masonry-grid">
     @Edit.Toolbar(actions: "new", contentType: "News")
@@ -24,7 +32,7 @@
                         } 
                         @foreach (var cat in  @item.Categories)
                         {
-                            <span><a href="@(App.Settings.NewsPage + "/sort/" + cat.UrlKey)">@cat.Name</a>&ensp;&ensp;&ensp;</span> 
+                            <span><a href="@(newsPage + "/sort/" + cat.UrlKey)">@cat.Name</a>&ensp;&ensp;&ensp;</span> 
                         }
                         </span>
                         <p>

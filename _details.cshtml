@@ -28,8 +28,6 @@
         </div>
     }
 
-    <a class="btn btn-primary app-news-backtolist" href="@App.Settings.NewsPage">@Html.Raw(App.Resources.LabelBackToList)</a>
-
     <p class="app-news-detail-body">
         @Html.Raw(item.Body)
         @ToSic.SexyContent.ContentBlocks.Render.All(item, field: "BodyContentBlocks", merge: item.Body)

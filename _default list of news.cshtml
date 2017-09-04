@@ -1,10 +1,16 @@
 <link rel="stylesheet" href="@App.Path/dist/liststyles.css" />
+<script src="@App.Path/dist/script.js"></script>
 
 @{
     var needle = Request.QueryString["sort"];
     var allData = AsDynamic(Data["Default"]);
     var paging = AsDynamic(Data["Paging"]).FirstOrDefault();
     var allCategories = AsDynamic(App.Data["Category"]);
+
+    var newsPage = @Dnn.Tab.FullUrl;
+}
+@if (!String.IsNullOrEmpty(App.Settings.NewsPage)) {
+    newsPage = App.Settings.NewsPage;
 }
 
 <div class="app-news app-news-default-list">
@@ -15,7 +21,7 @@
                 <h2>@allCategories.Where(x => x.UrlKey == needle).FirstOrDefault().Name</h2>
                 @foreach (var c in allCategories)
                 {
-                    <span><a href="@(App.Settings.NewsPage + "/sort/" + c.UrlKey)">@c.Name</a>&ensp;|&ensp;</span>
+                    <span><a href="@(newsPage + "/sort/" + c.UrlKey)">@c.Name</a>&ensp;|&ensp;</span>
                 }
             </div>
         }
@@ -24,14 +30,14 @@
             <div class="app-news-item sc-element" onclick="window.open('@(App.Settings.DetailPage + "/event/" + item.UrlKey)','_self');">
                 <div>
                     @Edit.Toolbar(item)
-                     @if (!String.IsNullOrEmpty(@item.Image))
+                    @if (!String.IsNullOrEmpty(@item.Image))
                     {
                         <div class="app-news-imagecontainer">
                             <img src="@item.Image?w=400&h=300&mode=crop" alt />
                         </div>
                     }
                     <div class="@(!String.IsNullOrEmpty(@item.Image) ? "app-news-contentcontainer" : "")">
-                        <h2>@item.Title</h2>
+                        <h2>@item.Title @Request.Url.Host</h2>
                         <span class="app-news-date">@item.Date.ToString("dd.MM.yyyy")</span>
                         <span class="app-news-categories">
                         @if (@item.Categories.Count >  0)
@@ -40,7 +46,7 @@
                         } 
                         @foreach (var cat in  @item.Categories)
                         {
-                            <span><a href="@(App.Settings.NewsPage + "/sort/" + cat.UrlKey)">@cat.Name</a>&ensp;&ensp;&ensp;</span> 
+                            <span><a href="@(newsPage + "/sort/" + cat.UrlKey)">@cat.Name</a>&ensp;&ensp;&ensp;</span> 
                         }
                         </span>
                         <p>
@@ -53,12 +59,12 @@
             </div>
         }
         @if (!String.IsNullOrEmpty(needle)) {
-            <a class="btn btn-primary app-news-backtolist" href="@App.Settings.NewsPage">@Html.Raw(App.Resources.LabelBackToList)</a>
+            <a class="btn btn-primary app-news-backtolist" href="@newsPage">@Html.Raw(App.Resources.LabelBackToList)</a>
         }
         <div class="app-news-paging">
             @if (!(paging.PageNumber <= 1))
             {
-                <a class="app-news-prev-pager" href="@LinkToPageNumber(paging.PageNumber - 1)">&lsaquo;</a>
+                <a class="app-news-prev-pager" href="@LinkToPageNumber(paging.PageNumber - 1, newsPage)">&lsaquo;</a>
             }
             @if (@paging.PageSize >= 0)
             {
@@ -70,13 +76,13 @@
                     }
                     else
                     {
-                        <a href="@LinkToPageNumber(i)">@i</a>
+                        <a href="@LinkToPageNumber(i, newsPage)">@i</a>
                     }
                 }
             }
             @if (!(paging.PageNumber >= paging.PageCount))
             {
-                <a class="app-news-next-pager" href="@LinkToPageNumber(paging.PageNumber + 1)">&rsaquo;</a>
+                <a class="app-news-next-pager" href="@LinkToPageNumber(paging.PageNumber + 1, newsPage)">&rsaquo;</a>
             }
         </div>
     </div>
@@ -84,8 +90,8 @@
 
 @functions {
 	// generate a paging-link number, preserving current category parameters
-    public string LinkToPageNumber(int pageNumber){
-        string url = (@App.Settings.NewsPage + "/" + (!String.IsNullOrEmpty(Request.QueryString["sort"]) ? "sort/" + (Request.QueryString["sort"] + "/") : "") + "page/" + pageNumber);
+    public string LinkToPageNumber(int pageNumber, String newsP){
+        string url = (@newsP + "/" + (!String.IsNullOrEmpty(Request.QueryString["sort"]) ? "sort/" + (Request.QueryString["sort"] + "/") : "") + "page/" + pageNumber);
         return url.ToLower();
     }
 }
