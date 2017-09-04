@@ -13,6 +13,10 @@ $grid-guther-width: 20px;
 		position: relative;
 		cursor: pointer;
 
+		&:hover {
+			a { color: #000000 !important; }
+		}
+
 		h2 {
 			font-size: 20px;
 			font-weight: 700;

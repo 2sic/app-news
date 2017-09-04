@@ -7,6 +7,8 @@
 .app-news .app-news-item {
   position: relative;
   cursor: pointer; }
+  .app-news .app-news-item:hover a {
+    color: #000000 !important; }
   .app-news .app-news-item h2 {
     font-size: 20px;
     font-weight: 700;
