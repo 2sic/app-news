@@ -1,12 +1,13 @@
 <link rel="stylesheet" href="@App.Path/dist/liststyles.css" />
 <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700" rel="stylesheet">
+<script src="@App.Path/dist/script.js"></script>
 
 <div class="app-news app-news-column-view">
     @Edit.Toolbar(actions: "new", contentType: "News")
     <div class="app-news-container">
         @foreach (var item in  @AsDynamic(Data["Default"]))
         {
-            <div class="app-news-item sc-element">
+            <div class="app-news-item sc-element" onclick="window.open('@(App.Settings.DetailPage + "/event/" + item.UrlKey)','_self');">
                 <div>
                     @Edit.Toolbar(item)
                     <div>
@@ -25,7 +26,7 @@
                         <p>
                             @item.Teaser    
                         </p>
-
+                        
                         <a class="btn btn-primary" href="@(App.Settings.DetailPage + "/event/" + item.UrlKey)">@Html.Raw(App.Resources.LabelReadMore)</a>
                     </div>
                 </div>

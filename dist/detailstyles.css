@@ -8,16 +8,18 @@
   background: #fff;
   padding: 40px; }
   .app-news.app-news-detail .app-news-detail-imagecontainer {
-    width: 48%;
-    display: inline-block;
-    vertical-align: top; }
+    width: 50%;
+    vertical-align: top;
+    float: right;
+    padding: 0 0 20px 20px; }
     .app-news.app-news-detail .app-news-detail-imagecontainer img {
       max-width: 100%; }
     @media (max-width: 985px) {
       .app-news.app-news-detail .app-news-detail-imagecontainer {
-        width: 100%; } }
+        width: 100%;
+        float: none; } }
   .app-news.app-news-detail .app-news-detail-contentcontainer.app-news-detail-withimage {
-    width: 49%;
+    width: 47%;
     display: inline-block;
     margin: 0 20px 0 0;
     vertical-align: top; }

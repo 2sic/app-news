@@ -21,7 +21,7 @@
         }
         @foreach (var item in allData)
         {
-            <div class="app-news-item sc-element">
+            <div class="app-news-item sc-element" onclick="window.open('@(App.Settings.DetailPage + "/event/" + item.UrlKey)','_self');">
                 <div>
                     @Edit.Toolbar(item)
                      @if (!String.IsNullOrEmpty(@item.Image))

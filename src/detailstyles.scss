@@ -12,9 +12,10 @@ $grid-guther-width: 20px;
 	padding: #{2 * $grid-guther-width};
 
 	.app-news-detail-imagecontainer {
-		width: 48%;
-		display: inline-block;
+		width: 50%;
 		vertical-align: top;
+		float: right;
+		padding: 0 0 20px 20px;
 
 		img {
 			max-width: 100%;
@@ -22,12 +23,13 @@ $grid-guther-width: 20px;
 
 		@media (max-width: 985px) {
 			width: 100%;
+			float: none;
 		}
 	}
 
 	.app-news-detail-contentcontainer {
 		&.app-news-detail-withimage {
-			width: 49%;
+			width: 47%;
 			display: inline-block;
 			margin: 0 $grid-guther-width 0 0;
 			vertical-align: top;

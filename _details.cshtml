@@ -17,12 +17,9 @@
         } 
         @foreach (var cat in  @item.Categories)
         {
-            <span>@cat.Name&ensp;&ensp;&ensp;</span> 
+            <span><a href="@(App.Settings.NewsPage + "/sort/" + cat.UrlKey)">@cat.Name</a>&ensp;&ensp;&ensp;</span>
         }
         </span>
-        <p class="app-news-detail-teaser">
-            @item.Teaser
-        </p>
     </div>
     @if (!String.IsNullOrEmpty(@item.Image))
     {

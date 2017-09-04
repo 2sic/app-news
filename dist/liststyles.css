@@ -5,7 +5,8 @@
   font-family: 'Roboto', sans-serif !important; }
 
 .app-news .app-news-item {
-  position: relative; }
+  position: relative;
+  cursor: pointer; }
   .app-news .app-news-item h2 {
     font-size: 20px;
     font-weight: 700;
