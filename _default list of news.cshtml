@@ -13,8 +13,8 @@
     newsPage = App.Settings.NewsPage;
 }
 
-<div class="app-news app-news-default-list">
-    @Edit.Toolbar(actions: "new", contentType: "News")
+<div class="app-news app-news-default-list sc-element">
+    @Edit.Toolbar(actions: "new", contentType: "News", settings: new { hover = "left" })
     <div class="app-news-container">
         @if (!String.IsNullOrEmpty(needle)) {
             <div class="app-news-catinfo">

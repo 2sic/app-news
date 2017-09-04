@@ -9,8 +9,8 @@
     newsPage = App.Settings.NewsPage;
 }
 
-<div class="app-news app-news-column-view">
-    @Edit.Toolbar(actions: "new", contentType: "News")
+<div class="app-news app-news-column-view sc-element">
+    @Edit.Toolbar(actions: "new", contentType: "News", settings: new { hover = "left" })
     <div class="app-news-container">
         @foreach (var item in  @AsDynamic(Data["Default"]))
         {
