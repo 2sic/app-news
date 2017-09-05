@@ -1,5 +1,5 @@
 @{
-    var item = @AsDynamic(App.Data["News"]).Where(x => x.UrlKey == Request.QueryString["event"]).FirstOrDefault();
+    var item = @AsDynamic(App.Data["News"]).Where(x => x.UrlKey == Request.QueryString["article"]).FirstOrDefault();
 }
 
 <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700" rel="stylesheet">

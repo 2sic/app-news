@@ -11,11 +11,14 @@
 
 <div class="app-news app-news-column-view sc-element">
     @Edit.Toolbar(actions: "new", contentType: "News", settings: new { hover = "left" })
+    @Edit.Toolbar(ListContent)
     <div class="app-news-container">
         @foreach (var item in @AsDynamic(Data["Default"]))
         {
-            <div class="app-news-item sc-element" onclick="window.open('@(App.Settings.DetailPage + "/event/" + item.UrlKey)','_self');">
-                <div>
+            var detailsLink =  Link.To(parameters: "detail=" + item.UrlKey);
+            
+            <div class="app-news-item" onclick="window.open('@detailsLink','_self');">
+                <div class="sc-element">
                     @Edit.Toolbar(item)
                     @if (!String.IsNullOrEmpty(@item.Image))
                     {
@@ -48,7 +51,7 @@
                             @item.Teaser    
                         </p>
 
-                        <a class="btn btn-primary" href="@(App.Settings.DetailPage + "/event/" + item.UrlKey)">@Html.Raw(App.Resources.LabelReadMore)</a>
+                        <a class="btn btn-primary" href="@detailsLink">@Html.Raw(App.Resources.LabelReadMore)</a>
                     </div>
                 </div>
             </div>

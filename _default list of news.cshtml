@@ -27,7 +27,9 @@
         }
         @foreach (var item in allData)
         {
-            <div class="app-news-item sc-element" onclick="window.open('@(App.Settings.DetailPage + "/event/" + item.UrlKey)','_self');">
+            var detailsLink =  Link.To(parameters: "detail=" + item.UrlKey);
+            
+            <div class="app-news-item sc-element" onclick="window.open('@detailsLink','_self');">
                 <div>
                     @Edit.Toolbar(item)
                     @if (!String.IsNullOrEmpty(@item.Image))
@@ -53,7 +55,7 @@
                             @item.Teaser    
                         </p>
 
-                        <a class="btn btn-primary" href="@(App.Settings.DetailPage + "/event/" + item.UrlKey)">@Html.Raw(App.Resources.LabelReadMore)</a>
+                        <a class="btn btn-primary" href="@detailsLink">@Html.Raw(App.Resources.LabelReadMore)</a>
                     </div>
                 </div>
             </div>
