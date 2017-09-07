@@ -172,18 +172,20 @@
 .app-news a.app-news-backtolist {
   margin-top: 20px !important; }
 
-.app-news .app-news-catinfo > span {
-  font-size: 10px; }
-  .app-news .app-news-catinfo > span > a {
-    font-size: 10px;
-    color: #1BC48E;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    transition: color .2s ease; }
-    .app-news .app-news-catinfo > span > a:hover {
-      color: #000; }
-  .app-news .app-news-catinfo > span:last-of-type {
-    color: transparent; }
+.app-news .app-news-catinfo {
+  margin-bottom: 20px; }
+  .app-news .app-news-catinfo > span {
+    font-size: 10px; }
+    .app-news .app-news-catinfo > span > a {
+      font-size: 10px;
+      color: #1BC48E;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: color .2s ease; }
+      .app-news .app-news-catinfo > span > a:hover {
+        color: #000; }
+    .app-news .app-news-catinfo > span:last-of-type {
+      color: transparent; }
 
 .app-news .app-news-paging {
   width: 100%;

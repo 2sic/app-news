@@ -2,7 +2,9 @@
 <script src="@App.Path/dist/script.js"></script>
 
 @{
+    var needle = Request.QueryString["sort"];
     var newsPage = @Dnn.Tab.FullUrl;
+    var allCategories = AsDynamic(App.Data["Category"]);
 }
 @if (!String.IsNullOrEmpty(Content.NewsPage)) {
     newsPage = Content.NewsPage;
@@ -12,6 +14,15 @@
     @Edit.Toolbar(actions: "new", contentType: "News", settings: new { hover = "left" })
     @Edit.Toolbar(Content)
 
+    @if (!String.IsNullOrEmpty(needle)) {
+        <div class="app-news-catinfo">
+            <h2>@allCategories.Where(x => x.UrlKey == needle).FirstOrDefault().Name</h2>
+            @foreach (var c in allCategories)
+            {
+                <span><a href="@(newsPage + "/sort/" + c.UrlKey)">@c.Name</a>&ensp;|&ensp;</span>
+            }
+        </div>
+    }
     <div class="app-news-container">
         @if (!String.IsNullOrEmpty(needle)) {
             <div class="app-news-catinfo">
