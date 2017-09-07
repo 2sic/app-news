@@ -1,5 +1,5 @@
 @{
-    var item = @AsDynamic(App.Data["News"]).Where(x => x.UrlKey == Request.QueryString["article"]).FirstOrDefault();
+    var item = AsDynamic(Data["Default"]).FirstOrDefault();
 }
 
 <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700" rel="stylesheet">
@@ -17,7 +17,7 @@
         } 
         @foreach (var cat in  @item.Categories)
         {
-            <span><a href="@(App.Settings.NewsPage + "/sort/" + cat.UrlKey)">@cat.Name</a>&ensp;&ensp;&ensp;</span>
+            <span><a href="@(Content.NewsPage + "/sort/" + cat.UrlKey)">@cat.Name</a>&ensp;&ensp;&ensp;</span>
         }
         </span>
     </div>
@@ -33,6 +33,5 @@
         @ToSic.SexyContent.ContentBlocks.Render.All(item, field: "BodyContentBlocks", merge: item.Body)
     </p>
 
-    <a class="btn btn-primary app-news-backtolist" href="@App.Settings.NewsPage">@Html.Raw(App.Resources.LabelBackToList)</a>
+    <a class="btn btn-primary app-news-backtolist" href="@Link.To()">@Html.Raw(App.Resources.LabelBackToList)</a>
 </div>
-

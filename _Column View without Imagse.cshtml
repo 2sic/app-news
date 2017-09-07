@@ -5,14 +5,25 @@
 @{
     var newsPage = @Dnn.Tab.FullUrl;
 }
-@if (!String.IsNullOrEmpty(App.Settings.NewsPage)) {
-    newsPage = App.Settings.NewsPage;
+@if (!String.IsNullOrEmpty(Content.NewsPage)) {
+    newsPage = Content.NewsPage;
 }
 
 <div class="app-news app-news-column-view sc-element">
     @Edit.Toolbar(actions: "new", contentType: "News", settings: new { hover = "left" })
+    @Edit.Toolbar(Content)
+
     <div class="app-news-container">
-        @foreach (var item in  @AsDynamic(Data["Default"]))
+        @if (!String.IsNullOrEmpty(needle)) {
+            <div class="app-news-catinfo">
+                <h2>@allCategories.Where(x => x.UrlKey == needle).FirstOrDefault().Name</h2>
+                @foreach (var c in allCategories)
+                {
+                    <span><a href="@(newsPage + "/sort/" + c.UrlKey)">@c.Name</a>&ensp;|&ensp;</span>
+                }
+            </div>
+        }
+        @foreach (var item in  @AsDynamic(Data["News"]))
         {
             var detailsLink =  Link.To(parameters: "detail=" + item.UrlKey);
 
@@ -42,4 +53,7 @@
             </div>
         }
     </div>
+
+    @if (Content.ShowPagination) {
+            @RenderPage("_paging.cshtml", new { newsPage = newsPage }) }
 </div>

@@ -3,18 +3,20 @@
 
 @{
     var needle = Request.QueryString["sort"];
-    var allData = AsDynamic(Data["Default"]);
+    var allData = AsDynamic(Data["News"]);
     var paging = AsDynamic(Data["Paging"]).FirstOrDefault();
     var allCategories = AsDynamic(App.Data["Category"]);
 
     var newsPage = @Dnn.Tab.FullUrl;
 }
-@if (!String.IsNullOrEmpty(App.Settings.NewsPage)) {
-    newsPage = App.Settings.NewsPage;
+@if (!String.IsNullOrEmpty(Content.NewsPage)) {
+    newsPage = Content.NewsPage;
 }
 
 <div class="app-news app-news-default-list sc-element">
     @Edit.Toolbar(actions: "new", contentType: "News", settings: new { hover = "left" })
+    @Edit.Toolbar(Content)
+
     <div class="app-news-container">
         @if (!String.IsNullOrEmpty(needle)) {
             <div class="app-news-catinfo">
@@ -63,37 +65,8 @@
         @if (!String.IsNullOrEmpty(needle)) {
             <a class="btn btn-primary app-news-backtolist" href="@newsPage">@Html.Raw(App.Resources.LabelBackToList)</a>
         }
-        <div class="app-news-paging">
-            @if (!(paging.PageNumber <= 1))
-            {
-                <a class="app-news-prev-pager" href="@LinkToPageNumber(paging.PageNumber - 1, newsPage)">&lsaquo;</a>
-            }
-            @if (@paging.PageSize >= 0)
-            {
-                for(int i = 1; i <= @paging.PageCount; i++)
-                {
-                    if (i == paging.PageNumber)
-                    {
-                        <a class="app-news-paging-active">@i</a>
-                    }
-                    else
-                    {
-                        <a href="@LinkToPageNumber(i, newsPage)">@i</a>
-                    }
-                }
-            }
-            @if (!(paging.PageNumber >= paging.PageCount))
-            {
-                <a class="app-news-next-pager" href="@LinkToPageNumber(paging.PageNumber + 1, newsPage)">&rsaquo;</a>
-            }
-        </div>
+
+        @if (Content.ShowPagination) {
+            @RenderPage("_paging.cshtml", new { newsPage = newsPage }) }
     </div>
 </div>
-
-@functions {
-	// generate a paging-link number, preserving current category parameters
-    public string LinkToPageNumber(int pageNumber, String newsP){
-        string url = (@newsP + "/" + (!String.IsNullOrEmpty(Request.QueryString["sort"]) ? "sort/" + (Request.QueryString["sort"] + "/") : "") + "page/" + pageNumber);
-        return url.ToLower();
-    }
-}
