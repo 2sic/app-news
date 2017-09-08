@@ -15,7 +15,7 @@
     newsPageTab = int.Parse((AsEntity(Content).GetBestValue("NewsPage")).Split(':')[1]);
 }
 
-<div class="app-news app-news-column-view sc-element">
+<div class="app-news app-news-column-view app-news-column-view-noimage sc-element">
     @Edit.Toolbar(actions: "new", contentType: "News", settings: new { hover = "left" })
     @Edit.Toolbar(Content)
 
@@ -59,7 +59,10 @@
             </div>
         }
     </div>
-
+    @if (!String.IsNullOrEmpty(needle)) {
+        <a class="btn btn-primary app-news-backtolist" href="@newsPage">@Html.Raw(App.Resources.LabelBackToList)</a>
+    }
+    
     @if (Content.ShowPagination) {
             @RenderPage("_paging.cshtml", new { newsPage = newsPage }) }
 </div>

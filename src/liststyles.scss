@@ -127,6 +127,13 @@ $grid-guther-width: 20px;
 		}
 	}
 
+	// Column View Without images
+	&.app-news-column-view-noimage {
+		.btn.btn-primary {
+			bottom: 40px !important;
+		}
+	}
+
 	// Masonry Grid
 	&.app-news-masonry-grid {
 		.app-news-container {

@@ -86,6 +86,9 @@
       .app-news.app-news-column-view .app-news-container .app-news-item {
         width: 100%; } }
 
+.app-news.app-news-column-view-noimage .btn.btn-primary {
+  bottom: 40px !important; }
+
 .app-news.app-news-masonry-grid .app-news-container {
   column-count: 3;
   column-gap: 20px;
