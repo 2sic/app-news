@@ -1,0 +1,7 @@
+@functions {
+    public string LinkToPage(int tabId, string param1, string param2)
+    {
+        var result = DotNetNuke.Common.Globals.NavigateURL(tabId, "", new string[] { param1, param2 });
+        return result;
+    }
+}

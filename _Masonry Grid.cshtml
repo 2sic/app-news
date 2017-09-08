@@ -2,12 +2,16 @@
 <script src="@App.Path/dist/script.js"></script>
 
 @{
+    var lib = CreateInstance("_library.cshtml");
+    
     var needle = Request.QueryString["sort"];
-    var newsPage = @Dnn.Tab.FullUrl;
     var allCategories = AsDynamic(App.Data["Category"]);
+
+    var newsPage = @Dnn.Tab.FullUrl;
+    var newsPageTab = @Dnn.Module.TabID;
 }
 @if (!String.IsNullOrEmpty(Content.NewsPage)) {
-    newsPage = Content.NewsPage;
+    newsPageTab = int.Parse((AsEntity(Content).GetBestValue("NewsPage")).Split(':')[1]);
 }
 
 <div class="app-news app-news-masonry-grid sc-element">
@@ -19,23 +23,14 @@
             <h2>@allCategories.Where(x => x.UrlKey == needle).FirstOrDefault().Name</h2>
             @foreach (var c in allCategories)
             {
-                <span><a href="@(newsPage + "/sort/" + c.UrlKey)">@c.Name</a>&ensp;|&ensp;</span>
+                <span><a href="@lib.LinkToPage(newsPageTab, "sort", c.UrlKey)">@c.Name</a>&ensp;|&ensp;</span>
             }
         </div>
     }
     <div class="app-news-container">
-        @if (!String.IsNullOrEmpty(needle)) {
-            <div class="app-news-catinfo">
-                <h2>@allCategories.Where(x => x.UrlKey == needle).FirstOrDefault().Name</h2>
-                @foreach (var c in allCategories)
-                {
-                    <span><a href="@(newsPage + "/sort/" + c.UrlKey)">@c.Name</a>&ensp;|&ensp;</span>
-                }
-            </div>
-        }
         @foreach (var item in  @AsDynamic(Data["News"]))
         {
-            var detailsLink =  Link.To(parameters: "detail=" + item.UrlKey);
+            string detailsLink = @lib.LinkToPage(newsPageTab, "detail", item.UrlKey);        
             
             <div class="app-news-item sc-element" onclick="window.open('@detailsLink','_self');">
                 <div>
@@ -56,7 +51,7 @@
                         } 
                         @foreach (var cat in  @item.Categories)
                         {
-                            <span><a href="@(newsPage + "/sort/" + cat.UrlKey)">@cat.Name</a>&ensp;&ensp;&ensp;</span> 
+                            <span><a href="@lib.LinkToPage(newsPageTab, "sort", cat.UrlKey)">@cat.Name</a>&ensp;&ensp;&ensp;</span> 
                         }
                         </span>
                         <p>
