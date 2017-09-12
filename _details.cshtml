@@ -1,3 +1,5 @@
+@using System.Web.UI.HtmlControls
+
 @{
     var item = AsDynamic(Data["Default"]).FirstOrDefault();
 
@@ -5,6 +7,26 @@
     
     var newsPage = "";
     var newsPageTab = @Dnn.Module.TabID;
+
+    var pageHandler = HttpContext.Current.Handler as Page;
+    var tp = (DotNetNuke.Framework.CDefault)pageHandler;    
+}
+@if (pageHandler != null && tp != null)
+{
+    if (!String.IsNullOrEmpty(item.Body))
+    {
+        var description = lib.StripHTML(item.Teaser);
+
+        tp.Description = description;
+        var metaDescription = (HtmlMeta)pageHandler.FindControl("metaDescription");
+        metaDescription.Visible = true;
+        metaDescription.Content = HttpUtility.HtmlAttributeEncode(description);
+    }
+
+    if (!String.IsNullOrEmpty(item.Title))
+    {
+        pageHandler.Title = item.Date.ToString("dd.MM.yyyy") + " - " + item.Title;
+    }
 }
 @if(!String.IsNullOrEmpty(Content.NewsPage)) 
 {
