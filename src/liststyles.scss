@@ -185,6 +185,10 @@ $grid-guther-width: 20px;
 
 	// Default List
 	&.app-news-default-list {
+		> ul.sc-menu {
+			margin-top: -20px;
+		}
+
 		.app-news-container {
 			display: block;
 			margin: 0 -#{2 * $grid-guther-width};

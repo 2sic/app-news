@@ -34,7 +34,7 @@
             string detailsLink = @lib.LinkToPage(newsPageTab, "details", item.UrlKey);        
 
             <div class="app-news-item sc-element" onclick="window.open('@detailsLink','_self');">
-                <div>
+                <div class="sc-element">
                     @Edit.Toolbar(item)
                     <div>
                         <h2>@item.Title</h2>

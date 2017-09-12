@@ -124,6 +124,9 @@
       .app-news.app-news-masonry-grid .app-news-container .app-news-item {
         width: 100%; } }
 
+.app-news.app-news-default-list > ul.sc-menu {
+  margin-top: -20px; }
+
 .app-news.app-news-default-list .app-news-container {
   display: block;
   margin: 0 -40px; }
