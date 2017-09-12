@@ -6,8 +6,6 @@
     
     var catFilter = Request.QueryString["category"];
     var hasCategoryFilter = !String.IsNullOrEmpty(catFilter);
-    var allData = AsDynamic(Data["News"]);
-    var paging = AsDynamic(Data["Paging"]).FirstOrDefault();
     var allCategories = AsDynamic(App.Data["Category"]);
 
     var newsPage = @Dnn.Tab.FullUrl;
@@ -33,7 +31,7 @@
                 }
             </div>
         }
-        @foreach (var item in allData)
+        @foreach (var item in AsDynamic(Data["News"]))
         {
             string detailsLink = @lib.LinkToPage(newsPageTab, "details", item.UrlKey);          
             
