@@ -2,8 +2,6 @@
 
 @{
     var item = AsDynamic(Data["Default"]).FirstOrDefault();
-    var settings = AsDynamic(Data["Settings"]).FirstOrDefault();
-
     var lib = CreateInstance("_library.cshtml");
     
     var newsPage = "";
@@ -26,7 +24,7 @@
 
     if (!String.IsNullOrEmpty(item.Title))
     {
-        pageHandler.Title = item.Date.ToString("dd.MM.yyyy") + " - " + item.Title;
+        pageHandler.Title = item.Date.ToString("dd.MM.yyyy") + " - " + item.Title + " | " + Dnn.Portal.PortalName + " > " + Dnn.Module.ParentTab.TabName;
     }
 }
 @if(!String.IsNullOrEmpty(Content.NewsPage)) 
@@ -34,8 +32,6 @@
     newsPage = Content.NewsPage;
     newsPageTab = int.Parse((AsEntity(Content).GetBestValue("NewsPage")).Split(':')[1]);
 }
-
-@Edit.Toolbar(settings)
 
 <link rel="stylesheet" href="@App.Path/dist/detailstyles.css" data-enableoptimizations="true" />
 
