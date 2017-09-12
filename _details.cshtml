@@ -12,8 +12,8 @@
     newsPageTab = int.Parse((AsEntity(Content).GetBestValue("NewsPage")).Split(':')[1]);
 }
 
-<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700" rel="stylesheet">
-<link rel="stylesheet" href="@App.Path/dist/detailstyles.css" />
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700" rel="stylesheet" data-enableoptimizations="true" />
+<link rel="stylesheet" href="@App.Path/dist/detailstyles.css" data-enableoptimizations="true" />
 
 <div class="app-news app-news-detail sc-element">
     @Edit.Toolbar(item)
