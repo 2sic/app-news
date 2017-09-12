@@ -31,7 +31,7 @@
     <div class="app-news-container">
         @foreach (var item in  @AsDynamic(Data["News"]))
         {
-            string detailsLink = @lib.LinkToPage(newsPageTab, "detail", item.UrlKey);        
+            string detailsLink = @lib.LinkToPage(newsPageTab, "details", item.UrlKey);        
 
             <div class="app-news-item sc-element" onclick="window.open('@detailsLink','_self');">
                 <div>
