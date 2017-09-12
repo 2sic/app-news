@@ -1,5 +1,15 @@
 @{
     var item = AsDynamic(Data["Default"]).FirstOrDefault();
+
+    var lib = CreateInstance("_library.cshtml");
+    
+    var newsPage = "";
+    var newsPageTab = @Dnn.Module.TabID;
+}
+@if(!String.IsNullOrEmpty(Content.NewsPage)) 
+{
+    newsPage = Content.NewsPage;
+    newsPageTab = int.Parse((AsEntity(Content).GetBestValue("NewsPage")).Split(':')[1]);
 }
 
 <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700" rel="stylesheet">
@@ -17,7 +27,7 @@
         } 
         @foreach (var cat in  @item.Categories)
         {
-            <span><a href="@(Content.NewsPage + "/sort/" + cat.UrlKey)">@cat.Name</a>&ensp;&ensp;&ensp;</span>
+            <span><a href="@lib.LinkToPage(newsPageTab, "category", cat.UrlKey)">@cat.Name</a>&ensp;&ensp;&ensp;</span>
         }
         </span>
     </div>

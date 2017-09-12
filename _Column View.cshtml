@@ -5,26 +5,30 @@
 @{
     var lib = CreateInstance("_library.cshtml"); 
 
-    var needle = Request.QueryString["sort"];
+    var needle = Request.QueryString["category"];
+    var hasCategoryFilter = !String.IsNullOrEmpty(needle);
     var allCategories = AsDynamic(App.Data["Category"]);
 
     var newsPage = @Dnn.Tab.FullUrl;
     var newsPageTab = @Dnn.Module.TabID;
 }
-@if (!String.IsNullOrEmpty(Content.NewsPage)) {
+@if(!String.IsNullOrEmpty(Content.NewsPage)) 
+{
+    newsPage = Content.NewsPage;
     newsPageTab = int.Parse((AsEntity(Content).GetBestValue("NewsPage")).Split(':')[1]);
 }
+
 
 <div class="app-news app-news-column-view sc-element">
     @Edit.Toolbar(actions: "new", contentType: "News", settings: new { hover = "left" })
     @Edit.Toolbar(Content)
 
-    @if (!String.IsNullOrEmpty(needle)) {
+    @if (hasCategoryFilter) {
         <div class="app-news-catinfo">
             <h2>@allCategories.Where(x => x.UrlKey == needle).FirstOrDefault().Name</h2>
             @foreach (var c in allCategories)
             {
-                <span><a href="@lib.LinkToPage(newsPageTab, "sort", c.UrlKey)">@c.Name</a>&ensp;|&ensp;</span>
+                <span><a href="@lib.LinkToPage(newsPageTab, "category", c.UrlKey)">@c.Name</a>&ensp;|&ensp;</span>
             }
         </div>
     }
@@ -61,7 +65,7 @@
                         } 
                         @foreach (var cat in  @item.Categories)
                         {
-                            <span><a href="@lib.LinkToPage(newsPageTab, "sort", cat.UrlKey)">@cat.Name</a>&ensp;&ensp;&ensp;</span> 
+                            <span><a href="@lib.LinkToPage(newsPageTab, "category", cat.UrlKey)">@cat.Name</a>&ensp;&ensp;&ensp;</span> 
                         }
                         </span>
                         <p>
@@ -74,10 +78,11 @@
             </div>
         }
     </div>
-    @if (!String.IsNullOrEmpty(needle)) {
+    @if (hasCategoryFilter) {
         <a class="btn btn-primary app-news-backtolist" href="@newsPage">@Html.Raw(App.Resources.LabelBackToList)</a>
     }
 
     @if (Content.ShowPagination) {
-        @RenderPage("_paging.cshtml", new { newsPage = newsPage }) }
+        @RenderPage("_paging.cshtml", new { newsPage = newsPage }) 
+    }
 </div>

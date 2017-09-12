@@ -32,7 +32,7 @@
 @functions {
 	// generate a paging-link number, preserving current category parameters
     public string LinkToPageNumber(int pageNumber, String newsP){
-        string url = (@newsP + "/" + (!String.IsNullOrEmpty(Request.QueryString["sort"]) ? "sort/" + (Request.QueryString["sort"] + "/") : "") + "page/" + pageNumber);
+        string url = (@newsP + "/" + (!String.IsNullOrEmpty(Request.QueryString["category"]) ? "sort/" + (Request.QueryString["category"] + "/") : "") + "page/" + pageNumber);
         return url.ToLower();
     }
 }

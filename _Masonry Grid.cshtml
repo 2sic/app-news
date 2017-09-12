@@ -4,7 +4,7 @@
 @{
     var lib = CreateInstance("_library.cshtml");
     
-    var needle = Request.QueryString["sort"];
+    var needle = Request.QueryString["category"];
     var allCategories = AsDynamic(App.Data["Category"]);
 
     var newsPage = @Dnn.Tab.FullUrl;
@@ -23,7 +23,7 @@
             <h2>@allCategories.Where(x => x.UrlKey == needle).FirstOrDefault().Name</h2>
             @foreach (var c in allCategories)
             {
-                <span><a href="@lib.LinkToPage(newsPageTab, "sort", c.UrlKey)">@c.Name</a>&ensp;|&ensp;</span>
+                <span><a href="@lib.LinkToPage(newsPageTab, "category", c.UrlKey)">@c.Name</a>&ensp;|&ensp;</span>
             }
         </div>
     }
@@ -51,7 +51,7 @@
                         } 
                         @foreach (var cat in  @item.Categories)
                         {
-                            <span><a href="@lib.LinkToPage(newsPageTab, "sort", cat.UrlKey)">@cat.Name</a>&ensp;&ensp;&ensp;</span> 
+                            <span><a href="@lib.LinkToPage(newsPageTab, "category", cat.UrlKey)">@cat.Name</a>&ensp;&ensp;&ensp;</span> 
                         }
                         </span>
                         <p>
