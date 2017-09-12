@@ -21,7 +21,8 @@
     @Edit.Toolbar(actions: "new", contentType: "News", settings: new { hover = "left" })
     @Edit.Toolbar(Content)
 
-    @if (hasCategoryFilter)) {
+    @if (hasCategoryFilter)
+    {
         <div class="app-news-catinfo">
             <h2>@allCategories.Where(x => x.UrlKey == catFilter).FirstOrDefault().Name</h2>
             @foreach (var c in allCategories)

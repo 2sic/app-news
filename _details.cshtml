@@ -2,6 +2,7 @@
 
 @{
     var item = AsDynamic(Data["Default"]).FirstOrDefault();
+    var settings = AsDynamic(Data["Settings"]).FirstOrDefault();
 
     var lib = CreateInstance("_library.cshtml");
     
@@ -33,6 +34,8 @@
     newsPage = Content.NewsPage;
     newsPageTab = int.Parse((AsEntity(Content).GetBestValue("NewsPage")).Split(':')[1]);
 }
+
+@Edit.Toolbar(settings)
 
 <link rel="stylesheet" href="@App.Path/dist/detailstyles.css" data-enableoptimizations="true" />
 
