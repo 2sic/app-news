@@ -5,6 +5,7 @@
     var lib = CreateInstance("_library.cshtml");
     
     var catFilter = Request.QueryString["category"];
+    var hasCategoryFilter = !String.IsNullOrEmpty(catFilter);
     var allData = AsDynamic(Data["News"]);
     var paging = AsDynamic(Data["Paging"]).FirstOrDefault();
     var allCategories = AsDynamic(App.Data["Category"]);
@@ -12,7 +13,9 @@
     var newsPage = @Dnn.Tab.FullUrl;
     var newsPageTab = @Dnn.Module.TabID;
 }
-@if (!String.IsNullOrEmpty(Content.NewsPage)) {
+@if(!String.IsNullOrEmpty(Content.NewsPage)) 
+{
+    newsPage = Content.NewsPage;
     newsPageTab = int.Parse((AsEntity(Content).GetBestValue("NewsPage")).Split(':')[1]);
 }
 
@@ -21,7 +24,7 @@
     @Edit.Toolbar(Content)
 
     <div class="app-news-container">
-        @if (!String.IsNullOrEmpty(catFilter)) {
+        @if (hasCategoryFilter) {
             <div class="app-news-catinfo">
                 <h2>@allCategories.Where(x => x.UrlKey == catFilter).FirstOrDefault().Name</h2>
                 @foreach (var c in allCategories)
@@ -57,7 +60,7 @@
                         }
                         </span>
                         <p>
-                            @item.Teaser    
+                            @Html.Raw(item.Teaser.Replace("\n", "<br />"))
                         </p>
 
                         <a class="btn btn-primary" href="@detailsLink">@Html.Raw(App.Resources.LabelReadMore)</a>

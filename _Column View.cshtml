@@ -69,7 +69,7 @@
                         }
                         </span>
                         <p>
-                            @item.Teaser    
+                            @Html.Raw(item.Teaser.Replace("\n", "<br />"))
                         </p>
 
                         <a class="btn btn-primary" href="@detailsLink">@Html.Raw(App.Resources.LabelReadMore)</a>
