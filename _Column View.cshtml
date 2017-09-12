@@ -5,8 +5,8 @@
 @{
     var lib = CreateInstance("_library.cshtml"); 
 
-    var needle = Request.QueryString["category"];
-    var hasCategoryFilter = !String.IsNullOrEmpty(needle);
+    var catFilter = Request.QueryString["category"];
+    var hasCategoryFilter = !String.IsNullOrEmpty(catFilter);
     var allCategories = AsDynamic(App.Data["Category"]);
 
     var newsPage = @Dnn.Tab.FullUrl;
@@ -25,7 +25,7 @@
 
     @if (hasCategoryFilter) {
         <div class="app-news-catinfo">
-            <h2>@allCategories.Where(x => x.UrlKey == needle).FirstOrDefault().Name</h2>
+            <h2>@allCategories.Where(x => x.UrlKey == catFilter).FirstOrDefault().Name</h2>
             @foreach (var c in allCategories)
             {
                 <span><a href="@lib.LinkToPage(newsPageTab, "category", c.UrlKey)">@c.Name</a>&ensp;|&ensp;</span>
