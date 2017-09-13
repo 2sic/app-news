@@ -1,6 +1,6 @@
 // Variables (Import the skins variables.scss file when you use the 2sic standard skin)
 $brand-primary: #1BC48E;
-$grid-guther-width: 20px;
+$grid-gutter-width: 20px;
 
 // Only for debug
 .container-fluid { background: #EFEFEF !important; }
@@ -62,7 +62,7 @@ $grid-guther-width: 20px;
 			-webkit-flex-direction: row;
 			flex-direction: row;
 			flex-flow: row wrap;
-			margin: 0 -$grid-guther-width;
+			margin: 0 -$grid-gutter-width;
 			@media (max-width: 1240px) {
 				margin: 0;
 			}
@@ -75,7 +75,7 @@ $grid-guther-width: 20px;
 					background: #ffffff;
 					width: 100%;
 					height: 100%;
-					padding: $grid-guther-width;
+					padding: $grid-gutter-width;
 				}
  
 				.btn.btn-primary {
@@ -89,22 +89,22 @@ $grid-guther-width: 20px;
 				}
 
 				img {
-					max-width: calc(100% + #{2 * $grid-guther-width});
+					max-width: calc(100% + #{2 * $grid-gutter-width});
 					max-height: 100%;
-					margin-top: -$grid-guther-width;
+					margin-top: -$grid-gutter-width;
 					margin-right: 0;
-					margin-bottom: $grid-guther-width;
-					margin-left: -$grid-guther-width;
+					margin-bottom: $grid-gutter-width;
+					margin-left: -$grid-gutter-width;
 					height: 210px;
 				}
 
 				.app-news-imgplaceholder {
-					width: calc(100% + #{2 * $grid-guther-width});
+					width: calc(100% + #{2 * $grid-gutter-width});
 					max-height: 100%;
-					margin-top: -$grid-guther-width;
+					margin-top: -$grid-gutter-width;
 					margin-right: 0;
-					margin-bottom: $grid-guther-width;
-					margin-left: -$grid-guther-width;
+					margin-bottom: $grid-gutter-width;
+					margin-left: -$grid-gutter-width;
 					height: 210px;
 					background: #E1E1E1;
 					text-align: center;
@@ -131,23 +131,23 @@ $grid-guther-width: 20px;
 	&.app-news-masonry-grid {
 		.app-news-container {
 			column-count: 3;
-			column-gap: $grid-guther-width;
-			margin: 0 -#{2 * $grid-guther-width};
+			column-gap: $grid-gutter-width;
+			margin: 0 -#{2 * $grid-gutter-width};
 			@media (max-width: 1240px) {
-				margin: 0 -$grid-guther-width;
+				margin: 0 -$grid-gutter-width;
 			}
 
 			.app-news-item {
 				background-color: #eee;
 				display: inline-block;
 				width: 100%;
-				padding: #{$grid-guther-width / 2} 0;
+				padding: #{$grid-gutter-width / 2} 0;
 				
 				> div {
 					background: #ffffff;
 					width: 100%;
 					height: 100%;
-					padding: $grid-guther-width;
+					padding: $grid-gutter-width;
 				}
 
 				.btn.btn-primary {
@@ -157,12 +157,12 @@ $grid-guther-width: 20px;
 				}
 
 				img {
-					max-width: calc(100% + #{2 * $grid-guther-width});
+					max-width: calc(100% + #{2 * $grid-gutter-width});
 					max-height: 100%;
-					margin-top: -$grid-guther-width;
+					margin-top: -$grid-gutter-width;
 					margin-right: 0;
-					margin-bottom: $grid-guther-width;
-					margin-left: -$grid-guther-width;
+					margin-bottom: $grid-gutter-width;
+					margin-left: -$grid-gutter-width;
 				}
 
 				@media (max-width: 960px) {
@@ -184,26 +184,26 @@ $grid-guther-width: 20px;
 
 		.app-news-container {
 			display: block;
-			margin: 0 -#{2 * $grid-guther-width};
+			margin: 0 -#{2 * $grid-gutter-width};
 			@media (max-width: 1240px) {
-				margin: 0 -$grid-guther-width;
+				margin: 0 -$grid-gutter-width;
 			}
 
 			.app-news-item {
 				display: block;
 				width: 100%;
-				margin-top: $grid-guther-width;
+				margin-top: $grid-gutter-width;
 				
 				> div {
 					background: #ffffff;
 					width: 100%;
 					height: 100%;
-					padding: $grid-guther-width;
+					padding: $grid-gutter-width;
 				}
 
 				.btn.btn-primary {
 					position: absolute;
-					bottom: $grid-guther-width;
+					bottom: $grid-gutter-width;
 					color: $brand-primary;
 				}
 
@@ -215,7 +215,7 @@ $grid-guther-width: 20px;
 				.app-news-contentcontainer {
 					max-width: 80%;
 					max-width: 79%;
-					padding-left: $grid-guther-width;
+					padding-left: $grid-gutter-width;
 				 }
 
 				.app-news-imagecontainer {
@@ -251,7 +251,7 @@ $grid-guther-width: 20px;
 	}
 
 	a.app-news-backtolist {
-		margin-top: $grid-guther-width !important;
+		margin-top: $grid-gutter-width !important;
 	}
 
 	.app-news-catinfo {
@@ -281,7 +281,7 @@ $grid-guther-width: 20px;
 	.app-news-paging {
 		width: 100%;
 		text-align: center;
-		margin-top: $grid-guther-width;
+		margin-top: $grid-gutter-width;
 
 		> a {
 			display: inline-block;

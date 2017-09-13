@@ -1,6 +1,6 @@
 // Variables (Import the skins variables.scss file when you use the 2sic standard skin)
 $brand-primary: #1BC48E;
-$grid-guther-width: 20px;
+$grid-gutter-width: 20px;
 
 // Only for debug
 .container-fluid { background: #EFEFEF !important; }
@@ -9,7 +9,7 @@ $grid-guther-width: 20px;
 
 .app-news.app-news-detail {
 	background: #fff;
-	padding: #{2 * $grid-guther-width};
+	padding: #{2 * $grid-gutter-width};
 
 	.app-news-detail-imagecontainer {
 		width: 50%;
@@ -31,7 +31,7 @@ $grid-guther-width: 20px;
 		&.app-news-detail-withimage {
 			width: 47%;
 			display: inline-block;
-			margin: 0 $grid-guther-width 0 0;
+			margin: 0 $grid-gutter-width 0 0;
 			vertical-align: top;
 
 			@media (max-width: 985px) {
@@ -95,6 +95,6 @@ $grid-guther-width: 20px;
 	}
 
 	a.app-news-backtolist {
-		margin-top: $grid-guther-width !important;
+		margin-top: $grid-gutter-width !important;
 	}
 }
