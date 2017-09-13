@@ -45,7 +45,7 @@
                         </div>
                     }
                     <div class="@(!String.IsNullOrEmpty(@item.Image) ? "app-news-contentcontainer" : "")">
-                        <h2>@item.Title @Request.Url.Host</h2>
+                        <h2>@item.Title</h2>
                         <span class="app-news-date">@item.Date.ToString("dd.MM.yyyy")</span>
                         <span class="app-news-categories">
                         @if (@item.Categories.Count >  0)

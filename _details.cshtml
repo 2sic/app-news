@@ -59,7 +59,6 @@
     }
 
     <p class="app-news-detail-body">
-        @Html.Raw(item.Body)
         @ToSic.SexyContent.ContentBlocks.Render.All(item, field: "BodyContentBlocks", merge: item.Body)
     </p>
 
