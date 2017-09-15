@@ -14,7 +14,7 @@
     newsPageTab = int.Parse((AsEntity(Content).GetBestValue("NewsPage")).Split(':')[1]);
 }
 
-<div class="app-news app-news-column-view app-news-column-view-noimage sc-element">
+<div class="app-news app-news-column-view app-news-column-view-noimage sc-element app-news-outertb">
     @Edit.Toolbar(actions: "new", contentType: "News", settings: new { hover = "left" })
     @Edit.Toolbar(Content)
 

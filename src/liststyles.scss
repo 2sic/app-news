@@ -9,6 +9,10 @@ $grid-gutter-width: 20px;
 
 .app-news {
 	// General Styles
+	&.sc-element.app-news-outertb > .sc-menu > li > a > div {
+		background-color: #666666;
+	}
+
 	.app-news-item {
 		position: relative;
 		cursor: pointer;
