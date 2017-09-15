@@ -2,11 +2,6 @@
 $brand-primary: #1BC48E;
 $grid-gutter-width: 20px;
 
-// Only for debug
-.container-fluid { background: #EFEFEF !important; }
-* { font-family: 'Roboto', sans-serif !important; }
-// ------------------
-
 .app-news.app-news-detail {
 	background: #fff;
 	padding: #{2 * $grid-gutter-width};
