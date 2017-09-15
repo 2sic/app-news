@@ -1,6 +1,3 @@
-<link rel="stylesheet" href="@App.Path/dist/liststyles.css" data-enableoptimizations="true" />
-<script src="@App.Path/dist/script.js" data-enableoptimizations="true" ></script>
-
 @{
     var lib = CreateInstance("_library.cshtml"); 
 
@@ -85,3 +82,6 @@
         @RenderPage("_paging.cshtml", new { newsPage = newsPage }) 
     }
 </div>
+
+<link rel="stylesheet" href="@App.Path/dist/liststyles.css" data-enableoptimizations="true" />
+<script src="@App.Path/dist/script.js" data-enableoptimizations="true" ></script>

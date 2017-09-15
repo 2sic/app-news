@@ -24,7 +24,7 @@
 
     if (!String.IsNullOrEmpty(item.Title))
     {
-        pageHandler.Title = item.Date.ToString("dd.MM.yyyy") + " - " + item.Title + " | " + Dnn.Portal.PortalName + " > " + Dnn.Module.ParentTab.TabName;
+        pageHandler.Title = item.Date.ToString("yyyy-MM-dd") + " - " + item.Title + " | " + Dnn.Portal.PortalName + " > " + Dnn.Module.ParentTab.TabName;
     }
 }
 @if(!String.IsNullOrEmpty(Content.NewsPage)) 
@@ -32,8 +32,6 @@
     newsPage = Content.NewsPage;
     newsPageTab = int.Parse((AsEntity(Content).GetBestValue("NewsPage")).Split(':')[1]);
 }
-
-<link rel="stylesheet" href="@App.Path/dist/detailstyles.css" data-enableoptimizations="true" />
 
 <div class="app-news app-news-detail sc-element">
     @Edit.Toolbar(item)
@@ -64,3 +62,5 @@
 
     <a class="btn btn-primary app-news-backtolist" href="@Link.To()">@Html.Raw(App.Resources.LabelBackToList)</a>
 </div>
+
+<link rel="stylesheet" href="@App.Path/dist/detailstyles.css" data-enableoptimizations="true" />
