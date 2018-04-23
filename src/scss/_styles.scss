@@ -13,16 +13,16 @@
 }
 
 .auto-clear {
-    @media (min-width: $screen-lg-min) {
+    @include media-breakpoint-up(xl) {
         @include row-first-child(lg);
     }
-    @media (min-width: $screen-md-min) and (max-width: $screen-md-max) {
+    @include media-breakpoint-up(lg) {
         @include row-first-child(md);
     }
-    @media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
+    @include media-breakpoint-up(md) {
         @include row-first-child(sm);
     }
-    @media (max-width: $screen-xs-max) {
+    @include media-breakpoint-up(sm) {
         @include row-first-child(xs);
     }
 }

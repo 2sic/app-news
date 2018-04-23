@@ -13,7 +13,7 @@
     &.app-news-list {
         .col {
             margin-bottom: $grid-gutter-width;
-            @media (min-width: $screen-md-min) {
+            @include media-breakpoint-up(lg) {
                 margin-bottom: $grid-gutter-width*1.5;
             }
         }
@@ -30,7 +30,7 @@
                 position: relative;
                 span {
                     position: absolute;
-                    background: rgba($brand-primary, .8);
+                    background: rgba($primary, .8);
                     opacity: 0;
                     top: 0;
                     bottom: 0;
@@ -47,7 +47,7 @@
                     }
                 }
                 &.app-no-img {
-                    background: $gray-light url(../res/missing_img.png) center center no-repeat;
+                    background: $gray-200 url(../res/missing_img.png) center center no-repeat;
                     background-size: 35%;
                 }
 			} 
@@ -57,7 +57,7 @@
                  h3, h2 {
                     &.app-list {
                         margin-top: $grid-gutter-width/2;
-                        @media (min-width: $screen-sm-min) {
+                        @include media-breakpoint-up(md) {
                             margin-top: 0;
                         }
                     }
@@ -68,7 +68,7 @@
                 }
                 .app-date {
                     &.app-date-border {
-                        border-right: 1px solid $text-color;
+                        border-right: 1px solid $body-color;
                         padding-right: 8px;
                         margin-right: 4px;
                     }
@@ -85,7 +85,7 @@
                 }
             }
             .app-readmore {
-                color: $brand-primary;
+                color: $primary;
 			}
 			
 			// Hover Styling
@@ -97,11 +97,11 @@
                 }
                 .app-text {
                     h3, h2 {
-                        color: $brand-primary;
+                        color: $primary;
                     }
                 }
                 .app-readmore {
-                    color: $text-color;
+                    color: $body-color;
                 }
             }
         }
@@ -124,11 +124,11 @@
             color: #666;
             transition: background .2s ease, color .2s ease;
             &:hover {
-                background: $brand-primary;
+                background: $primary;
                 color: #fff;
             }
             &.app-news-paging-active {
-                background: $brand-primary;
+                background: $primary;
                 color: #fff;
             }
             &.app-news-prev-pager {

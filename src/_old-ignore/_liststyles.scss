@@ -13,7 +13,7 @@
     &.app-news-list {
         .col {
             margin-bottom: $grid-gutter-width;
-            @media (min-width: $screen-md-min) {
+            @include media-breakpoint-up(lg) {
                 margin-bottom: $grid-gutter-width*1.5;
             }
         }
@@ -57,7 +57,7 @@
                  h3, h2 {
                     &.app-list {
                         margin-top: $grid-gutter-width/2;
-                        @media (min-width: $screen-sm-min) {
+                        @include media-breakpoint-up(md) {
                             margin-top: 0;
                         }
                     }
