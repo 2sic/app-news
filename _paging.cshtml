@@ -6,7 +6,7 @@
 <div class="app-news-paging">
         @if (!(paging.PageNumber <= 1))
         {
-            <a class="app-news-prev-pager" href="@LinkToPageNumber(paging.PageNumber - 1, newsPage)">&lsaquo;</a>
+            <a class="app-news-prev-pager" href="@LinkToPageNumber((int)(paging.PageNumber) - 1, newsPage)">&lsaquo;</a>
         }
         @if (@paging.PageSize >= 0)
         {
@@ -24,7 +24,7 @@
         }
         @if (!(paging.PageNumber >= paging.PageCount))
         {
-            <a class="app-news-next-pager" href="@LinkToPageNumber(paging.PageNumber + 1, newsPage)">&rsaquo;</a>
+            <a class="app-news-next-pager" href="@LinkToPageNumber((int)(paging.PageNumber) + 1, newsPage)">&rsaquo;</a>
         }
 </div>
 

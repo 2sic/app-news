@@ -14,6 +14,7 @@ gulp.task('watch-javascript', function () {
 });
 
 gulp.task('sass', function () {
+
 return gulp.src(sourceFiles)
     .pipe(sourcemaps.init())
     .pipe(sass().on('error', sass.logError))

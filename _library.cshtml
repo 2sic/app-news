@@ -1,14 +1,23 @@
 @using System.Text.RegularExpressions
 
 @functions {
-    public string LinkToPage(int tabId, string param1, string param2)
+    
+    public string LinkToPage(int tabId, string param1, string param2, string param3, string param4)
     {
-        var result = DotNetNuke.Common.Globals.NavigateURL(tabId, "", new string[] { param1, param2 });
+        var result = DotNetNuke.Common.Globals.NavigateURL(tabId, "", new string[] { param1, param2, param3, param4 });
         return result;
     }
 
     public string StripHTML(string input)
     {
-    return Regex.Replace(input, "<.*?>", String.Empty);
+        return Regex.Replace(input, "<.*?>", String.Empty);
     }
 }
+
+@*
+public string LinkToPage(int tabId, string param1, string param2)
+    {
+        var result = DotNetNuke.Common.Globals.NavigateURL(tabId, "", new string[] { param1, param2 });
+        return result;
+    }
+*@

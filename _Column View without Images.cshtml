@@ -1,5 +1,5 @@
 @{
-    var lib = CreateInstance("_library.cshtml");
+    var lib = CreateInstance("_library.cshtml"); 
 
     var catFilter = Request.QueryString["category"];
     var hasCategoryFilter = !String.IsNullOrEmpty(catFilter);
@@ -14,58 +14,69 @@
     newsPageTab = int.Parse((AsEntity(Content).GetBestValue("NewsPage")).Split(':')[1]);
 }
 
-<div class="app-news app-news-column-view app-news-column-view-noimage sc-element app-news-outertb">
+
+<div class="app-news app-news-list sc-element @((Permissions.UserMayEditContent) ? "app-edit" : "")" >
     @Edit.Toolbar(actions: "new", contentType: "News", settings: new { hover = "left" })
     @Edit.Toolbar(Content)
-
-    @if (hasCategoryFilter)
-    {
-        <div class="app-news-catinfo">
-            <h2>@allCategories.Where(x => x.UrlKey == catFilter).FirstOrDefault().Name</h2>
-            @foreach (var c in allCategories)
-            {
-                <span><a href="@lib.LinkToPage(newsPageTab, "category", c.UrlKey)">@c.Name</a>&ensp;|&ensp;</span>
-            }
-        </div>
-    }
-    <div class="app-news-container">
-        @foreach (var item in  @AsDynamic(Data["News"]))
-        {
-            string detailsLink = @lib.LinkToPage(newsPageTab, "details", item.UrlKey);        
-
-            <div class="app-news-item sc-element" onclick="window.open('@detailsLink','_self');">
-                <div class="sc-element">
-                    @Edit.Toolbar(item)
-                    <div>
-                        <h2>@item.Title</h2>
-                        <span class="app-news-date">@item.Date.ToString("dd.MM.yyyy")</span>
-                        <span class="app-news-categories">
-                        @if (@item.Categories.Count >  0)
-                        {
-                            @: |
-                        } 
-                        @foreach (var cat in  @item.Categories)
-                        {
-                            <span><a href="@lib.LinkToPage(newsPageTab, "category", cat.UrlKey)">@cat.Name</a>&ensp;&ensp;&ensp;</span> 
-                        }
-                        </span>
-                        <p>
-                            @Html.Raw(item.Teaser.Replace("\n", "<br />")) 
-                        </p>
-                        
-                        <a class="btn btn-primary" href="@detailsLink">@Html.Raw(App.Resources.LabelReadMore)</a>
-                    </div>
-                </div>
+   <!--Category Filter == Displayed only if a category has been selected -->
+        @if (hasCategoryFilter) {
+            <div class="app-catinfo">
+                <h2>@allCategories.Where(x => x.UrlKey == catFilter).FirstOrDefault().Name</h2>
+                @foreach (var c in allCategories)
+                {
+                    <span><a class="btn btn-primary btn-xs @(Request.QueryString["category"] == c.UrlKey ? "active" : "")" href="@lib.LinkToPage(newsPageTab, "category", c.UrlKey, "", "")">@c.Name</a></span>
+                }
             </div>
         }
-    </div>
-    @if (!String.IsNullOrEmpty(catFilter)) {
-        <a class="btn btn-primary app-news-backtolist" href="@newsPage">@Html.Raw(App.Resources.LabelBackToList)</a>
-    }
-    
-    @if (Content.ShowPagination) {
-            @RenderPage("_paging.cshtml", new { newsPage = newsPage }) }
-</div>
+    <div class="row auto-clear">
+      
+        <!-- Beginning of content loop -->
+        @foreach (var item in @AsDynamic(Data["News"]))
+        {
+        <div class="col col-xs-12 col-sm-6 col-md-4 col-lg-4 sc-element">
+            @Edit.Toolbar(item)
+            @{
+                string detailsLink = @lib.LinkToPage(newsPageTab, "details", item.UrlKey, "mid", (Dnn.Module.ModuleID).ToString());
+            }
+            <div class="app-details-link" onclick="window.open('@detailsLink','_self');">
+                <!-- Text Date Categories -->
+                <div class="app-text">
+                    <h3 class="app-list">@item.Title</h3>
+                   
+                    <span class="app-date @(item.Categories.Count >  0 ? "app-date-border" : "")">@item.Date.ToString("dd.MM.yyyy")</span>
+                    <span class="app-categories">
+                    @foreach (var cat in  @item.Categories)
+                    {
+                        <a href="@lib.LinkToPage(newsPageTab, "category", cat.UrlKey, "", "")">@cat.Name</a>
+                    }
+                    </span>
+                  
+                    <p>
+                        @Html.Raw(item.Teaser.Replace("\n", "<br />"))
+                    </p>
+                </div>
+                
+                <span class="app-readmore">@Html.Raw(App.Resources.LabelReadMore)</span>
+            </div>
+            
+                    
+        </div>
+        } <!-- END of content loop -->
 
-<link rel="stylesheet" href="@App.Path/dist/liststyles.css" data-enableoptimizations="true" />
+    </div>
+    @if (hasCategoryFilter) {
+        <a class="btn btn-primary app-backtolist" href="@newsPage">@Html.Raw(App.Resources.LabelBackToList)</a>
+    }
+
+    @if (Content.ShowPagination) {
+        @RenderPage("_paging.cshtml", new { newsPage = newsPage }) 
+    }
+</div>
+    
+   
+    
+
+
+
+<link rel="stylesheet" href="@App.Path/dist/styles.css" data-enableoptimizations="true" />
 <script src="@App.Path/dist/script.js" data-enableoptimizations="true" ></script>
