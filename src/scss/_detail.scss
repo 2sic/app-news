@@ -1,0 +1,25 @@
+.app-news {
+    &.app-news-detail {
+        // Content Styles
+        .app-content {
+            margin: 0 auto;
+            margin-bottom: $grid-gutter-width/1.5;
+            @media (min-width: $screen-md-min) {
+                margin-bottom: $grid-gutter-width;
+            }
+
+            .app-news-detail-img {
+                
+                margin-bottom: $grid-gutter-width/1.5;
+                @media (min-width: $screen-sm-min) {
+                    float:right;
+                    width:47%;
+                    margin-left: 6%;
+                }
+            }
+        }
+        .app-news-detail-teaser {
+            font-weight: 700;
+        }
+    }
+}

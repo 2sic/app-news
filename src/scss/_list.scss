@@ -1,0 +1,142 @@
+// Column View Bootstrap
+.app-news {
+	
+    // General Styles
+    &.sc-element>.sc-menu>li>a>div {
+        background-color: #666666;
+    }
+    &.app-edit {
+        padding-top: 40px;
+	} 
+
+	// Column View Bootstrap
+    &.app-news-list {
+        .col {
+            margin-bottom: $grid-gutter-width;
+            @media (min-width: $screen-md-min) {
+                margin-bottom: $grid-gutter-width*1.5;
+            }
+        }
+        // Categorie Info
+        .app-catinfo {
+            margin-bottom: $grid-gutter-width/1.5;
+            span {}
+        }
+        .app-details-link {
+            cursor: pointer; 
+            
+			// App-Image with overlay and fallback
+            .app-img {
+                position: relative;
+                span {
+                    position: absolute;
+                    background: rgba($brand-primary, .8);
+                    opacity: 0;
+                    top: 0;
+                    bottom: 0;
+                    width: 100%;
+                    z-index: 10;
+                    transition: opacity ease-in 0.18s;
+                    i {
+                        display: block;
+                        text-align: center;
+                        color: #FFF;
+                        font-size: 30px;
+                        top: 50%;
+                        line-height: 0;
+                    }
+                }
+                &.app-no-img {
+                    background: $gray-light url(../res/missing_img.png) center center no-repeat;
+                    background-size: 35%;
+                }
+			} 
+
+			// App-Text with readmore
+            .app-text {
+                 h3, h2 {
+                    &.app-list {
+                        margin-top: $grid-gutter-width/2;
+                        @media (min-width: $screen-sm-min) {
+                            margin-top: 0;
+                        }
+                    }
+                }
+                span {
+                    font-size: floor($font-size-base * 0.8);
+                    font-weight: bold;
+                }
+                .app-date {
+                    &.app-date-border {
+                        border-right: 1px solid $text-color;
+                        padding-right: 8px;
+                        margin-right: 4px;
+                    }
+                }
+                .app-categories {
+                    a {
+                        letter-spacing: 1px;
+                        text-transform: uppercase;
+                        margin-right: 8px;
+                    }
+                }
+                p {
+                    margin-top: $grid-gutter-width/2;
+                }
+            }
+            .app-readmore {
+                color: $brand-primary;
+			}
+			
+			// Hover Styling
+            &:hover {
+                .app-img {
+                    span {
+                        opacity: 1;
+                    }
+                }
+                .app-text {
+                    h3, h2 {
+                        color: $brand-primary;
+                    }
+                }
+                .app-readmore {
+                    color: $text-color;
+                }
+            }
+        }
+	} 
+	// END Column View Bootstrap
+
+    // Pagination
+    .app-news-paging {
+        width: 100%;
+        text-align: center;
+        margin-top: $grid-gutter-width;
+        >a {
+            display: inline-block;
+            height: 30px;
+            width: 30px;
+            text-align: center;
+            border-radius: 50%;
+            font-size: 16px;
+            padding-top: 4px;
+            color: #666;
+            transition: background .2s ease, color .2s ease;
+            &:hover {
+                background: $brand-primary;
+                color: #fff;
+            }
+            &.app-news-paging-active {
+                background: $brand-primary;
+                color: #fff;
+            }
+            &.app-news-prev-pager {
+                background: #fff;
+            }
+            &.app-news-next-pager {
+                background: #fff;
+            }
+        }
+    }
+}
