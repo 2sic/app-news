@@ -60,14 +60,14 @@
                             @Html.Raw(item.Teaser.Replace("\n", "<br />"))
                         </p>
 
-                        <a class="btn btn-primary" href="@detailsLink">@Html.Raw(App.Resources.LabelReadMore)</a>
+                        <a @Koi.Class("bs3='btn btn-primary' bs4,unk='btn btn-outline-primary'") href="@detailsLink">@Html.Raw(App.Resources.LabelReadMore)</a>
                     </div>
                 </div>
             </div>
         }
     </div>
     @if (!String.IsNullOrEmpty(catFilter)) {
-        <a class="btn btn-primary app-news-backtolist" href="@newsPage">@Html.Raw(App.Resources.LabelBackToList)</a>
+        <a @Koi.Class("all='app-backtolist' bs3='btn btn-primary' bs4,unk='btn btn-outline-primary'") href="@newsPage">@Html.Raw(App.Resources.LabelBackToList)</a>
     }
     
     @if (Content.ShowPagination) {
