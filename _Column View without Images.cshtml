@@ -1,3 +1,5 @@
+@using Connect.Koi;
+
 @{
     var lib = CreateInstance("_library.cshtml"); 
 
@@ -24,7 +26,7 @@
                 <h2>@allCategories.Where(x => x.UrlKey == catFilter).FirstOrDefault().Name</h2>
                 @foreach (var c in allCategories)
                 {
-                    <span><a class="btn btn-primary btn-xs @(Request.QueryString["category"] == c.UrlKey ? "active" : "")" href="@lib.LinkToPage(newsPageTab, "category", c.UrlKey, "", "")">@c.Name</a></span>
+                    <span><a @Koi.Class("all='" + (Request.QueryString["category"] == c.UrlKey ? "active" : "") + "' bs3='btn btn-primary btn-xs' bs4,unk='btn btn-primary btn-sm'") href="@lib.LinkToPage(newsPageTab, "category", c.UrlKey, "", "")">@c.Name</a></span>
                 }
             </div>
         }
@@ -33,7 +35,7 @@
         <!-- Beginning of content loop -->
         @foreach (var item in @AsDynamic(Data["News"]))
         {
-        <div class="col col-xs-12 col-sm-6 col-md-4 col-lg-4 sc-element">
+        <div  @Koi.Class("all='sc-element' bs3='col col-xs-12 col-sm-6 col-md-4 col-lg-4' bs4,unk='col col-12 col-md-6 col-lg-4 col-xl-4'")>
             @Edit.Toolbar(item)
             @{
                 string detailsLink = @lib.LinkToPage(newsPageTab, "details", item.UrlKey, "mid", (Dnn.Module.ModuleID).ToString());
@@ -65,18 +67,13 @@
 
     </div>
     @if (hasCategoryFilter) {
-        <a class="btn btn-primary app-backtolist" href="@newsPage">@Html.Raw(App.Resources.LabelBackToList)</a>
+        <a @Koi.Class("all='app-backtolist' bs3='btn btn-primary' bs4,unk='btn btn-outline-primary'") href="@newsPage">@Html.Raw(App.Resources.LabelBackToList)</a>
     }
 
     @if (Content.ShowPagination) {
         @RenderPage("_paging.cshtml", new { newsPage = newsPage }) 
     }
 </div>
-    
-   
-    
-
-
 
 <link rel="stylesheet" href="@App.Path/dist/@(Koi.PickCss("bs3,bs4", "bs3")).css" data-enableoptimizations="true" />
 <script src="@App.Path/dist/script.js" data-enableoptimizations="true" ></script>
