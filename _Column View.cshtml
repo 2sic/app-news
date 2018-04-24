@@ -1,3 +1,6 @@
+
+@using Connect.Koi;
+
 @{
     var lib = CreateInstance("_library.cshtml"); 
 
@@ -91,5 +94,5 @@
 
 
 
-<link rel="stylesheet" href="@App.Path/dist/styles.css" data-enableoptimizations="true" />
+<link rel="stylesheet" href="@App.Path/dist/@(Koi.PickCss("bs3,bs4", "bs3")).css" data-enableoptimizations="true" />
 <script src="@App.Path/dist/script.js" data-enableoptimizations="true" ></script>

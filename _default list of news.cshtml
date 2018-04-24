@@ -1,3 +1,5 @@
+@using Connect.Koi;
+
 @{
     var lib = CreateInstance("_library.cshtml"); 
 
@@ -33,7 +35,7 @@
         <!-- Beginning of content loop -->
         @foreach (var item in @AsDynamic(Data["News"]))
         {
-        <div class="col col-xs-12 col-sm-12 col-md-12 col-lg-12 sc-element">
+        <div @Koi.Class("bs3='col col-xs-12 col-sm-12 col-md-12 col-lg-12 sc-element' bs4,unk='col-12 col-md-12 col-lg-12 col-xl-12 sc-element'")>
             @Edit.Toolbar(item)
             @{
                 string detailsLink = @lib.LinkToPage(newsPageTab, "details", item.UrlKey, "mid", (Dnn.Module.ModuleID).ToString());
@@ -42,15 +44,15 @@
                 <div class="row">
                 @if (!String.IsNullOrEmpty(@item.Image))
                 {
-                    <div class="col-xs-12 col-sm-6 col-md-4">
+                    <div @Koi.Class("bs3='col-xs-12 col-sm-6 col-md-4' bs4,unk='col-12 col-md-6 col-lg-4'")>
                     <!-- Image or Placeholder -->
                         <div class="app-img">
                             <span><i class="glyphicon glyphicon-link"></i></span>
-                            <img class="img-responsive" src="@item.Image?w=800&amp;h=480&amp;mode=crop&amp;scale=both&amp;quality=80" alt />
+                            <img @Koi.Class("bs3='img-responsive' bs4,unk='img-fluid'") src="@item.Image?w=800&amp;h=480&amp;mode=crop&amp;scale=both&amp;quality=80" alt />
                         </div>
                     </div>
                 }
-                    <div class="@(!String.IsNullOrEmpty(@item.Image) ? "col-xs-12 col-sm-6 col-md-8": "col-xs-12")">
+                    <div @((!String.IsNullOrEmpty(@item.Image)) ?  @Koi.Class("bs3='col-xs-12 col-sm-6 col-md-8' bs4,unk='col-12 col-md-6 col-lg-8'") : @Koi.Class("bs3='col-xs-12' bs4,unk='col-12'"))>
                     <!-- Text Date Categories -->
                         <div class="app-text">
                             <h2 class="app-list">@item.Title</h2>
@@ -90,5 +92,5 @@
 
 
 
-<link rel="stylesheet" href="@App.Path/dist/styles.css" data-enableoptimizations="true" />
+<link rel="stylesheet" href="@App.Path/dist/@(Koi.PickCss("bs3,bs4", "bs3")).css" data-enableoptimizations="true" />
 <script src="@App.Path/dist/script.js" data-enableoptimizations="true" ></script>

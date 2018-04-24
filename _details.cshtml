@@ -1,4 +1,5 @@
 @using System.Web.UI.HtmlControls
+@using Connect.Koi;
 
 @{
     var item = AsDynamic(Data["Default"]).FirstOrDefault();
@@ -66,4 +67,4 @@
    
 </div>
 
-<link rel="stylesheet" href="@App.Path/dist/styles.css" data-enableoptimizations="true" />
+<link rel="stylesheet" href="@App.Path/dist/@(Koi.PickCss("bs3,bs4", "bs3")).css" data-enableoptimizations="true" />
