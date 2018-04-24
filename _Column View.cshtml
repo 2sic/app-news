@@ -27,7 +27,7 @@
                 <h2>@allCategories.Where(x => x.UrlKey == catFilter).FirstOrDefault().Name</h2>
                 @foreach (var c in allCategories)
                 {
-                    <span><a class="btn btn-primary btn-xs @(Request.QueryString["category"] == c.UrlKey ? "active" : "")" href="@lib.LinkToPage(newsPageTab, "category", c.UrlKey, "", "")">@c.Name</a></span>
+                    <span><a @Koi.Class("all='" + (Request.QueryString["category"] == c.UrlKey ? "active" : "") + "' bs3='btn btn-primary btn-xs' bs4,unk='btn btn-primary btn-sm'") href="@lib.LinkToPage(newsPageTab, "category", c.UrlKey, "", "")">@c.Name</a></span>
                 }
             </div>
         }
@@ -36,7 +36,7 @@
         <!-- Beginning of content loop -->
         @foreach (var item in @AsDynamic(Data["News"]))
         {
-        <div class="col col-xs-12 col-sm-6 col-md-4 col-lg-4 sc-element">
+        <div @Koi.Class("all='sc-element' bs3='col col-xs-12 col-sm-6 col-md-4 col-lg-4' bs4,unk='col col-12 col-md-6 col-lg-4 col-xl-4'")>
             @Edit.Toolbar(item)
             @{
                 string detailsLink = @lib.LinkToPage(newsPageTab, "details", item.UrlKey, "mid", (Dnn.Module.ModuleID).ToString());
@@ -48,11 +48,11 @@
                     <span><i class="glyphicon glyphicon-link"></i></span>
                     @if (!String.IsNullOrEmpty(@item.Image))
                     {
-                        <img class="img-responsive" src="@item.Image?w=800&amp;h=480&amp;mode=crop&amp;scale=both&amp;quality=80" alt />
+                        <img @Koi.Class("bs3='img-responsive' bs4,unk='img-fluid'") src="@item.Image?w=800&amp;h=480&amp;mode=crop&amp;scale=both&amp;quality=80" alt />
                     }
                     else
                     {
-                        <img class="img-responsive" src="@App.Path/res/trans.png?w=800&amp;h=480&amp;mode=crop&amp;scale=both&amp;quality=80" alt />
+                        <img  @Koi.Class("bs3='img-responsive' bs4,unk='img-fluid'") src="@App.Path/res/trans.png?w=800&amp;h=480&amp;mode=crop&amp;scale=both&amp;quality=80" alt />
                     }
                 </div>
                 <!-- Text Date Categories -->
@@ -81,7 +81,7 @@
 
     </div>
     @if (hasCategoryFilter) {
-        <a class="btn btn-primary app-backtolist" href="@newsPage">@Html.Raw(App.Resources.LabelBackToList)</a>
+        <a @Koi.Class("all='app-backtolist' bs3='btn btn-primary' bs4,unk='btn btn-outline-primary'") href="@newsPage">@Html.Raw(App.Resources.LabelBackToList)</a>
     }
 
     @if (Content.ShowPagination) {
