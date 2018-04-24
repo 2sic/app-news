@@ -11,12 +11,14 @@
 
 	// Column View Bootstrap
     &.app-news-list {
-        .col {
+        .col,
+        > .row > .col-12  {
             margin-bottom: $grid-gutter-width;
             @include media-breakpoint-up(lg) {
                 margin-bottom: $grid-gutter-width*1.5;
             }
         }
+
         // Categorie Info
         .app-catinfo {
             margin-bottom: $grid-gutter-width/1.5;
@@ -57,13 +59,13 @@
                  h3, h2 {
                     &.app-list {
                         margin-top: $grid-gutter-width/2;
-                        @include media-breakpoint-up(md) {
+                        @include media-breakpoint-up(xs) {
                             margin-top: 0;
                         }
                     }
                 }
                 span {
-                    font-size: floor($font-size-base * 0.8);
+                    font-size: $font-size-base * 0.8;
                     font-weight: bold;
                 }
                 .app-date {
