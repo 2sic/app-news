@@ -18,7 +18,7 @@
 
 
 <div class="app-news app-news-list sc-element @((Permissions.UserMayEditContent) ? "app-edit" : "")" >
-    @Edit.Toolbar(actions: "new", contentType: "News", settings: new { hover = "left" })
+    @Edit.Toolbar(actions: "new, contentitems", contentType: "News", settings: new { hover = "left", showCondition = true })
     @Edit.Toolbar(Content)
     <!--Category Filter == Displayed only if a category has been selected -->
         @if (hasCategoryFilter) {

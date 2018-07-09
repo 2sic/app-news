@@ -17,7 +17,7 @@
 }
 
 <div class="app-news app-news-masonry-grid sc-element app-news-outertb">
-    @Edit.Toolbar(actions: "new", contentType: "News", settings: new { hover = "left" })
+    @Edit.Toolbar(actions: "new, contentitems", contentType: "News", settings: new { hover = "left", showCondition = true })
     @Edit.Toolbar(Content)
 
     @if (hasCategoryFilter) {

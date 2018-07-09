@@ -18,7 +18,7 @@
 
 
 <div class="app-news app-news-list sc-element @((Permissions.UserMayEditContent) ? "app-edit" : "")" >
-    @Edit.Toolbar(actions: "new", contentType: "News", settings: new { hover = "left" })
+    @Edit.Toolbar(actions: "new, contentitems", contentType: "News", settings: new { hover = "left", showCondition = true })
     @Edit.Toolbar(Content)
     <!--Category Filter == Displayed only if a category has been selected -->
         @if (hasCategoryFilter) {
@@ -41,7 +41,6 @@
                 string detailsLink = @lib.LinkToPage(newsPageTab, "details", item.UrlKey, "mid", (Dnn.Module.ModuleID).ToString());
             }
             <div class="app-details-link" onclick="window.open('@detailsLink','_self');">
-            
                 <!-- Image or Placeholder -->
                 <div class="app-img @(!String.IsNullOrEmpty(@item.Image) ? "": "app-no-img")">
                     <span><i class="glyphicon glyphicon-link"></i></span>
