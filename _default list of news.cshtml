@@ -48,7 +48,7 @@
                     <!-- Image or Placeholder -->
                         <div class="app-img">
                             <span><i class="glyphicon glyphicon-link"></i></span>
-                            <img @Koi.Class("bs3='img-responsive' bs4,unk='img-fluid'") src="@item.Image?w=800&amp;h=480&amp;mode=crop&amp;scale=both&amp;quality=80" alt />
+                            <img @Koi.Class("bs3='img-responsive' bs4,unk='img-fluid'") src="@item.Image?w=800&amp;h=480&amp;mode=crop&amp;scale=both&amp;quality=80&amp;anchor=@item.CropAnchor" alt="@item.Title" />
                         </div>
                     </div>
                 }

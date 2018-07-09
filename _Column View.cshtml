@@ -1,4 +1,3 @@
-
 @using Connect.Koi;
 
 @{
@@ -48,7 +47,7 @@
                     <span><i class="glyphicon glyphicon-link"></i></span>
                     @if (!String.IsNullOrEmpty(@item.Image))
                     {
-                        <img @Koi.Class("bs3='img-responsive' bs4,unk='img-fluid'") src="@item.Image?w=800&amp;h=480&amp;mode=crop&amp;scale=both&amp;quality=80" alt />
+                        <img @Koi.Class("bs3='img-responsive' bs4,unk='img-fluid'") src="@item.Image?w=800&amp;h=480&amp;mode=crop&amp;scale=both&amp;quality=80&amp;anchor=@item.CropAnchor" alt="@item.Title" />
                     }
                     else
                     {
