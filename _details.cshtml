@@ -36,14 +36,13 @@
 
 else if ((@AsDynamic(Data["Default"]).Count() < 1) || (Permissions.UserMayEditContent == false && item.PublicationMoment > DateTime.Now) || (Permissions.UserMayEditContent == false && item.DeprecationMoment < DateTime.Now))
 {
-    <p>
-        Dieses Event existiert nicht.
-    </p>
-    <script type="text/javascript">
-        $(function(){
-            $('.app-jqfs-wrapper').remove();
-        });
-    </script>
+    <div>
+        <p>
+            @App.Resources.LabelEventNotExists
+        </p>
+
+        <a class="btn btn-primary app-news-backtolist" href="@Link.To()">@Html.Raw(App.Resources.LabelBackToList)</a>
+    </div>
 }
 else
 {
