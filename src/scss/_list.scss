@@ -141,4 +141,19 @@
             }
         }
     }
+
+    // Styles for pills and warnings
+    .app-events-pill {
+        height: 10px;
+        font-size: 12px;
+        font-weight: normal;
+        border: 1px solid #e74c3c;
+        padding: 5px;
+        color: #e74c3c;
+        border-radius: 8px;
+        font-family: Helvetica;
+        vertical-align: middle;
+    }
+
+    .warning-admins { width: 100%; }
 }
