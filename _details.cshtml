@@ -50,7 +50,17 @@ else
         @Edit.Toolbar(item)
     
         <div class="app-content">
-            <h1>@item.Title</h1>
+            <h1>
+                @item.Title
+                @if(item.PublicationMoment.Date > DateTime.Now.Date)
+                {
+                    <span class="app-events-pill">&Ouml;FFENTLICH&nbsp;AB&nbsp;@item.PublicationMoment.Date.ToString("dd.MM.yyyy")</span>
+                }
+                @if(item.DeprecationMoment.Date <= DateTime.Now.Date)
+                {
+                    <span class="app-events-pill">ABGELAUFEN&nbsp;SEIT&nbsp;@item.PublicationMoment.Date.ToString("dd.MM.yyyy")</span>
+                }
+            </h1>
             <span class="app-date @(item.Categories.Count >  0 ? "app-date-border" : "")">@item.Date.ToString("dd.MM.yyyy")</span>
             <span class="app-categories">
             @foreach (var cat in  @item.Categories)
