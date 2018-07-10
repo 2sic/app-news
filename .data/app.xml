@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<SexyContent FileVersion="07.00.00" MinimumRequiredVersion="07.00.00" ModuleVersion="09.30.00" ExportDate="2018-07-10T10:36:01.7925731+02:00">
+<SexyContent FileVersion="07.00.00" MinimumRequiredVersion="07.00.00" ModuleVersion="09.30.00" ExportDate="2018-07-10T10:37:32.0411189+02:00">
   <Header>
     <App Guid="4dd408f7-effc-4e8b-ab55-d8282c9a82ea" />
     <Language Default="en-US" />
@@ -1333,7 +1333,7 @@
       <Value Key="SupportsAjaxReload" Value="True" Type="Boolean">
         <Dimension DimensionID="72" ReadOnly="false" />
       </Value>
-      <Value Key="Version" Value="03.00.00" Type="String">
+      <Value Key="Version" Value="03.00.01" Type="String">
         <Dimension DimensionID="72" ReadOnly="false" />
       </Value>
     </Entity>
