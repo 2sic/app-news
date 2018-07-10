@@ -38,7 +38,7 @@
         <div @Koi.Class("all='sc-element' bs3='col col-xs-12 col-sm-12 col-md-12 col-lg-12' bs4,unk='col-12 col-md-12 col-lg-12 col-xl-12'")>
             @Edit.Toolbar(item)
             @{
-                string detailsLink = @lib.LinkToPage(newsPageTab, "details", item.EntityId.ToString(), "mid", (Dnn.Module.ModuleID).ToString());
+                string detailsLink = @lib.LinkToPage(newsPageTab, "mid", (Dnn.Module.ModuleID).ToString(), "details", item.EntityId.ToString());;
             }
             <div class="app-details-link" onclick="window.open('@detailsLink','_self');">
                 <div class="row">
