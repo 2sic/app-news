@@ -38,7 +38,7 @@
         <div @Koi.Class("all='sc-element' bs3='col col-xs-12 col-sm-6 col-md-4 col-lg-4' bs4,unk='col col-12 col-md-6 col-lg-4 col-xl-4'")>
             @Edit.Toolbar(item)
             @{
-                string detailsLink = @lib.LinkToPage(newsPageTab, "mid", ((String.IsNullOrEmpty(Content.MainModuleId)) ? (Dnn.Module.ModuleID).ToString() : (Content.MainModuleId)), "details", item.EntityId.ToString());;
+                string detailsLink = @lib.LinkToPage(newsPageTab, "mid", ((String.IsNullOrEmpty(Content.MainModuleId)) ? (Dnn.Module.ModuleID).ToString() : (Content.MainModuleId)), "details", item.EntityId.ToString(), "title", item.UrlKey);
             }
             <div class="app-details-link" onclick="window.open('@detailsLink','_self');">
                 <!-- Image or Placeholder -->
@@ -61,7 +61,7 @@
                     <span class="app-categories">
                     @foreach (var cat in  @item.Categories)
                     {
-                        <a href="@lib.LinkToPage(newsPageTab, "category", cat.UrlKey, "", "")">@cat.Name</a>
+                        <a href="@lib.LinkToPage(newsPageTab, "category", cat.UrlKey, "", "", "", "")">@cat.Name</a>
                     }
                     </span>
                   

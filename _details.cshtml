@@ -65,7 +65,7 @@ else
             <span class="app-categories">
             @foreach (var cat in  @item.Categories)
             {
-                <a href="@lib.LinkToPage(newsPageTab, "category", cat.UrlKey, "", "")">@cat.Name</a>
+                <a href="@lib.LinkToPage(newsPageTab, "category", cat.UrlKey, "", "", "", "")">@cat.Name</a>
             }
             </span>
         
