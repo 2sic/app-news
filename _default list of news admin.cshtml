@@ -69,11 +69,13 @@
                                 }
                             </h2>
                         
-                            <span class="app-date @(item.Categories.Count >  0 ? "app-date-border" : "")">@item.Date.ToString("dd.MM.yyyy")</span>
+                            <span class="app-date @((item.Categories.Count >  0 && App.Settings.ActivateCategories) ? "app-date-border" : "")">@item.Date.ToString("dd.MM.yyyy")</span>
                             <span class="app-categories">
-                            @foreach (var cat in  @item.Categories)
-                            {
-                                <a href="@lib.LinkToPage(newsPageTab, "category", cat.UrlKey, "", "", "", "")">@cat.Name</a>
+                            @if(App.Settings.ActivateCategories) {
+                                foreach (var cat in @item.Categories)
+                                {
+                                    <a href="@lib.LinkToPage(newsPageTab, "category", cat.UrlKey, "", "", "", "")">@cat.Name</a>
+                                }
                             }
                             </span>
                         

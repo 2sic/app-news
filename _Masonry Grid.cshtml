@@ -47,13 +47,15 @@
                         <h2>@item.Title</h2>
                         <span class="app-news-date">@item.Date.ToString("dd.MM.yyyy")</span>
                         <span class="app-news-categories">
-                        @if (@item.Categories.Count >  0)
+                        @if (@item.Categories.Count >  0 && App.Settings.ActivateCategories)
                         {
                             @: |
-                        } 
-                        @foreach (var cat in  @item.Categories)
-                        {
-                            <span><a href="@lib.LinkToPage(newsPageTab, "category", cat.UrlKey)">@cat.Name</a>&ensp;&ensp;&ensp;</span> 
+                        }
+                        @if(App.Settings.ActivateCategories) {
+                            foreach (var cat in  @item.Categories)
+                            {
+                                <span><a href="@lib.LinkToPage(newsPageTab, "category", cat.UrlKey)">@cat.Name</a>&ensp;&ensp;&ensp;</span> 
+                            }
                         }
                         </span>
                         <p>
