@@ -40,7 +40,8 @@
 .app-news.app-news-list .app-details-link {
   cursor: pointer; }
   .app-news.app-news-list .app-details-link .app-img {
-    position: relative; }
+    position: relative;
+    margin-bottom: 20px; }
     .app-news.app-news-list .app-details-link .app-img span {
       position: absolute;
       background: rgba(74, 20, 140, 0.8);

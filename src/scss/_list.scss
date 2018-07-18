@@ -30,6 +30,7 @@
 			// App-Image with overlay and fallback
             .app-img {
                 position: relative;
+                margin-bottom: $grid-gutter-width/1.5;
                 span {
                     position: absolute;
                     background: rgba($primary, .8);
