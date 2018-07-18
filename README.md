@@ -1,5 +1,3 @@
-# app-news
+# 2sxc News App
 
-A standard news / announcements app
-
-ATM not published yet to the app-catalog, as still undergoing testing...
+A standard news / announcements app to use with 2sxc
