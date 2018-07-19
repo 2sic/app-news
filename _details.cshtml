@@ -46,9 +46,6 @@ else if ((@AsDynamic(Data["Default"]).Count() < 1) || (Permissions.UserMayEditCo
 }
 else
 {
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" data-enableoptimizations="true" />
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js" data-enableoptimizations="true"></script>
-    
     <div class="app-news app-news-detail sc-element">
         @Edit.Toolbar(item)
     
@@ -94,17 +91,9 @@ else
             }
             else
             {
-                if (item.Lightbox)
-                {
-                    @:<a class="fancybox" title="@item.Title" href="@App.Resources.PlaceholderMissingImage?w=1200&amp;h=1200&amp;mode=max&amp;scale=both&amp;quality=80">
-                } 
-                        <div class="app-news-detail-img app-news-missing-img">
-                            <img @Koi.Class("all='' bs3='img-responsive' bs4,oth='img-fluid'") src="@App.Resources.PlaceholderMissingImage?max-width=600&amp;mode=max&amp;scale=both&amp;quality=80" alt="@item.Title" />
-                        </div>
-                if (item.Lightbox)
-                { 
-                    @:</a> 
-                }
+                <div class="app-news-detail-img app-news-missing-img">
+                    <img @Koi.Class("all='' bs3='img-responsive' bs4,oth='img-fluid'") src="@App.Resources.PlaceholderMissingImage?max-width=600&amp;mode=max&amp;scale=both&amp;quality=80" alt="@item.Title" />
+                </div>
             }
             <!-- END-IMage -->
             <p class="app-news-detail-body">
@@ -117,4 +106,12 @@ else
     </div>
 }
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" data-enableoptimizations="true" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js" data-enableoptimizations="true"></script>
 <link rel="stylesheet" href="@App.Path/dist/@(Koi.PickCss("bs3,bs4", "bs3")).css" data-enableoptimizations="true" />
+
+<script>
+    $(function() {
+        $(".fancybox").fancybox();
+    })
+</script>
