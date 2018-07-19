@@ -9,12 +9,16 @@
             }
 
             .app-news-detail-img {
-                
                 margin-bottom: $grid-gutter-width/1.5;
+
                 @include media-breakpoint-up(md) {
                     float:right;
                     width:47%;
                     margin-left: 6%;
+                }
+
+                &.app-news-missing-img {
+                    text-align: center;
                 }
             }
         }

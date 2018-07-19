@@ -44,17 +44,14 @@
             }
             <div class="app-details-link" onclick="window.open('@detailsLink','_self');">
                 <div class="row">
-                @if (!String.IsNullOrEmpty(@item.Image))
-                {
                     <div @Koi.Class("bs3='col-xs-12 col-sm-6 col-md-4' bs4,unk='col-12 col-md-6 col-lg-4'")>
                     <!-- Image or Placeholder -->
                         <div class="app-img">
-                            <span><i class="glyphicon glyphicon-link"></i></span>
-                            <img @Koi.Class("bs3='img-responsive' bs4,unk='img-fluid'") src="@item.Image?w=800&amp;h=480&amp;mode=crop&amp;scale=both&amp;quality=80&amp;anchor=@item.CropAnchor" alt="@item.Title" />
+                            <img @Koi.Class("bs3='img-responsive' bs4,unk='img-fluid'") src="@((!String.IsNullOrEmpty(@item.Image)) ? @item.Image + "?w=800&h=480&mode=crop&scale=both&quality=80&anchor=" + @item.CropAnchor : @App.Resources.PlaceholderMissingImage + "?max-height=210&mode=max&scale=both&quality=80")"alt="@item.Title" />
                         </div>
                     </div>
-                }
-                    <div @((!String.IsNullOrEmpty(@item.Image)) ?  @Koi.Class("bs3='col-xs-12 col-sm-6 col-md-8' bs4,unk='col-12 col-md-6 col-lg-8'") : @Koi.Class("bs3='col-xs-12' bs4,unk='col-12'"))>
+                    
+                    <div @Koi.Class("bs3='col-xs-12 col-sm-6 col-md-8' bs4,unk='col-12 col-md-6 col-lg-8'")>
                     <!-- Text Date Categories -->
                         <div class="app-text">
                             <h2 class="app-list">

@@ -30,6 +30,8 @@
             .app-img {
                 position: relative;
                 margin-bottom: $grid-gutter-width/1.5;
+                text-align: center;
+                
                 span {
                     position: absolute;
                     background: rgba($primary, .8);

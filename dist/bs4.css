@@ -16,6 +16,8 @@
         float: right;
         width: 47%;
         margin-left: 6%; } }
+    .app-news.app-news-detail .app-content .app-news-detail-img.app-news-missing-img {
+      text-align: center; }
 
 .app-news.app-news-detail .app-news-detail-teaser {
   font-weight: 700; }
@@ -41,7 +43,8 @@
   cursor: pointer; }
   .app-news.app-news-list .app-details-link .app-img {
     position: relative;
-    margin-bottom: 20px; }
+    margin-bottom: 20px;
+    text-align: center; }
     .app-news.app-news-list .app-details-link .app-img span {
       position: absolute;
       background: rgba(74, 20, 140, 0.8);

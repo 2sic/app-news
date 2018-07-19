@@ -80,17 +80,31 @@ else
             <!-- Image -->
             @if (!String.IsNullOrEmpty(@item.Image))
             {
-            if (item.Lightbox)
-            {
-                @:<a class="fancybox" title="@item.Title" href="@item.Image?w=1200&amp;h=1200&amp;mode=max&amp;scale=both&amp;quality=80">
-            } 
-                    <div class="app-news-detail-img">
-                        <img @Koi.Class("all='' bs3='img-responsive' bs4,oth='img-fluid'") src="@item.Image?w=800&amp;mode=max&amp;scale=both&amp;quality=80&amp;anchor=@item.CropAnchor" alt="@item.Title" />
-                    </div>
-            if (item.Lightbox)
-            { 
-                @:</a> 
+                if (item.Lightbox)
+                {
+                    @:<a class="fancybox" title="@item.Title" href="@item.Image?w=1200&amp;h=1200&amp;mode=max&amp;scale=both&amp;quality=80">
+                } 
+                        <div class="app-news-detail-img">
+                            <img @Koi.Class("all='' bs3='img-responsive' bs4,oth='img-fluid'") src="@item.Image?w=800&amp;mode=max&amp;scale=both&amp;quality=80&amp;anchor=@item.CropAnchor" alt="@item.Title" />
+                        </div>
+                if (item.Lightbox)
+                { 
+                    @:</a> 
+                }
             }
+            else
+            {
+                if (item.Lightbox)
+                {
+                    @:<a class="fancybox" title="@item.Title" href="@App.Resources.PlaceholderMissingImage?w=1200&amp;h=1200&amp;mode=max&amp;scale=both&amp;quality=80">
+                } 
+                        <div class="app-news-detail-img app-news-missing-img">
+                            <img @Koi.Class("all='' bs3='img-responsive' bs4,oth='img-fluid'") src="@App.Resources.PlaceholderMissingImage?max-width=600&amp;mode=max&amp;scale=both&amp;quality=80" alt="@item.Title" />
+                        </div>
+                if (item.Lightbox)
+                { 
+                    @:</a> 
+                }
             }
             <!-- END-IMage -->
             <p class="app-news-detail-body">
