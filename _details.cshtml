@@ -74,7 +74,6 @@ else
         </div>
         
         <div class="app-content">
-            <!-- Image -->
             @if (!String.IsNullOrEmpty(@item.Image))
             {
                 if (item.Lightbox)
@@ -95,12 +94,19 @@ else
                     <img @Koi.Class("all='' bs3='img-responsive' bs4,oth='img-fluid'") src="@App.Resources.PlaceholderMissingImage?max-width=600&amp;mode=max&amp;scale=both&amp;quality=80" alt="@item.Title" />
                 </div>
             }
-            <!-- END-IMage -->
+            
+            @if(item.ShowTeaserInDetail) 
+            {
+                <p class="app-news-detail-teaser">
+                    @item.Teaser
+                </p>
+            }
+            
             <p class="app-news-detail-body">
                 @ToSic.SexyContent.ContentBlocks.Render.All(item, field: "BodyContentBlocks", merge: item.Body)
             </p>
+            
             <a class="btn btn-primary app-news-backtolist" href="@Link.To()">@Html.Raw(App.Resources.LabelBackToList)</a>
-        
         </div>
     
     </div>
