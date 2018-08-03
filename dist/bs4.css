@@ -18,6 +18,9 @@
         margin-left: 6%; } }
     .app-news.app-news-detail .app-content .app-news-detail-img.app-news-missing-img {
       text-align: center; }
+    .app-news.app-news-detail .app-content .app-news-detail-img.app-noimg {
+      background: #e9ecef;
+      padding: 60px 0; }
 
 .app-news.app-news-detail .app-news-detail-teaser {
   font-weight: 700; }
@@ -48,6 +51,22 @@
     position: relative;
     margin-bottom: 20px;
     text-align: center; }
+    .app-news.app-news-list .app-details-link .app-img.app-noimg {
+      background: #e9ecef;
+      height: 100%;
+      width: 100%;
+      max-height: 209px; }
+      @media (max-width: 768px) {
+        .app-news.app-news-list .app-details-link .app-img.app-noimg {
+          height: 431px;
+          max-height: inherit; } }
+      .app-news.app-news-list .app-details-link .app-img.app-noimg img {
+        max-width: 120px;
+        margin-top: 50px; }
+        @media (max-width: 768px) {
+          .app-news.app-news-list .app-details-link .app-img.app-noimg img {
+            max-width: 220px;
+            margin-top: 130px; } }
     .app-news.app-news-list .app-details-link .app-img span {
       position: absolute;
       background: rgba(74, 20, 140, 0.8);

@@ -90,7 +90,7 @@ else
             }
             else
             {
-                <div class="app-news-detail-img app-news-missing-img">
+                <div class="app-news-detail-img app-news-missing-img @((String.IsNullOrEmpty(@item.Image)) ? "app-noimg" : "")">
                     <img @Koi.Class("all='' bs3='img-responsive' bs4,oth='img-fluid'") src="@App.Resources.PlaceholderMissingImage?max-width=600&amp;mode=max&amp;scale=both&amp;quality=80" alt="@item.Title" />
                 </div>
             }

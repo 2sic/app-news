@@ -20,6 +20,11 @@
                 &.app-news-missing-img {
                     text-align: center;
                 }
+
+                &.app-noimg {
+                    background: #e9ecef;
+                    padding: 60px 0;
+                }
             }
         }
         .app-news-detail-teaser {
