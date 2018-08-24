@@ -1,6 +1,6 @@
 {
     "name": "news-app",
-    "version": "03.01.01",
+    "version": "03.01.02",
     "description": "A news app for 2sxc",
     "main": "gulpfile.js",
     "scripts": {
