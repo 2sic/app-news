@@ -23,7 +23,7 @@
     <!--Category Filter == Displayed only if a category has been selected -->
         @if (hasCategoryFilter) {
             <div class="app-catinfo">
-                <h2>@allCategories.Where(x => x.UrlKey == catFilter).FirstOrDefault().Name</h2>
+                <h2>@allCategories.Where(x => x.UrlKey == catFilter).FirstOrDefault().ShowedTitle</h2>
                 @foreach (var c in allCategories)
                 {
                     <span><a @Koi.Class("all='" + (Request.QueryString["category"] == c.UrlKey ? "active" : "") + "' bs3='btn btn-primary btn-xs' bs4,unk='btn btn-primary btn-sm'") href="@lib.LinkToPage(newsPageTab, "category", c.UrlKey, "", "", "", "")">@c.Name</a></span>
