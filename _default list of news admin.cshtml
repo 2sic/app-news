@@ -18,7 +18,7 @@
 
 
 <div class="app-news app-news-list sc-element @((Permissions.UserMayEditContent) ? "app-edit" : "")" >
-    @Edit.Toolbar(actions: "new, contentitems", contentType: "News", prefill: new { Date = DateTime.Now.Date, PublicationMoment = DateTime.Now.Date, DeprecationMoment =  (DateTime.Now.Date.AddYears(3)).Date } , settings: new { hover = "left", showCondition = true })
+    @Edit.Toolbar(actions: "new, contentitems", contentType: "News", prefill: new { Date = DateTime.Now.Date, ShowFrom = DateTime.Now.Date, ShowTo =  (DateTime.Now.Date.AddYears(3)).Date } , settings: new { hover = "left", showCondition = true })
     @Edit.Toolbar(Content)
     <!--Category Filter == Displayed only if a category has been selected -->
         @if (hasCategoryFilter) {
@@ -56,13 +56,13 @@
                         <div class="app-text">
                             <h2 class="app-list">
                                 @item.Title
-                                @if(item.PublicationMoment.Date > DateTime.Now.Date)
+                                @if(item.ShowFrom.Date > DateTime.Now.Date)
                                 {
-                                    <span class="app-events-pill">@App.Resources.LabelPublicationPill&nbsp;@item.PublicationMoment.Date.ToString("dd.MM.yyyy")</span>
+                                    <span class="app-events-pill">@App.Resources.LabelShowFromPill&nbsp;@item.ShowFrom.Date.ToString("dd.MM.yyyy")</span>
                                 }
-                                @if(item.DeprecationMoment.Date <= DateTime.Now.Date)
+                                @if(item.ShowTo.Date <= DateTime.Now.Date)
                                 {
-                                    <span class="app-events-pill">@App.Resources.LabelDepricationPill&nbsp;@item.PublicationMoment.Date.ToString("dd.MM.yyyy")</span>
+                                    <span class="app-events-pill">@App.Resources.LabelShowToPill&nbsp;@item.ShowFrom.Date.ToString("dd.MM.yyyy")</span>
                                 }
                             </h2>
                         

@@ -7,9 +7,17 @@
     var hasCategoryFilter = !String.IsNullOrEmpty(catFilter);
     var allCategories = AsDynamic(App.Data["Category"]);
 
-    var newsPage = @Dnn.Tab.FullUrl;
-    var newsPageTab = @Dnn.Module.TabID;
+    var newsPage = Dnn.Tab.FullUrl;
+    var newsPageTab = Dnn.Module.TabID;
+
+    var newsToShow = AsDynamic(Data["News"]);
+    
+    if(Permissions.UserMayEditContent)
+    {
+        newsToShow = AsDynamic(Data["Admin"]);
+    }
 }
+
 @if(!String.IsNullOrEmpty(Content.NewsPage)) 
 {
     newsPage = Content.NewsPage;
@@ -18,7 +26,7 @@
 
 
 <div class="app-news app-news-list sc-element @((Permissions.UserMayEditContent) ? "app-edit" : "")" >
-    @Edit.Toolbar(actions: "new, contentitems", contentType: "News", prefill: new { Date = DateTime.Now.Date, PublicationMoment = DateTime.Now.Date, DeprecationMoment =  (DateTime.Now.Date.AddYears(3)).Date } , settings: new { hover = "left", showCondition = true })
+    @Edit.Toolbar(actions: "new, contentitems", contentType: "News", prefill: new { Date = DateTime.Now.Date, ShowFrom = DateTime.Now.Date, ShowTo =  (DateTime.Now.Date.AddYears(3)).Date } , settings: new { hover = "left", showCondition = true })
     @Edit.Toolbar(Content)
     <!--Category Filter == Displayed only if a category has been selected -->
         @if (hasCategoryFilter) {
@@ -33,7 +41,7 @@
     <div class="row">
         
         <!-- Beginning of content loop -->
-        @foreach (var item in @AsDynamic(Data["News"]))
+        @foreach (var item in newsToShow)
         {
         <div @Koi.Class("all='sc-element' bs3='col col-xs-12 col-sm-12 col-md-12 col-lg-12' bs4,unk='col-12 col-md-12 col-lg-12 col-xl-12'")>
             @Edit.Toolbar(item)
@@ -52,7 +60,17 @@
                     <div @Koi.Class("bs3='col-xs-12 col-sm-6 col-md-8' bs4,unk='col-12 col-md-6 col-lg-8'")>
                     <!-- Text Date Categories -->
                         <div class="app-text">
-                            <h2 class="app-list">@item.Title</h2>
+                            <h2 class="app-list">
+                                @item.Title
+                                @if(item.ShowFrom.Date > DateTime.Now.Date)
+                                {
+                                    <span class="app-events-pill">@App.Resources.LabelShowFromPill&nbsp;@item.ShowFrom.Date.ToString("dd.MM.yyyy")</span>
+                                }
+                                @if(item.ShowTo.Date <= DateTime.Now.Date)
+                                {
+                                    <span class="app-events-pill">@App.Resources.LabelShowToPill&nbsp;@item.ShowFrom.Date.ToString("dd.MM.yyyy")</span>
+                                }
+                            </h2>
                         
                             <span class="app-date @((item.Categories.Count >  0 && App.Settings.ActivateCategories) ? "app-date-border" : "")">@item.Date.ToString("dd.MM.yyyy")</span>
                             <span class="app-categories">
