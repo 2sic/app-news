@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<SexyContent FileVersion="07.00.00" MinimumRequiredVersion="07.00.00" ModuleVersion="09.32.01" ExportDate="2018-09-20T13:57:22.4159817+02:00">
+<SexyContent FileVersion="07.00.00" MinimumRequiredVersion="07.00.00" ModuleVersion="09.32.01" ExportDate="2018-12-23T10:49:05.8595709+01:00">
   <Header>
     <App Guid="4dd408f7-effc-4e8b-ab55-d8282c9a82ea" />
     <Language Default="en-US" />
@@ -1697,7 +1697,7 @@
       <Value Key="Hidden" Value="False" Type="Boolean">
         <Dimension DimensionID="72" ReadOnly="false" />
       </Value>
-      <Value Key="OriginalId" Value="" Type="String">
+      <Value Key="OriginalId" Value="4dd408f7-effc-4e8b-ab55-d8282c9a82ea" Type="String">
         <Dimension DimensionID="72" ReadOnly="false" />
       </Value>
       <Value Key="RequiredDnnVersion" Value="07.02.00" Type="String">
@@ -1709,7 +1709,7 @@
       <Value Key="SupportsAjaxReload" Value="True" Type="Boolean">
         <Dimension DimensionID="72" ReadOnly="false" />
       </Value>
-      <Value Key="Version" Value="03.01.03" Type="String">
+      <Value Key="Version" Value="03.01.04" Type="String">
         <Dimension DimensionID="72" ReadOnly="false" />
       </Value>
     </Entity>
@@ -1771,13 +1771,13 @@
       </Value>
       <Value Key="BodyContentBlocks" Value="c4ea11fc-8465-4960-9a33-d60baf6ca9b1,326c261d-725a-4333-88b8-9da769f6994d" Type="Entity" />
       <Value Key="Categories" Value="34d3610a-59a1-41c2-8cfe-95eb453c2cb2" Type="Entity" />
-      <Value Key="CropAnchor" Value="topleft" Type="String">
+      <Value Key="CropAnchor" Value="middlecenter" Type="String">
         <Dimension DimensionID="72" ReadOnly="false" />
       </Value>
       <Value Key="Date" Value="2017-09-01T00:00:00" Type="DateTime">
         <Dimension DimensionID="72" ReadOnly="false" />
       </Value>
-      <Value Key="Image" Value="File:1082" Type="Hyperlink">
+      <Value Key="Image" Value="file:708" Type="Hyperlink">
         <Dimension DimensionID="72" ReadOnly="false" />
       </Value>
       <Value Key="Lightbox" Value="True" Type="Boolean">
@@ -2349,7 +2349,7 @@
       <Value Key="Date" Value="2017-01-04T00:00:00" Type="DateTime">
         <Dimension DimensionID="72" ReadOnly="false" />
       </Value>
-      <Value Key="Image" Value="" Type="Hyperlink">
+      <Value Key="Image" Value="file:1267" Type="Hyperlink">
         <Dimension DimensionID="72" ReadOnly="false" />
       </Value>
       <Value Key="Lightbox" Value="True" Type="Boolean">
@@ -2796,23 +2796,58 @@
         <Dimension DimensionID="72" ReadOnly="false" />
       </Value>
     </Entity>
+    <Entity AssignmentObjectType="Default" AttributeSetStaticName="4f6039dc-1b72-4e41-8fed-5ff6c97e62fb" AttributeSetName="News" EntityGUID="9c772eb2-5519-4676-88ce-dcd2d9d8392f">
+      <Value Key="Body" Value="&lt;p&gt;To learn more about this, read about this &lt;a href=&quot;https://2sxc.org/en/apps/app/news-pro-3-for-dnn-dotnetnuke&quot;&gt;app in the catalog&lt;/a&gt;.&amp;nbsp;&lt;/p&gt;&#xA;&lt;p&gt;This app offers loads of features, incl.&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Basic news features like title, date, teaser &amp;amp; body&lt;/li&gt;&#xA;&lt;li&gt;Categories to filter by category on certain pages&lt;/li&gt;&#xA;&lt;li&gt;Various dates like news-date, show/hide dates&amp;nbsp;&lt;/li&gt;&#xA;&lt;li&gt;Primary image with configurable hotspot, to ensure that the important parts are always visible when the image is resized&lt;/li&gt;&#xA;&lt;li&gt;SEO optimized URLs&lt;/li&gt;&#xA;&lt;li&gt;Multilanguage, with German/English resources already translated&lt;/li&gt;&#xA;&lt;li&gt;Super easy to customize using Razor&lt;/li&gt;&#xA;&lt;li&gt;...and way more!&lt;/li&gt;&#xA;&lt;/ol&gt;" Type="String">
+        <Dimension DimensionID="72" ReadOnly="false" />
+      </Value>
+      <Value Key="Categories" Value="34d3610a-59a1-41c2-8cfe-95eb453c2cb2" Type="Entity" />
+      <Value Key="CropAnchor" Value="middlecenter" Type="String">
+        <Dimension DimensionID="72" ReadOnly="false" />
+      </Value>
+      <Value Key="Date" Value="2018-12-24T00:00:00" Type="DateTime">
+        <Dimension DimensionID="72" ReadOnly="false" />
+      </Value>
+      <Value Key="Image" Value="file:1268" Type="Hyperlink">
+        <Dimension DimensionID="72" ReadOnly="false" />
+      </Value>
+      <Value Key="Lightbox" Value="True" Type="Boolean">
+        <Dimension DimensionID="72" ReadOnly="false" />
+      </Value>
+      <Value Key="ShowFrom" Value="2018-12-23T00:00:00" Type="DateTime">
+        <Dimension DimensionID="72" ReadOnly="false" />
+      </Value>
+      <Value Key="ShowTeaserInDetail" Value="True" Type="Boolean">
+        <Dimension DimensionID="72" ReadOnly="false" />
+      </Value>
+      <Value Key="ShowTo" Value="2021-12-23T00:00:00" Type="DateTime">
+        <Dimension DimensionID="72" ReadOnly="false" />
+      </Value>
+      <Value Key="Teaser" Value="Just released the News App 3.0 - as always open-source, super easy to customize and do whatever you want!" Type="String">
+        <Dimension DimensionID="72" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="News Pro 3.0 Released for Christmas 2018" Type="String">
+        <Dimension DimensionID="72" ReadOnly="false" />
+      </Value>
+      <Value Key="UrlKey" Value="news-pro-3-0-released-for-christmas-2018" Type="String">
+        <Dimension DimensionID="72" ReadOnly="false" />
+      </Value>
+    </Entity>
   </Entities>
   <PortalFiles>
     <File Id="707" RelativePath="adam\News\6mEAgQFmvUWxWCf7dC1Ogg\PlaceholderMissingImage\missing_img.png" />
-    <File Id="1082" RelativePath="adam\News\pPXqVvpldEeemCR2tchTcA\Image\2sxc-News.jpg" />
+    <File Id="708" RelativePath="adam\News\pPXqVvpldEeemCR2tchTcA\Image\app-icon.jpg" />
+    <File Id="1267" RelativePath="adam\News\k7oLdDzQGkiEiYmf2NAABA\Image\2sxc9.22.png" />
+    <File Id="1268" RelativePath="adam\News\si53nBlVdkaIztzS2dg5Lw\Image\2sxc-News 3.0 released.jpg" />
     <File Id="1258" RelativePath="adam\News\_2IAHSa7sk6XGX5cTp75-A\Image\Beispielbilder (15 von 16).jpg" />
     <File Id="697" RelativePath="adam\News\HkSM1pASTEKsdHVCFKMmzA\Image\BeispielbilderWide (18 of 23).jpg" />
     <File Id="1257" RelativePath="adam\News\mtiuf0RooU-CHBv1lug0HQ\Image\Beispielbilder (15 von 16).jpg" />
-    <File Id="708" RelativePath="adam\News\pPXqVvpldEeemCR2tchTcA\Image\app-icon.jpg" />
-    <File Id="1081" RelativePath="adam\News\pPXqVvpldEeemCR2tchTcA\Image\jeremy-thomas-98201.jpg" />
-    <File Id="1080" RelativePath="adam\News\pPXqVvpldEeemCR2tchTcA\Image\jon-tyson-195064.jpg" />
-    <File Id="1079" RelativePath="adam\News\pPXqVvpldEeemCR2tchTcA\Image\mariusz-prusaczyk-185181.jpg" />
-    <File Id="971" RelativePath="adam\News\pPXqVvpldEeemCR2tchTcA\Image\news-app-icon.jpg" />
     <File Id="1259" RelativePath="adam\News\X9WdGmJcjEGFtkmwE7dWew\Image\Beispielbilder (15 von 16).jpg" />
   </PortalFiles>
   <PortalFolders>
     <Folder Id="861" RelativePath="adam/News/6mEAgQFmvUWxWCf7dC1Ogg/PlaceholderMissingImage/" />
     <Folder Id="844" RelativePath="adam/News/pPXqVvpldEeemCR2tchTcA/Image/" />
+    <Folder Id="2614" RelativePath="adam/News/k7oLdDzQGkiEiYmf2NAABA/Image/" />
+    <Folder Id="2617" RelativePath="adam/News/si53nBlVdkaIztzS2dg5Lw/Image/" />
     <Folder Id="2581" RelativePath="adam/News/_2IAHSa7sk6XGX5cTp75-A/Image/" />
     <Folder Id="846" RelativePath="adam/News/HkSM1pASTEKsdHVCFKMmzA/Image/" />
     <Folder Id="2578" RelativePath="adam/News/mtiuf0RooU-CHBv1lug0HQ/Image/" />
@@ -2820,9 +2855,13 @@
     <Folder Id="842" RelativePath="adam/News/" />
     <Folder Id="2579" RelativePath="adam/News/_2IAHSa7sk6XGX5cTp75-A/" />
     <Folder Id="860" RelativePath="adam/News/6mEAgQFmvUWxWCf7dC1Ogg/" />
+    <Folder Id="2609" RelativePath="adam/News/GYNtiVYjW0SVtS1Am021nw/" />
+    <Folder Id="2611" RelativePath="adam/News/GYNtiVYjW0SVtS1Am021nw/Image/" />
     <Folder Id="845" RelativePath="adam/News/HkSM1pASTEKsdHVCFKMmzA/" />
+    <Folder Id="2612" RelativePath="adam/News/k7oLdDzQGkiEiYmf2NAABA/" />
     <Folder Id="2577" RelativePath="adam/News/mtiuf0RooU-CHBv1lug0HQ/" />
     <Folder Id="843" RelativePath="adam/News/pPXqVvpldEeemCR2tchTcA/" />
+    <Folder Id="2615" RelativePath="adam/News/si53nBlVdkaIztzS2dg5Lw/" />
     <Folder Id="2582" RelativePath="adam/News/X9WdGmJcjEGFtkmwE7dWew/" />
   </PortalFolders>
 </SexyContent>
