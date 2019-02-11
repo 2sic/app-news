@@ -9,6 +9,18 @@
   @media (min-width: 992px) {
     .app-news.app-news-detail .app-content {
       margin-bottom: 30px; } }
+  .app-news.app-news-detail .app-content .app-date.app-date-border {
+    border-right: 1px solid #555555;
+    padding-right: 4px;
+    margin-right: 4px;
+    font-size: 0.8rem;
+    font-weight: bold; }
+  .app-news.app-news-detail .app-content .app-categories {
+    color: #4A148C;
+    letter-spacing: 1px;
+    margin-right: 8px;
+    font-size: 0.8rem;
+    font-weight: bold; }
   .app-news.app-news-detail .app-content .app-news-detail-img {
     margin-bottom: 20px; }
     @media (min-width: 768px) {
