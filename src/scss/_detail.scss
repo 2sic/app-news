@@ -8,21 +8,22 @@
                 margin-bottom: $grid-gutter-width;
             }
 
+            .app-date, .app-categories {
+                font-size: $font-size-base * 0.8;
+                font-weight: bold;
+                text-transform: uppercase;
+            }
             .app-date {
                 &.app-date-border {
                     border-right: 1px solid $body-color;
                     padding-right: 4px;
-                    margin-right: 4px;
-                    font-size: $font-size-base * 0.8;
-                    font-weight: bold;
+                    margin-right: 4px;                    
                 }
             }
             .app-categories {
                 color: $link-color;
                 letter-spacing: 1px;
                 margin-right: 8px;
-                font-size: $font-size-base * 0.8;
-                font-weight: bold;
             }
 
             .app-news-detail-img {
