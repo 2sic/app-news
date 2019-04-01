@@ -54,11 +54,11 @@ else
                 @item.Title
                 @if(item.ShowFrom.Date > DateTime.Now.Date)
                 {
-                    <span class="app-events-pill">&Ouml;FFENTLICH&nbsp;AB&nbsp;@item.ShowFrom.Date.ToString("dd.MM.yyyy")</span>
+                    <span class="app-events-pill">@Html.Raw(App.Resources.LabelShowFromPill) @item.ShowFrom.Date.ToString("dd.MM.yyyy")</span>
                 }
                 @if(item.ShowTo.Date <= DateTime.Now.Date)
                 {
-                    <span class="app-events-pill">ABGELAUFEN&nbsp;SEIT&nbsp;@item.ShowFrom.Date.ToString("dd.MM.yyyy")</span>
+                    <span class="app-events-pill">@Html.Raw(App.Resources.LabelShowToPill) @item.ShowFrom.Date.ToString("dd.MM.yyyy")</span>
                 }
             </h2>
             <span class="app-date @((item.Categories.Count >  0 && App.Settings.ActivateCategories) ? "app-date-border" : "")">@item.Date.ToString("dd.MM.yyyy")</span>
@@ -121,9 +121,3 @@ else
         $(".fancybox").fancybox();
     })
 </script>
-
-<style>
-    .sc-content-block-quick-insert {
-        display: none !important;
-    }
-</style>
