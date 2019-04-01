@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<SexyContent FileVersion="07.00.00" MinimumRequiredVersion="07.00.00" ModuleVersion="09.32.01" ExportDate="2018-12-23T10:49:05.8595709+01:00">
+<SexyContent FileVersion="07.00.00" MinimumRequiredVersion="07.00.00" ModuleVersion="09.42.00" ExportDate="2019-04-01T08:23:29.7996204+02:00">
   <Header>
     <App Guid="4dd408f7-effc-4e8b-ab55-d8282c9a82ea" />
     <Language Default="en-US" />
@@ -25,11 +25,11 @@
             <Value Key="InputType" Value="string-default" Type="String">
               <Dimension DimensionID="72" ReadOnly="false" />
             </Value>
-            <Value Key="Name" Value="Label: Mehr lesen" Type="String">
-              <Dimension DimensionID="73" ReadOnly="false" />
-            </Value>
             <Value Key="Name" Value="Label: Read more" Type="String">
               <Dimension DimensionID="72" ReadOnly="false" />
+            </Value>
+            <Value Key="Name" Value="Label: Mehr lesen" Type="String">
+              <Dimension DimensionID="73" ReadOnly="false" />
             </Value>
             <Value Key="Notes" Value="" Type="String">
               <Dimension DimensionID="72" ReadOnly="false" />
@@ -290,11 +290,11 @@
             <Value Key="InputType" Value="string-default" Type="String">
               <Dimension DimensionID="72" ReadOnly="false" />
             </Value>
-            <Value Key="Name" Value="Label: Zurück zur Liste" Type="String">
-              <Dimension DimensionID="73" ReadOnly="false" />
-            </Value>
             <Value Key="Name" Value="Label: Back to list" Type="String">
               <Dimension DimensionID="72" ReadOnly="false" />
+            </Value>
+            <Value Key="Name" Value="Label: Zurück zur Liste" Type="String">
+              <Dimension DimensionID="73" ReadOnly="false" />
             </Value>
             <Value Key="Notes" Value="" Type="String">
               <Dimension DimensionID="72" ReadOnly="false" />
@@ -340,11 +340,11 @@
             <Value Key="InputType" Value="hyperlink-default" Type="String">
               <Dimension DimensionID="72" ReadOnly="false" />
             </Value>
-            <Value Key="Name" Value="Platzhalter wenn kein Bild vorhanden" Type="String">
-              <Dimension DimensionID="73" ReadOnly="false" />
-            </Value>
             <Value Key="Name" Value="Placeholder for Missing image" Type="String">
               <Dimension DimensionID="72" ReadOnly="false" />
+            </Value>
+            <Value Key="Name" Value="Platzhalter wenn kein Bild vorhanden" Type="String">
+              <Dimension DimensionID="73" ReadOnly="false" />
             </Value>
             <Value Key="Notes" Value="" Type="String">
               <Dimension DimensionID="72" ReadOnly="false" />
@@ -803,11 +803,11 @@
             <Value Key="InputType" Value="hyperlink-default" Type="String">
               <Dimension DimensionID="72" ReadOnly="false" />
             </Value>
-            <Value Key="Name" Value="Bild" Type="String">
-              <Dimension DimensionID="73" ReadOnly="false" />
-            </Value>
             <Value Key="Name" Value="Image" Type="String">
               <Dimension DimensionID="72" ReadOnly="false" />
+            </Value>
+            <Value Key="Name" Value="Bild" Type="String">
+              <Dimension DimensionID="73" ReadOnly="false" />
             </Value>
             <Value Key="VisibleInEditUI" Value="True" Type="Boolean">
               <Dimension DimensionID="72" ReadOnly="false" />
@@ -1424,11 +1424,11 @@
             <Value Key="InputType" Value="number-default" Type="String">
               <Dimension DimensionID="72" ReadOnly="false" />
             </Value>
-            <Value Key="Name" Value="Anzahl Einträge pro Seite" Type="String">
-              <Dimension DimensionID="73" ReadOnly="false" />
-            </Value>
             <Value Key="Name" Value="Amount of items per page" Type="String">
               <Dimension DimensionID="72" ReadOnly="false" />
+            </Value>
+            <Value Key="Name" Value="Anzahl Einträge pro Seite" Type="String">
+              <Dimension DimensionID="73" ReadOnly="false" />
             </Value>
             <Value Key="Notes" Value="" Type="String">
               <Dimension DimensionID="72" ReadOnly="false" />
@@ -1487,11 +1487,11 @@
             <Value Key="Name" Value="Seitennavigation anzeigen" Type="String">
               <Dimension DimensionID="73" ReadOnly="false" />
             </Value>
-            <Value Key="Notes" Value="&lt;p&gt;Normalerweise ist dies auf Seiten, welche nur einen Auszug von News-Eintr&amp;auml;gen anzeigen, nicht gew&amp;uuml;nscht, jedoch auf der Hauptliste der News unerl&amp;auml;sslich. Standard ist, dass die Seitennavigation angezeigt wird.&lt;/p&gt;" Type="String">
-              <Dimension DimensionID="73" ReadOnly="false" />
-            </Value>
             <Value Key="Notes" Value="&lt;p&gt;Show a pager - usually you don't want this on pages which show just a news extract, but you really want this on the main news page. Default is that it will show the pager.&amp;nbsp;&lt;/p&gt;" Type="String">
               <Dimension DimensionID="72" ReadOnly="false" />
+            </Value>
+            <Value Key="Notes" Value="&lt;p&gt;Normalerweise ist dies auf Seiten, welche nur einen Auszug von News-Eintr&amp;auml;gen anzeigen, nicht gew&amp;uuml;nscht, jedoch auf der Hauptliste der News unerl&amp;auml;sslich. Standard ist, dass die Seitennavigation angezeigt wird.&lt;/p&gt;" Type="String">
+              <Dimension DimensionID="73" ReadOnly="false" />
             </Value>
             <Value Key="Required" Value="False" Type="Boolean">
               <Dimension DimensionID="72" ReadOnly="false" />
@@ -1634,11 +1634,11 @@
             <Value Key="Name" Value="Kategorie" Type="String">
               <Dimension DimensionID="73" ReadOnly="false" />
             </Value>
-            <Value Key="Notes" Value="&lt;p&gt;zeige nur Eintr&amp;auml;ge von dieser Kategorie&lt;/p&gt;" Type="String">
-              <Dimension DimensionID="73" ReadOnly="false" />
-            </Value>
             <Value Key="Notes" Value="&lt;p&gt;show only items of this category&lt;/p&gt;" Type="String">
               <Dimension DimensionID="72" ReadOnly="false" />
+            </Value>
+            <Value Key="Notes" Value="&lt;p&gt;zeige nur Eintr&amp;auml;ge von dieser Kategorie&lt;/p&gt;" Type="String">
+              <Dimension DimensionID="73" ReadOnly="false" />
             </Value>
             <Value Key="Required" Value="False" Type="Boolean">
               <Dimension DimensionID="72" ReadOnly="false" />
@@ -1709,7 +1709,7 @@
       <Value Key="SupportsAjaxReload" Value="True" Type="Boolean">
         <Dimension DimensionID="72" ReadOnly="false" />
       </Value>
-      <Value Key="Version" Value="03.01.04" Type="String">
+      <Value Key="Version" Value="03.01.05" Type="String">
         <Dimension DimensionID="72" ReadOnly="false" />
       </Value>
     </Entity>
@@ -1719,11 +1719,11 @@
       </Value>
     </Entity>
     <Entity AssignmentObjectType="App" AttributeSetStaticName="App-Resources" AttributeSetName="App-Resources" EntityGUID="810061ea-6601-45bd-b158-27fb742d4e82" KeyNumber="53">
-      <Value Key="LabelAdminListWarning" Value="Nur für Admins sichtbar" Type="String">
-        <Dimension DimensionID="73" ReadOnly="false" />
-      </Value>
       <Value Key="LabelAdminListWarning" Value="Only visible for Admins" Type="String">
         <Dimension DimensionID="72" ReadOnly="false" />
+      </Value>
+      <Value Key="LabelAdminListWarning" Value="Nur für Admins sichtbar" Type="String">
+        <Dimension DimensionID="73" ReadOnly="false" />
       </Value>
       <Value Key="LabelAdminListWarningDetail" Value="Here you can see News which are not yet published and not anymore published" Type="String">
         <Dimension DimensionID="72" ReadOnly="false" />
@@ -2105,6 +2105,7 @@
     </Entity>
     <Entity AssignmentObjectType="Default" AttributeSetStaticName="ContentGroupReference" AttributeSetName="ContentGroupReference" EntityGUID="c4ea11fc-8465-4960-9a33-d60baf6ca9b1">
       <Value Key="App" Value="Default" Type="String" />
+      <Value Key="ContentGroup" Value="3badc145-ad51-4888-8b62-cd214c4e2655" Type="String" />
       <Value Key="ShowTemplateChooser" Value="False" Type="Boolean" />
       <Value Key="Template" Value="1964fd6f-dc51-4329-9d07-0a183a3a9f38" Type="String" />
       <Value Key="Title" Value="" Type="String" />
@@ -2502,11 +2503,11 @@
       <Value Key="Name" Value="Media info" Type="String">
         <Dimension DimensionID="72" ReadOnly="false" />
       </Value>
-      <Value Key="ShowedTitle" Value="Medienmitteilungen" Type="String">
-        <Dimension DimensionID="73" ReadOnly="false" />
-      </Value>
       <Value Key="ShowedTitle" Value="Media info" Type="String">
         <Dimension DimensionID="72" ReadOnly="false" />
+      </Value>
+      <Value Key="ShowedTitle" Value="Medienmitteilungen" Type="String">
+        <Dimension DimensionID="73" ReadOnly="false" />
       </Value>
       <Value Key="UrlKey" Value="media-info" Type="String">
         <Dimension DimensionID="72" ReadOnly="false" />
@@ -2797,14 +2798,14 @@
       </Value>
     </Entity>
     <Entity AssignmentObjectType="Default" AttributeSetStaticName="4f6039dc-1b72-4e41-8fed-5ff6c97e62fb" AttributeSetName="News" EntityGUID="9c772eb2-5519-4676-88ce-dcd2d9d8392f">
-      <Value Key="Body" Value="&lt;p&gt;To learn more about this, read about this &lt;a href=&quot;https://2sxc.org/en/apps/app/news-pro-3-for-dnn-dotnetnuke&quot;&gt;app in the catalog&lt;/a&gt;.&amp;nbsp;&lt;/p&gt;&#xA;&lt;p&gt;This app offers loads of features, incl.&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Basic news features like title, date, teaser &amp;amp; body&lt;/li&gt;&#xA;&lt;li&gt;Categories to filter by category on certain pages&lt;/li&gt;&#xA;&lt;li&gt;Various dates like news-date, show/hide dates&amp;nbsp;&lt;/li&gt;&#xA;&lt;li&gt;Primary image with configurable hotspot, to ensure that the important parts are always visible when the image is resized&lt;/li&gt;&#xA;&lt;li&gt;SEO optimized URLs&lt;/li&gt;&#xA;&lt;li&gt;Multilanguage, with German/English resources already translated&lt;/li&gt;&#xA;&lt;li&gt;Super easy to customize using Razor&lt;/li&gt;&#xA;&lt;li&gt;...and way more!&lt;/li&gt;&#xA;&lt;/ol&gt;" Type="String">
+      <Value Key="Body" Value="&lt;p&gt;To learn more about this, read about this &lt;a href=&quot;https://2sxc.org/en/apps/app/news-pro-3-for-dnn-dotnetnuke&quot;&gt;app in the catalog&lt;/a&gt;.&amp;nbsp;&lt;/p&gt;&#xA;&lt;p&gt;This app offers loads of features, incl.&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Basic news features like title, date, teaser &amp;amp; body&lt;/li&gt;&#xA;&lt;li&gt;Categories to filter by category on certain pages&lt;/li&gt;&#xA;&lt;li&gt;Various dates like news-date, show/hide dates&amp;nbsp;&lt;/li&gt;&#xA;&lt;li&gt;Primary image with configurable hotspot, to ensure that the important parts are always visible when the image is resized&lt;/li&gt;&#xA;&lt;li&gt;SEO optimized URLs&lt;/li&gt;&#xA;&lt;li&gt;Multilanguage, with German/English resources already translated&lt;/li&gt;&#xA;&lt;li&gt;Super easy to customize using Razor&lt;/li&gt;&#xA;&lt;li&gt;...and way more!&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;p&gt;&amp;nbsp;&lt;/p&gt;&#xA;&lt;hr sxc=&quot;sxc-content-block&quot; guid=&quot;2a4c892f-3118-42f0-b761-a81a4841d4af&quot; /&gt;&#xA;&lt;p&gt;&amp;nbsp;&lt;/p&gt;" Type="String">
         <Dimension DimensionID="72" ReadOnly="false" />
       </Value>
       <Value Key="Categories" Value="34d3610a-59a1-41c2-8cfe-95eb453c2cb2" Type="Entity" />
       <Value Key="CropAnchor" Value="middlecenter" Type="String">
         <Dimension DimensionID="72" ReadOnly="false" />
       </Value>
-      <Value Key="Date" Value="2018-12-24T00:00:00" Type="DateTime">
+      <Value Key="Date" Value="2018-12-23T23:00:00" Type="DateTime">
         <Dimension DimensionID="72" ReadOnly="false" />
       </Value>
       <Value Key="Image" Value="file:1268" Type="Hyperlink">
@@ -2813,13 +2814,13 @@
       <Value Key="Lightbox" Value="True" Type="Boolean">
         <Dimension DimensionID="72" ReadOnly="false" />
       </Value>
-      <Value Key="ShowFrom" Value="2018-12-23T00:00:00" Type="DateTime">
+      <Value Key="ShowFrom" Value="2018-12-22T23:00:00" Type="DateTime">
         <Dimension DimensionID="72" ReadOnly="false" />
       </Value>
       <Value Key="ShowTeaserInDetail" Value="True" Type="Boolean">
         <Dimension DimensionID="72" ReadOnly="false" />
       </Value>
-      <Value Key="ShowTo" Value="2021-12-23T00:00:00" Type="DateTime">
+      <Value Key="ShowTo" Value="2021-12-22T23:00:00" Type="DateTime">
         <Dimension DimensionID="72" ReadOnly="false" />
       </Value>
       <Value Key="Teaser" Value="Just released the News App 3.0 - as always open-source, super easy to customize and do whatever you want!" Type="String">
@@ -2829,6 +2830,42 @@
         <Dimension DimensionID="72" ReadOnly="false" />
       </Value>
       <Value Key="UrlKey" Value="news-pro-3-0-released-for-christmas-2018" Type="String">
+        <Dimension DimensionID="72" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity AssignmentObjectType="Default" AttributeSetStaticName="4f6039dc-1b72-4e41-8fed-5ff6c97e62fb" AttributeSetName="News" EntityGUID="45dc14cb-418c-45a5-997e-e6ed7d359095">
+      <Value Key="Body" Value="" Type="String">
+        <Dimension DimensionID="72" ReadOnly="false" />
+      </Value>
+      <Value Key="Categories" Value="34d3610a-59a1-41c2-8cfe-95eb453c2cb2" Type="Entity" />
+      <Value Key="CropAnchor" Value="middlecenter" Type="String">
+        <Dimension DimensionID="72" ReadOnly="false" />
+      </Value>
+      <Value Key="Date" Value="2019-02-08T00:00:00" Type="DateTime">
+        <Dimension DimensionID="72" ReadOnly="false" />
+      </Value>
+      <Value Key="Image" Value="" Type="Hyperlink">
+        <Dimension DimensionID="72" ReadOnly="false" />
+      </Value>
+      <Value Key="Lightbox" Value="True" Type="Boolean">
+        <Dimension DimensionID="72" ReadOnly="false" />
+      </Value>
+      <Value Key="ShowFrom" Value="2019-02-08T00:00:00" Type="DateTime">
+        <Dimension DimensionID="72" ReadOnly="false" />
+      </Value>
+      <Value Key="ShowTeaserInDetail" Value="True" Type="Boolean">
+        <Dimension DimensionID="72" ReadOnly="false" />
+      </Value>
+      <Value Key="ShowTo" Value="2022-02-08T00:00:00" Type="DateTime">
+        <Dimension DimensionID="72" ReadOnly="false" />
+      </Value>
+      <Value Key="Teaser" Value="asd" Type="String">
+        <Dimension DimensionID="72" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="Demo" Type="String">
+        <Dimension DimensionID="72" ReadOnly="false" />
+      </Value>
+      <Value Key="UrlKey" Value="demo" Type="String">
         <Dimension DimensionID="72" ReadOnly="false" />
       </Value>
     </Entity>
