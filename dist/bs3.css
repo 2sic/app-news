@@ -55,7 +55,18 @@
   margin-bottom: 20px; }
 
 .app-news.app-news-list .app-details-link {
-  cursor: pointer; }
+  position: relative; }
+  .app-news.app-news-list .app-details-link .link-overlay {
+    position: absolute;
+    display: block;
+    top: 0px;
+    left: 0px;
+    height: 100%;
+    width: 100%;
+    z-index: 20; }
+  .app-news.app-news-list .app-details-link a:not(.link-overlay) {
+    position: relative;
+    z-index: 30; }
   .app-news.app-news-list .app-details-link .app-img {
     position: relative;
     margin-bottom: 20px;
@@ -131,7 +142,7 @@
     text-align: center;
     border-radius: 50%;
     font-size: 16px;
-    padding-top: 4px;
+    line-height: 30px;
     color: #666;
     transition: background .2s ease, color .2s ease; }
     .app-news .app-news-paging > a:hover {

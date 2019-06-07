@@ -40,7 +40,8 @@
             @{
                 string detailsLink = @lib.LinkToPage(newsPageTab, "mid", ((String.IsNullOrEmpty(Content.MainModuleId)) ? (Dnn.Module.ModuleID).ToString() : (Content.MainModuleId)), "details", item.EntityId.ToString(), "title", item.UrlKey);
             }
-            <div class="app-details-link" onclick="window.open('@detailsLink','_self');">
+            <div class="app-details-link">
+                <a class="link-overlay" href="@detailsLink"></a>
                 <!-- Text Date Categories -->
                 <div class="app-text">
                     <h3 class="app-list">@item.Title</h3>

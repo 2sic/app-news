@@ -34,7 +34,7 @@
     newsPageTab = int.Parse((AsEntity(Content).GetBestValue("NewsPage")).Split(':')[1]);
 }
 
-else if ((@AsDynamic(Data["Default"]).Count() < 1) || (Permissions.UserMayEditContent == false && item.ShowFrom > DateTime.Now) || (Permissions.UserMayEditContent == false && item.ShowTo < DateTime.Now))
+else if ((@AsDynamic(Data["Default"]).Count() < 1) || (Permissions.UserMayEditContent == false && item.ShowFrom > DateTime.Now))
 {
     <div>
         <p>

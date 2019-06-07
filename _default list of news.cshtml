@@ -48,7 +48,8 @@
             @{
                 string detailsLink = @lib.LinkToPage(newsPageTab, "mid", ((String.IsNullOrEmpty(Content.MainModuleId)) ? (Dnn.Module.ModuleID).ToString() : (Content.MainModuleId)), "details", item.EntityId.ToString(), "title", item.UrlKey);
             }
-            <div class="app-details-link" onclick="window.open('@detailsLink','_self');">
+            <div class="app-details-link">
+                <a class="link-overlay" href="@detailsLink"></a>
                 <div class="row">
                     <div @Koi.Class("bs3='col-xs-12 col-sm-6 col-md-4' bs4,unk='col-12 col-md-6 col-lg-4'")>
                     <!-- Image or Placeholder -->

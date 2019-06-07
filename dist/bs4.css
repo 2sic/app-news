@@ -18,7 +18,7 @@
     padding-right: 4px;
     margin-right: 4px; }
   .app-news.app-news-detail .app-content .app-categories {
-    color: #4A148C;
+    color: #5c4384;
     letter-spacing: 1px;
     margin-right: 8px; }
   .app-news.app-news-detail .app-content .app-news-detail-img {
@@ -55,7 +55,18 @@
   margin-bottom: 20px; }
 
 .app-news.app-news-list .app-details-link {
-  cursor: pointer; }
+  position: relative; }
+  .app-news.app-news-list .app-details-link .link-overlay {
+    position: absolute;
+    display: block;
+    top: 0px;
+    left: 0px;
+    height: 100%;
+    width: 100%;
+    z-index: 20; }
+  .app-news.app-news-list .app-details-link a:not(.link-overlay) {
+    position: relative;
+    z-index: 30; }
   .app-news.app-news-list .app-details-link .app-img {
     position: relative;
     margin-bottom: 20px;
@@ -78,7 +89,7 @@
             margin-top: 130px; } }
     .app-news.app-news-list .app-details-link .app-img span {
       position: absolute;
-      background: rgba(74, 20, 140, 0.8);
+      background: rgba(92, 67, 132, 0.8);
       opacity: 0;
       top: 0;
       bottom: 0;
@@ -112,11 +123,11 @@
   .app-news.app-news-list .app-details-link .app-text p {
     margin-top: 15px; }
   .app-news.app-news-list .app-details-link .app-readmore {
-    color: #4A148C; }
+    color: #5c4384; }
   .app-news.app-news-list .app-details-link:hover .app-img span {
     opacity: 1; }
   .app-news.app-news-list .app-details-link:hover .app-text h3, .app-news.app-news-list .app-details-link:hover .app-text h2 {
-    color: #4A148C; }
+    color: #5c4384; }
   .app-news.app-news-list .app-details-link:hover .app-readmore {
     color: #555555; }
 
@@ -131,14 +142,14 @@
     text-align: center;
     border-radius: 50%;
     font-size: 16px;
-    padding-top: 4px;
+    line-height: 30px;
     color: #666;
     transition: background .2s ease, color .2s ease; }
     .app-news .app-news-paging > a:hover {
-      background: #4A148C;
+      background: #5c4384;
       color: #fff; }
     .app-news .app-news-paging > a.app-news-paging-active {
-      background: #4A148C;
+      background: #5c4384;
       color: #fff; }
     .app-news .app-news-paging > a.app-news-prev-pager {
       background: #fff; }

@@ -24,7 +24,22 @@
             margin-bottom: $grid-gutter-width/1.5;
         }
         .app-details-link {
-            cursor: pointer; 
+            position: relative;
+
+            .link-overlay {
+                position: absolute;
+                display: block;
+                top: 0px;
+                left: 0px;
+                height: 100%;
+                width: 100%;
+                z-index: 20;
+            }
+
+            a:not(.link-overlay) {
+                position: relative;
+                z-index: 30;
+            }
             
 			// App-Image with overlay and fallback
             .app-img {
@@ -147,7 +162,7 @@
             text-align: center;
             border-radius: 50%;
             font-size: 16px;
-            padding-top: 4px;
+            line-height: 30px;
             color: #666;
             transition: background .2s ease, color .2s ease;
             &:hover {
