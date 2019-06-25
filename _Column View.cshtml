@@ -15,22 +15,39 @@
     newsPage = Content.NewsPage;
     newsPageTab = int.Parse((AsEntity(Content).GetBestValue("NewsPage")).Split(':')[1]);
 }
-
-
-<div class="app-news app-news-list sc-element @((Permissions.UserMayEditContent) ? "app-edit" : "")" >
-    @Edit.Toolbar(actions: "new, contentitems", contentType: "News", prefill: new { Date = DateTime.Now.Date, ShowFrom = DateTime.Now.Date, ShowTo =  DateTime.Now.Date.AddYears(3) } , settings: new { hover = "left", showCondition = true })
-    @Edit.Toolbar(Content)
+@if(Permissions.UserMayEditContent) {
+    <div class="app-news-admin-menu">
+        <div class="toolbar">
+        	@Edit.Toolbar(actions: "new", contentType: "News", prefill: new { Date = DateTime.Now.Date, ShowFrom = DateTime.Now.Date, ShowTo =  (DateTime.Now.Date.AddYears(3)).Date }) <span style="font-size:14px; color:#666;">Neuen Newsbeitrag erstellen</span> &nbsp;&nbsp;&nbsp;
+        	@Edit.Toolbar(toolbar: new object[] { 
+                new { showCondition = true,
+                    command = new { action = "contentitems", 
+                        contentType = "News", 
+                        filters = new { ModuleId = Dnn.Module.ModuleID } 
+                    }
+                }
+            })<span style="font-size:14px;color:#666;">Newsbeiträge verwalten</span>
+              
+        </div>
+         <div>
+             @Edit.Toolbar(Content)
+        </div>
+    </div>
+}
+<div class="app-news app-news-list sc-element" >
+   
     <!--Category Filter == Displayed only if a category has been selected -->
         @if (hasCategoryFilter) {
             <div class="app-catinfo">
                 <h2>@allCategories.Where(x => x.UrlKey == catFilter).FirstOrDefault().ShowedTitle</h2>
+                <span><a @Koi.Class("bs3='btn btn-primary btn-xs' bs4,unk='btn btn-primary btn-sm'") href="@newsPage">@App.Resources.LabelCategoryAll</a></span>
                 @foreach (var c in allCategories)
                 {
                     <span><a @Koi.Class("all='" + (Request.QueryString["category"] == c.UrlKey ? "active" : "") + "' bs3='btn btn-primary btn-xs' bs4,unk='btn btn-primary btn-sm'") href="@lib.LinkToPage(newsPageTab, "category", c.UrlKey, "", "", "", "")">@c.Name</a></span>
                 }
             </div>
         }
-    <div class="row auto-clear">
+    <div @Koi.Class("all='row' bs3='autoclear' bs4,unk=''")>
       
         <!-- Beginning of content loop -->
         @foreach (var item in @AsDynamic(Data["News"]))
@@ -43,16 +60,25 @@
             <div class="app-details-link">
                 <a class="link-overlay" href="@detailsLink"></a>
                 <!-- Image or Placeholder -->
-                <div class="app-img @(!String.IsNullOrEmpty(@item.Image) ? "": "app-no-img")">
-                    <span><i class="glyphicon glyphicon-link"></i></span>
-                    @if (!String.IsNullOrEmpty(@item.Image))
-                    {
-                        <img @Koi.Class("bs3='img-responsive' bs4,unk='img-fluid'") src="@item.Image?w=800&amp;h=480&amp;mode=crop&amp;scale=both&amp;quality=80&amp;anchor=@item.CropAnchor" alt="@item.Title" />
-                    }
-                    else
-                    {
-                        <img  @Koi.Class("bs3='img-responsive' bs4,unk='img-fluid'") src="@App.Path/res/trans.png?w=800&amp;h=480&amp;mode=crop&amp;scale=both&amp;quality=80" alt />
-                    }
+                <div class="app-img-wrapper mb-3">
+                     <!-- Image or Placeholder -->
+                       
+                         @if (!String.IsNullOrEmpty(@item.Image))
+                        {
+                           
+                            <div class="app-img">
+                                <span class="overlay"></span>
+                                <img @Koi.Class("all='' bs3='img-responsive' bs4,oth='img-fluid'") src="@item.Image?w=800&h=480&mode=crop&scale=both&quality=80&anchor=@item.CropAnchor" alt="@item.Title" />
+                            </div>
+                          
+                        }
+                        else
+                        {
+                            <div class="app-img app-news-missing-img @((String.IsNullOrEmpty(@item.Image)) ? "app-noimg" : "")">
+                                <span class="overlay" style="background-image: url(@App.Resources.PlaceholderMissingImage?max-width=600&amp;mode=max&amp;scale=both&amp;quality=80);"></span>
+                                <img  @Koi.Class("bs3='img-responsive' bs4,unk='img-fluid'") src="@App.Path/res/trans.png?w=800&amp;h=480&amp;mode=crop&amp;scale=both&amp;quality=80" alt="" />
+                            </div>
+                        }
                 </div>
                 <!-- Text Date Categories -->
                 <div class="app-text">

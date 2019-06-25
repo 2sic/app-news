@@ -41,6 +41,20 @@ $gray-200: $dummy !default;	// try to use default, otherwise just use red
 @if $gray-200 == $dummy {
 	@error "trying to set gray-200 based on colors, but something failed - your variables seem to be missing BOTH $gray-200 and $gray-light";
 }
+// Translate gray dark
+@if variable-exists(dark) and variable-exists(gray-dark) {
+	@warn "both bs3 and bs4 variable exists - will use bs3";
+}
+
+$dark: $dummy !default;	// try to use default, otherwise just use red
+
+@if variable-exists(gray-light) {
+	$dark: $gray-dark;
+}
+
+@if $dark == $dummy {
+	@error "trying to set gray-200 based on colors, but something failed - your variables seem to be missing BOTH $gray-200 and $gray-light";
+}
 
 
 

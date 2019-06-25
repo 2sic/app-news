@@ -40,7 +40,6 @@ else if ((@AsDynamic(Data["Default"]).Count() < 1) || (Permissions.UserMayEditCo
         <p>
             @App.Resources.LabelEventNotExists
         </p>
-
         <a class="btn btn-primary app-news-backtolist" href="@Link.To()">@Html.Raw(App.Resources.LabelBackToList)</a>
     </div>
 }
@@ -91,7 +90,8 @@ else
             else
             {
                 <div class="app-news-detail-img app-news-missing-img @((String.IsNullOrEmpty(@item.Image)) ? "app-noimg" : "")">
-                    <img @Koi.Class("all='' bs3='img-responsive' bs4,oth='img-fluid'") src="@App.Resources.PlaceholderMissingImage?max-width=600&amp;mode=max&amp;scale=both&amp;quality=80" alt="@item.Title" />
+                    <span class="overlay" style="background-image: url(@App.Resources.PlaceholderMissingImage?max-width=600&amp;mode=max&amp;scale=both&amp;quality=80);"></span>
+                    <img  @Koi.Class("bs3='img-responsive' bs4,unk='img-fluid'") src="@App.Path/res/trans.png?w=800&amp;h=480&amp;mode=crop&amp;scale=both&amp;quality=80" alt="" />
                 </div>
             }
             

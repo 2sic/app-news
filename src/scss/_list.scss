@@ -25,6 +25,9 @@
         }
         .app-details-link {
             position: relative;
+            display: flex;
+            flex-direction: column;
+            height:100%;
 
             .link-overlay {
                 position: absolute;
@@ -44,58 +47,30 @@
 			// App-Image with overlay and fallback
             .app-img {
                 position: relative;
-                margin-bottom: $grid-gutter-width/1.5;
                 text-align: center;
 
                 &.app-noimg {
                     background: #e9ecef;
                     height: 100%;
-                    width: 100%;
-                    max-height: 209px;
-
-                    @media (max-width: 768px) {
-                        height: 431px;
-                        max-height: inherit;
-                    }
-
-                    img {
-                        max-width: 120px;
-                        margin-top: 50px;
-
-                        @media (max-width: 768px) {
-                            max-width: 220px;
-                            margin-top: 130px;
-                        }
-    
-                    }
+                    position: relative;
                 }
                 
                 span {
                     position: absolute;
-                    background: rgba($primary, .8);
-                    opacity: 0;
+                    background-color: rgba($dark, .0);
                     top: 0;
                     bottom: 0;
                     width: 100%;
                     z-index: 10;
-                    transition: opacity ease-in 0.18s;
-                    i {
-                        display: block;
-                        text-align: center;
-                        color: #FFF;
-                        font-size: 30px;
-                        top: 50%;
-                        line-height: 0;
-                    }
-                }
-                &.app-no-img {
-                    background: $gray-200 url(../res/missing_img.png) center center no-repeat;
-                    background-size: 35%;
+                    background-repeat: no-repeat;
+                    background-position: center center;
+                    transition: background-color .3s ease-in-out;
                 }
 			} 
 
 			// App-Text with readmore
             .app-text {
+                flex: 1 1 auto;
                  h3, h2 {
                     &.app-list {
                         margin-top: $grid-gutter-width/2;
@@ -134,7 +109,7 @@
             &:hover {
                 .app-img {
                     span {
-                        opacity: 1;
+                        background-color: rgba($dark, .4);
                     }
                 }
                 .app-text {
@@ -161,10 +136,11 @@
             width: 30px;
             text-align: center;
             border-radius: 50%;
-            font-size: 16px;
+            font-size: 14   px;
             line-height: 30px;
             color: #666;
             transition: background .2s ease, color .2s ease;
+            background: #efefef;
             &:hover {
                 background: $primary;
                 color: #fff;
@@ -174,10 +150,10 @@
                 color: #fff;
             }
             &.app-news-prev-pager {
-                background: #fff;
+                background: #FFF;
             }
             &.app-news-next-pager {
-                background: #fff;
+                background: #FFF;
             }
         }
     }
