@@ -1,6 +1,11 @@
 @{
     var paging = AsDynamic(Data["Paging"]).FirstOrDefault();
     var newsPage = PageData["newsPage"];
+
+    if(Permissions.UserMayEditContent)
+    {
+        paging = AsDynamic(Data["AdminPaging"]).FirstOrDefault();
+    }
 }
 
 <div class="app-news-paging">
