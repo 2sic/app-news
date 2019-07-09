@@ -49,16 +49,16 @@ else
         @Edit.Toolbar(item)
     
         <div class="app-content">
+            @if(Permissions.UserMayEditContent == true && item.ShowFrom.Date > DateTime.Now.Date)
+            {
+                <div class="alert alert-warning" role="alert">@App.Resources.LabelShowFromPill&nbsp;@item.ShowFrom.Date.ToString("dd.MM.yyyy")</div>
+            }
+            @if(Permissions.UserMayEditContent == true && item.ShowTo.Date <= DateTime.Now.Date)
+            {
+                <div class="alert alert-danger" role="alert">@App.Resources.LabelShowToPill&nbsp;@item.ShowTo.Date.ToString("dd.MM.yyyy")</div>
+            }
             <h2>
                 @item.Title
-                @if(item.ShowFrom.Date > DateTime.Now.Date)
-                {
-                    <span class="app-events-pill">@Html.Raw(App.Resources.LabelShowFromPill) @item.ShowFrom.Date.ToString("dd.MM.yyyy")</span>
-                }
-                @if(item.ShowTo.Date <= DateTime.Now.Date)
-                {
-                    <span class="app-events-pill">@Html.Raw(App.Resources.LabelShowToPill) @item.ShowFrom.Date.ToString("dd.MM.yyyy")</span>
-                }
             </h2>
             <span class="app-date @((item.Categories.Count >  0 && App.Settings.ActivateCategories) ? "app-date-border" : "")">@item.Date.ToString("dd.MM.yyyy")</span>
             <span class="app-categories">
