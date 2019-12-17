@@ -133,7 +133,7 @@
     width: 30px;
     text-align: center;
     border-radius: 50%;
-    font-size: 14   px;
+    font-size: 14px;
     line-height: 30px;
     color: #666;
     transition: background .2s ease, color .2s ease;
@@ -148,17 +148,6 @@
       background: #FFF; }
     .app-news .app-news-paging > a.app-news-next-pager {
       background: #FFF; }
-
-.app-news .app-events-pill {
-  height: 10px;
-  font-size: 12px;
-  font-weight: normal;
-  border: 1px solid #e74c3c;
-  padding: 5px;
-  color: #e74c3c;
-  border-radius: 8px;
-  font-family: Helvetica;
-  vertical-align: middle; }
 
 .app-news .warning-admins {
   width: 100%; }

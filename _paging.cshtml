@@ -4,9 +4,7 @@
     
     if(Permissions.UserMayEditContent)
     {
-        if(newsPage.ToLower().IndexOf("archiv") < 0) {
-            paging = AsDynamic(Data["AdminPaging"]).FirstOrDefault();
-        }
+        paging = AsDynamic(Data["AdminPaging"]).FirstOrDefault();
     }
 }
 
