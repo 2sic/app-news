@@ -1,0 +1,41 @@
+@inherits ToSic.Sxc.Dnn.RazorComponent
+@using ToSic.Razor.Blade;
+
+@RenderPage("shared/_Assets.cshtml")
+
+@{
+  var parts = CreateInstance("shared/_Parts.cshtml");
+
+  var articles = Edit.Enabled ? AsList(Data["Admin"]) : AsList(Data["News"]);
+  var categories = AsList(App.Data["Category"]);
+  var filterdCategory = Request.QueryString["category"];
+  var pages = Edit.Enabled ? AsList(Data["AdminPaging"]).FirstOrDefault() : AsList(Data["Paging"]).FirstOrDefault();
+
+  var newsPage = Text.Has(Content.NewsPage) ? Content.NewsPage : Link.To();
+  var detailLinkMid = Text.Has(Content.MainModuleId) ? Content.MainModuleId : Dnn.Module.ModuleID.ToString();
+}
+
+@* Show Toolbar Menu if admin *@
+@if(Edit.Enabled) {
+  @parts.AdminToolbarMenu(Content)
+}
+
+<div class="app-news app-news-list" >
+  @* Show category filter if the news are filtered by category *@
+  @if (Text.Has(filterdCategory)) {
+    @parts.CategoryFilter(categories, filterdCategory, newsPage)
+  }
+
+  @* List the articles *@
+  @parts.ListArticlesMultiCol(articles, newsPage, detailLinkMid, false)
+
+  @* Show "Back to list" button if the news are filtered by category *@
+  @if (Text.Has(filterdCategory)) {
+    @parts.BackToListButton(newsPage, false)
+  }
+
+  @* Show pagination if configured and pagecount is over 0 *@
+  @if (Content.ShowPagination && pages.PageCount > 0) {
+    @parts.Paging(pages, newsPage)
+  }
+</div>
