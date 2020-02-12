@@ -10,14 +10,12 @@
   var newsPage = "";
 }
 
-@* FIXME: Still show detail if archive *@
-
 @if(article != null) {
 
   @* Check whether the article is already published but not outdated yet *@
-  if(article.ShowFrom <= DateTime.Now && article.ShowTo >= DateTime.Now || Edit.Enabled) {
+  if(article.ShowFrom <= DateTime.Now || Edit.Enabled) {
     newsPage = Text.Has(Content.NewsPage) ? Content.NewsPage : Link.To();
-    HtmlPage.AddMeta("DESCRIPTION", Tags.Strip(article.Teaser)); // Add Meta tag
+    HtmlPage.AddMeta("description", Tags.Strip(article.Teaser)); // Add Meta tag
     HtmlPage.Title = article.Date.ToString("dd.MM.yyyy") + " - " + article.Title +  " | " + HtmlPage.Title; // Adjust page title
 
     <div class="app-news app-news-detail" @Edit.TagToolbar(article)>
