@@ -4,16 +4,14 @@
 
 @* Show Menu of toolbars to add a new article, manage the articles and edit the view configuration *@
 @helper AdminToolbarMenu(dynamic viewConfiguration) {
-  @* FIXME: How to handle the different needed date formats? (prefill)
-     English: MM/dd/yyyy
-     German:  dd.MM.yyyy
-  *@
-  var today = DateTime.Now.Date.AddDays(1).ToString("MM/dd/yyyy");
-  var dateInFuture = (DateTime.Now.Date.AddDays(1).AddYears(3)).Date.ToString("MM/dd/yyyy");
+  @* Create data for date pre-fillings and format them to ISO format *@
+  var tomorrow = DateTime.Now.Date.AddDays(1);
+  var isoTomorrow = tomorrow.ToString("yyyy-MM-dd");
+  var isoDateInFuture = tomorrow.AddYears(3).ToString("yyyy-MM-dd");
 
   <div class="app-news-admin-menu">
     <div class="toolbar">
-      @Edit.Toolbar(actions: "new", contentType: "News", prefill: new { Date = today, ShowFrom = today, ShowTo = dateInFuture })
+      @Edit.Toolbar(actions: "new", contentType: "News", prefill: new { Date = isoTomorrow, ShowFrom = isoTomorrow, ShowTo = isoDateInFuture })
       <span style="font-size:14px; color:#666;">@App.Resources.LabelAdminMenuNew</span> &nbsp;&nbsp;&nbsp;
 
       @Edit.Toolbar(toolbar: new object[] {
@@ -137,11 +135,11 @@
 
 @* Show info to admin whether the article will publish or is already expired *@
 @helper ArticleInformationAdmin(dynamic article) {
-  if(Edit.Enabled && article.ShowFrom.Date > DateTime.Now.Date) {
+  if(Edit.Enabled && article.ShowFrom != null && article.ShowFrom.Date > DateTime.Now.Date) {
     <div class="alert alert-warning" role="alert">@(App.Resources.LabelShowFromPill + " " + article.ShowFrom.Date.ToString("dd.MM.yyyy"))</div>
   }
 
-  if(Edit.Enabled && article.ShowTo.Date <= DateTime.Now.Date) {
+  if(Edit.Enabled && article.ShowTo != null && article.ShowTo.Date <= DateTime.Now.Date) {
     <div class="alert alert-danger" role="alert">@(App.Resources.LabelShowToPill + " " + article.ShowTo.Date.ToString("dd.MM.yyyy"))</div>
   }
 }

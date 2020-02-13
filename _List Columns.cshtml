@@ -1,10 +1,11 @@
 @inherits ToSic.Sxc.Dnn.RazorComponent
 @using ToSic.Razor.Blade;
+@using ToSic.Eav.DataSources.Queries;
 @*
   Bootstrap 3 - read the readme.md section "CSS Framework Detection"
 *@
 @if(Connect.Koi.Koi.Is("bs3")) {
-  @RenderPage("bs3/_Articlelist col 3.cshtml")
+  @RenderPage("bs3/_List multiple columns.cshtml")
   return;
 }
 @*
@@ -15,10 +16,10 @@
 @{
   var parts = CreateInstance("shared/_Parts.cshtml");
 
-  var articles = Edit.Enabled ? AsList(Data["Admin"]) : AsList(Data["News"]);
+  var articles = AsList(Data["News"]);
   var categories = AsList(App.Data["Category"]);
   var filterdCategory = Request.QueryString["category"];
-  var pages = Edit.Enabled ? AsList(Data["AdminPaging"]).FirstOrDefault() : AsList(Data["Paging"]).FirstOrDefault();
+  var pages = AsList(Data["Paging"]).FirstOrDefault();
 
   var newsPage = Text.Has(Content.NewsPage) ? Content.NewsPage : Link.To();
   var detailLinkMid = Text.Has(Content.MainModuleId) ? Content.MainModuleId : Dnn.Module.ModuleID.ToString();
