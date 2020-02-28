@@ -1,13 +1,13 @@
 // Column View Bootstrap
 .app-news {
-	
+
     // General Styles
     &.sc-element>.sc-menu>li>a>div {
         background-color: #666666;
     }
     &.app-edit {
         padding-top: 40px;
-	} 
+	}
 
 	// Column View Bootstrap
     &.app-news-list {
@@ -43,7 +43,7 @@
                 position: relative;
                 z-index: 30;
             }
-            
+
 			// App-Image with overlay and fallback
             .app-img {
                 position: relative;
@@ -54,7 +54,7 @@
                     height: 100%;
                     position: relative;
                 }
-                
+
                 span {
                     position: absolute;
                     background-color: rgba($dark, .0);
@@ -66,7 +66,7 @@
                     background-position: center center;
                     transition: background-color .3s ease-in-out;
                 }
-			} 
+			}
 
 			// App-Text with readmore
             .app-text {
@@ -104,7 +104,7 @@
             .app-readmore {
                 color: $primary;
 			}
-			
+
 			// Hover Styling
             &:hover {
                 .app-img {
@@ -122,41 +122,6 @@
                 }
             }
         }
-	} 
+	}
 	// END Column View Bootstrap
-
-    // Pagination
-    .app-news-paging {
-        width: 100%;
-        text-align: center;
-        margin-top: $grid-gutter-width;
-        >a {
-            display: inline-block;
-            height: 30px;
-            width: 30px;
-            text-align: center;
-            border-radius: 50%;
-            font-size: 14px;
-            line-height: 30px;
-            color: #666;
-            transition: background .2s ease, color .2s ease;
-            background: #efefef;
-            &:hover {
-                background: $primary;
-                color: #fff;
-            }
-            &.app-news-paging-active {
-                background: $primary;
-                color: #fff;
-            }
-            &.app-news-prev-pager {
-                background: #FFF;
-            }
-            &.app-news-next-pager {
-                background: #FFF;
-            }
-        }
-    }
-
-    .warning-admins { width: 100%; }
 }

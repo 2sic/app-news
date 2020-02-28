@@ -8,15 +8,21 @@
 
   var article = AsList(Data).FirstOrDefault();
   var newsPage = "";
+  var filteredCategory = Request.QueryString["category"];
+  var categoryParams = Text.Has(filteredCategory)
+      ? "category=" + filteredCategory
+      : "";
+
+  var backToListUrl = Link.To(parameters: categoryParams);
 }
 
 @if(article != null) {
 
-  @* Check whether the article is already published but not outdated yet *@
+  @* Check whether the article is already published or if the user can edit *@
   if(article.ShowFrom <= DateTime.Now || Edit.Enabled) {
     newsPage = Text.Has(Content.NewsPage) ? Content.NewsPage : Link.To();
     HtmlPage.AddMeta("description", Tags.Strip(article.Teaser)); // Add Meta tag
-    HtmlPage.Title = article.Date.ToString("dd.MM.yyyy") + " - " + article.Title +  " | " + HtmlPage.Title; // Adjust page title
+    HtmlPage.Title = article.Date.ToString("d") + " - " + article.Title +  " | " + HtmlPage.Title; // Adjust page title
 
     <div class="app-news app-news-detail" @Edit.TagToolbar(article)>
       @* Head of the article *@
@@ -52,4 +58,4 @@
 }
 
 @* Show "Back to list" button *@
-@parts.BackToListButton(Link.To(), true)
+@Tag.A().Class("btn btn-primary app-news-backtolist").Href(Link.To(parameters: categoryParams)).Wrap(App.Resources.LabelBackToList)

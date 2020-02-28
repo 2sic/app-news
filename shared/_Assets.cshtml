@@ -1,8 +1,17 @@
+@using Connect.Koi;
 @using DotNetNuke.Framework.JavaScriptLibraries;
 
+@* Include styles of the App *@
 <link rel="stylesheet" href="@App.Path/dist/bs4.min.css" data-enableoptimizations="true" />
 
-@if(PageData["scripts"] is bool && PageData["scripts"]) {
+@* Include bootstrap 4 if the framework isn't known - then this file is still called, and we add Bootstrap to the page *@
+@if(!Koi.Is("bs4")) {
+  <link rel="stylesheet" href="//stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous" data-enableoptimizations="true" />
+  <script src="//stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous" data-enableoptimizations="true" ></script>
+}
+
+@* Include libaries / scripts *@
+@if(PageData["scripts"] == true) {
   // tell DNN to load jquery as it's needed by fancybox
   JavaScript.RequestRegistration(CommonJs.jQuery);
 

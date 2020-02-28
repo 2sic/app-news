@@ -16,49 +16,50 @@
   var parts = CreateInstance("shared/_Parts.cshtml");
 
   var article = AsList(Data).FirstOrDefault();
-  var newsPage = "";
-}
 
-@if(article != null) {
-
-  @* Check whether the article is already published but not outdated yet *@
-  if(article.ShowFrom <= DateTime.Now || Edit.Enabled) {
-    newsPage = Text.Has(Content.NewsPage) ? Content.NewsPage : Link.To();
-    HtmlPage.AddMeta("description", Tags.Strip(article.Teaser)); // Add Meta tag
-    HtmlPage.Title = article.Date.ToString("dd.MM.yyyy") + " - " + article.Title +  " | " + HtmlPage.Title; // Adjust page title
-
-    <div class="app-news app-news-detail" @Edit.TagToolbar(article)>
-      @* Head of the article *@
-      <div class="app-content">
-        @* "Will publish"/"expired" notes for admin *@
-        @parts.ArticleInformationAdmin(article)
-
-        <h2>@article.Title</h2>
-
-        @* Show Date and categories *@
-        @parts.ArticleInformationDateAndCategories(article, newsPage)
-      </div>
-
-      @* Body of the article *@
-      <div class="app-content">
-        @* Show image or placeholder *@
-        @parts.ImageOrPlaceholder(article, true)
-
-        @if(article.ShowTeaserInDetail) {
-          <p class="app-news-detail-teaser">@Html.Raw(Tags.Nl2Br(article.Teaser))</p>
-        }
-
-        <div class="app-news-detail-body">@Html.Raw(article.Body)</div>
-      </div>
-    </div>
-  } else {
-    // Show article not found notification
+  @* Show article not found notification and stop processing *@
+  if(article == null) {
     @parts.ArticleNotFound()
+    return;
   }
-} else {
-  // Show article not found notification
-  @parts.ArticleNotFound()
+
+  int newsPageTabId = Text.Has(Content.NewsPage)
+    ? int.Parse((AsEntity(Content).GetBestValue("NewsPage")).Split(':')[1])
+    : Dnn.Tab.TabID;
+
+  var filteredCategory = Request.QueryString["category"];
+  var categoryParams = Text.Has(filteredCategory)
+      ? "category=" + filteredCategory
+      : "";
+
+  HtmlPage.AddMeta("description", Tags.Strip(article.Teaser)); // Add Meta tag
+  HtmlPage.Title = article.Date.ToString("d") + " - " + article.Title +  " | " + HtmlPage.Title; // Adjust page title
 }
+
+<div class="app-news app-news-detail" @Edit.TagToolbar(article)>
+  @* Head of the article *@
+  <div class="app-content">
+    @* "Will publish"/"expired" notes for admin *@
+    @parts.ArticleInformationAdmin(article)
+
+    <h2>@article.Title</h2>
+
+    @* Show Date and categories *@
+    @parts.ArticleInformationDateAndCategories(article, newsPageTabId)
+  </div>
+
+  @* Body of the article *@
+  <div class="app-content">
+    @* Show image or placeholder *@
+    @parts.ImageOrPlaceholder(article, true)
+
+    @if(article.ShowTeaserInDetail) {
+      <p class="app-news-detail-teaser">@Html.Raw(Tags.Nl2Br(article.Teaser))</p>
+    }
+
+    <div class="app-news-detail-body">@Html.Raw(article.Body)</div>
+  </div>
+</div>
 
 @* Show "Back to list" button *@
-@parts.BackToListButton(Link.To(), true)
+@Tag.A().Class("btn btn-primary app-news-backtolist").Href(Link.To(parameters: categoryParams)).Wrap(App.Resources.LabelBackToList)

@@ -5,16 +5,25 @@
   margin-bottom: 30px;
   .toolbar {
       display:flex;
+      ul {
+        padding-left: 10px;
+
+        &:first-child {
+          padding-left: 0;
+        }
+      }
   }
   span {
       line-height:28px;
+      font-size:14px;
+      color:#666;
   }
   .sc-menu {
       li {
           display:inline-block;
           a{
               div{
-               
+
                     background:#666;
               }
           }

@@ -5,7 +5,7 @@
   Bootstrap 3 - read the readme.md section "CSS Framework Detection"
 *@
 @if(Connect.Koi.Koi.Is("bs3")) {
-  @RenderPage("bs3/_List Columns.cshtml")
+  @RenderPage("bs3/_List Columns without images.cshtml")
   return;
 }
 @*
@@ -35,14 +35,14 @@
   @parts.AdminToolbarMenu(viewConfiguration)
 }
 
-<div class="app-news app-news-list">
+<div class="app-news app-news-list" >
   @* Show category filter if the news are filtered by category querystring *@
   @if (Text.Has(categoryQueryString) && filteredCategory != null) {
     @parts.CategoryFilter(categories, filteredCategory, newsPageTabId)
   }
 
   @* List the articles *@
-  @parts.ListArticlesMultiCol(articles, newsPageTabId, detailLinkMid, true, categoryQueryString)
+  @parts.ListArticlesMultiCol(articles, newsPageTabId, detailLinkMid, false, categoryQueryString)
 
   @* Show "Back to list" button if the news are filtered by category querystring *@
   @if (Text.Has(categoryQueryString) && filteredCategory != null) {

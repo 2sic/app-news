@@ -4,15 +4,13 @@
 
 @* Show Menu of toolbars to add a new article, manage the articles and edit the view configuration *@
 @helper AdminToolbarMenu(dynamic viewConfiguration) {
-  @* Create data for date pre-fillings and format them to ISO format *@
-  var tomorrow = DateTime.Now.Date.AddDays(1);
-  var isoTomorrow = tomorrow.ToString("yyyy-MM-dd");
-  var isoDateInFuture = tomorrow.AddYears(3).ToString("yyyy-MM-dd");
+  @* Create iso-date for date pre-filling *@
+  var tomorrow = DateTime.Now.Date.AddDays(1).ToString("yyyy-MM-dd");
 
   <div class="app-news-admin-menu">
     <div class="toolbar">
-      @Edit.Toolbar(actions: "new", contentType: "News", prefill: new { Date = isoTomorrow, ShowFrom = isoTomorrow, ShowTo = isoDateInFuture })
-      <span style="font-size:14px; color:#666;">@App.Resources.LabelAdminMenuNew</span> &nbsp;&nbsp;&nbsp;
+      @Edit.Toolbar(actions: "new", contentType: "News", prefill: new { Date = tomorrow })
+      <span>@App.Resources.LabelAdminMenuNew</span>
 
       @Edit.Toolbar(toolbar: new object[] {
         new {
@@ -24,21 +22,21 @@
           }
         }
       })
-      <span style="font-size:14px;color:#666;">@App.Resources.LabelAdminMenuManage</span>
+      <span>@App.Resources.LabelAdminMenuManage</span>
     </div>
     <div>@Edit.Toolbar(viewConfiguration)</div>
   </div>
 }
 
 @* Show all categories as buttons with which the filtering can be changed *@
-@helper CategoryFilter(Dynlist categories, String filterdCategory, String newsPage) {
+@helper CategoryFilter(Dynlist categories, string filteredCategory, string newsPage) {
   <div class="app-catinfo">
-    <h2>@categories.Where(c => c.UrlKey == filterdCategory).FirstOrDefault().ShowedTitle</h2>
+    <h2>@categories.Where(c => c.UrlKey == filteredCategory).FirstOrDefault().ShowedTitle</h2>
     <span><a class="btn btn-primary btn-xs" href="@newsPage">@App.Resources.LabelCategoryAll</a></span>
 
     @foreach (var c in categories) {
-      var isActive = c.UrlKey == filterdCategory ? "active" : "";
-      var link = newsPage + "/category/" + c.UrlKey;
+      var isActive = c.UrlKey == filteredCategory ? "active" : "";
+      var link = newsPage + "?category=" + c.UrlKey;
 
       <span><a class="btn btn-primary btn-xs @isActive" href="@link">@c.Name</a></span>
     }
@@ -46,26 +44,19 @@
 }
 
 @* List the articles in a single column *@
-@helper ListArticlesSingleCol(dynamic articlesToShow, String newsPage, String detailLinkMid) {
+@helper ListArticlesSingleCol(dynamic articlesToShow, string newsPage, string detailLinkMid, string filteredCategory) {
   <div class="row">
     @foreach (var article in articlesToShow) {
-      @*
-        FIXME: Is there any risk when doing it like that?
-        Problem is that Link.To() always navigates from the current page
-        but the main newsPage can be another one
-      *@
-      var detailsLink = newsPage + "/mid/" + detailLinkMid + "/details/" + article.EntityId.ToString() + "/title/" + article.UrlKey;
-
       <div class="col-xs-12" @Edit.TagToolbar(article)>
         <div class="app-details-link">
-          <a class="link-overlay" href="@detailsLink"></a>
+          <a class="link-overlay" href="@LinkToDetailPage(newsPage, detailLinkMid, article, filteredCategory)"></a>
           <div class="row">
             <div class="app-image-wrapper-single-col col-xs-12 col-sm-6 col-lg-4">
               @* Show image or placeholder *@
               @ImageOrPlaceholder(article, false)
             </div>
             <div class="col-xs-12 col-sm-6 col-lg-8">
-              @* Show Title, Date, Category, Teaser and read more link *@
+              @* Show Title, Date, Category, Teaser and read more button *@
               @ArticleInformation(article, "h2", newsPage)
             </div>
           </div>
@@ -76,14 +67,12 @@
 }
 
 @* List the articles in multiple columns (max 3 columns) *@
-@helper ListArticlesMultiCol(dynamic articlesToShow, String newsPage, String detailLinkMid, bool showImages) {
+@helper ListArticlesMultiCol(dynamic articlesToShow, string newsPage, string detailLinkMid, bool showImages, string filteredCategory) {
   <div class="row">
     @foreach (var article in articlesToShow) {
-      var detailsLink = newsPage + "/mid/" + detailLinkMid + "/details/" + article.EntityId.ToString() + "/title/" + article.UrlKey;
-
       <div class="col-xs-12 col-sm-6 col-lg-4" @Edit.TagToolbar(article)>
         <div class="app-details-link">
-          <a class="link-overlay" href="@detailsLink"></a>
+          <a class="link-overlay" href="@LinkToDetailPage(newsPage, detailLinkMid, article, filteredCategory)"></a>
 
           @if(showImages) {
             <div class="app-img-wrapper">
@@ -109,19 +98,18 @@
   if (isDetailView && article.Lightbox) {
     @Tag.A().Class("fancybox").Href(imageUrl + "?w=1200&h=1200&mode=max&scale=both&quality=80").Title(article.Title).TagStart
   }
-    @:<div class="@imageWrapper">
-      if (!isDetailView) {
-        @:<span class="overlay"></span>
-      }
+    <div class="@imageWrapper">
+      <span class="overlay"></span>
       @Tag.Img().Class("img-responsive").Src(imageUrl + "?w=800&" + imageResizerHeightAndMode + "&scale=both&quality=80&anchor=" + article.CropAnchor).Alt(article.Title)
-    @:</div>
+    </div>
+
   if (isDetailView && article.Lightbox) {
     @Tag.A().TagEnd
   }
 }
 
 @* Shows condensed information about an article (for listviews) *@
-@helper ArticleInformation(dynamic article, String headingType, String newsPage) {
+@helper ArticleInformation(dynamic article, string headingType, string newsPage) {
   <div class="app-text">
     @* "Will publish"/"expired" notes for admin *@
     @ArticleInformationAdmin(article)
@@ -136,24 +124,24 @@
 @* Show info to admin whether the article will publish or is already expired *@
 @helper ArticleInformationAdmin(dynamic article) {
   if(Edit.Enabled && article.ShowFrom != null && article.ShowFrom.Date > DateTime.Now.Date) {
-    <div class="alert alert-warning" role="alert">@(App.Resources.LabelShowFromPill + " " + article.ShowFrom.Date.ToString("dd.MM.yyyy"))</div>
+    <div class="alert alert-warning" role="alert">@(App.Resources.LabelShowFromPill + " " + article.ShowFrom.Date.ToString("d"))</div>
   }
 
   if(Edit.Enabled && article.ShowTo != null && article.ShowTo.Date <= DateTime.Now.Date) {
-    <div class="alert alert-danger" role="alert">@(App.Resources.LabelShowToPill + " " + article.ShowTo.Date.ToString("dd.MM.yyyy"))</div>
+    <div class="alert alert-danger" role="alert">@(App.Resources.LabelShowToPill + " " + article.ShowTo.Date.ToString("d"))</div>
   }
 }
 
 @* Show the date and if configured the categories of an article *@
-@helper ArticleInformationDateAndCategories(dynamic article, String newsPage) {
+@helper ArticleInformationDateAndCategories(dynamic article, string newsPage) {
   var displayCategories = App.Settings.ActivateCategories && (article.Categories as Dynlist).Any();
   var dateBorder = displayCategories ? "app-date-border" : "";
 
-  <span class="app-date @dateBorder">@article.Date.ToString("dd.MM.yyyy")</span>
+  <span class="app-date @dateBorder">@article.Date.ToString("d")</span>
   if(displayCategories) {
     <span class="app-categories">
       @foreach (var cat in article.Categories) {
-        var link = newsPage + "/category/" + cat.UrlKey;
+        var link = newsPage + "?category=" + cat.UrlKey;
         <a href="@link">@cat.Name</a>
       }
     </span>
@@ -163,53 +151,71 @@
 @* Displays article not found info *@
 @helper ArticleNotFound() {
   <h1>@App.Resources.LabelEventNotExists</h1>
-  <div>@Html.Raw(App.Resources.LabelEventNotExistsText)</div>
+  @Html.Raw(App.Resources.LabelEventNotExistsText)
 }
 
 @* Shows a back to list button *@
-@helper BackToListButton(String newsPage, bool isDetailView) {
-  var buttonClass = isDetailView ? "app-news-backtolist" : "app-backtolist";
-
-  <a class="btn btn-primary @buttonClass" href="@newsPage">@App.Resources.LabelBackToList</a>
+@helper BackToListButton(string newsPage) {
+  <a class="btn btn-outline-primary app-backtolist" href="@newsPage">@App.Resources.LabelBackToList</a>
 }
 
 @* Displays a page navigation with numbered buttons for every page and previous/next buttons *@
-@helper Paging(dynamic paging, String newsPage) {
-  <div class="app-news-paging">
-    @* Show previous button *@
-    @if (paging.PageNumber != 1) {
-      var previousPageNumber = (int)paging.PageNumber - 1;
-      <a class="app-news-prev-pager" href="@LinkToPageNumber(previousPageNumber, newsPage)">&lsaquo;</a>
-    }
+@helper Paging(dynamic paging, string filteredCategory) {
+  int pageNumber = (int)paging.PageNumber;
+  var previousDisabled = pageNumber == 1 ? "disabled" : "";
+  var nextDisabled = pageNumber == paging.PageCount ? "disabled" : "";
 
-    @* Show button for every page *@
-    @for(int i = 1; i <= paging.PageCount; i++) {
-      if (i == paging.PageNumber) {
-        <a class="app-news-paging-active">@i</a>
-      } else {
-        <a href="@LinkToPageNumber(i, newsPage)">@i</a>
-      }
-    }
+  if(paging.PageCount > 1) {
+    <nav>
+      <ul class="pagination">
+        @* Show previous button *@
+        <li class="@previousDisabled">
+          @Tag.A().Href(LinkToPageNumber(pageNumber - 1, filteredCategory)).TagStart
+            <span aria-hidden="true">&laquo;</span>
+          @Tag.A().TagEnd
+        </li>
 
-    @* Show next button *@
-    @if (paging.PageNumber != paging.PageCount) {
-      var nextPageNumber = (int)paging.PageNumber + 1;
-      <a class="app-news-next-pager" href="@LinkToPageNumber(nextPageNumber, newsPage)">&rsaquo;</a>
-    }
-  </div>
+        @* Show button for every page *@
+        @for (int i = 1; i <= paging.PageCount; i++) {
+          @* Active Page *@
+          if (i == pageNumber) {
+            <li class="active"><a href="#">@i</a></li>
+          } else {
+            <li>@Tag.A().Href(LinkToPageNumber(i, filteredCategory)).Wrap(i.ToString())</li>
+          }
+        }
+
+        @* Show next button *@
+        <li class="@nextDisabled">
+          @Tag.A().Href(LinkToPageNumber(pageNumber + 1, filteredCategory)).TagStart
+            <span aria-hidden="true">&raquo;</span>
+          @Tag.A().TagEnd
+        </li>
+      </ul>
+    </nav>
+  }
 }
 
 @functions {
 	/**
-  * generate a paging-link, preserving current category parameters
+  * Generate a paging-link, preserving current category parameters
   */
-  public string LinkToPageNumber(int pageNumber, String newsPage){
-    var catFilter = Request.QueryString["category"];
-    var categoryParams = Text.Has(catFilter)
-      ? "/sort/" + catFilter
+  public string LinkToPageNumber(int pageNumber, string filteredCategory){
+    var categoryParams = Text.Has(filteredCategory)
+      ? "category=" + filteredCategory + "&"
       : "";
 
-    string url = (newsPage + categoryParams + "/page/" + pageNumber);
-    return url.ToLower();
+    return Link.To(parameters: categoryParams + "page=" + pageNumber);
+  }
+
+  /**
+  * Generate a detail-link, preserving current category parameters
+  */
+  public string LinkToDetailPage(string newsPage, string detailLinkMid, dynamic article, string filteredCategory) {
+    var categoryParams = Text.Has(filteredCategory)
+      ? "&category=" + filteredCategory
+      : "";
+
+    return newsPage + "?mid=" + detailLinkMid + categoryParams + "&details=" + article.EntityId.ToString() + "&title=" + article.UrlKey;
   }
 }

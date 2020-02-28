@@ -137,37 +137,8 @@
 	// END Column View Bootstrap
 
     // Pagination
-    .app-news-paging {
-        width: 100%;
-        text-align: center;
-        margin-top: $grid-gutter-width;
-        >a {
-            display: inline-block;
-            height: 30px;
-            width: 30px;
-            text-align: center;
-            border-radius: 50%;
-            font-size: 14px;
-            line-height: 30px;
-            color: #666;
-            transition: background .2s ease, color .2s ease;
-            background: #efefef;
-            &:hover {
-                background: $primary;
-                color: #fff;
-            }
-            &.app-news-paging-active {
-                background: $primary;
-                color: #fff;
-            }
-            &.app-news-prev-pager {
-                background: #FFF;
-            }
-            &.app-news-next-pager {
-                background: #FFF;
-            }
-        }
+    .pagination {
+      display: flex;
+      justify-content: center;
     }
-
-    .warning-admins { width: 100%; }
 }

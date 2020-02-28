@@ -1,7 +1,9 @@
 @using DotNetNuke.Framework.JavaScriptLibraries;
 
+@* Include styles of the App *@
 <link rel="stylesheet" href="@App.Path/dist/bs3.min.css" data-enableoptimizations="true" />
 
+@* Include libaries / scripts *@
 @if(PageData["scripts"] is bool && PageData["scripts"]) {
   // tell DNN to load jquery as it's needed by fancybox
   JavaScript.RequestRegistration(CommonJs.jQuery);

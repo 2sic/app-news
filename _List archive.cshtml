@@ -15,36 +15,39 @@
 @{
   var parts = CreateInstance("shared/_Parts.cshtml");
 
+  var viewConfiguration = Content;
   var articles = AsList(Data["News"]);
   var categories = AsList(App.Data["Category"]);
-  var filterdCategory = Request.QueryString["category"];
-  var pages = Edit.Enabled ? AsList(Data["AdminPaging"]).FirstOrDefault() : AsList(Data["Paging"]).FirstOrDefault();
+  var categoryQueryString = Request.QueryString["category"];
+  var filteredCategory = AsList(Data["Category"]).FirstOrDefault();
+  var pages = AsList(Data["Paging"]).FirstOrDefault();
 
-  var newsPage = Text.Has(Content.NewsPage) ? Content.NewsPage : Link.To();
-  var detailLinkMid = Text.Has(Content.MainModuleId) ? Content.MainModuleId : Dnn.Module.ModuleID.ToString();
+  @* As the main view has another query configured, we have to stay on this view *@
+  var newsPageTabId = Dnn.Tab.TabID;
+  var detailLinkMid = Dnn.Module.ModuleID.ToString();
 }
 
 @* Show Toolbar Menu if admin *@
 @if(Edit.Enabled) {
-  @parts.AdminToolbarMenu(Content);
+  @parts.AdminToolbarMenu(viewConfiguration);
 }
 
 <div class="app-news app-news-list" >
-  @* Show category filter if the news are filtered by category *@
-  @if (Text.Has(filterdCategory)) {
-    @parts.CategoryFilter(categories, filterdCategory, newsPage)
+  @* Show category filter if the news are filtered by category querystring *@
+  @if (Text.Has(categoryQueryString) && filteredCategory != null) {
+    @parts.CategoryFilter(categories, filteredCategory, newsPageTabId)
   }
 
   @* List the articles *@
-  @parts.ListArticlesSingleCol(articles, newsPage, detailLinkMid)
+  @parts.ListArticlesSingleCol(articles, newsPageTabId, detailLinkMid, categoryQueryString)
 
-  @* Show "Back to list" button if the news are filtered by category *@
-  @if (Text.Has(filterdCategory)) {
-    @parts.BackToListButton(newsPage, false)
+  @* Show "Back to list" button if the news are filtered by category querystring *@
+  @if (Text.Has(categoryQueryString) && filteredCategory != null) {
+    @parts.BackToListButton(newsPageTabId)
   }
 
-  @* Show pagination if configured and pagecount is over 0 *@
-  @if (Content.ShowPagination && pages.PageCount > 0) {
-    @parts.Paging(pages, newsPage)
+  @* Show pagination if configured *@
+  @if (viewConfiguration.ShowPagination) {
+    @parts.Paging(pages, filteredCategory)
   }
 </div>
