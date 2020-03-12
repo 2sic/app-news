@@ -3,6 +3,8 @@
 @using Dynlist = System.Collections.Generic.IEnumerable<dynamic>;
 @using ToSic.Sxc.Search;
 @using ToSic.Eav.Run;
+@using ToSic.Eav.DataSources;
+@using ToSic.Eav.DataSources.Queries;
 
 @*
   Bootstrap 3 - read the readme.md section "CSS Framework Detection"
@@ -16,6 +18,7 @@
 *@
 @RenderPage("shared/_Assets.cshtml")
 
+<hr>
 @{
   var parts = CreateInstance("shared/_Parts.cshtml");
 
@@ -62,7 +65,12 @@
   /// <param name="beginDate"></param>
 
   public override void CustomizeSearch(Dictionary<string, List<ISearchItem>> searchInfos, IContainer moduleInfo, DateTime beginDate) {
+    // activate logging
+    Log.Preserve = true;
+    Log.Add("Testing CustomizeSearch message");
+
     var articleCount = searchInfos["SearchIndex"].Count;
+    Log.Add("Article Count: " + articleCount);
 
     var parts = CreateInstance("shared/_Parts.cshtml");
     foreach (var si in searchInfos["SearchIndex"]) {
