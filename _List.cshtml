@@ -3,6 +3,7 @@
 @using Dynlist = System.Collections.Generic.IEnumerable<dynamic>;
 @using ToSic.Sxc.Search;
 @using ToSic.Eav.Run;
+
 @*
   Bootstrap 3 - read the readme.md section "CSS Framework Detection"
 *@
@@ -24,31 +25,26 @@
   var categoryQueryString = Request.QueryString["category"];
   var filteredCategory = AsList(Data["Category"]).FirstOrDefault();
   var pages = AsList(Data["Paging"]).FirstOrDefault();
-
-  @* Get main view information  *@
-  var detailLinkMid = Text.Has(viewConfiguration.MainModuleId) ? viewConfiguration.MainModuleId : Dnn.Module.ModuleID.ToString();
-  int newsPageTabId = Text.Has(viewConfiguration.NewsPage)
-    ? int.Parse((AsEntity(viewConfiguration).GetBestValue("NewsPage")).Split(':')[1])
-    : Dnn.Tab.TabID;
 }
 
 @* Show Toolbar Menu if admin *@
 @if(Edit.Enabled) {
   @parts.AdminToolbarMenu(viewConfiguration)
+  @parts.DetailsPageConfigWarning()
 }
 
 <div class="app-news app-news-list">
   @* Show category filter if the news are filtered by category querystring *@
   @if (Text.Has(categoryQueryString) && filteredCategory != null) {
-    @parts.CategoryFilter(categories, filteredCategory, newsPageTabId)
+    @parts.CategoryFilter(categories, filteredCategory)
   }
 
   @* List the articles *@
-  @parts.ListArticlesSingleCol(articles, newsPageTabId, detailLinkMid, categoryQueryString)
+  @parts.ListArticlesSingleCol(articles, categoryQueryString)
 
   @* Show "Back to list" button if the news are filtered by category querystring *@
   @if (Text.Has(categoryQueryString) && filteredCategory != null) {
-    @parts.BackToListButton(newsPageTabId)
+    @parts.BackToListButton("")
   }
 
   @* Show pagination if configured *@
@@ -66,19 +62,20 @@
   /// <param name="beginDate"></param>
 
   public override void CustomizeSearch(Dictionary<string, List<ISearchItem>> searchInfos, IContainer moduleInfo, DateTime beginDate) {
-    foreach (var si in searchInfos["SearchIndex"]) {
-      var parts = CreateInstance("shared/_Parts.cshtml");
-      var article = AsDynamic(si.Entity);
-      var viewConfiguration = AsList(searchInfos["Default"]).FirstOrDefault();
-      var detailLinkMid = Text.Has(viewConfiguration.MainModuleId) ? viewConfiguration.MainModuleId : Dnn.Module.ModuleID.ToString();
+    var articleCount = searchInfos["SearchIndex"].Count;
 
-      si.QueryString = parts.DetailPageQueryString(detailLinkMid, article, "");
-      // Blog Code
-      // si.QueryString = "post=" + AsDynamic(si.Entity).UrlKey;
+    var parts = CreateInstance("shared/_Parts.cshtml");
+    foreach (var si in searchInfos["SearchIndex"]) {
+      var article = AsDynamic(si.Entity);
+      si.QueryString = parts.DetailPageQueryString(article, "") + "debug:" + articleCount + "," + DateTime.Now.ToString();
     }
 
-    // Blog Code FIXME: why?
-    // Remove primary stream from search results
-    searchInfos.Remove("Default");
+    // Remove not needed streams
+    var keys = searchInfos.Keys.ToList();
+    foreach(var key in keys) {
+      if (key != "SearchIndex") {
+        searchInfos.Remove(key);
+      }
+    }
   }
 }

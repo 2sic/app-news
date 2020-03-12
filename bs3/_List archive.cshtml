@@ -6,36 +6,36 @@
 @{
   var parts = CreateInstance("shared/_Parts.cshtml");
 
+  var viewConfiguration = Content;
   var articles = AsList(Data["News"]);
   var categories = AsList(App.Data["Category"]);
-  var filteredCategory = Request.QueryString["category"];
+  var categoryQueryString = Request.QueryString["category"];
+  var filteredCategory = AsList(Data["Category"]).FirstOrDefault();
   var pages = AsList(Data["Paging"]).FirstOrDefault();
-
-  var newsPage = Text.Has(Content.NewsPage) ? Content.NewsPage : Link.To();
-  var detailLinkMid = Text.Has(Content.MainModuleId) ? Content.MainModuleId : Dnn.Module.ModuleID.ToString();
 }
 
 @* Show Toolbar Menu if admin *@
 @if(Edit.Enabled) {
-  @parts.AdminToolbarMenu(Content);
+  @parts.AdminToolbarMenu(viewConfiguration);
+  @parts.DetailsPageConfigWarning()
 }
 
 <div class="app-news app-news-list" >
-  @* Show category filter if the news are filtered by category *@
-  @if (Text.Has(filteredCategory)) {
-    @parts.CategoryFilter(categories, filteredCategory, newsPage)
+  @* Show category filter if the news are filtered by category querystring *@
+  @if (Text.Has(categoryQueryString) && filteredCategory != null) {
+    @parts.CategoryFilter(categories, filteredCategory)
   }
 
   @* List the articles *@
-  @parts.ListArticlesSingleCol(articles, newsPage, detailLinkMid, filteredCategory)
+  @parts.ListArticlesSingleCol(articles, categoryQueryString)
 
-  @* Show "Back to list" button if the news are filtered by category *@
-  @if (Text.Has(filteredCategory)) {
-    @parts.BackToListButton(newsPage)
+  @* Show "Back to list" button if the news are filtered by category querystring *@
+  @if (Text.Has(categoryQueryString) && filteredCategory != null) {
+    @parts.BackToListButton("")
   }
 
   @* Show pagination if configured *@
-  @if (Content.ShowPagination) {
+  @if (viewConfiguration.ShowPagination) {
     @parts.Paging(pages, filteredCategory)
   }
 </div>

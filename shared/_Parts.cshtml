@@ -2,6 +2,13 @@
 @using ToSic.Razor.Blade;
 @using Dynlist = System.Collections.Generic.IEnumerable<dynamic>;
 
+@* Show warning that the details page needs to be changed *@
+@helper DetailsPageConfigWarning() {
+  if(App.Settings.DetailsPageShowWarning) {
+    <div class="alert alert-danger" role="alert">@Html.Raw(@App.Resources.LabelAdminDetailPageWarning)</div>
+  }
+}
+
 @* Show Menu of toolbars to add a new article, manage the articles and edit the view configuration *@
 @helper AdminToolbarMenu(dynamic viewConfiguration) {
   @* Create iso-date for date pre-filling *@
@@ -29,29 +36,29 @@
 }
 
 @* Show all categories as buttons with which the filtering can be changed *@
-@helper CategoryFilter(Dynlist categories, dynamic filteredCategory, int newsPageTabId) {
+@helper CategoryFilter(Dynlist categories, dynamic filteredCategory) {
   <div class="app-catinfo">
     <h2>@filteredCategory.ShowedTitle</h2>
     <span>
-      @Tag.A().Class("btn btn-primary btn-sm").Href(Link.To(pageId: newsPageTabId)).Wrap(App.Resources.LabelCategoryAll)
+      @Tag.A().Class("btn btn-primary btn-sm").Href(Link.To()).Wrap(App.Resources.LabelCategoryAll)
     </span>
 
     @foreach (var cat in categories) {
       var isActive = cat.EntityId == filteredCategory.EntityId ? " active" : "";
       <span>
-        @Tag.A().Class("btn btn-primary btn-sm" + isActive).Href(Link.To(pageId: newsPageTabId, parameters: "category=" + cat.UrlKey)).Wrap(cat.Name)
+        @Tag.A().Class("btn btn-primary btn-sm" + isActive).Href(Link.To(parameters: "category=" + cat.UrlKey)).Wrap(cat.Name)
       </span>
     }
   </div>
 }
 
 @* List the articles in a single column *@
-@helper ListArticlesSingleCol(dynamic articlesToShow, int newsPageTabId, string detailLinkMid, string categoryQueryString) {
+@helper ListArticlesSingleCol(dynamic articlesToShow, string categoryQueryString) {
   <div class="row">
     @foreach (var article in articlesToShow) {
       <div class="col-12" @Edit.TagToolbar(article)>
         <div class="app-details-link">
-          @Tag.A().Class("link-overlay").Href(Link.To(pageId: newsPageTabId, parameters: DetailPageQueryString(detailLinkMid, article, categoryQueryString)))
+          @Tag.A().Class("link-overlay").Href(Link.To(pageId: GetDetailsPageTabId(), parameters: DetailPageQueryString(article, categoryQueryString)))
           <div class="row">
             <div class="mb-3 mb-md-0 col-12 col-md-6 col-lg-4">
               @* Show image or placeholder *@
@@ -59,7 +66,7 @@
             </div>
             <div class="col-12 col-md-6 col-lg-8">
               @* Show Title, Date, Category, Teaser and read more link *@
-              @ArticleInformation(article, "h2", newsPageTabId)
+              @ArticleInformation(article, "h2")
             </div>
           </div>
         </div>
@@ -69,12 +76,12 @@
 }
 
 @* List the articles in multiple columns (max 3 columns) *@
-@helper ListArticlesMultiCol(dynamic articlesToShow, int newsPageTabId, string detailLinkMid, bool showImages, string categoryQueryString) {
+@helper ListArticlesMultiCol(dynamic articlesToShow, bool showImages, string categoryQueryString) {
   <div class="row">
     @foreach (var article in articlesToShow) {
       <div class="col-12 col-md-6 col-lg-4" @Edit.TagToolbar(article)>
         <div class="app-details-link">
-          @Tag.A().Class("link-overlay").Href(Link.To(pageId: newsPageTabId, parameters: DetailPageQueryString(detailLinkMid, article, categoryQueryString)))
+          @Tag.A().Class("link-overlay").Href(Link.To(pageId: GetDetailsPageTabId(), parameters: DetailPageQueryString(article, categoryQueryString)))
 
           @if(showImages) {
             <div class="app-img-wrapper mb-3">
@@ -84,7 +91,7 @@
           }
 
           @* Show Title, Date, Category, Teaser and read more button *@
-          @ArticleInformation(article, "h3", newsPageTabId)
+          @ArticleInformation(article, "h3")
         </div>
       </div>
     }
@@ -111,13 +118,13 @@
 }
 
 @* Shows condensed information about an article (for listviews) *@
-@helper ArticleInformation(dynamic article, string headingType, int newsPageTabId) {
+@helper ArticleInformation(dynamic article, string headingType) {
   <div class="app-text">
     @* "Will publish" / "expired" info for admin *@
     @ArticleInformationAdmin(article)
 
     @((Tag.Custom(headingType)).Class("app-list").Wrap(article.Title))
-    @ArticleInformationDateAndCategories(article, newsPageTabId)
+    @ArticleInformationDateAndCategories(article)
     <p>@Html.Raw(Tags.Nl2Br(article.Teaser))</p>
   </div>
   <span class="app-readmore">@App.Resources.LabelReadMore</span>
@@ -135,7 +142,7 @@
 }
 
 @* Show the date and if configured the categories of an article *@
-@helper ArticleInformationDateAndCategories(dynamic article, int newsPageTabId) {
+@helper ArticleInformationDateAndCategories(dynamic article) {
   var displayCategories = App.Settings.ActivateCategories && (article.Categories as Dynlist).Any();
   var dateBorder = displayCategories ? "app-date-border" : "";
 
@@ -143,7 +150,7 @@
   if(displayCategories) {
     <span class="app-categories">
       @foreach (var cat in article.Categories) {
-        @Tag.A().Href(Link.To(pageId: newsPageTabId, parameters: "category=" + cat.UrlKey)).Wrap(cat.Name)
+        @Tag.A().Href(Link.To(parameters: "category=" + cat.UrlKey)).Wrap(cat.Name)
       }
     </span>
   }
@@ -152,12 +159,12 @@
 @* Displays article not found info *@
 @helper ArticleNotFound() {
   <h1>@App.Resources.LabelEventNotExists</h1>
-  @Html.Raw(App.Resources.LabelEventNotExistsText)
+  <p>@App.Resources.LabelEventNotExistsText</p>
 }
 
 @* Shows a back to list button *@
-@helper BackToListButton(int newsPageTabId) {
-  @Tag.A().Class("btn btn-outline-primary app-backtolist").Href(Link.To(pageId: newsPageTabId)).Wrap(App.Resources.LabelBackToList)
+@helper BackToListButton(string categoryParams) {
+  @Tag.A().Class("btn btn-outline-primary app-backtolist").Href(Link.To(parameters: categoryParams)).Wrap(App.Resources.LabelBackToList)
 }
 
 @* Displays a page navigation with numbered buttons for every page and previous/next buttons *@
@@ -200,6 +207,13 @@
 }
 
 @functions {
+  /**
+  * Returns the tabID of the details page, configured in the app settings
+  */
+  public int GetDetailsPageTabId() {
+    return int.Parse((AsEntity(App.Settings).GetBestValue("DetailsPage")).Split(':')[1]);
+  }
+
 	/**
   * Generate a paging-link, preserving current category parameters
   */
@@ -214,11 +228,11 @@
   /**
   * Generate the query string for the detail link of an article, preserving current category parameters
   */
-  public string DetailPageQueryString(string detailLinkMid, dynamic article, string categoryQueryString) {
+  public string DetailPageQueryString(dynamic article, string categoryQueryString) {
     var categoryParams = Text.Has(categoryQueryString)
-      ? "&category=" + categoryQueryString
+      ? "category=" + categoryQueryString + "&"
       : "";
 
-    return "mid=" + detailLinkMid + categoryParams + "&details=" + article.EntityId.ToString() + "&title=" + article.UrlKey;
+    return categoryParams + "details=" + article.EntityId.ToString() + "&" + article.UrlKey;
   }
 }
