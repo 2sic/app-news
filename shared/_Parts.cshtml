@@ -1,7 +1,7 @@
 @inherits ToSic.Sxc.Dnn.RazorComponent
 @using ToSic.Razor.Blade;
 @using Dynlist = System.Collections.Generic.IEnumerable<dynamic>;
-
+@using Connect.Koi;
 @* Show warning that the details page needs to be changed *@
 @helper DetailsPageConfigWarning() {
   if(App.Settings.DetailsPageShowWarning) {
@@ -203,6 +203,17 @@
         </li>
       </ul>
     </nav>
+  }
+}
+
+@* show warning for admin if koi.json is missing *@
+@helper KoiAdminMessages() {
+  if(Koi.IsUnknown && Dnn.User.IsInRole(Dnn.Portal.AdministratorRoleName)) {
+    <div class='dnnFormMessage dnnFormWarning'>
+      This component supports multiple CSS frameworks (Bootstrap3, Bootstrap4). It uses <a href='http://connect-koi.net/' target='_blank'>Koi</a> to detect the CSS framework of the theme/skin. Your theme doesn't broadcast it's CSS-Framework, so the output may look wrong. <br>
+      To fix this, <a href='http://connect-koi.net/dnn-themes'>add a koi.json file to your theme/skin folder</a>.<br>
+      <em>note: only admins see this message, and it will disappear when you add a correct koi.json</em>
+    </div>
   }
 }
 

@@ -1,5 +1,12 @@
 @using DotNetNuke.Framework.JavaScriptLibraries;
 
+@{
+  var parts = CreateInstance("_Parts.cshtml");
+}
+
+@* show warning for admin if koi.json is missing *@
+@parts.KoiAdminMessages()
+
 @* Include styles of the App *@
 <link rel="stylesheet" href="@App.Path/dist/bs3.min.css" data-enableoptimizations="true" />
 

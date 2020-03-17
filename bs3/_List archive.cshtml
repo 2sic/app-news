@@ -1,5 +1,7 @@
 @inherits ToSic.Sxc.Dnn.RazorComponent
 @using ToSic.Razor.Blade;
+@using ToSic.Sxc.Search;
+@using ToSic.Eav.Run;
 
 @RenderPage("shared/_Assets.cshtml")
 
@@ -39,3 +41,12 @@
     @parts.Paging(pages, filteredCategory)
   }
 </div>
+
+@functions{
+  /**
+  * Prevent duplicated search results
+  */
+  public override void CustomizeSearch(Dictionary<string, List<ISearchItem>> searchInfos, IContainer moduleInfo, DateTime beginDate) {
+    searchInfos.Clear();
+  }
+}

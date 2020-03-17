@@ -30,8 +30,9 @@
     return;
   }
 
-  HtmlPage.AddMeta("description", Tags.Strip(article.Teaser)); // Add Meta tag
-  HtmlPage.Title = article.Date.ToString("d") + " - " + article.Title +  " | " + HtmlPage.Title; // Adjust page title
+  @* Add Meta tag and adjust page title *@
+  HtmlPage.AddMeta("description", Tags.Strip(article.Teaser));
+  HtmlPage.Title = article.Date.ToString("d") + " - " + article.Title +  " | " + HtmlPage.Title;
 }
 
 <div class="app-news app-news-detail" @Edit.TagToolbar(article)>
