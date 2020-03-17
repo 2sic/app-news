@@ -1,7 +1,7 @@
 @inherits ToSic.Sxc.Dnn.RazorComponent
 @using ToSic.Razor.Blade;
 @using Dynlist = System.Collections.Generic.IEnumerable<dynamic>;
-@using Connect.Koi;
+
 @* Show warning that the details page needs to be changed *@
 @helper DetailsPageConfigWarning() {
   if(App.Settings.DetailsPageShowWarning) {
@@ -36,17 +36,22 @@
 }
 
 @* Show all categories as buttons with which the filtering can be changed *@
-@helper CategoryFilter(Dynlist categories, dynamic filteredCategory) {
+@helper CategoryFilter(dynamic filteredCategory) {
+  var categories = AsList(App.Data["Category"]);
+  var selectedId = filteredCategory == null ? -1 : filteredCategory.EntityId;
+
   <div class="app-catinfo">
-    <h2>@filteredCategory.ShowedTitle</h2>
     <span>
-      @Tag.A().Class("btn btn-primary btn-sm").Href(Link.To()).Wrap(App.Resources.LabelCategoryAll)
+      @(Tag.A().Class("btn btn-primary btn-sm" + (selectedId == -1 ? " active" : ""))
+          .Href(Link.To())
+          .Wrap(App.Resources.LabelCategoryAll))
     </span>
 
     @foreach (var cat in categories) {
-      var isActive = cat.EntityId == filteredCategory.EntityId ? " active" : "";
       <span>
-        @Tag.A().Class("btn btn-primary btn-sm" + isActive).Href(Link.To(parameters: "category=" + cat.UrlKey)).Wrap(cat.Name)
+        @(Tag.A().Class("btn btn-primary btn-sm" + (cat.EntityId == selectedId ? " active" : ""))
+            .Href(Link.To(parameters: "category=" + cat.UrlKey))
+            .Wrap(cat.Name))
       </span>
     }
   </div>
@@ -203,17 +208,6 @@
         </li>
       </ul>
     </nav>
-  }
-}
-
-@* show warning for admin if koi.json is missing *@
-@helper KoiAdminMessages() {
-  if(Koi.IsUnknown && Dnn.User.IsInRole(Dnn.Portal.AdministratorRoleName)) {
-    <div class='dnnFormMessage dnnFormWarning'>
-      This component supports multiple CSS frameworks (Bootstrap3, Bootstrap4). It uses <a href='http://connect-koi.net/' target='_blank'>Koi</a> to detect the CSS framework of the theme/skin. Your theme doesn't broadcast it's CSS-Framework, so the output may look wrong. <br>
-      To fix this, <a href='http://connect-koi.net/dnn-themes'>add a koi.json file to your theme/skin folder</a>.<br>
-      <em>note: only admins see this message, and it will disappear when you add a correct koi.json</em>
-    </div>
   }
 }
 

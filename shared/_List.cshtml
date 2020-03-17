@@ -1,0 +1,53 @@
+@inherits ToSic.Sxc.Dnn.RazorComponent
+@using ToSic.Razor.Blade;
+@using ToSic.Sxc.Search;
+@using ToSic.Eav.Run;
+
+@RenderPage("_Assets.cshtml")
+
+@{
+  var parts = CreateInstance("_Parts.cshtml");
+
+  // data we'll show
+  var viewConfiguration = Content;
+  var categoryInUrl = Request.QueryString["category"];
+  var filteredCategory = AsList(Data["Category"]).FirstOrDefault();
+
+  // How it will be shown
+  var multiColumns = (bool)PageData["UseColumns"];
+  var showImages = (bool)PageData["ShowImages"];
+  var showCatPicker = (bool)PageData["ShowCatPicker"];
+}
+
+@* Show Toolbar Menu if admin *@
+@if(Edit.Enabled) {
+  @parts.AdminToolbarMenu(viewConfiguration)
+  @parts.DetailsPageConfigWarning()
+}
+
+<div class="app-news app-news-list">
+  @* Show title *@
+  <h1>
+    @(filteredCategory != null
+      ? filteredCategory.PageTitle
+      : viewConfiguration.Title)
+  </h1>
+
+  @* Show category filter *@
+  @if(showCatPicker) {
+    @parts.CategoryFilter(filteredCategory)
+  }
+
+  @* List the articles *@
+  @if(multiColumns) {
+    @parts.ListArticlesMultiCol(AsList(Data["News"]), showImages, categoryInUrl)
+  } else {
+    @parts.ListArticlesSingleCol(AsList(Data["News"]), categoryInUrl)
+  }
+
+  @* Show pagination if configured *@
+  @if (viewConfiguration.ShowPagination) {
+    var pages = AsList(Data["Paging"]).FirstOrDefault();
+    @parts.Paging(pages, categoryInUrl)
+  }
+</div>

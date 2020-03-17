@@ -1,12 +1,14 @@
 @using Connect.Koi;
 @using DotNetNuke.Framework.JavaScriptLibraries;
 
-@{
-  var parts = CreateInstance("_Parts.cshtml");
-}
-
 @* show warning for admin if koi.json is missing *@
-@parts.KoiAdminMessages()
+@if(Koi.IsUnknown && Dnn.User.IsInRole(Dnn.Portal.AdministratorRoleName)) {
+  <div class='dnnFormMessage dnnFormWarning'>
+    This component supports multiple CSS frameworks (Bootstrap3, Bootstrap4). It uses <a href='http://connect-koi.net/' target='_blank'>Koi</a> to detect the CSS framework of the theme/skin. Your theme doesn't broadcast it's CSS-Framework, so the output may look wrong. <br>
+    To fix this, <a href='http://connect-koi.net/dnn-themes'>add a koi.json file to your theme/skin folder</a>.<br>
+    <em>note: only admins see this message, and it will disappear when you add a correct koi.json</em>
+  </div>
+}
 
 @* Include styles of the App *@
 <link rel="stylesheet" href="@App.Path/dist/bs4.min.css" data-enableoptimizations="true" />

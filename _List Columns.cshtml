@@ -4,58 +4,23 @@
 @using ToSic.Eav.Run;
 
 @*
-  Bootstrap 3 - read the readme.md section "CSS Framework Detection"
+  Case #1: Bootstrap 3 - read the readme.md section "CSS Framework Detection"
 *@
 @if(Connect.Koi.Koi.Is("bs3")) {
   @RenderPage("bs3/_List Columns.cshtml")
   return;
 }
 @*
-  Bootstrap 4 or Unknown CSS Framework
+  Case #2: Bootstrap 4 or Unknown CSS Framework
 *@
-@RenderPage("shared/_Assets.cshtml")
 
-@{
-  var parts = CreateInstance("shared/_Parts.cshtml");
-
-  var viewConfiguration = Content;
-  var articles = AsList(Data["News"]);
-  var categories = AsList(App.Data["Category"]);
-  var categoryQueryString = Request.QueryString["category"];
-  var filteredCategory = AsList(Data["Category"]).FirstOrDefault();
-  var pages = AsList(Data["Paging"]).FirstOrDefault();
-}
-
-@* Show Toolbar Menu if admin *@
-@if(Edit.Enabled) {
-  @parts.AdminToolbarMenu(viewConfiguration)
-  @parts.DetailsPageConfigWarning()
-}
-
-<div class="app-news app-news-list">
-  @* Show category filter if the news are filtered by category querystring *@
-  @if (Text.Has(categoryQueryString) && filteredCategory != null) {
-    @parts.CategoryFilter(categories, filteredCategory)
-  }
-
-  @* List the articles *@
-  @parts.ListArticlesMultiCol(articles, true, categoryQueryString)
-
-  @* Show "Back to list" button if the news are filtered by category querystring *@
-  @if (Text.Has(categoryQueryString) && filteredCategory != null) {
-    @parts.BackToListButton("")
-  }
-
-  @* Show pagination if configured *@
-  @if (viewConfiguration.ShowPagination) {
-    @parts.Paging(pages, categoryQueryString)
-  }
-</div>
+@RenderPage("shared/_List.cshtml", new {ShowImages = true, UseColumns = true, ShowCatPicker = false})
 
 @functions{
-  /**
-  * Prevent duplicated search results
-  */
+  /// <summary>
+  /// Prevent duplicated search results.
+  /// Since the main list will already add all the items to the search, this view should not add them again.
+  /// </summary>
   public override void CustomizeSearch(Dictionary<string, List<ISearchItem>> searchInfos, IContainer moduleInfo, DateTime beginDate) {
     searchInfos.Clear();
   }

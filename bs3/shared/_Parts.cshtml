@@ -39,7 +39,7 @@
 @* Show all categories as buttons with which the filtering can be changed *@
 @helper CategoryFilter(Dynlist categories, dynamic filteredCategory) {
   <div class="app-catinfo">
-    <h2>@filteredCategory.ShowedTitle</h2>
+    <h2>@filteredCategory.PageTitle</h2>
     <span>
       @Tag.A().Class("btn btn-primary btn-xs").Href(Link.To()).Wrap(App.Resources.LabelCategoryAll)
     </span>
