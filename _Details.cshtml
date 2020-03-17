@@ -16,20 +16,20 @@
   var parts = CreateInstance("shared/_Parts.cshtml");
 
   var article = AsList(Data).FirstOrDefault();
-  var filteredCategory = Request.QueryString["category"];
-  var categoryParams = Text.Has(filteredCategory)
-      ? "category=" + filteredCategory
-      : "";
+}
 
-  @* Show article not found notification and stop processing *@
-  if(article == null) {
-    @parts.ArticleNotFound()
+@* Show article not found notification and stop processing *@
+@if(article == null) {
+  @* Displays article not found info *@
+  <h1>@App.Resources.LabelEventNotExists</h1>
+  <p>@App.Resources.LabelEventNotExistsText</p>
 
-    @* Show "Back to list" button *@
-    @parts.BackToListButton(categoryParams)
-    return;
-  }
+  @* Show "Back to list" button *@
+  @BackToListButton()
+  return;
+}
 
+@{
   @* Add Meta tag and adjust page title *@
   HtmlPage.AddMeta("description", Tags.Strip(article.Teaser));
   HtmlPage.Title = article.Date.ToString("d") + " - " + article.Title +  " | " + HtmlPage.Title;
@@ -61,4 +61,14 @@
 </div>
 
 @* Show "Back to list" button *@
-@parts.BackToListButton(categoryParams)
+@BackToListButton()
+
+@* Shows a back to list button *@
+@helper BackToListButton() {
+  var categoryInUrl = Request.QueryString["category"];
+  var categoryParams = Text.Has(categoryInUrl)
+      ? "category=" + categoryInUrl
+      : "";
+
+  @Tag.A().Class("btn btn-outline-primary app-backtolist").Href(Link.To(parameters: categoryParams)).Wrap(App.Resources.LabelBackToList)
+}
