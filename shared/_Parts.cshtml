@@ -61,7 +61,7 @@
   if(displayCategories) {
     <span class="app-categories">
       @foreach (var cat in article.Categories) {
-        @Tag.A().Href(Link.To(parameters: "category=" + cat.UrlKey)).Wrap(cat.Name)
+        @Tag.A().Href(Link.To(parameters: "category=" + cat.UrlKey)).Wrap(cat.Name + " ")
       }
     </span>
   }

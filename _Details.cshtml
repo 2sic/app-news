@@ -66,9 +66,13 @@
 @* Shows a back to list button *@
 @helper BackToListButton() {
   var categoryInUrl = Request.QueryString["category"];
+  var pageInUrl = Request.QueryString["page"];
   var categoryParams = Text.Has(categoryInUrl)
-      ? "category=" + categoryInUrl
-      : "";
+    ? "category=" + categoryInUrl
+    : "";
+  var pageParams = Text.Has(pageInUrl)
+    ? "page=" + pageInUrl + "&"
+    : "";
 
-  @Tag.A().Class("btn btn-outline-primary app-backtolist").Href(Link.To(parameters: categoryParams)).Wrap(App.Resources.LabelBackToList)
+  @Tag.A().Class("btn btn-outline-primary app-backtolist").Href(Link.To(parameters: categoryParams + pageParams)).Wrap(App.Resources.LabelBackToList)
 }

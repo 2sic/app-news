@@ -117,10 +117,14 @@
   * Generate the query string for the detail link of an article, preserving current category parameters
   */
   public string DetailPageQueryString(dynamic article, string categoryQueryString) {
+    var pageInUrl = Request.QueryString["page"];
     var categoryParams = Text.Has(categoryQueryString)
       ? "category=" + categoryQueryString + "&"
       : "";
+    var pageParams = Text.Has(pageInUrl)
+      ? "page=" + pageInUrl + "&"
+      : "";
 
-    return categoryParams + "details=" + article.EntityId.ToString() + "&" + article.UrlKey;
+    return categoryParams + pageParams + "details=" + article.EntityId.ToString() + "&" + article.UrlKey;
   }
 }

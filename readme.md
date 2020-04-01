@@ -1,13 +1,30 @@
-## 2sxc News App
+<image src="app-icon.png" align="right" width="200px">
+
+# News App v10 for DNN (DotNetNuke)
 
 A standard news / announcements app to use with 2sxc
 
-## Getting Started
-This app is only useful is you use DNN. So assuming you have a DNN installation, all you need to do is install 2sxc and this app.
+## Installing the app
 
-* Here's how to [install 2sxc and an App of your Choice](http://2sxc.org/en/blog/post/install-2sxc-and-an-app-of-your-choice)
+You can install the app straight forward with [this checklist](https://azing.org/2sxc/r/Ro8wsQG3)
 
-* Now you can use this app as-is, or customize it to be whatever you need it to be.
+## Customizing the app
+
+### Data
+
+The News App has an important app setting which you can configure with [this checklist](https://azing.org/2sxc/r/SGLKKOiE),
+but also has a lot of app resources(labels) you can change if you want to.
+
+### Style
+
+If you want to customize the CSS, you will usually follow these checklists:
+
+* [Customize Styles in a standard app](https://azing.org/2sxc/r/gg_aB9FD)
+* [Build custom styles](https://azing.org/2sxc/r/MaPs7Mdz)
+
+## Screenshots
+
+FIXME: Add link when App Catalog entry is made
 
 ## CSS Framework Detection
 
