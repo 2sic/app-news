@@ -1,6 +1,6 @@
 {
   "name": "news-app",
-  "version": "10.00.00",
+  "version": "04.00.00",
   "description": "A news app for 2sxc",
   "main": "(none)",
   "scripts": {
@@ -26,6 +26,5 @@
     "webpack": "^4.30.0",
     "webpack-cli": "^3.3.1",
     "webpackbar": "^3.2.0"
-  },
-  "dependencies": {}
+  }
 }
