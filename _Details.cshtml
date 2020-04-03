@@ -35,7 +35,11 @@
   HtmlPage.Title = article.Date.ToString("d") + " - " + article.Title +  " | " + HtmlPage.Title;
 }
 
-<div class="app-news app-news-detail" @Edit.TagToolbar(article)>
+<div class="app-news app-news-detail" @Edit.TagToolbar(article, toolbar: new [] {
+  "-layout",
+  "-item-history",
+  "%delete&show=true"
+})>
   @* Head of the article *@
   <div class="app-content">
     @* "Will publish"/"expired" notes for admin *@

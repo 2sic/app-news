@@ -8,18 +8,15 @@
 
   <div class="app-news-admin-menu">
     <div class="toolbar">
-      @Edit.Toolbar(actions: "new", contentType: "News", prefill: new { Date = tomorrow })
+      @Edit.Toolbar(toolbar: new [] {
+        "toolbar=empty",
+        "new?contentType=News&prefill:Date=" + @tomorrow
+      })
       <span>@App.Resources.LabelAdminMenuNew</span>
 
-      @Edit.Toolbar(toolbar: new object[] {
-        new {
-          showCondition = true,
-          command = new {
-            action = "contentitems",
-            contentType = "News",
-            filters = new { ModuleId = Dnn.Module.ModuleID }
-          }
-        }
+      @Edit.Toolbar(toolbar: new [] {
+        "toolbar=empty",
+        "contentitems?contentType=News"
       })
       <span>@App.Resources.LabelAdminMenuManage</span>
     </div>
@@ -53,7 +50,11 @@
 @helper ListArticlesSingleCol(dynamic articlesToShow, string categoryQueryString) {
   <div class="row">
     @foreach (var article in articlesToShow) {
-      <div class="col-12" @Edit.TagToolbar(article)>
+      <div class="col-12" @Edit.TagToolbar(article, toolbar: new [] {
+          "-layout",
+          "-item-history",
+          "%delete&show=true"
+        })>
         <div class="app-details-link">
           @Tag.A().Class("link-overlay").Href(Link.To(pageId: GetDetailsPageTabId(), parameters: DetailPageQueryString(article, categoryQueryString)))
           <div class="row">
@@ -76,7 +77,11 @@
 @helper ListArticlesMultiCol(dynamic articlesToShow, bool showImages, string categoryQueryString) {
   <div class="row">
     @foreach (var article in articlesToShow) {
-      <div class="col-12 col-md-6 col-lg-4" @Edit.TagToolbar(article)>
+      <div class="col-12 col-md-6 col-lg-4" @Edit.TagToolbar(article, toolbar: new [] {
+          "-layout",
+          "-item-history",
+          "%delete&show=true"
+        })>
         <div class="app-details-link">
           @Tag.A().Class("link-overlay").Href(Link.To(pageId: GetDetailsPageTabId(), parameters: DetailPageQueryString(article, categoryQueryString)))
 
