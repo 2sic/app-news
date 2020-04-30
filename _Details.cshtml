@@ -1,82 +1,81 @@
 @inherits ToSic.Sxc.Dnn.RazorComponent
 @using ToSic.Razor.Blade;
-@*
-  Case #1: Bootstrap 3 - read the readme.md section "CSS Framework Detection"
-*@
-@if(Connect.Koi.Koi.Is("bs3")) {
-  @RenderPage("bs3/_Details.cshtml")
-  return;
-}
-@*
-  Case #2: Bootstrap 4 or Unknown CSS Framework
-*@
-@RenderPage("shared/_Assets.cshtml", new { scripts = true} )
+@using Dynlist = System.Collections.Generic.IEnumerable<dynamic>;
 
 @{
-  var parts = CreateInstance("shared/_Parts.cshtml");
+  var helpers = CreateInstance("shared/_Helpers.cshtml");
 
   var article = AsList(Data).FirstOrDefault();
+
+  @* Show article not found notification and stop processing *@
+  if(article == null) {
+    <h1>@App.Resources.LabelEventNotExists</h1>
+    <p>@App.Resources.LabelEventNotExistsText</p>
+
+    @* Show "Back to list" button *@
+    @Code.BackToListButton()
+    Code.SetNotFoundHttpHeaders();
+    return;
+  }
+
+  var displayCategories = App.Settings.ActivateCategories && (article.Categories as Dynlist).Any();
+  var imageUrl = Text.Has(article.Image) ? article.Image : App.Resources.PlaceholderMissingImage;
+  Code.AddMetaTags(article);
 }
 
-@* Show article not found notification and stop processing *@
-@if(article == null) {
-  @* Displays article not found info *@
-  <h1>@App.Resources.LabelEventNotExists</h1>
-  <p>@App.Resources.LabelEventNotExistsText</p>
-
-  @* Show "Back to list" button *@
-  @BackToListButton()
-  return;
-}
-
-@{
-  @* Add Meta tag and adjust page title *@
-  HtmlPage.AddMeta("description", Tags.Strip(article.Teaser));
-  HtmlPage.Title = article.Date.ToString("d") + " - " + article.Title +  " | " + HtmlPage.Title;
-}
-
-<div class="app-news app-news-detail" @Edit.TagToolbar(article, toolbar: new [] {
-  "-layout",
-  "-item-history",
-  "%delete&show=true"
-})>
+<div class="app-news app-news-detail" @Edit.TagToolbar(article, toolbar: new [] {"-layout", "%delete&show=true"})>
   @* Head of the article *@
   <div class="app-content">
     @* "Will publish"/"expired" notes for admin *@
-    @parts.ArticleInformationAdmin(article)
+    @helpers.AdminArticleInformation(article)
 
     <h2>@article.Title</h2>
 
     @* Show Date and categories *@
-    @parts.ArticleInformationDateAndCategories(article)
+    <span class='app-date @(displayCategories ? "app-date-border" : "")'>@article.Date.ToString("d")</span>
+    @if(displayCategories) {
+      <span class="app-categories">
+        @foreach (var cat in article.Categories) {
+          <a href='@Tags.SafeUrl(Link.To(parameters: "category=" + cat.UrlKey))'>@cat.Name</a>
+        }
+      </span>
+    }
   </div>
 
   @* Body of the article *@
   <div class="app-content">
     @* Show image or placeholder *@
-    @parts.ImageOrPlaceholder(article, true)
+    @if (article.Lightbox) {
+      @:<a class="fancybox" href='@Tags.SafeUrl(imageUrl + "?w=1200&h=1200&mode=max&scale=both&quality=80")' title="@article.Title">
+    }
+      <div class="app-news-detail-img">
+        <span class="overlay"></span>
+        <img class="img-fluid"
+          src='@Tags.SafeUrl(imageUrl + "?w=800&mode=max&scale=both&quality=80&anchor=" + article.CropAnchor)'
+          alt="@article.Title" />
+      </div>
+    @if (article.Lightbox) {
+      @:</a>
+    }
 
+    @* Teaser *@
     @if(article.ShowTeaserInDetail) {
       <p class="app-news-detail-teaser">@Html.Raw(Tags.Nl2Br(article.Teaser))</p>
     }
 
-    <div class="app-news-detail-body">@Html.Raw(article.Body)</div>
+    <div class="app-news-detail-body">
+      @Html.Raw(article.Body)
+      @* Inner Content *@
+      <div class="sc-content-block-list" @Edit.ContextAttributes(article, field: "InnerContent")>
+        @foreach (var innerContent in article.InnerContent) {
+          @ToSic.Sxc.Blocks.Render.One(innerContent);
+        }
+      </div>
+    </div>
   </div>
 </div>
 
 @* Show "Back to list" button *@
-@BackToListButton()
+@Code.BackToListButton()
 
-@* Shows a back to list button *@
-@helper BackToListButton() {
-  var categoryInUrl = Request.QueryString["category"];
-  var pageInUrl = Request.QueryString["page"];
-  var categoryParams = Text.Has(categoryInUrl)
-    ? "category=" + categoryInUrl
-    : "";
-  var pageParams = Text.Has(pageInUrl)
-    ? "page=" + pageInUrl + "&"
-    : "";
-
-  @Tag.A().Class("btn btn-outline-primary app-backtolist").Href(Link.To(parameters: categoryParams + pageParams)).Wrap(App.Resources.LabelBackToList)
-}
+@RenderPage("shared/_Assets.cshtml", new { scripts = true} )

@@ -18,13 +18,15 @@
                 &.app-date-border {
                     border-right: 1px solid $body-color;
                     padding-right: 4px;
-                    margin-right: 4px;                    
+                    margin-right: 4px;
                 }
             }
             .app-categories {
-                color: $link-color;
-                letter-spacing: 1px;
-                margin-right: 8px;
+                a {
+                  color: $link-color;
+                  letter-spacing: 1px;
+                  margin-right: 8px;
+                }
             }
 
             .app-news-detail-img {
