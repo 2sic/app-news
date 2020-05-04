@@ -64,7 +64,7 @@
     }
 
     <div class="app-news-detail-body">
-      @Html.Raw(article.Body)
+      @Html.Raw(article.Content)
       @* Inner Content *@
       <div class="sc-content-block-list" @Edit.ContextAttributes(article, field: "InnerContent")>
         @foreach (var innerContent in article.InnerContent) {
