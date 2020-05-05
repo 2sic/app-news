@@ -1,6 +1,6 @@
 {
   "name": "news-app",
-  "version": "04.00.00",
+  "version": "04.01.00",
   "description": "A news app for 2sxc",
   "main": "(none)",
   "scripts": {
