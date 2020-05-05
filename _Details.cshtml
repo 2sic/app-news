@@ -63,14 +63,9 @@
       <p class="app-news-detail-teaser">@Html.Raw(Tags.Nl2Br(article.Teaser))</p>
     }
 
+    @* Body of the post - will also create inner content blocks / apps *@
     <div class="app-news-detail-body">
-      @Html.Raw(article.Content)
-      @* Inner Content *@
-      <div class="sc-content-block-list" @Edit.ContextAttributes(article, field: "InnerContent")>
-        @foreach (var innerContent in article.InnerContent) {
-          @ToSic.Sxc.Blocks.Render.One(innerContent);
-        }
-      </div>
+      @ToSic.Sxc.Blocks.Render.All(article, field: "InnerContent", merge: article.Content)
     </div>
   </div>
 </div>
