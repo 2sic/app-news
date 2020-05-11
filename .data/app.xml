@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<SexyContent FileVersion="07.00.00" MinimumRequiredVersion="07.00.00" ModuleVersion="11.00.00" ExportDate="2020-05-06T13:18:45.5104533+02:00">
+<SexyContent FileVersion="07.00.00" MinimumRequiredVersion="07.00.00" ModuleVersion="11.00.01" ExportDate="2020-05-11T08:26:00.7804872+02:00">
   <Header>
     <App Guid="4dd408f7-effc-4e8b-ab55-d8282c9a82ea" />
     <Language Default="en-US" />
@@ -1937,7 +1937,7 @@
       <Value Key="SupportsAjaxReload" Value="True" Type="Boolean">
         <Dimension DimensionID="72" ReadOnly="false" />
       </Value>
-      <Value Key="Version" Value="04.01.00" Type="String">
+      <Value Key="Version" Value="04.01.01" Type="String">
         <Dimension DimensionID="72" ReadOnly="false" />
       </Value>
     </Entity>
@@ -2016,7 +2016,7 @@
       <Value Key="LabelShowToPill" Value="ABGELAUFEN:" Type="String">
         <Dimension DimensionID="73" ReadOnly="false" />
       </Value>
-      <Value Key="PlaceholderMissingImage" Value="file:4367" Type="Hyperlink">
+      <Value Key="PlaceholderMissingImage" Value="file:4450" Type="Hyperlink">
         <Dimension DimensionID="72" ReadOnly="false" />
       </Value>
     </Entity>
@@ -2524,10 +2524,10 @@
       <Value Key="Content" Value="&lt;p&gt;To change the placeholder image, follow the last step in &lt;a href=&quot;https://azing.org/2sxc/r/Ro8wsQG3&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;this checklist&lt;/a&gt;.&lt;/p&gt;" Type="String">
         <Dimension DimensionID="72" ReadOnly="false" />
       </Value>
-      <Value Key="CropAnchor" Value="topright" Type="String">
+      <Value Key="CropAnchor" Value="middlecenter" Type="String">
         <Dimension DimensionID="72" ReadOnly="false" />
       </Value>
-      <Value Key="Date" Value="2020-01-04T00:00:00" Type="DateTime">
+      <Value Key="Date" Value="2029-01-04T00:00:00" Type="DateTime">
         <Dimension DimensionID="72" ReadOnly="false" />
       </Value>
       <Value Key="Image" Value="" Type="Hyperlink">
@@ -2536,22 +2536,22 @@
       <Value Key="Lightbox" Value="True" Type="Boolean">
         <Dimension DimensionID="72" ReadOnly="false" />
       </Value>
-      <Value Key="ShowFrom" Value="2020-01-04T00:00:00" Type="DateTime">
+      <Value Key="ShowFrom" Value="2029-01-04T00:00:00" Type="DateTime">
         <Dimension DimensionID="72" ReadOnly="false" />
       </Value>
       <Value Key="ShowTeaserInDetail" Value="True" Type="Boolean">
         <Dimension DimensionID="72" ReadOnly="false" />
       </Value>
-      <Value Key="ShowTo" Value="2022-01-01T00:00:00" Type="DateTime">
+      <Value Key="ShowTo" Value="" Type="DateTime">
         <Dimension DimensionID="72" ReadOnly="false" />
       </Value>
-      <Value Key="Teaser" Value="This article has no image configured, so it will take the placeholder image, configured in the app resources." Type="String">
+      <Value Key="Teaser" Value="This article has no image configured, so it will take the placeholder image, configured in the app resources. Visibility defines, that it won't be shown till 2029." Type="String">
         <Dimension DimensionID="72" ReadOnly="false" />
       </Value>
       <Value Key="Teaser" Value="Für diesen Artikel ist kein Bild konfiguriert, daher wird das Platzhalter-Bild verwendet, welches in den App-Ressourcen konfiguriert ist." Type="String">
         <Dimension DimensionID="73" ReadOnly="false" />
       </Value>
-      <Value Key="Title" Value="Demo News Without Image" Type="String">
+      <Value Key="Title" Value="Demo News Without Image - show in the future" Type="String">
         <Dimension DimensionID="72" ReadOnly="false" />
       </Value>
       <Value Key="Title" Value="Demo Artikel - ohne Bild" Type="String">
@@ -2569,7 +2569,7 @@
       <Value Key="CropAnchor" Value="middlecenter" Type="String">
         <Dimension DimensionID="72" ReadOnly="false" />
       </Value>
-      <Value Key="Date" Value="2025-01-01T00:00:00" Type="DateTime">
+      <Value Key="Date" Value="2020-05-04T00:00:00" Type="DateTime">
         <Dimension DimensionID="72" ReadOnly="false" />
       </Value>
       <Value Key="Image" Value="file:4448" Type="Hyperlink">
@@ -2579,13 +2579,13 @@
       <Value Key="Lightbox" Value="True" Type="Boolean">
         <Dimension DimensionID="72" ReadOnly="false" />
       </Value>
-      <Value Key="ShowFrom" Value="2022-01-01T00:00:00" Type="DateTime">
+      <Value Key="ShowFrom" Value="" Type="DateTime">
         <Dimension DimensionID="72" ReadOnly="false" />
       </Value>
       <Value Key="ShowTeaserInDetail" Value="True" Type="Boolean">
         <Dimension DimensionID="72" ReadOnly="false" />
       </Value>
-      <Value Key="ShowTo" Value="2023-01-01T00:00:00" Type="DateTime">
+      <Value Key="ShowTo" Value="" Type="DateTime">
         <Dimension DimensionID="72" ReadOnly="false" />
       </Value>
       <Value Key="Teaser" Value="This news item is configured for publishing in 2025. It contains some tips and instructions for getting started. It's just to show date-based publishing. You can delete it once you are ready 🚀." Type="String">
@@ -2594,7 +2594,7 @@
       <Value Key="Teaser" Value="Stellen Sie das Anzeige ab Datum auf Entwürfen ein, so dass sie automatisch an diesem Tag veröffentlicht werden." Type="String">
         <Dimension DimensionID="73" ReadOnly="false" />
       </Value>
-      <Value Key="Title" Value="Demo of Future News" Type="String">
+      <Value Key="Title" Value="Releasing News 4.0" Type="String">
         <Dimension DimensionID="72" ReadOnly="false" />
       </Value>
       <Value Key="Title" Value="Demo Artikel - Zukünftige Nachrichten" Type="String">
@@ -3453,10 +3453,11 @@
     </Entity>
   </Entities>
   <PortalFiles>
-    <File Id="4367" RelativePath="adam\News4\6mEAgQFmvUWxWCf7dC1Ogg\PlaceholderMissingImage\placeholder-2.jpg" />
+    <File Id="4450" RelativePath="adam\News4\6mEAgQFmvUWxWCf7dC1Ogg\PlaceholderMissingImage\PLaceholder.jpg" />
     <File Id="4315" RelativePath="adam\News4\GYNtiVYjW0SVtS1Am021nw\Image\2sxc-News 3.0 released.jpg" />
     <File Id="4448" RelativePath="adam\News4\xGRlrApwgE2FzLpi5__12A\Image\2020-2SXCv11-New-App-News.jpg" />
     <File Id="4314" RelativePath="adam\News4\1-Hkh0SokE6R8jG5ViWJ6A\Image\2sxc-NP-3.1.jpg" />
+    <File Id="4367" RelativePath="adam\News4\6mEAgQFmvUWxWCf7dC1Ogg\PlaceholderMissingImage\placeholder-2.jpg" />
     <File Id="4312" RelativePath="adam\News4\k7oLdDzQGkiEiYmf2NAABA\Image\2sxc-NewsPro-Features.jpg" />
   </PortalFiles>
   <PortalFolders>
