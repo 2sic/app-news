@@ -1,9 +1,10 @@
-@inherits ToSic.Sxc.Dnn.RazorComponent
+@inherits Custom.Hybrid.Razor12
 @using ToSic.Razor.Blade;
 @using Dynlist = System.Collections.Generic.IEnumerable<dynamic>;
 
 @{
-  var helpers = CreateInstance("shared/_Helpers.cshtml");
+  var helpers = CreateInstance("shared/Helpers.cs");
+  var detailsCode = CreateInstance("Details.cs"); 
 
   var article = AsList(Data).FirstOrDefault();
 
@@ -13,14 +14,14 @@
     <p>@App.Resources.LabelEventNotExistsText</p>
 
     @* Show "Back to list" button *@
-    @Code.BackToListButton()
-    Code.SetNotFoundHttpHeaders();
+    @detailsCode.BackToListButton()
+    detailsCode.SetNotFoundHttpHeaders();
     return;
   }
 
   var displayCategories = App.Settings.ActivateCategories && (article.Categories as Dynlist).Any();
   var imageUrl = Text.Has(article.Image) ? article.Image : App.Resources.PlaceholderMissingImage;
-  Code.AddMetaTags(article);
+  detailsCode.AddMetaTags(article);
 }
 
 <div class="app-news app-news-detail" @Edit.TagToolbar(article, toolbar: new [] {"-layout", "%delete&show=true"})>
@@ -71,6 +72,6 @@
 </div>
 
 @* Show "Back to list" button *@
-@Code.BackToListButton()
+@detailsCode.BackToListButton()
 
-@RenderPage("shared/_Assets.cshtml", new { scripts = true} )
+@Html.Partial("shared/_Assets.cshtml", new { scripts = true} )

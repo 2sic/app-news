@@ -1,15 +1,15 @@
-@inherits ToSic.Sxc.Dnn.RazorComponent
+@inherits Custom.Hybrid.Razor12
 @using ToSic.Razor.Blade;
 
 @{
-  var helpers = CreateInstance("shared/_Helpers.cshtml");
+  var helpers = CreateInstance("shared/Helpers.cs");
 
   var filteredCategory = AsList(Data["Category"]).FirstOrDefault();
 }
 
 @* Show Toolbar Menu if admin *@
 @if(Edit.Enabled) {
-  @helpers.AdminToolbarMenu(Content)
+  @Html.Partial("shared/_Admin.cshtml", new { Content = Content})
   @helpers.AdminDetailsPageConfigWarning()
 }
 
@@ -21,7 +21,7 @@
 
   @* Show category filter if configured *@
   @if (App.Settings.ActivateCategories) {
-    @RenderPage("shared/_Category Filter.cshtml", new { FilteredCategory = filteredCategory})
+    @Html.Partial("shared/_Category Filter.cshtml", new { FilteredCategory = filteredCategory})
   }
 
   @* List the articles *@
@@ -33,11 +33,11 @@
           <div class="row">
             <div class="mb-3 mb-md-0 col-12 col-md-6 col-lg-4">
               @* Show image or placeholder *@
-              @RenderPage("shared/_Article Image.cshtml", new { Article = article })
+              @Html.Partial("shared/_Article Image.cshtml", new { Article = article })
             </div>
             <div class="col-12 col-md-6 col-lg-8">
               @* Show Title, Date, Category, Teaser and read more link *@
-              @RenderPage("shared/_Article Information.cshtml", new { Article = article, HeadingType = "h2" })
+              @Html.Partial("shared/_Article Information.cshtml", new { Article = article, HeadingType = "h2" })
             </div>
           </div>
         </div>
@@ -47,8 +47,8 @@
 
   @* Show pagination if configured *@
   @if (Content.ShowPagination) {
-    @RenderPage("shared/_List Paging.cshtml")
+    @Html.Partial("shared/_List Paging.cshtml")
   }
 </div>
 
-@RenderPage("shared/_Assets.cshtml")
+@Html.Partial("shared/_Assets.cshtml")

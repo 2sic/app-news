@@ -1,15 +1,15 @@
-@inherits ToSic.Sxc.Dnn.RazorComponent
+@inherits Custom.Hybrid.Razor12
 @using ToSic.Razor.Blade;
 
 @{
-  var helpers = CreateInstance("shared/_Helpers.cshtml");
+  var helpers = CreateInstance("shared/Helpers.cs");
 
   var filteredCategory = AsList(Data["Category"]).FirstOrDefault();
 }
 
 @* Show Toolbar Menu if admin *@
 @if(Edit.Enabled) {
-  @helpers.AdminToolbarMenu(Content)
+  @Html.Partial("shared/_Admin.cshtml", new { Content = Content})
   @helpers.AdminDetailsPageConfigWarning()
 }
 
@@ -28,11 +28,11 @@
 
           @* Show image or placeholder *@
           <div class="app-img-wrapper mb-3">
-            @RenderPage("shared/_Article Image.cshtml", new { Article = article })
+            @Html.Partial("shared/_Article Image.cshtml", new { Article = article })
           </div>
 
           @* Show Title, Date, Category, Teaser and read more button *@
-          @RenderPage("shared/_Article Information.cshtml", new { Article = article, HeadingType = "h3" })
+          @Html.Partial("shared/_Article Information.cshtml", new { Article = article, HeadingType = "h3" })
         </div>
       </div>
     }
@@ -40,8 +40,8 @@
 
   @* Show pagination if configured *@
   @if (Content.ShowPagination) {
-    @RenderPage("shared/_List Paging.cshtml")
+    @Html.Partial("shared/_List Paging.cshtml")
   }
 </div>
 
-@RenderPage("shared/_Assets.cshtml")
+@Html.Partial("shared/_Assets.cshtml")

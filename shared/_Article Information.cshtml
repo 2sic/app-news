@@ -1,10 +1,10 @@
-@inherits ToSic.Sxc.Dnn.RazorComponent
+@inherits Custom.Hybrid.Razor12
 @using ToSic.Razor.Blade;
 @using Dynlist = System.Collections.Generic.IEnumerable<dynamic>;
 
 @{
-  var helpers = CreateInstance("_Helpers.cshtml");
-  var article = PageData["Article"];
+  var helpers = CreateInstance("Helpers.cs");
+  var article = DynamicModel.Article;
   var displayCategories = App.Settings.ActivateCategories && (article.Categories as Dynlist).Any();
 }
 
@@ -12,7 +12,7 @@
   @* "Will publish" / "expired" info for admin *@
   @helpers.AdminArticleInformation(article)
 
-  @((Tag.Custom(PageData["HeadingType"])).Class("app-list").Wrap(article.Title))
+  @((Tag.Custom(DynamicModel.HeadingType)).Class("app-list").Wrap(article.Title))
   <span class='app-date @(displayCategories ? "app-date-border" : "")'>@article.Date.ToString("d")</span>
   @if(displayCategories) {
     <span class="app-categories">

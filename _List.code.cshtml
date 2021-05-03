@@ -1,4 +1,4 @@
-@inherits ToSic.Sxc.Dnn.RazorComponentCode
+@inherits Custom.Hybrid.Razor12Code
 @using ToSic.Sxc.Search;
 @using ToSic.Eav.Run;
 
@@ -6,6 +6,8 @@
   /// <summary>
   /// Populate the search - ensure that each entity has an own url/page
   /// </summary>
+  
+  //TODO: 2dm
   public override void CustomizeSearch(Dictionary<string, List<ISearchItem>> searchInfos, IContainer moduleInfo, DateTime beginDate) {
     foreach (var si in searchInfos["SearchIndex"]) {
       var article = AsDynamic(si.Entity);

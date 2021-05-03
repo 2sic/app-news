@@ -1,7 +1,7 @@
-@inherits ToSic.Sxc.Dnn.RazorComponent
+@inherits Custom.Hybrid.Razor12
 @using ToSic.Razor.Blade;
 @{
-  var article = PageData["Article"];
+  var article = DynamicModel.Article;
   var imageUrl = Text.Has(article.Image) ? article.Image : App.Resources.PlaceholderMissingImage;
 }
 

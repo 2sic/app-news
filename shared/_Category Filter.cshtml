@@ -1,8 +1,8 @@
-@inherits ToSic.Sxc.Dnn.RazorComponent
+@inherits Custom.Hybrid.Razor12
 @using ToSic.Razor.Blade;
 
 @{
-  var filteredCategory = PageData["FilteredCategory"];
+  var filteredCategory = DynamicModel.FilteredCategory;
   var selectedId = filteredCategory == null ? -1 : filteredCategory.EntityId;
 }
 
