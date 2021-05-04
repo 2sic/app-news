@@ -30,9 +30,11 @@ public class Helpers: Custom.Hybrid.Code12
   * Returns a safe url to a post details page
   */
   public dynamic LinkToDetailsPage(dynamic article) {
-    var detailsPageTabId = int.Parse((AsEntity(App.Settings).GetBestValue("DetailsPage")).Split(':')[1]);
+    var detailsPage = AsDynamic(App.Settings).Get("DetailsPage", convertLinks: false);
+    if(!detailsPage.Contains(":")) return "";
+    var detailsPageId = int.Parse(detailsPage.Split(':')[1]);
 
-    return Tags.SafeUrl(Link.To(pageId: detailsPageTabId, parameters: "details=" + article.UrlKey));
+    return Tags.SafeUrl(Link.To(pageId: detailsPageId, parameters: "details=" + article.UrlKey));
   }
 }
 
