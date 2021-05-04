@@ -4,7 +4,6 @@ using System.Web;
 
 public class Details: Custom.Hybrid.Code12
 {
-  //TODO: 2dm
   public void SetNotFoundHttpHeaders() {
     // Dnn only - this used to be done in Details if the page wasn't found
     // We're not sure if this was a good idea, for now just disable
