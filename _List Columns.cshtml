@@ -39,7 +39,7 @@
   </div>
 
   @* Show pagination if configured *@
-  @if (Content.ShowPagination) {
+  @if (Content.ShowPagination == true) {
     @Html.Partial("shared/_List Paging.cshtml")
   }
 </div>

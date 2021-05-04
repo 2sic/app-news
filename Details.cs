@@ -6,8 +6,11 @@ public class Details: Custom.Hybrid.Code12
 {
   //TODO: 2dm
   public void SetNotFoundHttpHeaders() {
-    // Response.StatusCode = 404;
-    // Response.TrySkipIisCustomErrors = true;
+    // Dnn only
+    #if !NETCOREAPP
+      Response.StatusCode = 404;
+      Response.TrySkipIisCustomErrors = true;
+    #endif
   }
 
   // Shows a back to list button
@@ -16,8 +19,11 @@ public class Details: Custom.Hybrid.Code12
   }
 
   public void AddMetaTags(dynamic article) {
-    HtmlPage.AddMeta("description", Tags.Strip(article.Teaser));
-    HtmlPage.Title = article.Date.ToString("d") + " - " + article.Title +  " | " + HtmlPage.Title;
+    // Dnn only
+    #if !NETCOREAPP
+      HtmlPage.AddMeta("description", Tags.Strip(article.Teaser));
+      HtmlPage.Title = article.Date.ToString("d") + " - " + article.Title +  " | " + HtmlPage.Title;
+    #endif
   }
 }
 
