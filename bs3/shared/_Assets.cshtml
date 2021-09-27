@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="@App.Path/dist/bs3.min.css" data-enableoptimizations="true" />
 
 @* Include libaries / scripts *@
-@if(PageData["scripts"] is bool && PageData["scripts"]) {
+@if(DynamicModel.scripts is bool && DynamicModel.scripts) {
   // tell DNN to load jquery as it's needed by fancybox
   JavaScript.RequestRegistration(CommonJs.jQuery);
 

@@ -1,7 +1,7 @@
 @inherits ToSic.Sxc.Dnn.RazorComponent
 @using ToSic.Razor.Blade;
 
-@RenderPage("shared/_Assets.cshtml", new { scripts = true} )
+@Html.Partial ("shared/_Assets.cshtml", new { scripts = true} )
 
 @{
   var parts = CreateInstance("shared/_Parts.cshtml");
