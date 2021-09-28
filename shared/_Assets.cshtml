@@ -1,30 +1,30 @@
 @inherits Custom.Hybrid.Razor12
 @{
-  var pageCss = GetService<Connect.Koi.ICss>();
-}
+  // 1. Get Services for Css and Page
+  var pageCss = GetService<Connect.Koi.ICss>();         // Service to get CSS information about the current Theme
+  var page = GetService<ToSic.Sxc.Web.IPageService>();  // Service to set titles etc. on the page
 
-@Html.Partial("_Koi Admin Messages.cshtml")
+  // 2. Include Bootstrap4 if the framework isn't known
+  if (pageCss.IsUnknown) {
+    page.Activate("Bootstrap4");
+  }
 
-@* Include styles of the App *@
-<link rel="stylesheet" href="@App.Path/dist/bs4.min.css" data-enableoptimizations="true" />
+  // 3. Show warning for admin if koi.json is missing 
+  if (pageCss.IsUnknown && CmsContext.User.IsSiteAdmin) {
+    <div class='dnnFormMessage dnnFormWarning'>
+      @Html.Raw(Connect.Koi.Messages.CssInformationMissing) <br>
+      @Html.Raw(Connect.Koi.Messages.OnlyAdminsSeeThis)
+    </div>
+  }
 
-@* Include bootstrap 4 if the framework isn't known - then this file is still called, and we add Bootstrap to the page *@
-@if(!pageCss.Is("bs4")) {
-  <link rel="stylesheet" href="//stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous" data-enableoptimizations="true" />
-  <script src="//stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous" data-enableoptimizations="true" ></script>
-}
+  // 4. Include styles of the App
+  <link rel="stylesheet" href="@App.Path/bs4/dist/bs4.min.css" data-enableoptimizations="true" />
 
-@* Include libaries / scripts *@
-@if(DynamicModel.scripts == true) {
-  // tell DNN to load jquery as it's needed by fancybox
-  // Oqtane doesn't need this, as jQuery is always preloaded as of now
-  #if !NETCOREAPP
-    DotNetNuke.Framework.JavaScriptLibraries.JavaScript.RequestRegistration(DotNetNuke.Framework.JavaScriptLibraries.CommonJs.jQuery);
-  #endif
-}
-
-@if(DynamicModel.scripts == true) {
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.6/dist/jquery.fancybox.min.css" data-enableoptimizations="bottom" />
-  <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.6/dist/jquery.fancybox.min.js" data-enableoptimizations="bottom"></script>
-  <script type="text/javascript" src="@App.Path/dist/scripts.min.js" data-enableoptimizations="bottom"></script>
+  // 5. If we need scripts (only on the single-album-view) activate these. Note that DynamicModel contains the parameters
+  if(DynamicModel.scripts == true) {
+    // Activate turnOn and Fancybox4 - see https://r.2sxc.org/turnon - fancybox4 is a standard WebResources in 2sxc
+    page.Activate("turnOn", "fancybox4");
+    <script type="text/javascript" src="@App.Path/bs4/dist/scripts.min.js" data-enableoptimizations="bottom"></script>
+    <turnOn turn-on='{"await": ["window.appNews5"], "run": "window.appNews5.activateFancybox()", "data": { "groupId": "@CmsContext.Module.Id", "options": { "groupAll": true, "mainClass": "app-ga7-fancybox", "Thumbs": {"autoStart": false}}}}'></turnOn>
+  }
 }

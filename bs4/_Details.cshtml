@@ -3,7 +3,7 @@
 @using Dynlist = System.Collections.Generic.IEnumerable<dynamic>;
 
 @{
-  var helpers = CreateInstance("shared/Helpers.cs");
+  var helpers = CreateInstance("../shared/Helpers.cs");
   var detailsCode = CreateInstance("Details.cs"); 
 
   var article = AsList(Data).FirstOrDefault();
@@ -47,12 +47,12 @@
   <div class="app-content">
     @* Show image or placeholder *@
     @if (article.Lightbox) {
-      @:<a class="fancybox" href='@Tags.SafeUrl(imageUrl + "?w=1200&h=1200&mode=max&scale=both&quality=80")' title="@article.Title">
+      @:<a class="fancybox" href='@Image.Link(imageUrl, Settings.Images.Lightbox)' data-app-news5-fancybox="@CmsContext.Module.Id" title="@article.Title">
     }
       <div class="app-news-detail-img">
         <span class="overlay"></span>
         <img class="img-fluid"
-          src='@Tags.SafeUrl(imageUrl + "?w=800&mode=max&scale=both&quality=80&anchor=" + article.CropAnchor)'
+          src='@Image.Link(url: imageUrl, width: 800, resizeMode: "max", quality: 80)'
           alt="@article.Title" />
       </div>
     @if (article.Lightbox) {
@@ -74,4 +74,4 @@
 @* Show "Back to list" button *@
 @detailsCode.BackToListButton()
 
-@Html.Partial("shared/_Assets.cshtml", new { scripts = true} )
+@Html.Partial("../shared/_Assets.cshtml", new { scripts = true} )

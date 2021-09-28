@@ -1,10 +1,10 @@
-@inherits ToSic.Sxc.Dnn.RazorComponent
+@inherits Custom.Hybrid.Razor12
 @using ToSic.Razor.Blade;
 
-@Html.Partial ("shared/_Assets.cshtml", new { scripts = true} )
+@Html.Partial("../shared/_Assets.cshtml", new { scripts = true} )
 
 @{
-  var parts = CreateInstance("shared/_Parts.cshtml");
+  var parts = CreateInstance("../shared/_Parts.cshtml");
 
   var article = AsList(Data).FirstOrDefault();
   var filteredCategory = Request.QueryString["category"];

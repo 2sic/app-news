@@ -8,6 +8,6 @@
 <div class="app-img">
   <span class="overlay"></span>
   <img class="img-fluid"
-    src='@Tags.SafeUrl(imageUrl + "?w=800&h=480&mode=crop&scale=both&quality=80&anchor=" + article.CropAnchor)'
+    src='@Image.Linkl(url: imageUrl, width: 800, height: 480, resizeMode: "crop", quality: 80)'
     alt="@article.Title" />
 </div>

@@ -106,15 +106,17 @@
   var imageResizerHeightAndMode = isDetailView ? "mode=max" : "h=480&mode=crop";
 
   if (isDetailView && article.Lightbox) {
-    @Tag.A().Class("fancybox").Href(imageUrl + "?w=1200&h=1200&mode=max&scale=both&quality=80").Title(article.Title).TagStart
+      @:<a class="fancybox" href='@Image.Link(imageUrl, Settings.Images.Lightbox)' data-app-gallery-fancybox="@CmsContext.Module.Id" title="@article.Title">
   }
     <div class="@imageWrapper">
       <span class="overlay"></span>
-      @Tag.Img().Class("img-responsive").Src(imageUrl + "?w=800&" + imageResizerHeightAndMode + "&scale=both&quality=80&anchor=" + article.CropAnchor).Alt(article.Title)
+      <img class="img-responsive"
+          src='@Image.Link(url: imageUrl, width: 800, resizeMode: "max", quality: 80)'
+          alt="@article.Title" />
     </div>
 
   if (isDetailView && article.Lightbox) {
-    @Tag.A().TagEnd
+      @:</a>
   }
 }
 
