@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<SexyContent FileVersion="07.00.00" MinimumRequiredVersion="07.04.02" ModuleVersion="11.90.00" ExportDate="2021-05-04T12:26:03.4055369+02:00">
+<SexyContent FileVersion="07.00.00" MinimumRequiredVersion="07.04.02" ModuleVersion="12.05.00" ExportDate="2021-09-28T13:29:23.027545+02:00">
   <Header>
-    <App Guid="4dd408f7-effc-4e8b-ab55-d8282c9a82ea" />
+    <App Guid="fee52b41-bf97-4f3a-a44f-e267180ad12c" />
     <Language Default="en-us" />
     <Dimensions>
       <Dimension DimensionID="72" Name="English (United States)" SystemKey="" ExternalKey="en-US" Active="true" />
@@ -1907,16 +1907,19 @@
       <Value Key="DisplayName" Value="News" Type="String">
         <Dimension DimensionID="72" ReadOnly="false" />
       </Value>
-      <Value Key="Folder" Value="News4" Type="String">
+      <Value Key="Folder" Value="News5" Type="String">
         <Dimension DimensionID="72" ReadOnly="false" />
       </Value>
       <Value Key="Hidden" Value="False" Type="Boolean">
         <Dimension DimensionID="72" ReadOnly="false" />
       </Value>
-      <Value Key="OriginalId" Value="4dd408f7-effc-4e8b-ab55-d8282c9a82ea" Type="String">
+      <Value Key="OriginalId" Value="" Type="String">
         <Dimension DimensionID="72" ReadOnly="false" />
       </Value>
       <Value Key="RequiredDnnVersion" Value="07.02.00" Type="String">
+        <Dimension DimensionID="72" ReadOnly="false" />
+      </Value>
+      <Value Key="RequiredOqtaneVersion" Value="02.02.00" Type="String">
         <Dimension DimensionID="72" ReadOnly="false" />
       </Value>
       <Value Key="RequiredVersion" Value="11.00.00" Type="String">
@@ -1925,7 +1928,7 @@
       <Value Key="SupportsAjaxReload" Value="True" Type="Boolean">
         <Dimension DimensionID="72" ReadOnly="false" />
       </Value>
-      <Value Key="Version" Value="04.01.01" Type="String">
+      <Value Key="Version" Value="05.00.00" Type="String">
         <Dimension DimensionID="72" ReadOnly="false" />
       </Value>
     </Entity>
@@ -3948,31 +3951,11 @@
     <File Id="4450" RelativePath="adam\News4\6mEAgQFmvUWxWCf7dC1Ogg\PlaceholderMissingImage\PLaceholder.jpg" />
     <File Id="4315" RelativePath="adam\News4\GYNtiVYjW0SVtS1Am021nw\Image\2sxc-News 3.0 released.jpg" />
     <File Id="4448" RelativePath="adam\News4\xGRlrApwgE2FzLpi5__12A\Image\2020-2SXCv11-New-App-News.jpg" />
-    <File Id="4314" RelativePath="adam\News4\1-Hkh0SokE6R8jG5ViWJ6A\Image\2sxc-NP-3.1.jpg" />
-    <File Id="4367" RelativePath="adam\News4\6mEAgQFmvUWxWCf7dC1Ogg\PlaceholderMissingImage\placeholder-2.jpg" />
-    <File Id="4312" RelativePath="adam\News4\k7oLdDzQGkiEiYmf2NAABA\Image\2sxc-NewsPro-Features.jpg" />
   </PortalFiles>
   <PortalFolders>
     <Folder Id="861" RelativePath="adam/News4/6mEAgQFmvUWxWCf7dC1Ogg/PlaceholderMissingImage/" />
     <Folder Id="7391" RelativePath="adam/News4/GYNtiVYjW0SVtS1Am021nw/Image/" />
     <Folder Id="7383" RelativePath="adam/News4/xGRlrApwgE2FzLpi5__12A/Image/" />
-    <Folder Id="7388" RelativePath="adam/News4/1-Hkh0SokE6R8jG5ViWJ6A/Image/" />
-    <Folder Id="7381" RelativePath="adam/News4/k7oLdDzQGkiEiYmf2NAABA/Image/" />
-    <Folder Id="842" RelativePath="adam/News4/" />
-    <Folder Id="7387" RelativePath="adam/News4/1-Hkh0SokE6R8jG5ViWJ6A/" />
-    <Folder Id="7389" RelativePath="adam/News4/1-Hkh0SokE6R8jG5ViWJ6A/Body/" />
-    <Folder Id="860" RelativePath="adam/News4/6mEAgQFmvUWxWCf7dC1Ogg/" />
-    <Folder Id="7390" RelativePath="adam/News4/GYNtiVYjW0SVtS1Am021nw/" />
-    <Folder Id="7392" RelativePath="adam/News4/GYNtiVYjW0SVtS1Am021nw/Body/" />
-    <Folder Id="7379" RelativePath="adam/News4/k7oLdDzQGkiEiYmf2NAABA/" />
-    <Folder Id="7380" RelativePath="adam/News4/k7oLdDzQGkiEiYmf2NAABA/Body/" />
-    <Folder Id="10230" RelativePath="adam/News4/mrHccGaoyEiXJ3cEp3_Eqg/" />
-    <Folder Id="10231" RelativePath="adam/News4/mrHccGaoyEiXJ3cEp3_Eqg/DetailsPage/" />
-    <Folder Id="10336" RelativePath="adam/News4/rideiU_D2UqNUygVQhW9Ww/" />
-    <Folder Id="10337" RelativePath="adam/News4/rideiU_D2UqNUygVQhW9Ww/Image/" />
-    <Folder Id="10286" RelativePath="adam/News4/si53nBlVdkaIztzS2dg5Lw/" />
-    <Folder Id="10287" RelativePath="adam/News4/si53nBlVdkaIztzS2dg5Lw/Image/" />
-    <Folder Id="7382" RelativePath="adam/News4/xGRlrApwgE2FzLpi5__12A/" />
-    <Folder Id="7384" RelativePath="adam/News4/xGRlrApwgE2FzLpi5__12A/Body/" />
+    <Folder Id="13435" RelativePath="adam/News5/" />
   </PortalFolders>
 </SexyContent>
