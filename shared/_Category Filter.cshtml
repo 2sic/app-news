@@ -6,10 +6,10 @@
   var selectedId = filteredCategory == null ? -1 : filteredCategory.EntityId;
 }
 
-<div class="app-catinfo">
+<div class="app-news5-catinfo">
   <span>
     <a class='btn btn-primary btn-sm @(selectedId == -1 ? "active" : "")' href="@Tags.SafeUrl(Link.To())">
-      @App.Resources.LabelCategoryAll
+      @Resources.LabelCategoryAll
     </a>
   </span>
 

@@ -1,10 +1,10 @@
-@inherits Custom.Hybrid.Razor12
+@inherits ToSic.Sxc.Dnn.RazorComponent
 @using ToSic.Razor.Blade;
 
-@Html.Partial("../shared/_Assets.cshtml", new { scripts = true} )
+@Html.Partial("/shared/_Assets.cshtml", new { scripts = true} )
 
 @{
-  var parts = CreateInstance("../shared/_Parts.cshtml");
+  var parts = CreateInstance("/shared/_Parts.cshtml");
 
   var article = AsList(Data).FirstOrDefault();
   var filteredCategory = Request.QueryString["category"];
@@ -25,9 +25,9 @@
   HtmlPage.Title = article.Date.ToString("d") + " - " + article.Title +  " | " + HtmlPage.Title; // Adjust page title
 }
 
-<div class="app-news app-news-detail" @Edit.TagToolbar(article)>
+<div class="app-news5 app-news5-detail" @Edit.TagToolbar(article)>
   @* Head of the article *@
-  <div class="app-content">
+  <div class="app-news5-content">
     @* "Will publish"/"expired" notes for admin *@
     @parts.ArticleInformationAdmin(article)
 
@@ -38,15 +38,15 @@
   </div>
 
   @* Body of the article *@
-  <div class="app-content">
+  <div class="app-news5-content">
     @* Show image or placeholder *@
     @parts.ImageOrPlaceholder(article, true)
 
     @if(article.ShowTeaserInDetail) {
-      <p class="app-news-detail-teaser">@Html.Raw(Tags.Nl2Br(article.Teaser))</p>
+      <p class="app-news5-detail-teaser">@Html.Raw(Tags.Nl2Br(article.Teaser))</p>
     }
 
-    <div class="app-news-detail-body">@Html.Raw(article.Body)</div>
+    <div class="app-news5-detail-body">@Html.Raw(article.Body)</div>
   </div>
 </div>
 

@@ -3,19 +3,23 @@
 @using Dynlist = System.Collections.Generic.IEnumerable<dynamic>;
 
 @{
+  // Get some helper commands for later on
   var helpers = CreateInstance("../shared/Helpers.cs");
   var detailsCode = CreateInstance("Details.cs"); 
+
+  // Get the PageServices HTTP error headers
+  var page = GetService<ToSic.Sxc.Web.IPageService>();
 
   var article = AsList(Data).FirstOrDefault();
 
   @* Show article not found notification and stop processing *@
   if(article == null) {
-    <h1>@App.Resources.LabelEventNotExists</h1>
-    <p>@App.Resources.LabelEventNotExistsText</p>
+    <h1>@Resources.LabelEventNotExists</h1>
+    <p>@Resources.LabelEventNotExistsText</p>
 
     @* Show "Back to list" button *@
     @detailsCode.BackToListButton()
-    detailsCode.SetNotFoundHttpHeaders();
+    page.SetHttpStatus(404);
     return;
   }
 
@@ -24,18 +28,18 @@
   detailsCode.AddMetaTags(article);
 }
 
-<div class="app-news app-news-detail" @Edit.TagToolbar(article, toolbar: new [] {"-layout", "%delete&show=true"})>
+<div class="app-news5 app-news5-detail" @Edit.TagToolbar(article, toolbar: new [] {"-layout", "%delete&show=true"})>
   @* Head of the article *@
-  <div class="app-content">
+  <div class="app-news5-content">
     @* "Will publish"/"expired" notes for admin *@
     @helpers.AdminArticleInformation(article)
 
     <h2>@article.Title</h2>
 
     @* Show Date and categories *@
-    <span class='app-date @(displayCategories ? "app-date-border" : "")'>@article.Date.ToString("d")</span>
+    <span class='app-news5-date @(displayCategories ? "app-news5-date-border" : "")'>@article.Date.ToString("d")</span>
     @if(displayCategories) {
-      <span class="app-categories">
+      <span class="app-news5-categories">
         @foreach (var cat in article.Categories) {
           <a href='@Tags.SafeUrl(Link.To(parameters: "category=" + cat.UrlKey))'>@cat.Name</a>
         }
@@ -44,15 +48,15 @@
   </div>
 
   @* Body of the article *@
-  <div class="app-content">
+  <div class="app-news5-content">
     @* Show image or placeholder *@
     @if (article.Lightbox) {
-      @:<a class="fancybox" href='@Image.Link(imageUrl, Settings.Images.Lightbox)' data-app-news5-fancybox="@CmsContext.Module.Id" title="@article.Title">
+      @:<a class="fancybox" href='@Link.Image(imageUrl, Settings.Images.Lightbox)' data-app-news5-fancybox="@CmsContext.Module.Id" title="@article.Title">
     }
-      <div class="app-news-detail-img">
+      <div class="app-news5-detail-img">
         <span class="overlay"></span>
-        <img class="img-fluid"
-          src='@Image.Link(url: imageUrl, width: 800, resizeMode: "max", quality: 80)'
+        <img loading="lazy" class="img-fluid"
+          src='@Link.Image(url: imageUrl, width: 800, resizeMode: "max", quality: 80)'
           alt="@article.Title" />
       </div>
     @if (article.Lightbox) {
@@ -61,11 +65,11 @@
 
     @* Teaser *@
     @if(article.ShowTeaserInDetail) {
-      <p class="app-news-detail-teaser">@Html.Raw(Tags.Nl2Br(article.Teaser))</p>
+      <p class="app-news5-detail-teaser">@Html.Raw(Tags.Nl2Br(article.Teaser))</p>
     }
 
     @* Body of the post - will also create inner content blocks / apps *@
-    <div class="app-news-detail-body">
+    <div class="app-news5-detail-body">
       @ToSic.Sxc.Blocks.Render.All(article, field: "InnerContent", merge: article.Content)
     </div>
   </div>
@@ -74,4 +78,4 @@
 @* Show "Back to list" button *@
 @detailsCode.BackToListButton()
 
-@Html.Partial("../shared/_Assets.cshtml", new { scripts = true} )
+@Html.Partial("./_Assets.cshtml", new { scripts = true} )

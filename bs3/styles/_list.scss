@@ -1,5 +1,5 @@
 // Column View Bootstrap
-.app-news {
+.app-news5 {
 
     // General Styles
     &.sc-element>.sc-menu>li>a>div {
@@ -10,7 +10,7 @@
 	}
 
 	// Column View Bootstrap
-    &.app-news-list {
+    &.app-news5-list {
         .col,
         > .row > .col-xs-12  {
             margin-bottom: $grid-gutter-width;
@@ -20,10 +20,10 @@
         }
 
         // Categorie Info
-        .app-catinfo {
+        .app-news5-catinfo {
             margin-bottom: $grid-gutter-width/1.5;
         }
-        .app-details-link {
+        .app-news5-details-link {
             position: relative;
             display: flex;
             flex-direction: column;
@@ -44,22 +44,22 @@
                 z-index: 30;
             }
 
-            .app-img-wrapper {
+            .app-news5-img-wrapper {
               margin-bottom: 1rem;
             }
 
-            .app-image-wrapper-single-col {
+            .app-news5-image-wrapper-single-col {
               @include media-breakpoint-down(sm) {
                 margin-bottom: 1rem;
               }
             }
 
 			// App-Image with overlay and fallback
-            .app-img {
+            .app-news5-img {
                 position: relative;
                 text-align: center;
 
-                &.app-noimg {
+                &.app-news5-noimg {
                     background: #e9ecef;
                     height: 100%;
                     position: relative;
@@ -80,10 +80,10 @@
 			}
 
 			// App-Text with readmore
-            .app-text {
+            .app-news5-text {
                 flex: 1 1 auto;
                  h3, h2 {
-                    &.app-list {
+                    &.app-news5-list {
                         margin-top: $grid-gutter-width/2;
                         @include media-breakpoint-up(xs) {
                             margin-top: 0;
@@ -94,14 +94,14 @@
                     font-size: $font-size-base * 0.8;
                     font-weight: bold;
                 }
-                .app-date {
-                    &.app-date-border {
+                .app-news5-date {
+                    &.app-news5-date-border {
                         border-right: 1px solid $body-color;
                         padding-right: 8px;
                         margin-right: 4px;
                     }
                 }
-                .app-categories {
+                .app-news5-categories {
                     a {
                         letter-spacing: 1px;
                         text-transform: uppercase;
@@ -112,23 +112,23 @@
                     margin-top: $grid-gutter-width/2;
                 }
             }
-            .app-readmore {
+            .app-news5-readmore {
                 color: $primary;
 			}
 
 			// Hover Styling
             &:hover {
-                .app-img {
+                .app-news5-img {
                     span {
                         background-color: rgba($dark, .4);
                     }
                 }
-                .app-text {
+                .app-news5-text {
                     h3, h2 {
                         color: $primary;
                     }
                 }
-                .app-readmore {
+                .app-news5-readmore {
                     color: $body-color;
                 }
             }

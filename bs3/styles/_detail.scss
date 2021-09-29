@@ -1,7 +1,7 @@
-.app-news {
-    &.app-news-detail {
+.app-news5 {
+    &.app-news5-detail {
         // Content Styles
-        .app-content {
+        .app-news5-content {
             margin: 0 auto;
             margin-bottom: $grid-gutter-width/1.5;
             overflow:hidden;
@@ -9,25 +9,25 @@
                 margin-bottom: $grid-gutter-width;
             }
 
-            .app-date, .app-categories {
+            .app-news5-date, .app-news5-categories {
                 font-size: $font-size-base * 0.8;
                 font-weight: bold;
                 text-transform: uppercase;
             }
-            .app-date {
-                &.app-date-border {
+            .app-news5-date {
+                &.app-news5-date-border {
                     border-right: 1px solid $body-color;
                     padding-right: 4px;
                     margin-right: 4px;                    
                 }
             }
-            .app-categories {
+            .app-news5-categories {
                 color: $link-color;
                 letter-spacing: 1px;
                 margin-right: 8px;
             }
 
-            .app-news-detail-img {
+            .app-news5-detail-img {
                 margin-bottom: $grid-gutter-width/1.5;
 
                 @include media-breakpoint-up(md) {
@@ -36,11 +36,11 @@
                     margin-left: 6%;
                 }
 
-                &.app-news-missing-img {
+                &.app-news5-missing-img {
                     text-align: center;
                 }
 
-                &.app-noimg {
+                &.app-news5-noimg {
                     background: #e9ecef;
                     position: relative;
                     span {
@@ -53,7 +53,7 @@
                 }
             }
         }
-        .app-news-detail-teaser {
+        .app-news5-detail-teaser {
             font-weight: 700;
         }
     }

@@ -6,9 +6,14 @@
 // npm run start-bs3
 // 
 
-// Add header-comments to the final file
-@import "sass-comments.scss";
-
+// ** Add header-comments to the final file **
+// The following comment will be included in the final CSS
+// which helps users understand where it comes from
+/*!
+ * This file was auto-generated using SASS
+ * You can manually modify it - but usually you will want to 
+ * Re-generate it using the SASS variables of your theme
+*/
 
 // Include needed variables from Bootstrap 3
 // You must adapt the path to match your Bootstrap 3 skin

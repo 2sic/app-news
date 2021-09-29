@@ -1,4 +1,4 @@
-@inherits ToSic.Sxc.Dnn.RazorComponent
+@inherits Custom.Hybrid.Razor12
 @using ToSic.Razor.Blade;
 @using Dynlist = System.Collections.Generic.IEnumerable<dynamic>;
 @using Connect.Koi;
@@ -6,7 +6,7 @@
 @* Show warning that the details page needs to be changed *@
 @helper DetailsPageConfigWarning() {
   if(App.Settings.DetailsPageShowWarning) {
-    <div class="alert alert-danger" role="alert">@Html.Raw(@App.Resources.LabelAdminDetailPageWarning)</div>
+    <div class="alert alert-danger" role="alert">@Html.Raw(@Resources.LabelAdminDetailPageWarning)</div>
   }
 }
 
@@ -15,10 +15,10 @@
   @* Create iso-date for date pre-filling *@
   var tomorrow = DateTime.Now.Date.AddDays(1).ToString("yyyy-MM-dd");
 
-  <div class="app-news-admin-menu">
+  <div class="app-news5-admin-menu">
     <div class="toolbar">
       @Edit.Toolbar(actions: "new", contentType: "News", prefill: new { Date = tomorrow })
-      <span>@App.Resources.LabelAdminMenuNew</span>
+      <span>@Resources.LabelAdminMenuNew</span>
 
       @Edit.Toolbar(toolbar: new object[] {
         new {
@@ -26,11 +26,11 @@
           command = new {
             action = "contentitems",
             contentType = "News",
-            filters = new { ModuleId = Dnn.Module.ModuleID }
+            filters = new { ModuleId = CmsContext.Module.Id }
           }
         }
       })
-      <span>@App.Resources.LabelAdminMenuManage</span>
+      <span>@Resources.LabelAdminMenuManage</span>
     </div>
     <div>@Edit.Toolbar(viewConfiguration)</div>
   </div>
@@ -38,7 +38,7 @@
 
 @* Show all categories as buttons with which the filtering can be changed *@
 @helper CategoryFilter(Dynlist categories, dynamic filteredCategory) {
-  <div class="app-catinfo">
+  <div class="app-news5-catinfo">
     <h2>@filteredCategory.PageTitle</h2>
     <span>
       @Tag.A().Class("btn btn-primary btn-xs").Href(Link.To()).Wrap(App.Resources.LabelCategoryAll)
@@ -58,10 +58,10 @@
   <div class="row">
     @foreach (var article in articlesToShow) {
       <div class="col-xs-12" @Edit.TagToolbar(article)>
-        <div class="app-details-link">
+        <div class="app-news5-details-link">
           @Tag.A().Class("link-overlay").Href(Link.To(pageId: GetDetailsPageTabId(), parameters: DetailPageQueryString(article, categoryQueryString)))
           <div class="row">
-            <div class="app-image-wrapper-single-col col-xs-12 col-sm-6 col-lg-4">
+            <div class="app-news5-image-wrapper-single-col col-xs-12 col-sm-6 col-lg-4">
               @* Show image or placeholder *@
               @ImageOrPlaceholder(article, false)
             </div>
@@ -81,11 +81,11 @@
   <div class="row">
     @foreach (var article in articlesToShow) {
       <div class="col-xs-12 col-sm-6 col-lg-4" @Edit.TagToolbar(article)>
-        <div class="app-details-link">
+        <div class="app-news5-details-link">
           @Tag.A().Class("link-overlay").Href(Link.To(pageId: GetDetailsPageTabId(), parameters: DetailPageQueryString(article, categoryQueryString)))
 
           @if(showImages) {
-            <div class="app-img-wrapper">
+            <div class="app-news5-img-wrapper">
               @* Show image or placeholder *@
               @ImageOrPlaceholder(article, false)
             </div>
@@ -101,17 +101,18 @@
 
 @* Shows the image of an article and if none configured a placeholder *@
 @helper ImageOrPlaceholder(dynamic article, bool isDetailView) {
-  var imageWrapper = isDetailView ? "app-news-detail-img" : "app-img";
-  var imageUrl = Text.Has(article.Image) ? article.Image : App.Resources.PlaceholderMissingImage;
+  var imageWrapper = isDetailView ? "app-news5-detail-img" : "app-news5-img";
+  var imageUrl = Text.Has(article.Image) ? article.Image : Resources.PlaceholderMissingImage;
   var imageResizerHeightAndMode = isDetailView ? "mode=max" : "h=480&mode=crop";
 
   if (isDetailView && article.Lightbox) {
-      @:<a class="fancybox" href='@Image.Link(imageUrl, Settings.Images.Lightbox)' data-app-gallery-fancybox="@CmsContext.Module.Id" title="@article.Title">
+      @:<a href='@Link.Image(imageUrl, Settings.Images.Lightbox)' data-app-news5-fancybox="@CmsContext.Module.Id" title="@article.Title">
   }
     <div class="@imageWrapper">
       <span class="overlay"></span>
       <img class="img-responsive"
-          src='@Image.Link(url: imageUrl, width: 800, resizeMode: "max", quality: 80)'
+          loading="lazy"
+          src='@Link.Image(url: imageUrl, width: 800, resizeMode: "max", quality: 80)'
           alt="@article.Title" />
     </div>
 
@@ -122,15 +123,15 @@
 
 @* Shows condensed information about an article (for listviews) *@
 @helper ArticleInformation(dynamic article, string headingType) {
-  <div class="app-text">
+  <div class="app-news5-text">
     @* "Will publish"/"expired" notes for admin *@
     @ArticleInformationAdmin(article)
 
-    @((Tag.Custom(headingType)).Class("app-list").Wrap(article.Title))
+    @((Tag.Custom(headingType)).Class("app-news5-list").Wrap(article.Title))
     @ArticleInformationDateAndCategories(article)
     <p>@Html.Raw(Tags.Nl2Br(article.Teaser))</p>
   </div>
-  <span class="app-readmore">@App.Resources.LabelReadMore</span>
+  <span class="app-news5-readmore">@Resources.LabelReadMore</span>
 }
 
 @* Show info to admin whether the article will publish or is already expired *@
@@ -149,9 +150,9 @@
   var displayCategories = App.Settings.ActivateCategories && (article.Categories as Dynlist).Any();
   var dateBorder = displayCategories ? "app-date-border" : "";
 
-  <span class="app-date @dateBorder">@article.Date.ToString("d")</span>
+  <span class="app-news5-date @dateBorder">@article.Date.ToString("d")</span>
   if(displayCategories) {
-    <span class="app-categories">
+    <span class="app-news5-categories">
       @foreach (var cat in article.Categories) {
         @Tag.A().Href(Link.To(parameters: "category=" + cat.UrlKey)).Wrap(cat.Name)
       }
@@ -161,8 +162,8 @@
 
 @* Displays article not found info *@
 @helper ArticleNotFound() {
-  <h1>@App.Resources.LabelEventNotExists</h1>
-  <p>@App.Resources.LabelEventNotExistsText</p>
+  <h1>@Resources.LabelEventNotExists</h1>
+  <p>@Resources.LabelEventNotExistsText</p>
 }
 
 @* Shows a back to list button *@
@@ -204,17 +205,6 @@
         </li>
       </ul>
     </nav>
-  }
-}
-
-@* show warning for admin if koi.json is missing *@
-@helper KoiAdminMessages() {
-  if(Koi.IsUnknown && Dnn.User.IsInRole(Dnn.Portal.AdministratorRoleName)) {
-    <div class='dnnFormMessage dnnFormWarning'>
-      This component supports multiple CSS frameworks (Bootstrap3, Bootstrap4). It uses <a href='http://connect-koi.net/' target='_blank'>Koi</a> to detect the CSS framework of the theme/skin. Your theme doesn't broadcast it's CSS-Framework, so the output may look wrong. <br>
-      To fix this, <a href='http://connect-koi.net/dnn-themes'>add a koi.json file to your theme/skin folder</a>.<br>
-      <em>note: only admins see this message, and it will disappear when you add a correct koi.json</em>
-    </div>
   }
 }
 

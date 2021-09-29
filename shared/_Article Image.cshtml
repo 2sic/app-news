@@ -5,9 +5,9 @@
   var imageUrl = Text.Has(article.Image) ? article.Image : App.Resources.PlaceholderMissingImage;
 }
 
-<div class="app-img">
+<div class="app-news5-img">
   <span class="overlay"></span>
-  <img class="img-fluid"
-    src='@Image.Linkl(url: imageUrl, width: 800, height: 480, resizeMode: "crop", quality: 80)'
+  <img loading="lazy" class="img-fluid"
+    src='@Link.Image(url: imageUrl, width: 800, height: 480, resizeMode: "crop", quality: 80)'
     alt="@article.Title" />
 </div>
