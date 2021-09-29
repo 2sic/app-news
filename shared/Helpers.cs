@@ -29,7 +29,7 @@ public class Helpers: Custom.Hybrid.Code12
   /**
   * Returns a safe url to a post details page
   */
-  public dynamic LinkToDetailsPage(dynamic article) {
+  public string LinkToDetailsPage(dynamic article) {
     var detailsPage = AsDynamic(App.Settings).Get("DetailsPage", convertLinks: false);
     if(!detailsPage.Contains(":")) return "";
     var detailsPageId = int.Parse(detailsPage.Split(':')[1]);
