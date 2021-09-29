@@ -4,8 +4,12 @@
   var pageCss = GetService<Connect.Koi.ICss>();         // Service to get CSS information about the current Theme
   var page = GetService<ToSic.Sxc.Web.IPageService>();  // Service to set titles etc. on the page
 
+  // 2. Include Bootstrap4 if the framework isn't known
+  if (pageCss.IsUnknown) {
+    page.activate("Bootstrap4")
+  }
 
-  // 2. Show warning for admin if koi.json is missing 
+  // 3. Show warning for admin if koi.json is missing 
   if (pageCss.IsUnknown && CmsContext.User.IsSiteAdmin) {
     <div class='dnnFormMessage dnnFormWarning'>
       @Html.Raw(Connect.Koi.Messages.CssInformationMissing) <br>
@@ -13,10 +17,10 @@
     </div>
   }
 
-  // 3. Include styles of the App
+  // 4. Include styles of the App
   <link rel="stylesheet" href="@App.Path/bs3/dist/styles.min.css" data-enableoptimizations="true" />
 
-  // 4. If we need scripts (only on the single-album-view) activate these. Note that DynamicModel contains the parameters
+  // 5. If we need scripts (only on the single-album-view) activate these. Note that DynamicModel contains the parameters
   if(DynamicModel.scripts == true) {
     // Activate turnOn and Fancybox4 - see https://r.2sxc.org/turnon - fancybox4 is a standard WebResources in 2sxc
     page.Activate("turnOn", "fancybox4");
