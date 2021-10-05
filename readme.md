@@ -1,23 +1,33 @@
 <image src="app-icon.png" align="right" width="200px">
 
-# News App for DNN (DotNetNuke)
+# News 5 App for .net CMSs
+
+> This is a [2sxc](https://2sxc.org) App for [DNN ☢️](https://www.dnnsoftware.com/) and [Oqtane 💧](https://www.oqtane.org/)
 
 A standard news / announcements app to use with 2sxc
 
-## Installing the app
+| Aspect              | Status | Comments or Version |
+| ------------------- | :----: | ------------------- |
+| 2sxc                | ✅    | requires 2sxc v12.05
+| Dnn                 | ✅    | For v7, v8 and v9
+| Oqtane 2            | ✅    | Requires v2.02
+| No jQuery           | ✅    | 
+| Live Demo           | ➖    |
+| Install Checklist   | ✅    | See [Installation](https://azing.org/2sxc/r/Ro8wsQG3) on [azing.org](https://azing.org/2sxc)
+| Source & License    | ✅    | included, ISC/MIT
+| App Catalog         | ✅    | See [app catalog](https://2sxc.org/en/apps/app/news-app-v4)
+| Screenshots         | ✅    | See [app catalog](https://2sxc.org/en/apps/app/news-app-v4)
+| Best Practices      | ✅    | Uses v12.05 conventions
+| Bootstrap 3         | ✅    | 
+| Bootstrap 4         | ✅    | 
+| Bootstrap 5         | ✔️    | Works, but not optimized
 
-You can install the app straight forward with the ["Installing News" checklist](https://azing.org/2sxc/r/Ro8wsQG3)
-
-## Customizing the app
-
-### Configuration (Settings, Resources)
+## Customize the App
 
 The News App has an important app setting which you can configure with the ["Configure Main-List and Details Page" checklist](https://azing.org/2sxc/r/SGLKKOiE). But it also has a lot of app resources you can change if you want to.
 
-### Style
-
 If you want to customize the CSS, you will usually follow the ["Create Custom Styles in a Standard 2sxc App" checklist](https://azing.org/2sxc/r/gg_aB9FD)
 
-## Screenshots
+## History
 
-Read more about it in the [App Catalog](https://2sxc.org/en/apps/app/news-app-v4)
+Todo: 2dm

@@ -43,6 +43,6 @@
       ? "category=" + filteredCategory.UrlKey + "&"
       : "";
 
-    return Tags.SafeUrl(Link.To(parameters: categoryParam + "page=" + pageNumber));
+    return Link.To(parameters: categoryParam + "page=" + pageNumber);
   }
 }

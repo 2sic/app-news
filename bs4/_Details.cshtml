@@ -41,7 +41,7 @@
     @if(displayCategories) {
       <span class="app-news5-categories">
         @foreach (var cat in article.Categories) {
-          <a href='@Tags.SafeUrl(Link.To(parameters: "category=" + cat.UrlKey))'>@cat.Name</a>
+          <a href='@Link.To(parameters: "category=" + cat.UrlKey)'>@cat.Name</a>
         }
       </span>
     }

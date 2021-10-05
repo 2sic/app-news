@@ -34,7 +34,7 @@ public class Helpers: Custom.Hybrid.Code12
     if(!detailsPage.Contains(":")) return "";
     var detailsPageId = int.Parse(detailsPage.Split(':')[1]);
 
-    return Tags.SafeUrl(Link.To(pageId: detailsPageId, parameters: "details=" + article.UrlKey));
+    return Link.To(pageId: detailsPageId, parameters: "details=" + article.UrlKey);
   }
 }
 
