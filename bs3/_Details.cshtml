@@ -5,7 +5,7 @@
 
 @{
   var parts = CreateInstance("/shared/_Parts.cshtml");
-
+  var page = GetService<ToSic.Sxc.Web.IPageService>(); // Service to set titles etc. on the page
   var article = AsList(Data).FirstOrDefault();
   var filteredCategory = Request.QueryString["category"];
   var categoryParams = Text.Has(filteredCategory)
@@ -21,8 +21,8 @@
     return;
   }
 
-  HtmlPage.AddMeta("description", Tags.Strip(article.Teaser)); // Add Meta tag
-  HtmlPage.Title = article.Date.ToString("d") + " - " + article.Title +  " | " + HtmlPage.Title; // Adjust page title
+  parts.AddMeta("description", Tags.Strip(article.Teaser));
+  parts.SetTitle(article.Date.ToString("d") + " - " + article.Title);
 }
 
 <div class="app-news5 app-news5-detail" @Edit.TagToolbar(article)>

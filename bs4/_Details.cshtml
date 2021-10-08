@@ -25,7 +25,8 @@
 
   var displayCategories = App.Settings.ActivateCategories && (article.Categories as Dynlist).Any();
   var imageUrl = Text.Has(article.Image) ? article.Image : App.Resources.PlaceholderMissingImage;
-  detailsCode.AddMetaTags(article);
+  parts.AddMeta("description", Tags.Strip(article.Teaser));
+  parts.SetTitle(article.Date.ToString("d") + " - " + article.Title);
 }
 
 <div class="app-news5 app-news5-detail" @Edit.TagToolbar(article, toolbar: new [] {"-layout", "%delete&show=true"})>
