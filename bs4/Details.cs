@@ -1,6 +1,5 @@
 using ToSic.Razor.Blade;
 using System;
-using System.Web;
 
 public class Details: Custom.Hybrid.Code12
 {
