@@ -11,6 +11,7 @@
   var page = GetService<ToSic.Sxc.Web.IPageService>();
 
   var article = AsList(Data).FirstOrDefault();
+  var render = GetService<ToSic.Sxc.Blocks.IRenderService>();
 
   @* Show article not found notification and stop processing *@
   if(article == null) {
@@ -25,8 +26,8 @@
 
   var displayCategories = App.Settings.ActivateCategories && (article.Categories as Dynlist).Any();
   var imageUrl = Text.Has(article.Image) ? article.Image : App.Resources.PlaceholderMissingImage;
-  parts.AddMeta("description", Tags.Strip(article.Teaser));
-  parts.SetTitle(article.Date.ToString("d") + " - " + article.Title);
+  page.AddMeta("description", Tags.Strip(article.Teaser));
+  page.SetTitle(article.Date.ToString("d") + " - " + article.Title);
 }
 
 <div class="app-news5 app-news5-detail" @Edit.TagToolbar(article, toolbar: new [] {"-layout", "%delete&show=true"})>
@@ -71,7 +72,7 @@
 
     @* Body of the post - will also create inner content blocks / apps *@
     <div class="app-news5-detail-body">
-      @ToSic.Sxc.Blocks.Render.All(article, field: "InnerContent", merge: article.Content)
+      @render.All(article, field: "InnerContent", merge: article.Content)
     </div>
   </div>
 </div>
