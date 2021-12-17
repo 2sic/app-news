@@ -15,8 +15,8 @@ A standard news / announcements app to use with 2sxc
 | Live Demo           | ➖    |
 | Install Checklist   | ✅    | See [Installation](https://azing.org/2sxc/r/Ro8wsQG3) on [azing.org](https://azing.org/2sxc)
 | Source & License    | ✅    | included, ISC/MIT
-| App Catalog         | ✅    | See [app catalog](https://2sxc.org/en/apps/app/news-app-v4)
-| Screenshots         | ✅    | See [app catalog](https://2sxc.org/en/apps/app/news-app-v4)
+| App Catalog         | ✅    | See [app catalog](https://2sxc.org/en/apps/app/news-app-v5-hybrid-for-dnn-and-oqtane)
+| Screenshots         | ✅    | See [app catalog](https://2sxc.org/en/apps/app/news-app-v5-hybrid-for-dnn-and-oqtane)
 | Best Practices      | ✅    | Uses v12.05 conventions
 | Bootstrap 3         | ✅    | 
 | Bootstrap 4         | ✅    | 
