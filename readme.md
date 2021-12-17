@@ -20,7 +20,7 @@ A standard news / announcements app to use with 2sxc
 | Best Practices      | ✅    | Uses v12.05 conventions
 | Bootstrap 3         | ✅    | 
 | Bootstrap 4         | ✅    | 
-| Bootstrap 5         | ✔️    | Works, but not optimized
+| Bootstrap 5         | ✅    | 
 
 ## Customize the App
 
@@ -30,4 +30,7 @@ If you want to customize the CSS, you will usually follow the ["Create Custom St
 
 ## History
 
-Todo: 2dm
+* v12.05 2021-12
+  * updated to 2sxc 12.5 standards
+  * made hybrid / compatible with Oqtane
+  * Removed jQuery
