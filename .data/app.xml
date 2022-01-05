@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<SexyContent FileVersion="07.00.00" MinimumRequiredVersion="07.04.02" ModuleVersion="13.00.01" ExportDate="2022-01-05T09:16:57.8841067+01:00">
+<SexyContent FileVersion="07.00.00" MinimumRequiredVersion="07.04.02" ModuleVersion="13.00.01" ExportDate="2022-01-05T16:29:34.1427282+01:00">
   <Header>
     <App Guid="fee52b41-bf97-4f3a-a44f-e267180ad12c" />
     <Language Default="en-us" />
@@ -1954,7 +1954,7 @@
       <Value Key="ActivateCategories" Value="True" Type="Boolean">
         <Dimension DimensionID="72" ReadOnly="false" />
       </Value>
-      <Value Key="DetailsPage" Value="page:911" Type="Hyperlink">
+      <Value Key="DetailsPage" Value="" Type="Hyperlink">
         <Dimension DimensionID="72" ReadOnly="false" />
       </Value>
       <Value Key="DetailsPageShowWarning" Value="True" Type="Boolean">
