@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<SexyContent FileVersion="07.00.00" MinimumRequiredVersion="07.04.02" ModuleVersion="13.00.00" ExportDate="2021-12-17T10:25:08.0556846+01:00">
+<SexyContent FileVersion="07.00.00" MinimumRequiredVersion="07.04.02" ModuleVersion="13.00.01" ExportDate="2022-01-05T09:16:57.8841067+01:00">
   <Header>
     <App Guid="fee52b41-bf97-4f3a-a44f-e267180ad12c" />
     <Language Default="en-us" />
@@ -1946,7 +1946,7 @@
       <Value Key="SupportsAjaxReload" Value="True" Type="Boolean">
         <Dimension DimensionID="72" ReadOnly="false" />
       </Value>
-      <Value Key="Version" Value="05.00.00" Type="String">
+      <Value Key="Version" Value="05.00.01" Type="String">
         <Dimension DimensionID="72" ReadOnly="false" />
       </Value>
     </Entity>
@@ -3644,6 +3644,7 @@
         <Dimension DimensionID="72" ReadOnly="false" />
       </Value>
     </Entity>
+    <Entity AssignmentObjectType="Entity" AttributeSetStaticName="529ba3a2-d7d4-4f40-a81b-ff819de03a9e" AttributeSetName="IsDefaultDecorator" EntityGUID="0f97b31e-3167-40c1-80ab-348d72b19938" Json="True" KeyGuid="c86d67b3-840f-4d0e-8c94-f25d66f025d5" />
   </Entities>
   <PortalFiles>
     <File Id="4450" RelativePath="adam\News4\6mEAgQFmvUWxWCf7dC1Ogg\PlaceholderMissingImage\PLaceholder.jpg" />
