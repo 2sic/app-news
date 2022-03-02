@@ -34,3 +34,5 @@ If you want to customize the CSS, you will usually follow the ["Create Custom St
   * updated to 2sxc 12.5 standards
   * made hybrid / compatible with Oqtane
   * Removed jQuery
+* v5.0.2 2022-03
+  * Bugfix assets
