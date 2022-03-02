@@ -18,13 +18,13 @@
   }
 
   // 4. Include styles of the App
-  <link rel="stylesheet" href="@App.Path/bs4/dist/styles.min.css" data-enableoptimizations="true" />
+  <link rel="stylesheet" href="@App.Path/bs5/dist/styles.min.css" data-enableoptimizations="true" />
 
   // 5. If we need scripts (only on the single-album-view) activate these. Note that DynamicModel contains the parameters
   if(DynamicModel.scripts == true) {
     // Activate turnOn and Fancybox4 - see https://r.2sxc.org/turnon - fancybox4 is a standard WebResources in 2sxc
     page.Activate("turnOn", "fancybox4");
-    <script type="text/javascript" src="@App.Path/bs4/dist/scripts.min.js" data-enableoptimizations="bottom"></script>
+    <script type="text/javascript" src="@App.Path/bs5/dist/scripts.min.js" data-enableoptimizations="bottom"></script>
     <turnOn turn-on='{"await": ["window.appNews5"], "run": "window.appNews5.activateFancybox()", "data": { "groupId": "@CmsContext.Module.Id" }}'></turnOn>
   }
 }
