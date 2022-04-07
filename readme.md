@@ -31,8 +31,10 @@ If you want to customize the CSS, you will usually follow the ["Create Custom St
 ## History
 
 * v12.05 2021-12
-  * updated to 2sxc 12.5 standards
-  * made hybrid / compatible with Oqtane
+  * Updated to 2sxc 12.5 standards
+  * Made hybrid / compatible with Oqtane
   * Removed jQuery
 * v5.0.2 2022-03
   * Bugfix assets
+* v5.0.3 2022-04
+  * Minor toolbar prefill
