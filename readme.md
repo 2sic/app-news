@@ -38,3 +38,7 @@ If you want to customize the CSS, you will usually follow the ["Create Custom St
   * Bugfix assets
 * v5.0.3 2022-04
   * Minor toolbar prefill
+* v5.1.0 2022-04 
+  * Changed all access to Services to ToSic.Sxc.Services
+  * Implemented IScrub service
+  * Made the teaser optional

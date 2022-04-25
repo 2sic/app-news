@@ -1,11 +1,14 @@
 @inherits ToSic.Sxc.Dnn.RazorComponent
 @using ToSic.Razor.Blade;
+@using ToSic.Sxc.Services;
 
 @Html.Partial("./shared/_Assets.cshtml", new { scripts = true} )
 
 @{
+  var scrubSvc = GetService<IScrub>();
+
   var parts = CreateInstance("./shared/_Parts.cshtml");
-  var page = GetService<ToSic.Sxc.Web.IPageService>(); // Service to set titles etc. on the page
+  var page = GetService<IPageService>(); // Service to set titles etc. on the page
   var article = AsList(Data).FirstOrDefault();
   var filteredCategory = Request.QueryString["category"];
   var categoryParams = Text.Has(filteredCategory)
@@ -21,7 +24,7 @@
     return;
   }
 
-  page.AddMeta("description", Tags.Strip(article.Teaser));
+  page.AddMeta("description", scrubSvc.All(article.Teaser));
   page.SetTitle(article.Date.ToString("d") + " - " + article.Title);
 }
 

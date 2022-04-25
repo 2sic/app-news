@@ -36,6 +36,17 @@ public class Helpers: Custom.Hybrid.Code12
 
     return Link.To(pageId: detailsPageId, parameters: "details=" + article.UrlKey);
   }
-}
 
-  
+  public string TeaserAssembly(dynamic article){
+    var teaser = article.Teaser;
+    var mainText = article.Content;
+
+    if (Text.Has(teaser)){
+      return teaser;
+    } else {
+      
+      teaser = Text.Ellipsis(mainText, 100);
+      return teaser;
+    }
+  }
+}

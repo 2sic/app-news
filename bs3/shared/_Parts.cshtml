@@ -2,6 +2,7 @@
 @using ToSic.Razor.Blade;
 @using Dynlist = System.Collections.Generic.IEnumerable<dynamic>;
 @using Connect.Koi;
+@using ToSic.Sxc.Services;
 
 @* Show warning that the details page needs to be changed *@
 @helper DetailsPageConfigWarning() {
@@ -110,10 +111,10 @@
   }
     <div class="@imageWrapper">
       <span class="overlay"></span>
-      <img class="img-responsive"
-          loading="lazy"
-          src='@Link.Image(url: imageUrl, width: 800, resizeMode: "max", quality: 80)'
-          alt="@article.Title" />
+      @{
+        var imgSvc = GetService<IImageService>();
+      }
+      @imgSvc.Picture(imageUrl, settings: imgSvc.Settings("NewsDetails"),imgClass:"img-responsive", imgAlt:article.Title)
     </div>
 
   if (isDetailView && article.Lightbox) {

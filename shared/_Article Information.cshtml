@@ -20,6 +20,7 @@
       }
     </span>
   }
-  <p>@Html.Raw(Tags.Nl2Br(article.Teaser))</p>
+  @* <p>@Html.Raw(Tags.Nl2Br(article.Teaser))</p> *@
+  <p>@Html.Raw(Tags.Nl2Br(@helpers.TeaserAssembly(article)))</p>
 </div>
 <span class="app-news5-readmore">@Resources.LabelReadMore</span>

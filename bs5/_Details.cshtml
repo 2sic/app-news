@@ -1,17 +1,21 @@
 @inherits Custom.Hybrid.Razor12
 @using ToSic.Razor.Blade;
 @using Dynlist = System.Collections.Generic.IEnumerable<dynamic>;
+@using ToSic.Sxc.Services;
 
 @{
+  var scrubSvc = GetService<IScrub>();
+  var imgSvc = GetService<IImageService>();
+  
   // Get some helper commands for later on
   var helpers = CreateInstance("../shared/Helpers.cs");
   var detailsCode = CreateInstance("Details.cs"); 
 
   // Get the PageServices HTTP error headers
-  var page = GetService<ToSic.Sxc.Web.IPageService>();
+  var page = GetService<IPageService>();
 
   var article = AsList(Data).FirstOrDefault();
-  var render = GetService<ToSic.Sxc.Blocks.IRenderService>();
+  var render = GetService<IRenderService>();
 
   @* Show article not found notification and stop processing *@
   if(article == null) {
@@ -26,7 +30,7 @@
 
   var displayCategories = App.Settings.ActivateCategories && (article.Categories as Dynlist).Any();
   var imageUrl = Text.Has(article.Image) ? article.Image : App.Resources.PlaceholderMissingImage;
-  page.AddMeta("description", Tags.Strip(article.Teaser));
+  page.AddMeta("description", scrubSvc.All(article.Teaser));
   page.SetTitle(article.Date.ToString("d") + " - " + article.Title);
 }
 
@@ -57,9 +61,7 @@
     }
       <div class="app-news5-detail-img">
         <span class="overlay"></span>
-        <img loading="lazy" class="img-fluid"
-          src='@Link.Image(url: imageUrl, width: 800, resizeMode: "max", quality: 80)'
-          alt="@article.Title" />
+        @imgSvc.Picture(imageUrl, settings: imgSvc.Settings("NewsDetails"),imgClass:"img-fluid", imgAlt:article.Title)
       </div>
     @if (article.Lightbox) {
       @:</a>
@@ -67,6 +69,7 @@
 
     @* Teaser *@
     @if(article.ShowTeaserInDetail) {
+      @* <p class="app-news5-detail-teaser">@Html.Raw(Tags.Nl2Br(article.Teaser))</p> *@
       <p class="app-news5-detail-teaser">@Html.Raw(Tags.Nl2Br(article.Teaser))</p>
     }
 
