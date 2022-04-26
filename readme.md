@@ -42,3 +42,4 @@ If you want to customize the CSS, you will usually follow the ["Create Custom St
   * Changed all access to Services to ToSic.Sxc.Services
   * Implemented IScrub service
   * Made the teaser optional
+  * Changed the detail page URL generation for bs3
