@@ -113,8 +113,9 @@
       <span class="overlay"></span>
       @{
         var imgSvc = GetService<IImageService>();
+        var imgSettings = AsDynamic(Settings.Images.NewsDetails, Settings.Images.Content);
       }
-      @imgSvc.Picture(imageUrl, settings: imgSvc.Settings("NewsDetails"),imgClass:"img-responsive", imgAlt:article.Title)
+      @imgSvc.Picture(imageUrl, settings: imgSettings, imgClass:"img-responsive", imgAlt:article.Title)
     </div>
 
   if (isDetailView && article.Lightbox) {

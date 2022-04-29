@@ -7,6 +7,7 @@
   var scrubSvc = GetService<IScrub>();
   var imgSvc = GetService<IImageService>();
   
+  var imgSettings = AsDynamic(Settings.Images.NewsDetails, Settings.Images.Content);
   // Get some helper commands for later on
   var helpers = CreateInstance("../shared/Helpers.cs");
   var detailsCode = CreateInstance("Details.cs"); 
@@ -61,7 +62,7 @@
     }
       <div class="app-news5-detail-img">
         <span class="overlay"></span>
-        @imgSvc.Picture(imageUrl, settings: imgSvc.Settings("NewsDetails"),imgClass:"img-fluid", imgAlt:article.Title)
+        @imgSvc.Picture(imageUrl, settings: imgSettings,imgClass:"img-fluid", imgAlt:article.Title)
       </div>
     @if (article.Lightbox) {
       @:</a>
