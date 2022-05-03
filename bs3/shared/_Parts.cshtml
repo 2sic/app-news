@@ -114,7 +114,7 @@
       @{
         var imgSvc = GetService<IImageService>();
         var imgSettings = AsDynamic(Settings.Images.NewsDetails, Settings.Images.Content);
-        var altText = Text.First(article.Field("Title").Metadata.Description, article.Title);
+        var altText = Text.First(imageUrl.Metadata.Description, article.Title);
       }
       @imgSvc.Picture(imageUrl, settings: imgSettings, imgAlt: altText)
     </div>

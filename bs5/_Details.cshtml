@@ -62,7 +62,7 @@
     }
       <div class="app-news5-detail-img">
         @{
-          var altText = Text.First(article.Field("Title").Metadata.Description, article.Title);
+          var altText = Text.First(imageUrl.Metadata.Description, article.Title);
         }
         <span class="overlay"></span>
         @imgSvc.Picture(imageUrl, settings: imgSettings, imgAlt: altText)
