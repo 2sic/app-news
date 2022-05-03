@@ -4,10 +4,11 @@
 @{
   var imgSvc = GetService<IImageService>();
   var article = DynamicModel.Article;
-  var imageUrl = Text.Has(article.Image) ? article.Image : App.Resources.PlaceholderMissingImage;
+  var imageUrl = Text.Has(article.Image) ? article.Field("Image") : Resources.Field("PlaceholderMissingImage");
+  var altText = Text.First(article.Field("Title").Metadata.Description, article.Title);
 }
 
 <div class="app-news5-img">
   <span class="overlay"></span>
-  @imgSvc.Picture(imageUrl, width:"800", settings: Settings.Images.Content, imgAlt:article.Title, imgClass:"img-fluid img-responsive")
+  @imgSvc.Picture(imageUrl, width:"800", settings: Settings.Images.Content, imgAlt: altText, imgClass:"img-fluid img-responsive")
 </div>

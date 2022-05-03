@@ -30,7 +30,7 @@
   }
 
   var displayCategories = App.Settings.ActivateCategories && (article.Categories as Dynlist).Any();
-  var imageUrl = Text.Has(article.Image) ? article.Image : App.Resources.PlaceholderMissingImage;
+  var imageUrl = Text.Has(article.Image) ? article.Field("Image") : Resources.Field("PlaceholderMissingImage");
   page.AddMeta("description", scrubSvc.All(article.Teaser));
   page.SetTitle(article.Date.ToString("d") + " - " + article.Title);
 }
@@ -61,8 +61,11 @@
       @:<a class="fancybox" href='@Link.Image(imageUrl, Settings.Images.Lightbox)' data-app-news5-fancybox="@CmsContext.Module.Id" title="@article.Title">
     }
       <div class="app-news5-detail-img">
+        @{
+          var altText = Text.First(article.Field("Title").Metadata.Description, article.Title);
+        }
         <span class="overlay"></span>
-        @imgSvc.Picture(imageUrl, settings: imgSettings,imgClass:"img-fluid", imgAlt:article.Title)
+        @imgSvc.Picture(imageUrl, settings: imgSettings, imgAlt: altText)
       </div>
     @if (article.Lightbox) {
       @:</a>

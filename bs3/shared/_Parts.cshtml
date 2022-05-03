@@ -103,7 +103,7 @@
 @* Shows the image of an article and if none configured a placeholder *@
 @helper ImageOrPlaceholder(dynamic article, bool isDetailView) {
   var imageWrapper = isDetailView ? "app-news5-detail-img" : "app-news5-img";
-  var imageUrl = Text.Has(article.Image) ? article.Image : Resources.PlaceholderMissingImage;
+  var imageUrl = Text.Has(article.Image) ? article.Field("Image") : Resources.Field("PlaceholderMissingImage");
   var imageResizerHeightAndMode = isDetailView ? "mode=max" : "h=480&mode=crop";
 
   if (isDetailView && article.Lightbox) {
@@ -114,8 +114,9 @@
       @{
         var imgSvc = GetService<IImageService>();
         var imgSettings = AsDynamic(Settings.Images.NewsDetails, Settings.Images.Content);
+        var altText = Text.First(article.Field("Title").Metadata.Description, article.Title);
       }
-      @imgSvc.Picture(imageUrl, settings: imgSettings, imgClass:"img-responsive", imgAlt:article.Title)
+      @imgSvc.Picture(imageUrl, settings: imgSettings, imgAlt: altText)
     </div>
 
   if (isDetailView && article.Lightbox) {
