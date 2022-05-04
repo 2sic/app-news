@@ -6,10 +6,10 @@
   var article = DynamicModel.Article;
   var imageField = article.Field("Image");
   var image = Text.Has(article.Image) ? imageField : Resources.PlaceholderMissingImage;
-  @* var altText = Text.First(imageField.Metadata.Description, article.Title); *@
+  var altText = Text.Has(article.Image) ? Text.First(imageField.Metadata.Description, article.Title) : article.Title;
 }
 
 <div class="app-news5-img">
   <span class="overlay"></span>
-  @imgSvc.Picture(image, width:"800", settings: Settings.Images.Content, imgAlt: article.Title, imgClass:"img-fluid img-responsive")
+  @imgSvc.Picture(image, width:"800", settings: Settings.Images.Content, imgAlt: altText, imgClass:"img-fluid img-responsive")
 </div>

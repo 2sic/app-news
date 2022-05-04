@@ -103,20 +103,20 @@
 @* Shows the image of an article and if none configured a placeholder *@
 @helper ImageOrPlaceholder(dynamic article, bool isDetailView) {
   var imageWrapper = isDetailView ? "app-news5-detail-img" : "app-news5-img";
-  var imageUrl = Text.Has(article.Image) ? article.Field("Image") : Resources.Field("PlaceholderMissingImage");
+  var imageField = Text.Has(article.Image) ? article.Field("Image") : Resources.PlaceholderMissingImage;
   var imageResizerHeightAndMode = isDetailView ? "mode=max" : "h=480&mode=crop";
 
   if (isDetailView && article.Lightbox) {
-      @:<a href='@Link.Image(imageUrl, Settings.Images.Lightbox)' data-app-news5-fancybox="@CmsContext.Module.Id" title="@article.Title">
+      @:<a href='@Link.Image(imageField, Settings.Images.Lightbox)' data-app-news5-fancybox="@CmsContext.Module.Id" title="@article.Title">
   }
     <div class="@imageWrapper">
       <span class="overlay"></span>
       @{
         var imgSvc = GetService<IImageService>();
         var imgSettings = AsDynamic(Settings.Images.NewsDetails, Settings.Images.Content);
-        var altText = Text.First(imageUrl.Metadata.Description, article.Title);
+        var altText = Text.Has(article.Image) ? Text.First(imageField.Metadata.Description, article.Title) : article.Title;
       }
-      @imgSvc.Picture(imageUrl, settings: imgSettings, imgAlt: altText)
+      @imgSvc.Picture(imageField, settings: imgSettings, imgAlt: altText)
     </div>
 
   if (isDetailView && article.Lightbox) {
