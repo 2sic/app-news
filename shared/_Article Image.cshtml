@@ -2,7 +2,7 @@
 @using ToSic.Razor.Blade;
 @using ToSic.Sxc.Services;
 @{
-  var imgSvc = GetService<IImageService>();
+  var imgSvc = GetService<IImageService>(); // Image Service used to generate optimal images
   var article = DynamicModel.Article;
   var imageField = article.Field("Image");
   var image = Text.Has(article.Image) ? imageField : Resources.PlaceholderMissingImage;
