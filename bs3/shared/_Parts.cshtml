@@ -114,7 +114,7 @@
       @{
         // Image Service used to generate optimal images
         var imgSvc = GetService<IImageService>();
-        var imgSettings = AsDynamic(Settings.Images.NewsDetails, Settings.Images.Content);
+        var imgSettings = AsDynamic(Settings.Images.NewsDetails, "Content");
         var altText = Text.Has(article.Image) ? Text.First(imageField.Metadata.Description, article.Title) : article.Title;
       }
       @imgSvc.Picture(imageField, settings: imgSettings, imgAlt: altText)

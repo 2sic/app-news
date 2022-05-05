@@ -7,7 +7,7 @@
   var scrubSvc = GetService<IScrub>();
   var imgSvc = GetService<IImageService>(); // Image Service used to generate optimal images
   
-  var imgSettings = AsDynamic(Settings.Images.NewsDetails, Settings.Images.Content);
+  var imgSettings = AsDynamic(Settings.Images.NewsDetails, "Content");
   // Get some helper commands for later on
   var helpers = CreateInstance("../shared/Helpers.cs");
   var detailsCode = CreateInstance("Details.cs"); 

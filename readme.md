@@ -44,3 +44,4 @@ If you want to customize the CSS, you will usually follow the ["Create Custom St
   * Made the teaser optional
   * Changed the detail page URL generation for bs3
   * Enabled image configuration
+  * Replaced data-enableoptimization with pageSvc.AssetAttributes()
