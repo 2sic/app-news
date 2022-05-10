@@ -13,7 +13,7 @@
   var detailsCode = CreateInstance("Details.cs"); 
 
   // Get the PageServices HTTP error headers
-  var page = GetService<IPageService>();
+  var pageSvc = GetService<IPageService>();
 
   var article = AsList(Data).FirstOrDefault();
   var render = GetService<IRenderService>();
@@ -25,14 +25,14 @@
 
     @* Show "Back to list" button *@
     @detailsCode.BackToListButton()
-    page.SetHttpStatus(404);
+    pageSvc.SetHttpStatus(404);
     return;
   }
 
   var displayCategories = App.Settings.ActivateCategories && (article.Categories as Dynlist).Any();
   var imageField = Text.Has(article.Image) ? article.Field("Image") : Resources.PlaceholderMissingImage;
-  page.AddMeta("description", scrubSvc.All(article.Teaser));
-  page.SetTitle(article.Date.ToString("d") + " - " + article.Title);
+  pageSvc.AddMeta("description", scrubSvc.All(article.Teaser));
+  pageSvc.SetTitle(article.Date.ToString("d") + " - " + article.Title);
 }
 
 <div class="app-news5 app-news5-detail" @Edit.TagToolbar(article, toolbar: new [] {"-layout", "%delete&show=true"})>
