@@ -113,8 +113,7 @@
   
   if (wrapInLink) {
       var lbPic = imgSvc.Picture(imageField, settings: "Lightbox");
-      @:<a class="fancybox" data-src="@lbPic.Url" data-srcset="@lbPic.SrcSet" data-sizes="@lbPic.Sizes" data-preload="false" data-app-news5-fancybox="@CmsContext.Module.Id" title="@article.Title">
-      @* @:<a href='@Link.Image(imageField, Settings.Images.Lightbox)' data-app-news5-fancybox="@CmsContext.Module.Id" title="@article.Title"> *@
+      @:<a class="fancybox" data-src="@imageField" data-srcset="@lbPic.SrcSet" data-sizes="@lbPic.Sizes" data-preload="false" data-app-news5-fancybox="@CmsContext.Module.Id" title="@article.Title">
   }
     <div class="@imageWrapper">
       <span class="overlay"></span>

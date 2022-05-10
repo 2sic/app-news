@@ -59,8 +59,7 @@
     @* Show image or placeholder *@
     @if (article.Lightbox) {
       var lbPic = imgSvc.Picture(imageField, settings: "Lightbox");
-      @:<a class="fancybox" data-src="@lbPic.Url" data-srcset="@lbPic.SrcSet" data-sizes="@lbPic.Sizes" data-preload="false" data-app-news5-fancybox="@CmsContext.Module.Id" title="@article.Title">
-      @* @:<a class="fancybox" data-app-news5-fancybox="@CmsContext.Module.Id" title="@article.Title"> *@
+      @:<a class="fancybox" data-src="@imageField" data-srcset="@lbPic.SrcSet" data-sizes="@lbPic.Sizes" data-preload="false" data-app-news5-fancybox="@CmsContext.Module.Id" title="@article.Title">
     }
       <div class="app-news5-detail-img">
         <span class="overlay"></span>
