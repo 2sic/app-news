@@ -45,3 +45,4 @@ If you want to customize the CSS, you will usually follow the ["Create Custom St
   * Changed the detail page URL generation for bs3
   * Enabled image configuration
   * Replaced data-enableoptimization with pageSvc.AssetAttributes()
+  * Changed fancybox image to use the new IImageService to load images

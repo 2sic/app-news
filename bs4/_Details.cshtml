@@ -58,14 +58,16 @@
   <div class="app-news5-content">
     @* Show image or placeholder *@
     @if (article.Lightbox) {
-      @:<a class="fancybox" href='@Link.Image(imageField, Settings.Images.Lightbox)' data-app-news5-fancybox="@CmsContext.Module.Id" title="@article.Title">
+      var lbPic = imgSvc.Picture(imageField, settings: "Lightbox");
+      @:<a class="fancybox" data-src="@lbPic.Url" data-srcset="@lbPic.SrcSet" data-sizes="@lbPic.Sizes" data-preload="false" data-app-news5-fancybox="@CmsContext.Module.Id" title="@article.Title">
+      @* @:<a class="fancybox" data-app-news5-fancybox="@CmsContext.Module.Id" title="@article.Title"> *@
     }
       <div class="app-news5-detail-img">
         <span class="overlay"></span>
         @{
           var altText = Text.Has(article.Image) ? Text.First(imageField.Metadata.Description, article.Title) : article.Title;
         }
-        @imgSvc.Picture(imageField, settings: imgSettings, imgAlt: altText)
+        @imgSvc.Picture(imageField, settings: imgSettings, imgAlt: altText, imgClass:"img-fluid")
       </div>
     @if (article.Lightbox) {
       @:</a>

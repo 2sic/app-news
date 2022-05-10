@@ -106,21 +106,26 @@
   var imageField = Text.Has(article.Image) ? article.Field("Image") : Resources.PlaceholderMissingImage;
   var imageResizerHeightAndMode = isDetailView ? "mode=max" : "h=480&mode=crop";
 
-  if (isDetailView && article.Lightbox) {
-      @:<a href='@Link.Image(imageField, Settings.Images.Lightbox)' data-app-news5-fancybox="@CmsContext.Module.Id" title="@article.Title">
+  // Image Service used to generate optimal images
+  var imgSvc = GetService<IImageService>();
+
+  var wrapInLink = isDetailView && article.Lightbox;
+  
+  if (wrapInLink) {
+      var lbPic = imgSvc.Picture(imageField, settings: "Lightbox");
+      @:<a class="fancybox" data-src="@lbPic.Url" data-srcset="@lbPic.SrcSet" data-sizes="@lbPic.Sizes" data-preload="false" data-app-news5-fancybox="@CmsContext.Module.Id" title="@article.Title">
+      @* @:<a href='@Link.Image(imageField, Settings.Images.Lightbox)' data-app-news5-fancybox="@CmsContext.Module.Id" title="@article.Title"> *@
   }
     <div class="@imageWrapper">
       <span class="overlay"></span>
       @{
-        // Image Service used to generate optimal images
-        var imgSvc = GetService<IImageService>();
         var imgSettings = AsDynamic(Settings.Images.NewsDetails, "Content");
         var altText = Text.Has(article.Image) ? Text.First(imageField.Metadata.Description, article.Title) : article.Title;
       }
-      @imgSvc.Picture(imageField, settings: imgSettings, imgAlt: altText)
+      @imgSvc.Picture(imageField, settings: imgSettings, imgAlt: altText, imgClass:"img-responsive")
     </div>
 
-  if (isDetailView && article.Lightbox) {
+  if (wrapInLink) {
       @:</a>
   }
 }
