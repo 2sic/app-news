@@ -121,7 +121,7 @@
         var imgSettings = AsDynamic(Settings.Images.NewsDetails, "Content");
         var altText = Text.Has(article.Image) ? Text.First(imageField.Metadata.Description, article.Title) : article.Title;
       }
-      @imgSvc.Picture(imageField, settings: imgSettings, imgAlt: altText, imgClass:"img-responsive")
+      @imgSvc.Picture(imageField, settings: imgSettings, imgAlt: altText)
     </div>
 
   if (wrapInLink) {
