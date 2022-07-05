@@ -1,22 +1,16 @@
-@inherits Custom.Hybrid.Razor12
+@inherits Custom.Hybrid.Razor14
 @using ToSic.Razor.Blade;
 @using Dynlist = System.Collections.Generic.IEnumerable<dynamic>;
-@using ToSic.Sxc.Services;
+@using ToSic.Sxc.Sevices;
 
 @{
-  var scrubSvc = GetService<IScrub>();
-  var imgSvc = GetService<IImageService>(); // Image Service used to generate optimal images
   
   var imgSettings = AsDynamic(Settings.Images.NewsDetails, "Content");
   // Get some helper commands for later on
   var helpers = CreateInstance("../shared/Helpers.cs");
   var detailsCode = CreateInstance("Details.cs"); 
 
-  // Get the PageServices HTTP error headers
-  var pageSvc = GetService<IPageService>();
-
   var article = AsList(Data).FirstOrDefault();
-  var render = GetService<IRenderService>();
 
   @* Show article not found notification and stop processing *@
   if(article == null) {
@@ -25,17 +19,19 @@
 
     @* Show "Back to list" button *@
     @detailsCode.BackToListButton()
-    pageSvc.SetHttpStatus(404);
+    Kit.Page.SetHttpStatus(404);
     return;
   }
 
   var displayCategories = App.Settings.ActivateCategories && (article.Categories as Dynlist).Any();
   var imageField = Text.Has(article.Image) ? article.Field("Image") : Resources.PlaceholderMissingImage;
-  pageSvc.AddMeta("description", scrubSvc.All(article.Teaser));
-  pageSvc.SetTitle(article.Date.ToString("d") + " - " + article.Title);
+  Kit.Page.AddMeta("description", Kit.Scrub.All(article.Teaser));
+  Kit.Page.SetTitle(article.Date.ToString("d") + " - " + article.Title);
+
+  var articleToolbar = Kit.Toolbar.Default().Layout("-").Delete();
 }
 
-<div class="app-news5 app-news5-detail" @Edit.TagToolbar(article, toolbar: new [] {"-layout", "%delete&show=true"})>
+<div class="app-news5 app-news5-detail" @articleToolbar.For(article)>
   @* Head of the article *@
   <div class="app-news5-content">
     @* "Will publish"/"expired" notes for admin *@
@@ -58,7 +54,7 @@
   <div class="app-news5-content">
     @* Show image or placeholder *@
     @if (article.Lightbox) {
-      var lbPic = imgSvc.Picture(imageField, settings: "Lightbox");
+      var lbPic = Kit.Image.Picture(imageField, settings: "Lightbox");
       @:<a class="fancybox" data-src="@imageField" data-srcset="@lbPic.SrcSet" data-sizes="@lbPic.Sizes" data-preload="false" data-app-news5-fancybox="@CmsContext.Module.Id" title="@article.Title">
     }
       <div class="app-news5-detail-img">
@@ -66,7 +62,7 @@
           var altText = Text.Has(article.Image) ? Text.First(imageField.Metadata.Description, article.Title) : article.Title;
         }
         <span class="overlay"></span>
-        @imgSvc.Picture(imageField, settings: imgSettings, imgAlt: altText)
+        @Kit.Image.Picture(imageField, settings: imgSettings, imgAlt: altText)
       </div>
     @if (article.Lightbox) {
       @:</a>
@@ -80,7 +76,7 @@
 
     @* Body of the post - will also create inner content blocks / apps *@
     <div class="app-news5-detail-body">
-      @render.All(article, field: "InnerContent", merge: article.Content)
+      @Kit.Render.All(article, field: "InnerContent", merge: article.Content)
     </div>
   </div>
 </div>

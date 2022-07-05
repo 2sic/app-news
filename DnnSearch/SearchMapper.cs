@@ -12,7 +12,7 @@ You can also inherit from a DynamicCode base class (like Code12) if you need mor
 
 For more guidance on search customizations, see https://r.2sxc.org/customize-search
 */
-public class SearchMapper : Custom.Hybrid.Code12, ICustomizeSearch
+public class SearchMapper : Custom.Hybrid.Code14, ICustomizeSearch
 {
     /// <summary>
     /// Populate the search

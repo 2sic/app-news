@@ -1,7 +1,7 @@
 using ToSic.Razor.Blade;
 using System;
 
-public class Details: Custom.Hybrid.Code12
+public class Details: Custom.Hybrid.Code14
 {
 
   // Shows a back to list button

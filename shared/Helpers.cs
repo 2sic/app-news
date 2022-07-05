@@ -1,9 +1,8 @@
 using ToSic.Razor.Blade;
 using System;
 using System.Globalization;
-using ToSic.Sxc.Services;
 
-public class Helpers: Custom.Hybrid.Code12
+public class Helpers: Custom.Hybrid.Code14
 {
   // @* Show info to admin whether the article will publish or is already expired *@
   public dynamic AdminArticleInformation(dynamic article) {
@@ -39,7 +38,6 @@ public class Helpers: Custom.Hybrid.Code12
   }
 
   public string TeaserAssembly(dynamic article){
-    var scrubSvc = GetService<IScrub>();
     var teaser = article.Teaser;
     var mainText = article.Content;
 
@@ -47,7 +45,7 @@ public class Helpers: Custom.Hybrid.Code12
       return teaser;
     } else {
       
-      teaser = Text.Ellipsis(scrubSvc.All(mainText), 100);
+      teaser = Text.Ellipsis(Kit.Scrub.All(mainText), 100);
       return teaser;
     }
   }

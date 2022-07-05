@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<SexyContent FileVersion="07.00.00" MinimumRequiredVersion="07.04.02" ModuleVersion="13.11.00" ExportDate="2022-05-10T14:18:38.6379284+02:00">
+<SexyContent FileVersion="07.00.00" MinimumRequiredVersion="07.04.02" ModuleVersion="14.07.02" ExportDate="2022-07-04T09:16:29.9253466+02:00">
   <Header>
     <App Guid="fee52b41-bf97-4f3a-a44f-e267180ad12c" />
     <Language Default="en-us" />
@@ -1914,13 +1914,13 @@
       <Value Key="RequiredOqtaneVersion" Value="3.1" Type="String">
         <Dimension DimensionID="72" ReadOnly="false" />
       </Value>
-      <Value Key="RequiredVersion" Value="13.10.00" Type="String">
+      <Value Key="RequiredVersion" Value="14.07.00" Type="String">
         <Dimension DimensionID="72" ReadOnly="false" />
       </Value>
       <Value Key="SupportsAjaxReload" Value="True" Type="Boolean">
         <Dimension DimensionID="72" ReadOnly="false" />
       </Value>
-      <Value Key="Version" Value="05.01.00" Type="String">
+      <Value Key="Version" Value="05.02.00" Type="String">
         <Dimension DimensionID="72" ReadOnly="false" />
       </Value>
     </Entity>
@@ -3647,7 +3647,7 @@
       </Value>
     </Entity>
     <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="1a86b080-9e0d-4207-97d2-04edf80b4f2f" AttributeSetName="⚙️Image" EntityGUID="475451fc-1f7c-4a91-b460-9d1f64d4c642" Json="True">
-      <Value Key="Advanced" Value="" Type="String">
+      <Value Key="Advanced" Value="{&#xD;&#xA;  &quot;recipe&quot;: {&#xD;&#xA;    &quot;name&quot;: &quot;default&quot;,&#xD;&#xA;    &quot;variants&quot;: &quot;2*, 1*, 3/4*, 1/2*&quot;,&#xD;&#xA;    &quot;setWidth&quot;: false,&#xD;&#xA;    &quot;attributes&quot;: {&#xD;&#xA;      &quot;loading&quot;: &quot;lazy&quot;&#xD;&#xA;    },&#xD;&#xA;    &quot;recipes&quot;: [&#xD;&#xA;      {&#xD;&#xA;        &quot;name&quot;: &quot;Bootstrap3&quot;,&#xD;&#xA;        &quot;forCss&quot;: &quot;bs3&quot;,&#xD;&#xA;        &quot;attributes&quot;: { &#xD;&#xA;          &quot;class&quot;: &quot;img-responsive&quot;,&#xD;&#xA;          &quot;hello&quot; : &quot;bs3&quot;&#xD;&#xA;&#xD;&#xA;         },&#xD;&#xA;        &quot;setWidth&quot;: false&#xD;&#xA;      },&#xD;&#xA;      {&#xD;&#xA;        &quot;name&quot;: &quot;Bootstrap4&quot;,&#xD;&#xA;        &quot;forCss&quot;: &quot;bs4&quot;,&#xD;&#xA;        &quot;attributes&quot;: { &#xD;&#xA;          &quot;class&quot;: &quot;img-fluid&quot;,&#xD;&#xA;          &quot;world&quot; : &quot;bs4&quot;&#xD;&#xA;         },&#xD;&#xA;        &quot;setWidth&quot;: true&#xD;&#xA;      },&#xD;&#xA;      {&#xD;&#xA;        &quot;name&quot;: &quot;Bootstrap5&quot;,&#xD;&#xA;        &quot;forCss&quot;: &quot;bs5&quot;,&#xD;&#xA;        &quot;attributes&quot;: { &#xD;&#xA;          &quot;class&quot;: &quot;img-fluid&quot;,&#xD;&#xA;          &quot;there&quot;:&quot;bs5&quot;&#xD;&#xA;         },&#xD;&#xA;        &quot;setWidth&quot;: true,&#xD;&#xA;        &quot;setHeight&quot; : true&#xD;&#xA;      }&#xD;&#xA;    ]&#xD;&#xA;  }&#xD;&#xA;}" Type="String">
         <Dimension DimensionID="72" ReadOnly="false" />
       </Value>
       <Value Key="AspectRatio" Value="2" Type="Number">
@@ -3723,7 +3723,7 @@
       <Value Key="Advanced" Value="" Type="String">
         <Dimension DimensionID="72" ReadOnly="false" />
       </Value>
-      <Value Key="ByUrlParameters" Value="False" Type="Boolean">
+      <Value Key="ByUrlParameters" Value="True" Type="Boolean">
         <Dimension DimensionID="72" ReadOnly="false" />
       </Value>
       <Value Key="Duration" Value="14400" Type="Number">

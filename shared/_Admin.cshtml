@@ -1,17 +1,14 @@
-@inherits Custom.Hybrid.Razor12
+@inherits Custom.Hybrid.Razor14
+@{
+  var newsAddToolbar = Kit.Toolbar.Empty().New("News", prefill: "Date=" + DateTime.Now.Date.ToString("yyyy-MM-dd"));
 
+  var newsManageToolbar = Kit.Toolbar.Empty().Data("News");
+}
 <div class="app-news5-admin-menu">
   <div class="toolbar">
-    @Edit.Toolbar(toolbar: new [] {
-      "toolbar=empty",
-      "new?contentType=News&prefill:Date=" + DateTime.Now.Date.ToString("yyyy-MM-dd")
-    })
+    @newsAddToolbar.AsTag()
     <span>@Resources.LabelAdminMenuNew</span>
-
-    @Edit.Toolbar(toolbar: new [] {
-      "toolbar=empty",
-      "contentitems?contentType=News"
-    })
+    @newsManageToolbar.AsTag()
     <span>@Resources.LabelAdminMenuManage</span>
   </div>
   <div>@Edit.Toolbar(DynamicModel.Content)</div>

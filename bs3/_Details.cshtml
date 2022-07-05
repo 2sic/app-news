@@ -1,14 +1,10 @@
 @inherits ToSic.Sxc.Dnn.RazorComponent
 @using ToSic.Razor.Blade;
-@using ToSic.Sxc.Services;
 
 @Html.Partial("./shared/_Assets.cshtml", new { scripts = true} )
 
 @{
-  var scrubSvc = GetService<IScrub>();
-
   var parts = CreateInstance("./shared/_Parts.cshtml");
-  var pageSvc = GetService<IPageService>(); // Service to set titles etc. on the page
   var article = AsList(Data).FirstOrDefault();
   var filteredCategory = Request.QueryString["category"];
   var categoryParams = Text.Has(filteredCategory)
@@ -24,8 +20,8 @@
     return;
   }
 
-  pageSvc.AddMeta("description", scrubSvc.All(article.Teaser));
-  pageSvc.SetTitle(article.Date.ToString("d") + " - " + article.Title);
+  Kit.Page.AddMeta("description", Kit.Scrub.All(article.Teaser));
+  Kit.Page.SetTitle(article.Date.ToString("d") + " - " + article.Title);
 }
 
 <div class="app-news5 app-news5-detail" @Edit.TagToolbar(article)>
