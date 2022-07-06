@@ -1,10 +1,8 @@
 @inherits Custom.Hybrid.Razor14
 @using ToSic.Razor.Blade;
 @using Dynlist = System.Collections.Generic.IEnumerable<dynamic>;
-@using ToSic.Sxc.Sevices;
 
 @{
-  
   var imgSettings = AsDynamic(Settings.Images.NewsDetails, "Content");
   // Get some helper commands for later on
   var helpers = CreateInstance("../shared/Helpers.cs");

@@ -1,8 +1,7 @@
-@inherits Custom.Hybrid.Razor12
+@inherits Custom.Hybrid.Razor14
 @using ToSic.Razor.Blade;
 @using Dynlist = System.Collections.Generic.IEnumerable<dynamic>;
 @using Connect.Koi;
-@using ToSic.Sxc.Services;
 
 @* Show warning that the details page needs to be changed *@
 @helper DetailsPageConfigWarning() {
@@ -105,14 +104,11 @@
   var imageWrapper = isDetailView ? "app-news5-detail-img" : "app-news5-img";
   var imageField = Text.Has(article.Image) ? article.Field("Image") : Resources.PlaceholderMissingImage;
   var imageResizerHeightAndMode = isDetailView ? "mode=max" : "h=480&mode=crop";
-
-  // Image Service used to generate optimal images
-  var imgSvc = GetService<IImageService>();
-
+  
   var wrapInLink = isDetailView && article.Lightbox;
   
   if (wrapInLink) {
-      var lbPic = imgSvc.Picture(imageField, settings: "Lightbox");
+      var lbPic = Kit.Image.Picture(imageField, settings: "Lightbox");
       @:<a class="fancybox" data-src="@imageField" data-srcset="@lbPic.SrcSet" data-sizes="@lbPic.Sizes" data-preload="false" data-app-news5-fancybox="@CmsContext.Module.Id" title="@article.Title">
   }
     <div class="@imageWrapper">
@@ -121,7 +117,7 @@
         var imgSettings = AsDynamic(Settings.Images.NewsDetails, "Content");
         var altText = Text.Has(article.Image) ? Text.First(imageField.Metadata.Description, article.Title) : article.Title;
       }
-      @imgSvc.Picture(imageField, settings: imgSettings, imgAlt: altText)
+      @Kit.Image.Picture(imageField, settings: imgSettings, imgAlt: altText)
     </div>
 
   if (wrapInLink) {
