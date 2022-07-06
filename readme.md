@@ -46,8 +46,11 @@ If you want to customize the CSS, you will usually follow the ["Create Custom St
   * Enabled image configuration
   * Replaced data-enableoptimization with pageSvc.AssetAttributes()
   * Changed fancybox image to use the new IImageService to load images
-* v5.2
+* v5.2 2022-07
   * Replaced all base classes with their 2sxc 14 migration
   * Changed all GetService<> to the new ServiceKit14
   * Changed all toolbar configurations to use the IToolbarService
   * Updated webpack
+* v5.2.1 2022-07
+  * Removed unnecessary using 
+  * Replaced a missed base class
