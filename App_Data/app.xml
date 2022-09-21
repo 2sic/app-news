@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<SexyContent FileVersion="07.00.00" MinimumRequiredVersion="07.04.02" ModuleVersion="14.07.03" ExportDate="2022-07-06T10:30:10.1387216+02:00">
+<SexyContent FileVersion="07.00.00" MinimumRequiredVersion="07.04.02" ModuleVersion="14.09.00" ExportDate="2022-09-21T08:43:57.5294595+02:00">
   <Header>
     <App Guid="fee52b41-bf97-4f3a-a44f-e267180ad12c" />
     <Language Default="en-us" />
@@ -1914,13 +1914,13 @@
       <Value Key="RequiredOqtaneVersion" Value="3.1" Type="String">
         <Dimension DimensionID="72" ReadOnly="false" />
       </Value>
-      <Value Key="RequiredVersion" Value="14.07.00" Type="String">
+      <Value Key="RequiredVersion" Value="14.09.00" Type="String">
         <Dimension DimensionID="72" ReadOnly="false" />
       </Value>
       <Value Key="SupportsAjaxReload" Value="True" Type="Boolean">
         <Dimension DimensionID="72" ReadOnly="false" />
       </Value>
-      <Value Key="Version" Value="05.02.01" Type="String">
+      <Value Key="Version" Value="05.02.02" Type="String">
         <Dimension DimensionID="72" ReadOnly="false" />
       </Value>
     </Entity>
@@ -1928,7 +1928,7 @@
       <Value Key="ActivateCategories" Value="True" Type="Boolean">
         <Dimension DimensionID="72" ReadOnly="false" />
       </Value>
-      <Value Key="DetailsPage" Value="" Type="Hyperlink">
+      <Value Key="DetailsPage" Value="page:911" Type="Hyperlink">
         <Dimension DimensionID="72" ReadOnly="false" />
       </Value>
       <Value Key="DetailsPageShowWarning" Value="True" Type="Boolean">
@@ -2729,7 +2729,7 @@
       </Value>
     </Entity>
     <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="bdd87885-a3ec-4c34-a913-9d48d1b2db87" AttributeSetName="ViewConfiguration" EntityGUID="732d177a-1b20-4cf5-adab-e0ea3eb00958">
-      <Value Key="ItemsInPage" Value="10" Type="Number">
+      <Value Key="ItemsInPage" Value="2" Type="Number">
         <Dimension DimensionID="72" ReadOnly="false" />
       </Value>
       <Value Key="ShowPagination" Value="True" Type="Boolean">
