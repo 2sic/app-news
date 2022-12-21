@@ -1,53 +1,84 @@
-@inherits ToSic.Sxc.Dnn.RazorComponent
+@inherits Custom.Hybrid.Razor14
 @using ToSic.Razor.Blade;
-
-@Html.Partial("./shared/_Assets.cshtml", new { scripts = true} )
+@using Dynlist = System.Collections.Generic.IEnumerable<dynamic>;
 
 @{
-  var parts = CreateInstance("./shared/_Parts.cshtml");
+  var imgSettings = AsDynamic(Settings.Images.NewsDetails, "Content");
+  // Get some helper commands for later on
+  var helpers = CreateInstance("../shared/Helpers.cs");
+  var detailsCode = CreateInstance("Details.cs"); 
+
   var article = AsList(Data).FirstOrDefault();
-  var filteredCategory = Request.QueryString["category"];
-  var categoryParams = Text.Has(filteredCategory)
-      ? "category=" + filteredCategory
-      : "";
 
   @* Show article not found notification and stop processing *@
   if(article == null) {
-    @parts.ArticleNotFound()
+    <h1>@Resources.LabelEventNotExists</h1>
+    <p>@Resources.LabelEventNotExistsText</p>
 
     @* Show "Back to list" button *@
-    @parts.BackToListButton(categoryParams)
+    @detailsCode.BackToListButton()
+    Kit.Page.SetHttpStatus(404);
     return;
   }
 
+  var displayCategories = App.Settings.ActivateCategories && (article.Categories as Dynlist).Any();
+  var imageField = Text.Has(article.Image) ? article.Field("Image") : Resources.PlaceholderMissingImage;
   Kit.Page.AddMeta("description", Kit.Scrub.All(article.Teaser));
   Kit.Page.SetTitle(article.Date.ToString("d") + " - " + article.Title);
+
+  var articleToolbar = Kit.Toolbar.Default().Layout("-").Delete();
 }
 
-<div class="app-news5 app-news5-detail" @Edit.TagToolbar(article)>
+<div class="app-news5 app-news5-detail" @articleToolbar.For(article)>
   @* Head of the article *@
   <div class="app-news5-content">
     @* "Will publish"/"expired" notes for admin *@
-    @parts.ArticleInformationAdmin(article)
+    @helpers.AdminArticleInformation(article)
 
     <h2>@article.Title</h2>
 
     @* Show Date and categories *@
-    @parts.ArticleInformationDateAndCategories(article)
+    <span class='app-news5-date @(displayCategories ? "app-news5-date-border" : "")'>@article.Date.ToString("d")</span>
+    @if(displayCategories) {
+      <span class="app-news5-categories">
+        @foreach (var cat in article.Categories) {
+          <a href='@Link.To(parameters: "category=" + cat.UrlKey)'>@cat.Name</a>
+        }
+      </span>
+    }
   </div>
 
   @* Body of the article *@
   <div class="app-news5-content">
     @* Show image or placeholder *@
-    @parts.ImageOrPlaceholder(article, true)
+    @if (article.Lightbox) {
+      var lbPic = Kit.Image.Picture(imageField, settings: "Lightbox");
+      @:<a class="fancybox" data-src="@imageField" data-srcset="@lbPic.SrcSet" data-sizes="@lbPic.Sizes" data-preload="false" data-app-news5-fancybox="@CmsContext.Module.Id" title="@article.Title">
+    }
+      <div class="app-news5-detail-img">
+        <span class="overlay"></span>
+        @{
+          var altText = Text.Has(article.Image) ? Text.First(imageField.Metadata.Description, article.Title) : article.Title;
+        }
+        @Kit.Image.Picture(imageField, settings: imgSettings, imgAlt: altText)
+      </div>
+    @if (article.Lightbox) {
+      @:</a>
+    }
 
+    @* Teaser *@
     @if(article.ShowTeaserInDetail) {
       <p class="app-news5-detail-teaser">@Html.Raw(Tags.Nl2Br(article.Teaser))</p>
     }
 
-    <div class="app-news5-detail-body">@Html.Raw(article.Body)</div>
+    @* Body of the post - will also create inner content blocks / apps *@
+    <div class="app-news5-detail-body">
+      @Kit.Render.All(article, field: "InnerContent", merge: article.Content)
+    </div>
   </div>
 </div>
 
 @* Show "Back to list" button *@
-@parts.BackToListButton(categoryParams)
+@detailsCode.BackToListButton()
+
+@Html.Partial("./_Assets.cshtml", new { scripts = true} )

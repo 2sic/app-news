@@ -1,52 +1,49 @@
-@inherits ToSic.Sxc.Dnn.RazorComponent
+@inherits Custom.Hybrid.Razor14
 @using ToSic.Razor.Blade;
-@using ToSic.Sxc.Search;
-@using ToSic.Eav.Run;
-
-@Html.Partial("shared/_Assets.cshtml")
 
 @{
-  var parts = CreateInstance("shared/_Parts.cshtml");
+  // Get some helper commands for later on
+  var helpers = CreateInstance("../shared/Helpers.cs");
 
-  var viewConfiguration = Content;
-  var articles = AsList(Data["News"]);
-  var categories = AsList(App.Data["Category"]);
-  var categoryQueryString = Request.QueryString["category"];
   var filteredCategory = AsList(Data["Category"]).FirstOrDefault();
-  var pages = AsList(Data["Paging"]).FirstOrDefault();
+
+  var articleToolbar = Kit.Toolbar.Default().Layout("-").Delete();
 }
 
 @* Show Toolbar Menu if admin *@
 @if(Edit.Enabled) {
-  @parts.AdminToolbarMenu(viewConfiguration)
-  @parts.DetailsPageConfigWarning()
+  @Html.Partial("../shared/_Admin.cshtml", new { Content = Content})
+  @helpers.AdminDetailsPageConfigWarning()
 }
 
-<div class="app-news5 app-news5-list">
-  @* Show category filter if the news are filtered by category querystring *@
-  @if (Text.Has(categoryQueryString) && filteredCategory != null) {
-    @parts.CategoryFilter(categories, filteredCategory)
-  }
+<div class="app-news5 app-news5-list" >
+  @* Show title *@
+  <h1 class="mb-3">
+    @(filteredCategory != null ? filteredCategory.PageTitle : Content.Title)
+  </h1>
 
-  @* List the articles *@
-  @parts.ListArticlesMultiCol(articles, true, categoryQueryString)
+  <div class="row">
+    @foreach (var article in AsList(Data["News"])) {
+      <div class="col-xs-12 col-sm-6 col-lg-4" @Edit.TagToolbar(article)>
+        <div class="app-news5-details-link">
+          <a class="link-overlay" href="@helpers.LinkToDetailsPage(article)"></a>
 
-  @* Show "Back to list" button if the news are filtered by category querystring *@
-  @if (Text.Has(categoryQueryString) && filteredCategory != null) {
-    @parts.BackToListButton("")
-  }
+          @* Show image or placeholder *@
+          <div class="app-news5-img-wrapper mb-3">
+            @Html.Partial("../shared/_Article Image.cshtml", new { Article = article })
+          </div>
+
+          @* Show Title, Date, Category, Teaser and read more link *@
+          @Html.Partial("../shared/_Article Information.cshtml", new { Article = article, HeadingType = "h3" })
+        </div>
+      </div>
+    }
+  </div>
 
   @* Show pagination if configured *@
-  @if (viewConfiguration.ShowPagination) {
-    @parts.Paging(pages, categoryQueryString)
+  @if (Content.ShowPagination == true) {
+    @Html.Partial("../shared/_List Paging.cshtml")
   }
 </div>
 
-@functions{
-  /**
-  * Prevent duplicated search results
-  */
-  public override void CustomizeSearch(Dictionary<string, List<ISearchItem>> searchInfos, IContainer moduleInfo, DateTime beginDate) {
-    searchInfos.Clear();
-  }
-}
+@Html.Partial("./_Assets.cshtml")
