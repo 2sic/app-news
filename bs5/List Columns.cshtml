@@ -14,7 +14,7 @@
 }
 
 @* Show Toolbar Menu if admin *@
-@if(Edit.Enabled) {
+@if (Edit.Enabled) {
   @Html.Partial("../shared/Admin.cshtml", new { Content = Content})
   @helpers.AdminDetailsPageConfigWarning()
 }

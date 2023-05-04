@@ -11,7 +11,7 @@
   var article = AsList(Data).FirstOrDefault();
 
   @* Show article not found notification and stop processing *@
-  if(article == null) {
+  if (article == null) {
     <h1>@Resources.LabelEventNotExists</h1>
     <p>@Resources.LabelEventNotExistsText</p>
 
@@ -39,7 +39,7 @@
 
     @* Show Date and categories *@
     <span class='app-news5-date @(displayCategories ? "app-news5-date-border" : "")'>@article.Date.ToString("d")</span>
-    @if(displayCategories) {
+    @if (displayCategories) {
       <span class="app-news5-categories">
         @foreach (var cat in article.Categories) {
           <a href='@Link.To(parameters: "category=" + cat.UrlKey)'>@cat.Name</a>
@@ -56,18 +56,15 @@
       @:<a class="fancybox" data-src="@imageField" data-srcset="@lbPic.SrcSet" data-sizes="@lbPic.Sizes" data-preload="false" data-app-news5-fancybox="@CmsContext.Module.Id" title="@article.Title">
     }
       <div class="app-news5-detail-img">
-        @{
-          var altText = Text.Has(article.Image) ? Text.First(imageField.Metadata.Description, article.Title) : article.Title;
-        }
         <span class="overlay"></span>
-        @Kit.Image.Picture(imageField, settings: imgSettings, imgAltFallback: altText)
+        @Kit.Image.Picture(imageField, settings: imgSettings, imgAltFallback: article.Title)
       </div>
     @if (article.Lightbox) {
       @:</a>
     }
 
     @* Teaser *@
-    @if(article.ShowTeaserInDetail) {
+    @if (article.ShowTeaserInDetail) {
       <p class="app-news5-detail-teaser">@Html.Raw(Tags.Nl2Br(article.Teaser))</p>
     }
 

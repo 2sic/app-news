@@ -6,11 +6,11 @@ public class Helpers: Custom.Hybrid.Code14
 {
   // @* Show info to admin whether the article will publish or is already expired *@
   public dynamic AdminArticleInformation(dynamic article) {
-    if(Edit.Enabled && article.ShowFrom != null && article.ShowFrom.Date > DateTime.Now.Date) {
+    if (Edit.Enabled && article.ShowFrom != null && article.ShowFrom.Date > DateTime.Now.Date) {
       return Tag.Div(App.Resources.LabelShowFromPill + " " + article.ShowFrom.Date.ToString("d")).Class("alert").Class("alert-warning");
     }
 
-    if(Edit.Enabled && article.ShowTo != null && article.ShowTo.Date <= DateTime.Now.Date) {
+    if (Edit.Enabled && article.ShowTo != null && article.ShowTo.Date <= DateTime.Now.Date) {
       return Tag.Div(App.Resources.LabelShowToPill + " " + article.ShowTo.Date.ToString("d")).Class("alert").Class("alert-danger");
     }
 
@@ -19,7 +19,7 @@ public class Helpers: Custom.Hybrid.Code14
 
   // @* Show warning that the details page needs to be changed *@
   public dynamic AdminDetailsPageConfigWarning() {
-    if(App.Settings.DetailsPageShowWarning) {
+    if (App.Settings.DetailsPageShowWarning) {
       return Tag.Div(App.Resources.LabelAdminDetailPageWarning).Class("alert").Class("alert-danger");
     }
 
@@ -31,17 +31,17 @@ public class Helpers: Custom.Hybrid.Code14
   */
   public dynamic LinkToDetailsPage(dynamic article) {
     var detailsPage = AsDynamic(App.Settings).Get("DetailsPage", convertLinks: false);
-    if(!detailsPage.Contains(":")) return "";
+    if (!detailsPage.Contains(":")) return "";
     var detailsPageId = int.Parse(detailsPage.Split(':')[1]);
 
     return Link.To(pageId: detailsPageId, parameters: "details=" + article.UrlKey);
   }
 
-  public string TeaserAssembly(dynamic article){
+  public string TeaserAssembly(dynamic article) {
     var teaser = article.Teaser;
     var mainText = article.Content;
 
-    if (Text.Has(teaser)){
+    if (Text.Has(teaser)) {
       return teaser;
     } else {
       
