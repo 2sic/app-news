@@ -23,6 +23,7 @@
     "webpack-cli": "^4.10.0"
   },
   "dependencies": {
-    "bootstrap": "^5.1.3"
+    "bootstrap": "^4.4.1",
+    "bs5": "npm:bootstrap@^5.1.3"
   }
 }
