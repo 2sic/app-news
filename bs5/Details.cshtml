@@ -1,19 +1,18 @@
-@inherits Custom.Hybrid.Razor14
+@inherits Custom.Hybrid.RazorPro
 @using ToSic.Razor.Blade;
-@using Dynlist = System.Collections.Generic.IEnumerable<dynamic>;
 
 @{
-  var imgSettings = AsDynamic(Settings.Images.NewsDetails, "Content");
+  var imgSettings = AsStack(AllSettings.Dyn.Images.NewsDetails, "Content");
   // Get some helper commands for later on
-  var helpers = CreateInstance("../shared/Helpers.cs");
-  var detailsCode = CreateInstance("Details.cs"); 
+  var helpers = GetCode("../shared/Helpers.cs");
+  var detailsCode = GetCode("Details.cs"); 
 
-  var article = AsList(Data).FirstOrDefault();
+  var article = AsItems(MyData).FirstOrDefault();
 
   @* Show article not found notification and stop processing *@
   if (article == null) {
-    <h1>@Resources.LabelEventNotExists</h1>
-    <p>@Resources.LabelEventNotExistsText</p>
+    <h1>@App.Resources.String("LabelEventNotExists")</h1>
+    <p>@App.Resources.String("LabelEventNotExistsText")</p>
 
     @* Show "Back to list" button *@
     @detailsCode.BackToListButton()
@@ -21,10 +20,11 @@
     return;
   }
 
-  var displayCategories = App.Settings.ActivateCategories && (article.Categories as Dynlist).Any();
-  var imageField = Text.Has(article.Image) ? article.Field("Image") : Resources.PlaceholderMissingImage;
-  Kit.Page.AddMeta("description", Kit.Scrub.All(article.Teaser));
-  Kit.Page.SetTitle(article.Date.ToString("d") + " - " + article.Title);
+  var title = article.String("Title");
+  var displayCategories = App.Settings.Bool("ActivateCategories") && (article.Children("Categories")).Any();
+  var imageField = Text.Has(article.String("Image")) ? article.Field("Image") : App.Resources.Field("PlaceholderMissingImage");
+  Kit.Page.AddMeta("description", article.String("Teaser", scrubHtml: true));
+  Kit.Page.SetTitle(article.DateTime("Date").ToString("d") + " - " + title);
 
   var articleToolbar = Kit.Toolbar.Default().Layout("-").Delete();
 }
@@ -34,15 +34,13 @@
   <div class="app-news5-content">
     @* "Will publish"/"expired" notes for admin *@
     @helpers.AdminArticleInformation(article)
-
-    <h2>@article.Title</h2>
-
+    <h2>@title</h2>
     @* Show Date and categories *@
-    <span class='app-news5-date @(displayCategories ? "app-news5-date-border" : "")'>@article.Date.ToString("d")</span>
+    <span class='app-news5-date @(displayCategories ? "app-news5-date-border" : "")'>@article.DateTime("Date").ToString("d")</span>
     @if (displayCategories) {
       <span class="app-news5-categories">
-        @foreach (var cat in article.Categories) {
-          <a href='@Link.To(parameters: "category=" + cat.UrlKey)'>@cat.Name</a>
+        @foreach (var cat in article.Children("Categories")) {
+          <a href='@Link.To(parameters: "category=" + cat.String("UrlKey"))'>@cat.String("Name")</a>
         }
       </span>
     }
@@ -51,26 +49,28 @@
   @* Body of the article *@
   <div class="app-news5-content">
     @* Show image or placeholder *@
-    @if (article.Lightbox) {
-      var lbPic = Kit.Image.Picture(imageField, settings: "Lightbox");
-      @:<a class="fancybox" data-src="@imageField" data-srcset="@lbPic.SrcSet" data-sizes="@lbPic.Sizes" data-preload="false" data-app-news5-fancybox="@CmsContext.Module.Id" title="@article.Title">
+    @if (article.Bool("Lightbox")) {
+      var lbPic = Kit.Image.Picture(imageField, settings: "Lightbox", imgAltFallback: title);
+      @:<a class="fancybox" data-src="@imageField" data-srcset="@lbPic.SrcSet" data-sizes="@lbPic.Sizes" data-preload="false" data-app-news5-fancybox="@MyContext.Module.Id" title="@lbPic.Alt">
     }
       <div class="app-news5-detail-img">
         <span class="overlay"></span>
-        @Kit.Image.Picture(imageField, settings: imgSettings, imgAltFallback: article.Title)
+        @Kit.Image.Picture(imageField, settings: imgSettings, imgAltFallback: title)
       </div>
-    @if (article.Lightbox) {
+    @if (article.Bool("Lightbox")) {
       @:</a>
     }
 
     @* Teaser *@
-    @if (article.ShowTeaserInDetail) {
-      <p class="app-news5-detail-teaser">@Html.Raw(Tags.Nl2Br(article.Teaser))</p>
+    @if (article.Bool("ShowTeaserInDetail")) {
+      <p class="app-news5-detail-teaser">
+          @article.Html("Teaser", container:"")
+       </p>
     }
 
-    @* Body of the post - will also create inner content blocks / apps *@
+    @* Body of the post - will also create inner info blocks / apps *@
     <div class="app-news5-detail-body">
-      @Kit.Render.All(article, field: "InnerContent", merge: article.Content)
+      @Kit.Render.All(article, field: "InnerContent", merge: article.String("Content"))
     </div>
   </div>
 </div>

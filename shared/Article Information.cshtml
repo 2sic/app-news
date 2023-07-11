@@ -1,26 +1,25 @@
-@inherits Custom.Hybrid.Razor14
+@inherits Custom.Hybrid.RazorPro
 @using ToSic.Razor.Blade;
 
 @{
-  var helpers = CreateInstance("Helpers.cs");
-  var article = DynamicModel.Article;
-  var displayCategories = App.Settings.ActivateCategories && AsList(article.Categories as object).Any();
+  var article = MyModel.Item("Article");
+  var helpers = GetCode("Helpers.cs");
+  var displayCategories = App.Settings.Bool("ActivateCategories") && AsItems(article.Children("Categories")).Any();
 }
 
 <div class="app-text">
   @* "Will publish" / "expired" info for admin *@
   @helpers.AdminArticleInformation(article)
 
-  @((Tag.Custom(DynamicModel.HeadingType)).Class("app-news5-list").Wrap(article.Title))
-  <span class='app-news5-date @(displayCategories ? "app-date-border" : "")'>@article.Date.ToString("d")</span>
+  @((Tag.Custom(MyModel.String("HeadingType"))).Class("app-news5-list").Wrap(article.String("Title")))
+  <span class='app-news5-date @(displayCategories ? "app-date-border" : "")'>@article.DateTime("Date").ToString("d")</span>
   @if (displayCategories) {
     <span class="app-news5-categories">
-      @foreach (var cat in article.Categories) {
-        <a href='@Link.To(parameters: "category=" + cat.UrlKey)'>@cat.Name</a>
+      @foreach (var cat in article.Children("Categories")) {
+        <a href='@Link.To(parameters: "category=" + cat.String("UrlKey"))'>@cat.String("Name")</a>
       }
     </span>
   }
-  @* <p>@Html.Raw(Tags.Nl2Br(article.Teaser))</p> *@
   <p>@Html.Raw(Tags.Nl2Br(@helpers.TeaserAssembly(article)))</p>
 </div>
-<span class="app-news5-readmore">@Resources.LabelReadMore</span>
+<span class="app-news5-readmore">@App.Resources.String("LabelReadMore")</span>

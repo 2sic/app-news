@@ -1,13 +1,12 @@
-@inherits Custom.Hybrid.Razor14
+@inherits Custom.Hybrid.RazorPro
 @using ToSic.Razor.Blade;
 @{
-  var article = DynamicModel.Article;
+  var article = MyModel.Item("Article");
   var imageField = article.Field("Image");
-  var image = Text.Has(article.Image) ? imageField : Resources.PlaceholderMissingImage;
-  var altText = Text.Has(article.Image) ? Text.First(imageField.Metadata.Description, article.Title) : article.Title;
+  var image = Text.Has(article.String("Image")) ? imageField : App.Resources.Field("PlaceholderMissingImage");
 }
 
 <div class="app-news5-img">
   <span class="overlay"></span>
-  @Kit.Image.Picture(image, width:"800", settings: "Content", imgAltFallback: altText)
+  @Kit.Image.Picture(image, width:"800", settings: "Content", imgAltFallback: article.String("Title"))
 </div>

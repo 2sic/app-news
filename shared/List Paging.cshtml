@@ -1,11 +1,12 @@
-@inherits Custom.Hybrid.Razor14
+@inherits Custom.Hybrid.RazorPro
 @using ToSic.Razor.Blade;
+
 @{
-  var pages = AsList(Data["Paging"]).FirstOrDefault();
-  int pageNumber = (int)pages.PageNumber;
+  var pages = AsItems(MyData["Paging"]).FirstOrDefault();
+  int pageNumber = (int)pages.Int("PageNumber");
 }
 
-@if (pages.PageCount > 1) {
+@if (pages.Int("PageCount") > 1) {
   <nav>
     <ul class="pagination justify-content-center">
       @* Show previous button *@
@@ -16,14 +17,14 @@
       </li>
 
       @* Show button for every page *@
-      @for (int i = 1; i <= pages.PageCount; i++) {
+      @for (int i = 1; i <= pages.Int("PageCount"); i++) {
         <li class='page-item @(i == pageNumber ? "active" : "")'>
           <a class="page-link" href="@LinkToPageNumber(i)">@i</a>
         </li>
       }
 
       @* Show next button *@
-      <li class='page-item @(pageNumber == pages.PageCount ? "disabled" : "")'>
+      <li class='page-item @(pageNumber == pages.Int("PageCount") ? "disabled" : "")'>
         <a class="page-link" href="@LinkToPageNumber(pageNumber + 1)">
           <span aria-hidden="true">&raquo;</span>
         </a>
@@ -36,11 +37,11 @@
   /**
   * Generate a paging-link, preserving current category parameters
   */
-  public dynamic LinkToPageNumber(int pageNumber){
-    var filteredCategory = AsList(Data["Category"]).FirstOrDefault();
+  public object LinkToPageNumber(int pageNumber) {
+    var filteredCategory = AsItems(MyData["Category"]).FirstOrDefault();
 
     var categoryParam = filteredCategory != null
-      ? "category=" + filteredCategory.UrlKey + "&"
+      ? "category=" + filteredCategory.String("UrlKey") + "&"
       : "";
 
     return Link.To(parameters: categoryParam + "page=" + pageNumber);

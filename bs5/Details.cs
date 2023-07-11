@@ -1,12 +1,12 @@
 using ToSic.Razor.Blade;
 using System;
 
-public class Details: Custom.Hybrid.Code14
+public class Details: Custom.Hybrid.CodePro
 {
 
   // Shows a back to list button
-  public dynamic BackToListButton() {
-    return Tag.A(App.Resources.LabelBackToList).Class("btn").Class("btn-outline-primary").Class("app-backtolist").Href(Link.To().ToString());
+  public object BackToListButton() {
+    return Tag.A(App.Resources.String("LabelBackToList")).Class("btn").Class("btn-outline-primary").Class("app-backtolist").Href(Link.To().ToString());
   }
 }
 

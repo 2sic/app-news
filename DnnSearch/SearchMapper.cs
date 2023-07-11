@@ -12,25 +12,25 @@ You can also inherit from a DynamicCode base class (like Code12) if you need mor
 
 For more guidance on search customizations, see https://r.2sxc.org/customize-search
 */
-public class SearchMapper : Custom.Hybrid.Code14, ICustomizeSearch
+public class SearchMapper : Custom.Hybrid.CodePro, ICustomizeSearch
 {
-    /// <summary>
-    /// Populate the search
-    /// </summary>
-    /// <param name="searchInfos">Dictionary containing the streams and items in the stream for this search.</param>
-    /// <param name="moduleInfo">Module information with which you can find out what page it's on etc.</param>
-    /// <param name="beginDate">Last time the indexer ran - because the data you will get is only what was modified since.</param>
-    public void CustomizeSearch(Dictionary<string, List<ISearchItem>> searchInfos, IModule moduleInfo, DateTime beginDate)
+  /// <summary>
+  /// Populate the search
+  /// </summary>
+  /// <param name="searchInfos">Dictionary containing the streams and items in the stream for this search.</param>
+  /// <param name="moduleInfo">Module information with which you can find out what page it's on etc.</param>
+  /// <param name="beginDate">Last time the indexer ran - because the data you will get is only what was modified since.</param>
+  public void CustomizeSearch(Dictionary<string, List<ISearchItem>> searchInfos, IModule moduleInfo, DateTime beginDate)
+  {
+    // Set this to true if you want to see logs of this search in the insights
+    // Only do this while developing, otherwise you'll flood the logs and never see the important parts
+    Log.Preserve = false;
+    
+    foreach (var si in searchInfos["News"])
     {
-        // Set this to true if you want to see logs of this search in the insights
-        // Only do this while developing, otherwise you'll flood the logs and never see the important parts
-        Log.Preserve = false;
-        
-        foreach (var si in searchInfos["News"])
-        {
-            var entity = AsDynamic(si.Entity);
-            si.Title = "News: " + entity.Title + moduleInfo.Id;
-            si.QueryString = "details=" + entity.UrlKey;
-        }
+      var entity = AsItem(si.Entity);
+      si.Title = "News: " + entity.Title;
+      si.QueryString = "details=" + entity.String("UrlKey");
     }
+  }
 }

@@ -1,52 +1,43 @@
-using ToSic.Razor.Blade;
 using System;
 using System.Globalization;
+using ToSic.Razor.Blade;
+using ToSic.Sxc.Data;
 
-public class Helpers: Custom.Hybrid.Code14
+public class Helpers: Custom.Hybrid.CodePro
 {
   // @* Show info to admin whether the article will publish or is already expired *@
-  public dynamic AdminArticleInformation(dynamic article) {
-    if (Edit.Enabled && article.ShowFrom != null && article.ShowFrom.Date > DateTime.Now.Date) {
-      return Tag.Div(App.Resources.LabelShowFromPill + " " + article.ShowFrom.Date.ToString("d")).Class("alert").Class("alert-warning");
-    }
+  public IHtmlTag AdminArticleInformation(ITypedItem article) {
+    if (MyUser.IsContentAdmin && article.Get("ShowFrom") != null && article.DateTime("ShowFrom").Date > DateTime.Now.Date)
+      return Tag.Div(App.Resources.String("LabelShowFromPill") + " " + article.DateTime("ShowFrom").Date.ToString("d")).Class("alert").Class("alert-warning");
 
-    if (Edit.Enabled && article.ShowTo != null && article.ShowTo.Date <= DateTime.Now.Date) {
-      return Tag.Div(App.Resources.LabelShowToPill + " " + article.ShowTo.Date.ToString("d")).Class("alert").Class("alert-danger");
-    }
+    if (MyUser.IsContentAdmin && article.Get("ShowTo") != null && article.DateTime("ShowTo").Date <= DateTime.Now.Date)
+      return Tag.Div(App.Resources.String("LabelShowToPill") + " " + article.DateTime("ShowTo").Date.ToString("d")).Class("alert").Class("alert-danger");
 
     return Tag.Div();
   }
 
   // @* Show warning that the details page needs to be changed *@
-  public dynamic AdminDetailsPageConfigWarning() {
-    if (App.Settings.DetailsPageShowWarning) {
-      return Tag.Div(App.Resources.LabelAdminDetailPageWarning).Class("alert").Class("alert-danger");
-    }
-
-    return Tag.Div();
+  public IHtmlTag AdminDetailsPageConfigWarning() {
+    return App.Settings.Bool("DetailsPageShowWarning")
+      ? Tag.Div().Class("alert").Class("alert-danger")
+        .Attr(Kit.Toolbar.Empty().AppSettings())
+        .Wrap(App.Resources.String("LabelAdminDetailPageWarning"))
+      : Tag.Div();
   }
 
   /**
   * Returns a safe url to a post details page
   */
-  public dynamic LinkToDetailsPage(dynamic article) {
-    var detailsPage = AsDynamic(App.Settings).Get("DetailsPage", convertLinks: false);
+  public string LinkToDetailsPage(ITypedItem article) {
+    var detailsPage = App.Settings.String("DetailsPage");
+
     if (!detailsPage.Contains(":")) return "";
     var detailsPageId = int.Parse(detailsPage.Split(':')[1]);
 
-    return Link.To(pageId: detailsPageId, parameters: "details=" + article.UrlKey);
+    return Link.To(pageId: detailsPageId, parameters: "details=" + article.String("UrlKey"));
   }
 
-  public string TeaserAssembly(dynamic article) {
-    var teaser = article.Teaser;
-    var mainText = article.Content;
-
-    if (Text.Has(teaser)) {
-      return teaser;
-    } else {
-      
-      teaser = Text.Ellipsis(Kit.Scrub.All(mainText), 100);
-      return teaser;
-    }
+  public string TeaserAssembly(ITypedItem article) {
+    return Text.First(article.String("Teaser"), Text.Ellipsis(article.String("Content", scrubHtml: true), 100));
   }
 }

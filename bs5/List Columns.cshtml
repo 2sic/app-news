@@ -1,51 +1,60 @@
-@inherits Custom.Hybrid.Razor14
+@inherits Custom.Hybrid.RazorPro
 @using ToSic.Razor.Blade;
 
 @{
+  var listContent = MyItem;
+
   // Get some helper commands for later on
-  var helpers = CreateInstance("../shared/Helpers.cs");
+  var helpers = GetCode("../shared/Helpers.cs");
 
-  var filteredCategory = AsList(Data["Category"]).FirstOrDefault();
+  var filteredCategory = AsItems(MyData["Category"]).FirstOrDefault();
 
-  var articleToolbar = Kit.Toolbar.Default().Layout("-").Delete();
+  var mainToolbar = Kit.Toolbar.Default()
+    .Edit(operation: "%", tweak: b => b.Note("Edit display settings"))
+    .New("News", tweak: b => b.Prefill("Date=" + DateTime.Now.ToString("yyyy-MM-dd")).Position(1).Color("#15585F").Note("Create a new post"))
+    .Data("News", tweak: b => b.Position(2).Color("#15585F").Note("Manage posts"));
+
+  var articleToolbar = Kit.Toolbar.Empty()
+    .Settings(hover:"left", autoAddMore:"start")
+    .Edit(tweak: b => b.Color("#15585F"))
+    .Delete(tweak: b => b.Color("gray"));
 
   var isBs3 = Kit.Css.Is("bs3");
   var col = isBs3 ? "col-xs-12 col-sm-6 col-lg-4" : "col-12 col-md-6 col-lg-4";
 }
 
-@* Show Toolbar Menu if admin *@
-@if (Edit.Enabled) {
-  @Html.Partial("../shared/Admin.cshtml", new { Content = Content})
+@* Show Warning if admin *@
+@if (MyUser.IsContentAdmin) {
   @helpers.AdminDetailsPageConfigWarning()
 }
 
-<div class="app-news5 app-news5-list">
+<div class="app-news5 app-news5-list" @mainToolbar.For(MyItem)>
   @* Show title *@
   <h1 class="mb-3">
-    @(filteredCategory != null ? filteredCategory.PageTitle : Content.Title)
+    @(filteredCategory != null ? filteredCategory.String("PageTitle"): listContent.String("Title"))
   </h1>
 
   @* List the articles *@
   <div class="row">
-    @foreach (var article in AsList(Data["News"])) {
+    @foreach (var article in AsItems(MyData["News"])) {
       <div class="@col" @articleToolbar.For(article)>
         <div class="app-news5-details-link">
           <a class="link-overlay" href="@helpers.LinkToDetailsPage(article)"></a>
 
           @* Show image or placeholder *@
           <div class="app-news5-img-wrapper mb-3">
-            @Html.Partial("../shared/Article Image.cshtml", new { Article = article })
+            @Html.Partial("../shared/Article Image.cshtml", new { article })
           </div>
 
           @* Show Title, Date, Category, Teaser and read more button *@
-          @Html.Partial("../shared/Article Information.cshtml", new { Article = article, HeadingType = "h3" })
+          @Html.Partial("../shared/Article Information.cshtml", new { article, HeadingType = "h3" })
         </div>
       </div>
     }
   </div>
 
   @* Show pagination if configured *@
-  @if (Content.ShowPagination == true) {
+  @if (listContent.Bool("ShowPagination") == true) {
     @Html.Partial("../shared/List Paging.cshtml")
   }
 </div>
