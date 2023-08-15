@@ -2,7 +2,8 @@
 @using ToSic.Razor.Blade;
 
 @{
-  var imgSettings = AsStack(AllSettings.Dyn.Images.NewsDetails, "Content");
+  // Combine Image-Resize settings for "NewsDetails" to fallback on any other settings using default "Content"
+  var imgSettings = AsStack(AllSettings.Get("Images.NewsDetails"), AllSettings.Get("Images.Content"));
   // Get some helper commands for later on
   var helpers = GetCode("../shared/Helpers.cs");
   var detailsCode = GetCode("Details.cs"); 
