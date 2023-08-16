@@ -1,11 +1,15 @@
-@inherits Custom.Hybrid.RazorPro
+@inherits Custom.Hybrid.RazorTyped
 @using ToSic.Razor.Blade;
 
 @{
   var filteredCategory = MyModel.Item("FilteredCategory");
   var selectedId = filteredCategory == null ? -1 : filteredCategory.Int("Id");
+
+  var catToolbar = Kit.Toolbar.Empty()
+    .Settings(hover: "left")
+    .Data("Category");
 }
-<div class="app-news5-catinfo">
+<div class="app-news5-catinfo" @catToolbar>
   <span>
     <a class='btn btn-primary btn-sm @(selectedId == -1 ? "active" : "")' href="@Link.To()">
       @App.Resources.String("LabelCategoryAll")

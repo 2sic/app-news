@@ -3,7 +3,7 @@ using System.Globalization;
 using ToSic.Razor.Blade;
 using ToSic.Sxc.Data;
 
-public class Helpers: Custom.Hybrid.CodePro
+public class Helpers: Custom.Hybrid.CodeTyped
 {
   // @* Show info to admin whether the article will publish or is already expired *@
   public IHtmlTag AdminArticleInformation(ITypedItem article) {
