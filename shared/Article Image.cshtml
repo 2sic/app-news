@@ -7,7 +7,7 @@
 <div class="app-news5-img">
   <span class="overlay"></span>
 
-  @(article.ContainsData("Image")
+  @(article.IsNotEmpty("Image")
       ? article.Picture("Image", width:"800", settings: "Content", imgAltFallback: article.String("Title"))
       : App.Resources.Picture("PlaceholderMissingImage"))
 </div>

@@ -49,14 +49,14 @@
   @* Body of the article *@
   <div class="app-news5-content">
     @* Show image or placeholder *@
-    @if (article.Bool("Lightbox") && article.ContainsData("Image")) {
+    @if (article.Bool("Lightbox") && article.IsNotEmpty("Image")) {
       var lbPic = article.Picture("Image", settings: "Lightbox", imgAltFallback: title);
       @:<a class="fancybox" data-src="@lbPic.Src" data-srcset="@lbPic.SrcSet" data-sizes="@lbPic.Sizes" data-preload="false" data-app-news5-fancybox="@MyContext.Module.Id" title="@lbPic.Alt">
     }
       <div class="app-news5-detail-img">
         <span class="overlay"></span>
 
-        @(article.ContainsData("Image")
+        @(article.IsNotEmpty("Image")
                 ? article.Picture("Image", imgAltFallback: title)
                 : App.Resources.Picture("PlaceholderMissingImage"))
       </div>
