@@ -23,7 +23,6 @@
 
   var title = article.String("Title");
   var displayCategories = App.Settings.Bool("ActivateCategories") && (article.Children("Categories")).Any();
-  var imageField = Text.Has(article.String("Image")) ? article.Field("Image") : App.Resources.Field("PlaceholderMissingImage");
   Kit.Page.AddMeta("description", article.String("Teaser", scrubHtml: true));
   Kit.Page.SetTitle(article.DateTime("Date").ToString("d") + " - " + title);
 
@@ -50,13 +49,16 @@
   @* Body of the article *@
   <div class="app-news5-content">
     @* Show image or placeholder *@
-    @if (article.Bool("Lightbox")) {
-      var lbPic = Kit.Image.Picture(imageField, settings: "Lightbox", imgAltFallback: title);
-      @:<a class="fancybox" data-src="@imageField" data-srcset="@lbPic.SrcSet" data-sizes="@lbPic.Sizes" data-preload="false" data-app-news5-fancybox="@MyContext.Module.Id" title="@lbPic.Alt">
+    @if (article.Bool("Lightbox") && article.ContainsData("Image")) {
+      var lbPic = article.Picture("Image", settings: "Lightbox", imgAltFallback: title);
+      @:<a class="fancybox" data-src="@lbPic.Src" data-srcset="@lbPic.SrcSet" data-sizes="@lbPic.Sizes" data-preload="false" data-app-news5-fancybox="@MyContext.Module.Id" title="@lbPic.Alt">
     }
       <div class="app-news5-detail-img">
         <span class="overlay"></span>
-        @Kit.Image.Picture(imageField, settings: imgSettings, imgAltFallback: title)
+
+        @(article.ContainsData("Image")
+                ? article.Picture("Image", imgAltFallback: title)
+                : App.Resources.Picture("PlaceholderMissingImage"))
       </div>
     @if (article.Bool("Lightbox")) {
       @:</a>

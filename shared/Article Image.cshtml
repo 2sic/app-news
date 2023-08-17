@@ -2,11 +2,12 @@
 @using ToSic.Razor.Blade;
 @{
   var article = MyModel.Item("Article");
-  var imageField = article.Field("Image");
-  var image = Text.Has(article.String("Image")) ? imageField : App.Resources.Field("PlaceholderMissingImage");
 }
 
 <div class="app-news5-img">
   <span class="overlay"></span>
-  @Kit.Image.Picture(image, width:"800", settings: "Content", imgAltFallback: article.String("Title"))
+
+  @(article.ContainsData("Image")
+      ? article.Picture("Image", width:"800", settings: "Content", imgAltFallback: article.String("Title"))
+      : App.Resources.Picture("PlaceholderMissingImage"))
 </div>

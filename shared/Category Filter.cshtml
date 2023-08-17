@@ -3,7 +3,7 @@
 
 @{
   var filteredCategory = MyModel.Item("FilteredCategory");
-  var selectedId = filteredCategory == null ? -1 : filteredCategory.Int("Id");
+  var selectedId = filteredCategory == null ? -1 : filteredCategory.Int("EntityId");
 
   var catToolbar = Kit.Toolbar.Empty()
     .Settings(hover: "left")
