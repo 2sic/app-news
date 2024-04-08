@@ -51,7 +51,17 @@
     @* Show image or placeholder *@
     @if (article.Bool("Lightbox") && article.IsNotEmpty("Image")) {
       var lbPic = article.Picture("Image", settings: "Lightbox", imgAltFallback: title);
-      @:<a class="fancybox" data-src="@lbPic.Src" data-srcset="@lbPic.SrcSet" data-sizes="@lbPic.Sizes" data-preload="false" data-app-news5-fancybox="@UniqueKey" title="@lbPic.Alt">
+
+      var tags = Kit.HtmlTags;
+      var fancyboxData = tags.RawHtml(
+        tags.Attr("data-srcset", lbPic.SrcSet),
+        tags.Attr("data-sizes", lbPic.Sizes),
+        tags.Attr("data-src", lbPic.Src),
+        tags.Attr("data-preload", false),
+        tags.Attr("data-caption", lbPic.Alt)
+      );
+            
+      @:<a class="fancybox" @fancyboxData data-app-news5-fancybox="@UniqueKey" title="@lbPic.Alt">
     }
       <div class="app-news5-detail-img">
         <span class="overlay"></span>
