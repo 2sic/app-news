@@ -5,9 +5,6 @@
 @{
   var listContent = As<ViewConfiguration>(MyItem);
 
-  // Get some helper commands for later on
-  var helpers = GetCode("../shared/Helpers.cs");
-
   var filteredCategory = AsList<Category>(MyData["Category"]).FirstOrDefault();
   
   var mainToolbar = Kit.Toolbar.Default()
@@ -40,7 +37,7 @@
     @foreach (var article in AsList<News>(MyData["News"])) {
       <div class="@col" @articleToolbar.For(article)>
         <div class="app-news5-details-link">
-          <a class="link-overlay" href="@helpers.LinkToDetailsPage(article)"></a>
+          <a class="link-overlay" href="@LinkToDetailsPage(article)"></a>
           @* Show Title, Date, Category, Teaser and read more button *@
           @Html.Partial("../shared/Article Information.cshtml", new { article, HeadingType = "h3" })
         </div>

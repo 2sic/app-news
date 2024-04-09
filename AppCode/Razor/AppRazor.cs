@@ -38,7 +38,8 @@ namespace AppCode.Razor
     /// </summary>
     public string LinkToDetailsPage(News article)
     {
-      var detailsPage = App.Settings.DetailsPage;
+      // TODO:: Why is use .String("UrlKey") instead of .UrlKey?
+      var detailsPage = App.Settings.String("DetailsPage");
 
       if (!detailsPage.Contains(":")) return "";
       var detailsPageId = int.Parse(detailsPage.Split(':')[1]);
@@ -51,4 +52,9 @@ namespace AppCode.Razor
       return Text.First(article.Teaser, Text.Ellipsis(Kit.Scrub.All(article.Content), 100));
     }
   }
+
+    internal class Todo
+    {
+    }
+
 }

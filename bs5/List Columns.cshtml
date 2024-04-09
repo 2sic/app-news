@@ -5,9 +5,6 @@
 @{
   var listContent = As<ViewConfiguration>(MyItem);
 
-  // Get some helper commands for later on
-  var helpers = GetCode("../shared/Helpers.cs");
-
   var filteredCategory = AsList<Category>(MyData["Category"]).FirstOrDefault();
 
   var mainToolbar = Kit.Toolbar.Default()
@@ -40,9 +37,7 @@
     @foreach (var article in AsList<News>(MyData["News"])) {
       <div class="@col" @articleToolbar.For(article)>
         <div class="app-news5-details-link">
-          @* TODO:: *@
-          <a class="link-overlay" href="@helpers.LinkToDetailsPage(article)"></a>
-
+          <a class="link-overlay" href="@LinkToDetailsPage(article)"></a>
           @* Show image or placeholder *@
           <div class="app-news5-img-wrapper mb-3">
             @Html.Partial("../shared/Article Image.cshtml", article)
