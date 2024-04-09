@@ -3,7 +3,8 @@
 @using AppCode.Data
 
 @{
-  var filteredCategory = MyModel.Item("FilteredCategory");
+  var filteredCategory = As<Category>(MyModel.Item("FilteredCategory"));
+
   var selectedId = filteredCategory == null ? -1 : filteredCategory.Int("EntityId");
 
   var catToolbar = Kit.Toolbar.Empty()
@@ -13,13 +14,13 @@
 <div class="app-news5-catinfo" @catToolbar>
   <span>
     <a class='btn btn-primary btn-sm @(selectedId == -1 ? "active" : "")' href="@Link.To()">
-      @App.Resources.String("LabelCategoryAll")
+      @App.Resources.LabelCategoryAll
     </a>
   </span>
-  @foreach (var cat in AsItems(App.Data["Category"])) {
+  @foreach (var cat in AsList<Category>(App.Data["Category"])) {
     <span>
-      <a class='btn btn-primary btn-sm @(cat.Id == selectedId ? " active" : "")' href='@Link.To(parameters: "category=" + cat.String("UrlKey"))'>
-        @cat.String("Name")
+      <a class='btn btn-primary btn-sm @(cat.Id == selectedId ? " active" : "")' href='@Link.To(parameters: "category=" + cat.UrlKey)'>
+        @cat.Name
       </a>
     </span>
   }

@@ -3,12 +3,12 @@
 @using AppCode.Data
 
 @{
-  var listContent = MyItem;
+  var listContent = As<ViewConfiguration>(MyItem);
 
   // Get some helper commands for later on
   var helpers = GetCode("../shared/Helpers.cs");
 
-  var filteredCategory = AsItems(MyData["Category"]).FirstOrDefault();
+  var filteredCategory = AsList<Category>(MyData["Category"]).FirstOrDefault();
 
   var mainToolbar = Kit.Toolbar.Default()
     .Edit(operation: "%", tweak: b => b.Note("Edit display settings"))
@@ -26,28 +26,31 @@
 
 @* Show Warning if admin *@
 @if (MyUser.IsContentAdmin) {
-  @helpers.AdminDetailsPageConfigWarning()
+  @AdminDetailsPageConfigWarning()
 }
 
 <div class="app-news5 app-news5-list" @mainToolbar.For(MyItem)>
   @* Show title *@
   <h1 class="mb-3">
-    @(filteredCategory != null ? filteredCategory.String("PageTitle"): listContent.String("Title"))
+    @(filteredCategory != null ? filteredCategory.PageTitle: listContent.Title)
   </h1>
 
   @* List the articles *@
   <div class="row">
-    @foreach (var article in AsItems(MyData["News"])) {
+    @foreach (var article in AsList<News>(MyData["News"])) {
       <div class="@col" @articleToolbar.For(article)>
         <div class="app-news5-details-link">
+          @* TODO:: *@
           <a class="link-overlay" href="@helpers.LinkToDetailsPage(article)"></a>
 
           @* Show image or placeholder *@
           <div class="app-news5-img-wrapper mb-3">
+          @* TODO:: *@
             @Html.Partial("../shared/Article Image.cshtml", new { article })
           </div>
 
           @* Show Title, Date, Category, Teaser and read more button *@
+          @* TODO:: *@
           @Html.Partial("../shared/Article Information.cshtml", new { article, HeadingType = "h3" })
         </div>
       </div>
@@ -55,7 +58,7 @@
   </div>
 
   @* Show pagination if configured *@
-  @if (listContent.Bool("ShowPagination") == true) {
+  @if (listContent.ShowPagination == true) {
     @Html.Partial("../shared/List Paging.cshtml")
   }
 </div>

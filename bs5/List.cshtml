@@ -44,7 +44,7 @@
 
   @* List the articles *@
   <div class="row">
-    @foreach (var article in AsList<News>(MyData["News"]) ) {
+    @foreach (var article in AsList<News>(MyData["News"])) {
       <div class="@col12" @articleToolbar.For(article)>
         <div class="app-news5-details-link">
           @* TODO:: Type Error  *@

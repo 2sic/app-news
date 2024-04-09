@@ -3,11 +3,11 @@
 @using AppCode.Data
 
 @{
-  var pages = AsItems(MyData["Paging"]).FirstOrDefault();
-  int pageNumber = (int)pages.Int("PageNumber");
+    var pages = AsList<Paging>(MyData["Paging"]).FirstOrDefault();
+    int pageNumber = (int)pages.PageNumber;
 }
 
-@if (pages.Int("PageCount") > 1) {
+@if (pages.PageCount > 1) {
   <nav>
     <ul class="pagination justify-content-center">
       @* Show previous button *@
@@ -18,14 +18,14 @@
       </li>
 
       @* Show button for every page *@
-      @for (int i = 1; i <= pages.Int("PageCount"); i++) {
+      @for (int i = 1; i <= pages.PageCount; i++) {
         <li class='page-item @(i == pageNumber ? "active" : "")'>
           <a class="page-link" href="@LinkToPageNumber(i)">@i</a>
         </li>
       }
 
       @* Show next button *@
-      <li class='page-item @(pageNumber == pages.Int("PageCount") ? "disabled" : "")'>
+      <li class='page-item @(pageNumber == pages.PageCount ? "disabled" : "")'>
         <a class="page-link" href="@LinkToPageNumber(pageNumber + 1)">
           <span aria-hidden="true">&raquo;</span>
         </a>
@@ -39,10 +39,10 @@
   * Generate a paging-link, preserving current category parameters
   */
   public object LinkToPageNumber(int pageNumber) {
-    var filteredCategory = AsItems(MyData["Category"]).FirstOrDefault();
+    var filteredCategory = AsList<Category>(MyData["Category"]).FirstOrDefault();
 
     var categoryParam = filteredCategory != null
-      ? "category=" + filteredCategory.String("UrlKey") + "&"
+      ? "category=" + filteredCategory.UrlKey + "&"
       : "";
 
     return Link.To(parameters: categoryParam + "page=" + pageNumber);

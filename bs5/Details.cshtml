@@ -1,30 +1,28 @@
-@inherits AppCode.Razor.AppRazor
+@inherits AppCode.Razor.DetailRazorBase
 @using ToSic.Razor.Blade
 @using AppCode.Data
+@using ToSic.Sxc.Data
 
 @{
   // Combine Image-Resize settings for "NewsDetails" to fallback on any other settings using default "Content"
   var imgSettings = AsStack(AllSettings.Get("Images.NewsDetails"), AllSettings.Get("Images.Content"));
-  // Get some helper commands for later on
-  var helpers = GetCode("../shared/Helpers.cs");
-  var detailsCode = GetCode("Details.cs"); 
 
-  var article = AsItems(MyData).FirstOrDefault();
+  var article = AsList<News>(MyData).FirstOrDefault();
 
   @* Show article not found notification and stop processing *@
   if (article == null) {
-    <h1>@App.Resources.String("LabelEventNotExists")</h1>
-    <p>@App.Resources.String("LabelEventNotExistsText")</p>
+    <h1>@App.Resources.LabelEventNotExists</h1>
+    <p>@App.Resources.LabelEventNotExistsText</p>
 
     @* Show "Back to list" button *@
-    @detailsCode.BackToListButton()
+    @BackToListButton()
     Kit.Page.SetHttpStatus(404);
     return;
   }
 
-  var title = article.String("Title");
-  var displayCategories = App.Settings.Bool("ActivateCategories") && (article.Children("Categories")).Any();
-  Kit.Page.AddMeta("description", article.String("Teaser", scrubHtml: true));
+  var title = article.Title;
+  var displayCategories = App.Settings.ActivateCategories && (article.Categories).Any();
+  Kit.Page.AddMeta("description", Kit.Scrub.All(article.Teaser));
   Kit.Page.SetTitle(article.DateTime("Date").ToString("d") + " - " + title);
 
   var articleToolbar = Kit.Toolbar.Default().Layout("-").Delete();
@@ -34,13 +32,13 @@
   @* Head of the article *@
   <div class="app-news5-content">
     @* "Will publish"/"expired" notes for admin *@
-    @helpers.AdminArticleInformation(article)
+    @AdminArticleInformation(article)
     <h2>@title</h2>
     @* Show Date and categories *@
-    <span class='app-news5-date @(displayCategories ? "app-news5-date-border" : "")'>@article.DateTime("Date").ToString("d")</span>
+    <span class='app-news5-date @(displayCategories ? "app-news5-date-border" : "")'>@article.Date.ToString("d")</span>
     @if (displayCategories) {
       <span class="app-news5-categories">
-        @foreach (var cat in article.Children("Categories")) {
+        @foreach (var cat in article.Categories) {
           <a href='@Link.To(parameters: "category=" + cat.String("UrlKey"))'>@cat.String("Name")</a>
         }
       </span>
@@ -50,19 +48,10 @@
   @* Body of the article *@
   <div class="app-news5-content">
     @* Show image or placeholder *@
-    @if (article.Bool("Lightbox") && article.IsNotEmpty("Image")) {
+    @if (article.Lightbox && article.IsNotEmpty("Image")) {
       var lbPic = article.Picture("Image", settings: "Lightbox", imgAltFallback: title);
-
-      var tags = Kit.HtmlTags;
-      var fancyboxData = tags.RawHtml(
-        tags.Attr("data-srcset", lbPic.SrcSet),
-        tags.Attr("data-sizes", lbPic.Sizes),
-        tags.Attr("data-src", lbPic.Src),
-        tags.Attr("data-preload", false),
-        tags.Attr("data-caption", lbPic.Alt)
-      );
             
-      @:<a class="fancybox" @fancyboxData data-app-news5-fancybox="@UniqueKey" title="@lbPic.Alt">
+      @:<a class="fancybox" @GetFancyboxData(lbPic) data-app-news5-fancybox="@UniqueKey" title="@lbPic.Alt">
     }
       <div class="app-news5-detail-img">
         <span class="overlay"></span>
@@ -71,12 +60,12 @@
                 ? article.Picture("Image", imgAltFallback: title)
                 : App.Resources.Picture("PlaceholderMissingImage"))
       </div>
-    @if (article.Bool("Lightbox")) {
+    @if (article.Lightbox) {
       @:</a>
     }
 
     @* Teaser *@
-    @if (article.Bool("ShowTeaserInDetail")) {
+    @if (article.ShowTeaserInDetail) {
       <p class="app-news5-detail-teaser">
           @article.Html("Teaser", container:"")
        </p>
@@ -84,12 +73,12 @@
 
     @* Body of the post - will also create inner info blocks / apps *@
     <div class="app-news5-detail-body">
-      @Kit.Render.All(article, field: "InnerContent", merge: article.String("Content"))
+      @Kit.Render.All(article, field: "InnerContent", merge: article.Content)
     </div>
   </div>
 </div>
 
 @* Show "Back to list" button *@
-@detailsCode.BackToListButton()
+@BackToListButton()
 
 @Html.Partial("./Assets.cshtml", new { scripts = true} )
