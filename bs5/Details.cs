@@ -1,5 +1,6 @@
 using ToSic.Razor.Blade;
 using System;
+using AppCode.Data;
 
 public class Details: Custom.Hybrid.CodeTyped
 {
