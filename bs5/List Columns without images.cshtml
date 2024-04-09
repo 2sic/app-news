@@ -40,11 +40,8 @@
     @foreach (var article in AsList<News>(MyData["News"])) {
       <div class="@col" @articleToolbar.For(article)>
         <div class="app-news5-details-link">
-          @* TODO:: *@
           <a class="link-overlay" href="@helpers.LinkToDetailsPage(article)"></a>
           @* Show Title, Date, Category, Teaser and read more button *@
-          @* TODO:: *@
-
           @Html.Partial("../shared/Article Information.cshtml", new { article, HeadingType = "h3" })
         </div>
       </div>

@@ -45,12 +45,10 @@
 
           @* Show image or placeholder *@
           <div class="app-news5-img-wrapper mb-3">
-          @* TODO:: *@
-            @Html.Partial("../shared/Article Image.cshtml", new { article })
+            @Html.Partial("../shared/Article Image.cshtml", article)
           </div>
 
           @* Show Title, Date, Category, Teaser and read more button *@
-          @* TODO:: *@
           @Html.Partial("../shared/Article Information.cshtml", new { article, HeadingType = "h3" })
         </div>
       </div>

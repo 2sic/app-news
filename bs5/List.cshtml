@@ -52,12 +52,10 @@
           <div class="row">
             <div class="@cl">
               @* Show image or placeholder *@
-              @* TODO:: *@
-              @Html.Partial("../shared/Article Image.cshtml", new { article })
+              @Html.Partial("../shared/Article Image.cshtml",  article)
             </div>
             <div class="@col">
               @* Show Title, Date, Category, Teaser and read more link *@
-              @* TODO:: *@
               @Html.Partial("../shared/Article Information.cshtml", new { article, HeadingType = "h2" })
             </div>
           </div>

@@ -1,15 +1,15 @@
-@inherits AppCode.Razor.AppRazor
-@using ToSic.Razor.Blade
+@inherits AppCode.Razor.AppRazor<News>
+@using AppCode
 @using AppCode.Data
 
 @{
-  var article = MyModel.Item("Article");
+  var article = Model; 
 }
 
 <div class="app-news5-img">
   <span class="overlay"></span>
 
   @(article.IsNotEmpty("Image")
-      ? article.Picture("Image", width:"800", settings: "Content", imgAltFallback: article.String("Title"))
+      ? article.Picture("Image", width:"800", settings: "Content", imgAltFallback: article.Title)
       : App.Resources.Picture("PlaceholderMissingImage"))
 </div>
