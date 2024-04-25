@@ -6,11 +6,11 @@
 
 A standard news / announcements app to use with 2sxc
 
-| Aspect              | Status | Comments or Version |
-| ------------------- | :----: | ------------------- |
-| 2sxc                | ✅    | requires 2sxc v17.06.02
+| Aspect              | Status | Comments or Version
+| ------------------- | :----: | -------------------
+| 2sxc                | ✅    | requires 2sxc v17.07.00
 | Dnn                 | ✅    | For v9.6.1+
-| Oqtane 2            | ✅    | Requires v04.00+
+| Oqtane              | ✅    | Requires v04.00+
 | No jQuery           | ✅    |
 | Live Demo           | ➖    |
 | Install Checklist   | ✅    | See [Installation](https://azing.org/2sxc/r/Ro8wsQG3) on [azing.org](https://azing.org/2sxc)
@@ -64,3 +64,5 @@ If you want to customize the CSS, you will usually follow the ["Create Custom St
   * everything typed
 * v05.04.17 2024-04
   * strong typed
+  * Auto Generated Class
+  * Typed MyItem

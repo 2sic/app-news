@@ -14,7 +14,7 @@ namespace AppCode.Razor
     /// <summary>
     /// Shows a back to list button
     /// </summary>
-    public object BackToListButton()
+    public IHtmlTag BackToListButton()
     {
       return Tag.A(App.Resources.LabelBackToList).Class("btn").Class("btn-outline-primary").Class("app-backtolist").Href(Link.To().ToString());
     }
