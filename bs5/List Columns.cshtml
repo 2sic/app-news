@@ -3,22 +3,28 @@
 @using AppCode.Data
 
 @{
+  // Get the view configuration as List Content
   var listContent = As<ViewConfiguration>(MyItem);
 
+  // Get the first category from the list of categories
   var filteredCategory = AsList<Category>(MyData["Category"]).FirstOrDefault();
-
+  
+  // Toolbar for the main list
   var mainToolbar = Kit.Toolbar.Default()
     .Edit(operation: "%", tweak: b => b.Note("Edit display settings"))
     .New("News", tweak: b => b.Prefill("Date=" + DateTime.Now.ToString("yyyy-MM-dd")).Position(1).Color("#15585F").Note("Create a new post"))
     .Data("News", tweak: b => b.Position(2).Color("#15585F").Note("Manage posts"));
 
+  // Toolbar for each article
   var articleToolbar = Kit.Toolbar.Empty()
     .Settings(hover:"left", autoAddMore:"start")
     .Edit(tweak: b => b.Color("#15585F"))
     .Delete(tweak: b => b.Color("gray"));
+  
+  var col = Kit.Css.Is("bs3") ? "col-xs-12 col-sm-6 col-lg-4" : "col-12 col-md-6 col-lg-4";
 
-  var isBs3 = Kit.Css.Is("bs3");
-  var col = isBs3 ? "col-xs-12 col-sm-6 col-lg-4" : "col-12 col-md-6 col-lg-4";
+  // Check if the view is an image view or not
+  var isImageView = MyView.Name == "Columns" && MyView.Name != "Columns without Images";
 }
 
 @* Show Warning if admin *@
@@ -38,10 +44,13 @@
       <div class="@col" @articleToolbar.For(article)>
         <div class="app-news5-details-link">
           <a class="link-overlay" href="@LinkToDetailsPage(article)"></a>
-          @* Show image or placeholder *@
-          <div class="app-news5-img-wrapper mb-3">
-            @Html.Partial("../shared/Article Image.cshtml", article)
-          </div>
+
+          @* If Image View show image or placeholder *@
+          @if (isImageView) {
+            <div class="app-news5-img-wrapper mb-3">
+              @Html.Partial("../shared/Article Image.cshtml", article)
+            </div>
+          }
 
           @* Show Title, Date, Category, Teaser and read more button *@
           @Html.Partial("../shared/Article Information.cshtml", new { article, HeadingType = "h3" })

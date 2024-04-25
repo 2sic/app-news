@@ -12,12 +12,10 @@
     </div>
   }
 
-
   // 4. Include styles of the App
   <link rel="stylesheet" href="@MyView.Folder.Url/dist/styles.min.css" @Kit.Page.AssetAttributes()/>
 
   // 5. If we need scripts (only on the single-album-view) activate these. Note that MyModel contains the parameters
-
    if (MyModel.Bool("scripts", required: false)) {
     // Activate turnOn and Fancybox4 - see https://r.2sxc.org/turnon - fancybox4 is a standard WebResources in 2sxc
     Kit.Page.Activate("fancybox4");

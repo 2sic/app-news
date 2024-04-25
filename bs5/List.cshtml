@@ -3,15 +3,20 @@
 @using AppCode.Data
 
 @{
+  
+  // Get the view configuration as List Content
   var listContent = As<ViewConfiguration>(MyItem);
-    
-  var filteredCategory = AsList<Category>(MyData["Category"]).FirstOrDefault();
 
+  // Get the first category from the list of categories  
+  var filteredCategory = AsList<Category>(MyData["Category"]).FirstOrDefault();
+  
+  // Toolbar for the main list
   var mainToolbar = Kit.Toolbar.Default()
     .Edit(operation: "%", tweak: b => b.Note("Edit display settings"))
     .New("News", tweak: b => b.Prefill("Date=" + DateTime.Now.ToString("yyyy-MM-dd")).Position(1).Color("#15585F").Note("Create a new post"))
     .Data("News", tweak: b => b.Position(2).Color("#15585F").Note("Manage posts"));
-
+  
+  // Toolbar for each article
   var articleToolbar = Kit.Toolbar.Empty()
     .Settings(hover:"left", autoAddMore:"start")
     .Edit(tweak: b => b.Color("#15585F"))

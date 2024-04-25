@@ -8,7 +8,7 @@ namespace AppCode.Razor
   /// <summary>
   /// Base Class for Razor Views which have a typed App but don't use the Model or use the typed MyModel.
   /// </summary>
-  public abstract class DetailRazorBase : AppRazor<object>
+  public abstract class DetailRazor : AppRazor<object>
   {
 
     /// <summary>

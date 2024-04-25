@@ -52,9 +52,4 @@ namespace AppCode.Razor
       return Text.First(article.Teaser, Text.Ellipsis(Kit.Scrub.All(article.Content), 100));
     }
   }
-
-    internal class Todo
-    {
-    }
-
 }

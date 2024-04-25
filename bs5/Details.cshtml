@@ -1,4 +1,4 @@
-@inherits AppCode.Razor.DetailRazorBase
+@inherits AppCode.Razor.DetailRazor
 @using ToSic.Razor.Blade
 @using AppCode.Data
 @using ToSic.Sxc.Data
@@ -7,7 +7,8 @@
   // Combine Image-Resize settings for "NewsDetails" to fallback on any other settings using default "Content"
   var imgSettings = AsStack(AllSettings.Get("Images.NewsDetails"), AllSettings.Get("Images.Content"));
 
-  var article = AsList<News>(MyData).FirstOrDefault();
+  // Get the article as a News-Item
+  var article = As<News>(MyData);
 
   @* Show article not found notification and stop processing *@
   if (article == null) {
@@ -23,7 +24,7 @@
   var title = article.Title;
   var displayCategories = App.Settings.ActivateCategories && (article.Categories).Any();
   Kit.Page.AddMeta("description", Kit.Scrub.All(article.Teaser));
-  Kit.Page.SetTitle(article.DateTime("Date").ToString("d") + " - " + title);
+  Kit.Page.SetTitle(article.Date.ToString("d") + " - " + title);
 
   var articleToolbar = Kit.Toolbar.Default().Layout("-").Delete();
 }
@@ -39,7 +40,7 @@
     @if (displayCategories) {
       <span class="app-news5-categories">
         @foreach (var cat in article.Categories) {
-          <a href='@Link.To(parameters: "category=" + cat.String("UrlKey"))'>@cat.String("Name")</a>
+          <a href='@Link.To(parameters: "category=" + cat.UrlKey)'>@cat.Name</a>
         }
       </span>
     }
