@@ -66,3 +66,4 @@ If you want to customize the CSS, you will usually follow the ["Create Custom St
   * strong typed
   * Auto Generated Class
   * Typed MyItem
+  * Merge List Columns and List Columns without Image into List Columns

@@ -4,9 +4,6 @@
 @using ToSic.Sxc.Data
 
 @{
-  // Combine Image-Resize settings for "NewsDetails" to fallback on any other settings using default "Content"
-  var imgSettings = AsStack(AllSettings.Get("Images.NewsDetails"), AllSettings.Get("Images.Content"));
-
   // Get the article as a News-Item
   var article = As<News>(MyData);
 
