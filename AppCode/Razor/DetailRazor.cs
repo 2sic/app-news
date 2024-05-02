@@ -1,5 +1,3 @@
-using AppCode.Data;
-
 using ToSic.Razor.Blade;
 using ToSic.Sxc.Images;
 
@@ -16,7 +14,8 @@ namespace AppCode.Razor
     /// </summary>
     public IHtmlTag BackToListButton()
     {
-      return Tag.A(App.Resources.LabelBackToList).Class("btn").Class("btn-outline-primary").Class("app-backtolist").Href(Link.To().ToString());
+      // TODO: @2dg - prefer using Kit.HtmlTags instead of Tag, I'll explain
+      return Kit.HtmlTags.A(App.Resources.LabelBackToList).Class("btn").Class("btn-outline-primary").Class("app-backtolist").Href(Link.To().ToString());
     }
 
     /// <summary>
@@ -24,16 +23,15 @@ namespace AppCode.Razor
     /// </summary>
     public IHtmlTag GetFancyboxData(IResponsivePicture lbPic)
     {
-
       var tags = Kit.HtmlTags;
 
-      return Kit.HtmlTags.RawHtml(
-      tags.Attr("data-srcset", lbPic.SrcSet),
-      tags.Attr("data-sizes", lbPic.Sizes),
-      tags.Attr("data-src", lbPic.Src),
-      tags.Attr("data-preload", false),
-      tags.Attr("data-caption", lbPic.Alt)
-    );
+      return tags.RawHtml(
+        tags.Attr("data-srcset", lbPic.SrcSet),
+        tags.Attr("data-sizes", lbPic.Sizes),
+        tags.Attr("data-src", lbPic.Src),
+        tags.Attr("data-preload", false),
+        tags.Attr("data-caption", lbPic.Alt)
+      );
     }
   }
 }

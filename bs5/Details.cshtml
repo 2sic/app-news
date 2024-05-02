@@ -8,7 +8,8 @@
   var article = As<News>(MyData);
 
   @* Show article not found notification and stop processing *@
-  if (article == null) {
+  if (article == null)
+  {
     <h1>@App.Resources.LabelEventNotExists</h1>
     <p>@App.Resources.LabelEventNotExistsText</p>
 
@@ -34,7 +35,8 @@
     <h2>@title</h2>
     @* Show Date and categories *@
     <span class='app-news5-date @(displayCategories ? "app-news5-date-border" : "")'>@article.Date.ToString("d")</span>
-    @if (displayCategories) {
+    @if (displayCategories)
+    {
       <span class="app-news5-categories">
         @foreach (var cat in article.Categories) {
           <a href='@Link.To(parameters: "category=" + cat.UrlKey)'>@cat.Name</a>
@@ -46,7 +48,8 @@
   @* Body of the article *@
   <div class="app-news5-content">
     @* Show image or placeholder *@
-    @if (article.Lightbox && article.IsNotEmpty("Image")) {
+    @if (article.Lightbox && article.IsNotEmpty("Image"))
+    {
       var lbPic = article.Picture("Image", settings: "Lightbox", imgAltFallback: title);
             
       @:<a class="fancybox" @GetFancyboxData(lbPic) data-app-news5-fancybox="@UniqueKey" title="@lbPic.Alt">
@@ -63,7 +66,8 @@
     }
 
     @* Teaser *@
-    @if (article.ShowTeaserInDetail) {
+    @if (article.ShowTeaserInDetail)
+    {
       <p class="app-news5-detail-teaser">
           @article.Html("Teaser", container:"")
        </p>

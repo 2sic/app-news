@@ -3,21 +3,26 @@
 @using AppCode.Data
 
 @{
-  var filteredCategory = As<Category>(MyModel.Item("FilteredCategory"));
-
-  var selectedId = filteredCategory == null ? -1 : filteredCategory.Int("EntityId");
+  var filteredCategory = MyModel.Get<Category>("FilteredCategory");
+  var selectedId = filteredCategory?.Id ?? -1;
 
   var catToolbar = Kit.Toolbar.Empty()
     .Settings(hover: "left")
     .Data("Category");
 }
+
+@* Show all category filter buttons *@
 <div class="app-news5-catinfo" @catToolbar>
+  @* Default button to un-select any filters  *@
   <span>
     <a class='btn btn-primary btn-sm @(selectedId == -1 ? "active" : "")' href="@Link.To()">
       @App.Resources.LabelCategoryAll
     </a>
   </span>
-  @foreach (var cat in AsList<Category>(App.Data["Category"])) {
+
+  @* Show categories and highlight currently selected *@
+  @foreach (var cat in App.Data.GetAll<Category>())
+  {
     <span>
       <a class='btn btn-primary btn-sm @(cat.Id == selectedId ? " active" : "")' href='@Link.To(parameters: "category=" + cat.UrlKey)'>
         @cat.Name

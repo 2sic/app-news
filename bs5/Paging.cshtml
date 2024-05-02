@@ -1,0 +1,39 @@
+@inherits AppCode.Razor.PagingRazor
+@using ToSic.Razor.Blade
+@using AppCode.Data
+
+@{
+  var pages = As<Paging>(MyData.GetStream("Paging"));
+  int pageNumber = pages.PageNumber;
+
+  // Exit (don't show pager) if we don't have any pages
+  if (pages.PageCount <= 1) {
+    return;
+  }
+}
+
+<nav>
+  <ul class="pagination justify-content-center">
+    @* Show previous button *@
+    <li class='page-item @(pageNumber == 1 ? "disabled" : "")'>
+      <a class="page-link" href="@LinkToPageNumber(pageNumber - 1)">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
+
+    @* Show button for every page *@
+    @for (int i = 1; i <= pages.PageCount; i++) {
+      <li class='page-item @(i == pageNumber ? "active" : "")'>
+        <a class="page-link" href="@LinkToPageNumber(i)">@i</a>
+      </li>
+    }
+
+    @* Show next button *@
+    <li class='page-item @(pageNumber == pages.PageCount ? "disabled" : "")'>
+      <a class="page-link" href="@LinkToPageNumber(pageNumber + 1)">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>
+  </ul>
+</nav>
+
