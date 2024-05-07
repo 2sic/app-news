@@ -1,3 +1,6 @@
 sh.exe.stackdump
 node_modules
 .temp_cache
+.vs/
+obj/
+bin/

@@ -5,24 +5,23 @@
   @Kit.Page.Activate(condition: Kit.Css.IsUnknown, features: "Bootstrap5")
 
   // 3. Show warning for admin if koi.json is missing 
-  if (Kit.Css.IsUnknown && MyUser.IsSiteAdmin) {
+  if (Kit.Css.IsUnknown && MyUser.IsSiteAdmin)
+  {
     <div class='dnnFormMessage dnnFormWarning'>
       @Html.Raw(Connect.Koi.Messages.CssInformationMissing) <br>
       @Html.Raw(Connect.Koi.Messages.OnlyAdminsSeeThis)
     </div>
   }
 
-  var data = new { groupId = UniqueKey };
-
   // 4. Include styles of the App
   <link rel="stylesheet" href="@MyView.Folder.Url/dist/styles.min.css" @Kit.Page.AssetAttributes()/>
 
-  // 5. If we need scripts (only on the single-album-view) activate these. Note that MyModel contains the parameters
-
-   if (MyModel.Bool("scripts", required: false)) {
+  // 5. When we are on the details page we need Fancebox and we can activate this via script true
+  if (MyModel.Bool("scripts", required: false))
+  {
     // Activate turnOn and Fancybox4 - see https://r.2sxc.org/turnon - fancybox4 is a standard WebResources in 2sxc
     Kit.Page.Activate("fancybox4");
-    Kit.Page.TurnOn("window.appNews5.activateFancybox()", data: data);
+    Kit.Page.TurnOn("window.appNews5.activateFancybox()", data: new { groupId = UniqueKey });
 
     <script type="text/javascript" src="@MyView.Folder.Url/dist/scripts.min.js" @Kit.Page.AssetAttributes(position:"bottom")></script>
   }

@@ -1,0 +1,11 @@
+@inherits AppCode.Razor.AppRazor<News>
+@using AppCode
+@using AppCode.Data
+
+<div class="app-news5-img">
+  <span class="overlay"></span>
+
+  @(Model.IsNotEmpty("Image")
+    ? Model.Picture("Image", width:"800", settings: "Content", imgAltFallback: Model.Title)
+    : App.Resources.Picture("PlaceholderMissingImage"))
+</div>

@@ -1,61 +1,69 @@
-@inherits Custom.Hybrid.RazorTyped
-@using ToSic.Razor.Blade;
+@inherits AppCode.Razor.AppRazor
+@using ToSic.Razor.Blade
+@using AppCode.Data
 
 @{
-  var listContent = MyItem;
+  // Get the view configuration as List Content
+  var listContent = As<ViewConfiguration>(MyItem);
 
-  // Get some helper commands for later on
-  var helpers = GetCode("../shared/Helpers.cs");
-
-  var filteredCategory = AsItems(MyData["Category"]).FirstOrDefault();
-
+  // Get the first category from the list of categories
+  var filteredCategory = As<Category>(MyData.GetStream("Category"));
+  
+  // Toolbar for the main list
   var mainToolbar = Kit.Toolbar.Default()
     .Edit(operation: "%", tweak: b => b.Note("Edit display settings"))
     .New("News", tweak: b => b.Prefill("Date=" + DateTime.Now.ToString("yyyy-MM-dd")).Position(1).Color("#15585F").Note("Create a new post"))
     .Data("News", tweak: b => b.Position(2).Color("#15585F").Note("Manage posts"));
 
+  // Toolbar for each article
   var articleToolbar = Kit.Toolbar.Empty()
     .Settings(hover:"left", autoAddMore:"start")
     .Edit(tweak: b => b.Color("#15585F"))
     .Delete(tweak: b => b.Color("gray"));
+  
+  var col = Kit.Css.Is("bs3") ? "col-xs-12 col-sm-6 col-lg-4" : "col-12 col-md-6 col-lg-4";
 
-  var isBs3 = Kit.Css.Is("bs3");
-  var col = isBs3 ? "col-xs-12 col-sm-6 col-lg-4" : "col-12 col-md-6 col-lg-4";
+  // Check if the view is an image view or not
+  var isImageView = MyView.Name == "Columns" && MyView.Name != "Columns without Images";
 }
 
 @* Show Warning if admin *@
 @if (MyUser.IsContentAdmin) {
-  @helpers.AdminDetailsPageConfigWarning()
+  @AdminDetailsPageConfigWarning()
 }
 
 <div class="app-news5 app-news5-list" @mainToolbar.For(MyItem)>
   @* Show title *@
   <h1 class="mb-3">
-    @(filteredCategory != null ? filteredCategory.String("PageTitle"): listContent.String("Title"))
+    @(filteredCategory != null ? filteredCategory.PageTitle: listContent.Title)
   </h1>
 
   @* List the articles *@
   <div class="row">
-    @foreach (var article in AsItems(MyData["News"])) {
+    @foreach (var article in AsList<News>(MyData.GetStream("News")))
+    {
       <div class="@col" @articleToolbar.For(article)>
         <div class="app-news5-details-link">
-          <a class="link-overlay" href="@helpers.LinkToDetailsPage(article)"></a>
+          <a class="link-overlay" href="@LinkToDetailsPage(article)"></a>
 
-          @* Show image or placeholder *@
-          <div class="app-news5-img-wrapper mb-3">
-            @Html.Partial("../shared/Article Image.cshtml", new { article })
-          </div>
+          @* If Image View show image or placeholder *@
+          @if (isImageView)
+          {
+            <div class="app-news5-img-wrapper mb-3">
+              @Html.Partial("./Article Image.cshtml", article)
+            </div>
+          }
 
           @* Show Title, Date, Category, Teaser and read more button *@
-          @Html.Partial("../shared/Article Information.cshtml", new { article, HeadingType = "h3" })
+          @Html.Partial("./Article Information.cshtml", new { article, HeadingType = "h3" })
         </div>
       </div>
     }
   </div>
 
   @* Show pagination if configured *@
-  @if (listContent.Bool("ShowPagination") == true) {
-    @Html.Partial("../shared/List Paging.cshtml")
+  @if (listContent.ShowPagination == true) {
+    @Html.Partial("./Paging.cshtml")
   }
 </div>
 
