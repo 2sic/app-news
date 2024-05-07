@@ -13,7 +13,6 @@ namespace AppCode.Razor
     public IHtmlTag AdminArticleInformation(News article)
     {
       // TODO: @2dg - prefer using Kit.HtmlTags instead of Tag, I'll explain
-      // TODO: @2dg - fyi: prefer IsNotEmpty over Get("...") != null
 
       // TODO: @2dg - should this only compare dates, not times?
       if (MyUser.IsContentAdmin && article.IsNotEmpty("ShowFrom") && article.ShowFrom.Date > DateTime.Now.Date)
@@ -23,8 +22,7 @@ namespace AppCode.Razor
       if (MyUser.IsContentAdmin && article.IsNotEmpty("ShowTo") && article.ShowTo.Date <= DateTime.Now.Date)
         return Tag.Div(App.Resources.LabelShowToPill + " " + article.ShowTo.Date.ToString("d")).Class("alert").Class("alert-danger");
 
-      // TODO: @2dg - don't create unnecessary divs
-      return null; // Tag.Div("test");
+      return null; 
     }
 
     /// <summary>
@@ -44,7 +42,6 @@ namespace AppCode.Razor
     /// </summary>
     public string LinkToDetailsPage(News article)
     {
-      // TODO:: Why is use .String("UrlKey") instead of .UrlKey?
       var detailsPage = App.Settings.String("DetailsPage");
 
       if (!detailsPage.Contains(":")) return "";
