@@ -14,7 +14,6 @@ namespace AppCode.Razor
     /// </summary>
     public IHtmlTag BackToListButton()
     {
-      // TODO: @2dg - prefer using Kit.HtmlTags instead of Tag, I'll explain
       return Kit.HtmlTags.A(App.Resources.LabelBackToList).Class("btn").Class("btn-outline-primary").Class("app-backtolist").Href(Link.To().ToString());
     }
 

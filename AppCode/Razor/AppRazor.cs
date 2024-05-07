@@ -1,26 +1,23 @@
 using AppCode.Data;
 using ToSic.Razor.Blade;
-using ToSic.Sxc.Data;
 using System;
 
 namespace AppCode.Razor
 {
-  public abstract partial class AppRazor<TModel> : Custom.Hybrid.RazorTyped<TModel>
+    public abstract partial class AppRazor<TModel> : Custom.Hybrid.RazorTyped<TModel>
   {
     /// <summary>
     /// Show info to admin whether the article will publish or is already expired 
     /// </summary>
     public IHtmlTag AdminArticleInformation(News article)
     {
-      // TODO: @2dg - prefer using Kit.HtmlTags instead of Tag, I'll explain
-
-      // TODO: @2dg - should this only compare dates, not times?
+      // Only compare dates, not times, because the UI only has a date picker
+      // remember to change this, if ever you want to have time-bound publishing
       if (MyUser.IsContentAdmin && article.IsNotEmpty("ShowFrom") && article.ShowFrom.Date > DateTime.Now.Date)
-        return Tag.Div(App.Resources.LabelShowFromPill + " " + article.ShowFrom.Date.ToString("d")).Class("alert").Class("alert-warning");
+        return Kit.HtmlTags.Div(App.Resources.LabelShowFromPill + " " + article.ShowFrom.Date.ToString("d")).Class("alert").Class("alert-warning");
 
-      // TODO: @2dg - should this only compare dates, not times?
       if (MyUser.IsContentAdmin && article.IsNotEmpty("ShowTo") && article.ShowTo.Date <= DateTime.Now.Date)
-        return Tag.Div(App.Resources.LabelShowToPill + " " + article.ShowTo.Date.ToString("d")).Class("alert").Class("alert-danger");
+        return Kit.HtmlTags.Div(App.Resources.LabelShowToPill + " " + article.ShowTo.Date.ToString("d")).Class("alert").Class("alert-danger");
 
       return null; 
     }
