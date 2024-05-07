@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<SexyContent FileVersion="07.00.00" MinimumRequiredVersion="07.04.02" ModuleVersion="16.07.00" ExportDate="2023-09-26T08:03:29.4883001+02:00">
+<SexyContent FileVersion="07.00.00" MinimumRequiredVersion="07.04.02" ModuleVersion="17.07.00" ExportDate="2024-05-07T08:24:48.5546698+02:00">
   <Header>
     <App Guid="fee52b41-bf97-4f3a-a44f-e267180ad12c" />
     <Language Default="en-us" />
@@ -1853,6 +1853,9 @@
       <Value Key="AllowTokenTemplates" Value="False" Type="Boolean">
         <Dimension DimensionID="72" ReadOnly="false" />
       </Value>
+      <Value Key="DebugLog" Value="" Type="String">
+        <Dimension DimensionID="72" ReadOnly="false" />
+      </Value>
       <Value Key="Description" Value="A news app for 2sxc" Type="String">
         <Dimension DimensionID="72" ReadOnly="false" />
       </Value>
@@ -1874,16 +1877,16 @@
       <Value Key="RequiredDnnVersion" Value="09.06.01" Type="String">
         <Dimension DimensionID="72" ReadOnly="false" />
       </Value>
-      <Value Key="RequiredOqtaneVersion" Value="03.04.00" Type="String">
+      <Value Key="RequiredOqtaneVersion" Value="05.00.00" Type="String">
         <Dimension DimensionID="72" ReadOnly="false" />
       </Value>
-      <Value Key="RequiredVersion" Value="16.04.00" Type="String">
+      <Value Key="RequiredVersion" Value="17.07.00" Type="String">
         <Dimension DimensionID="72" ReadOnly="false" />
       </Value>
       <Value Key="SupportsAjaxReload" Value="True" Type="Boolean">
         <Dimension DimensionID="72" ReadOnly="false" />
       </Value>
-      <Value Key="Version" Value="05.04.00" Type="String">
+      <Value Key="Version" Value="05.17.00" Type="String">
         <Dimension DimensionID="72" ReadOnly="false" />
       </Value>
     </Entity>
@@ -2242,7 +2245,7 @@
       <Value Key="Name" Value="Spaltenansicht (ohne Bilder)" Type="String">
         <Dimension DimensionID="73" ReadOnly="false" />
       </Value>
-      <Value Key="Path" Value="bs5/List Columns without images.cshtml" Type="String">
+      <Value Key="Path" Value="bs5/List Columns.cshtml" Type="String">
         <Dimension DimensionID="72" ReadOnly="false" />
       </Value>
       <Value Key="Pipeline" Value="a50ac3be-cf36-4215-a2a2-6950d3e10ed0" Type="Entity" />
@@ -2481,7 +2484,7 @@
       <Value Key="Name" Value="Archivansicht" Type="String">
         <Dimension DimensionID="73" ReadOnly="false" />
       </Value>
-      <Value Key="Path" Value="bs5/List archive.cshtml" Type="String">
+      <Value Key="Path" Value="bs5/List.cshtml" Type="String">
         <Dimension DimensionID="72" ReadOnly="false" />
       </Value>
       <Value Key="Pipeline" Value="8627990b-3609-450b-bb98-60cdc796abea" Type="Entity" />
@@ -2922,6 +2925,7 @@
     <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="DataPipeline" AttributeSetName="DataPipeline" EntityGUID="a50ac3be-cf36-4215-a2a2-6950d3e10ed0" Json="True">
       <Value Key="AllowEdit" Value="True" Type="Boolean" />
       <Value Key="Description" Value="" Type="String" />
+      <Value Key="HiddenInQueryPicker" Value="False" Type="Boolean" />
       <Value Key="Name" Value="News List" Type="String" />
       <Value Key="Params" Value="PageNumber=[QueryString:Page||1]" Type="String" />
       <Value Key="StreamsOut" Value="ListContent,Default,Paging,News,Category,SearchIndex" Type="String" />
@@ -3590,34 +3594,7 @@
         <Dimension DimensionID="72" ReadOnly="false" />
       </Value>
     </Entity>
-    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="1a86b080-9e0d-4207-97d2-04edf80b4f2f" AttributeSetName="⚙️Image" EntityGUID="475451fc-1f7c-4a91-b460-9d1f64d4c642" Json="True">
-      <Value Key="Advanced" Value="{&#xD;&#xA;  &quot;recipe&quot;: {&#xD;&#xA;    &quot;name&quot;: &quot;default&quot;,&#xD;&#xA;    &quot;variants&quot;: &quot;2*, 1*, 3/4*, 1/2*&quot;,&#xD;&#xA;    &quot;setWidth&quot;: false,&#xD;&#xA;    &quot;attributes&quot;: {&#xD;&#xA;      &quot;loading&quot;: &quot;lazy&quot;&#xD;&#xA;    },&#xD;&#xA;    &quot;recipes&quot;: [&#xD;&#xA;      {&#xD;&#xA;        &quot;name&quot;: &quot;Bootstrap3&quot;,&#xD;&#xA;        &quot;forCss&quot;: &quot;bs3&quot;,&#xD;&#xA;        &quot;attributes&quot;: { &#xD;&#xA;          &quot;class&quot;: &quot;img-responsive&quot;,&#xD;&#xA;          &quot;hello&quot; : &quot;bs3&quot;&#xD;&#xA;&#xD;&#xA;         },&#xD;&#xA;        &quot;setWidth&quot;: false&#xD;&#xA;      },&#xD;&#xA;      {&#xD;&#xA;        &quot;name&quot;: &quot;Bootstrap4&quot;,&#xD;&#xA;        &quot;forCss&quot;: &quot;bs4&quot;,&#xD;&#xA;        &quot;attributes&quot;: { &#xD;&#xA;          &quot;class&quot;: &quot;img-fluid&quot;,&#xD;&#xA;          &quot;world&quot; : &quot;bs4&quot;&#xD;&#xA;         },&#xD;&#xA;        &quot;setWidth&quot;: true&#xD;&#xA;      },&#xD;&#xA;      {&#xD;&#xA;        &quot;name&quot;: &quot;Bootstrap5&quot;,&#xD;&#xA;        &quot;forCss&quot;: &quot;bs5&quot;,&#xD;&#xA;        &quot;attributes&quot;: { &#xD;&#xA;          &quot;class&quot;: &quot;img-fluid&quot;,&#xD;&#xA;          &quot;there&quot;:&quot;bs5&quot;&#xD;&#xA;         },&#xD;&#xA;        &quot;setWidth&quot;: true,&#xD;&#xA;        &quot;setHeight&quot; : true&#xD;&#xA;      }&#xD;&#xA;    ]&#xD;&#xA;  }&#xD;&#xA;}" Type="String">
-        <Dimension DimensionID="72" ReadOnly="false" />
-      </Value>
-      <Value Key="AspectRatio" Value="2.0" Type="Number">
-        <Dimension DimensionID="72" ReadOnly="false" />
-      </Value>
-      <Value Key="Format" Value="" Type="String">
-        <Dimension DimensionID="72" ReadOnly="false" />
-      </Value>
-      <Value Key="ItemIdentifier" Value="NewsDetails" Type="String">
-        <Dimension DimensionID="72" ReadOnly="false" />
-      </Value>
-      <Value Key="ResizeMode" Value="max" Type="String">
-        <Dimension DimensionID="72" ReadOnly="false" />
-      </Value>
-      <Value Key="ScaleMode" Value="" Type="String">
-        <Dimension DimensionID="72" ReadOnly="false" />
-      </Value>
-      <Value Key="SettingsIdentifier" Value="Images.NewsDetails" Type="String">
-        <Dimension DimensionID="72" ReadOnly="false" />
-      </Value>
-      <Value Key="Width" Value="800.0" Type="Number">
-        <Dimension DimensionID="72" ReadOnly="false" />
-      </Value>
-    </Entity>
     <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="7edd0b8d-1405-44ed-ac33-d0d63a274bd6" AttributeSetName="⚙️Images" EntityGUID="2086ff76-74d5-4fc2-8e8f-0d9adae72370" Json="True">
-      <Value Key="Items" Value="475451fc-1f7c-4a91-b460-9d1f64d4c642" Type="Entity" />
       <Value Key="SettingsIdentifier" Value="Images" Type="String">
         <Dimension DimensionID="72" ReadOnly="false" />
       </Value>
@@ -3706,6 +3683,38 @@
         <Dimension DimensionID="72" ReadOnly="false" />
       </Value>
       <Value Key="Description" Value="The new News App v4" Type="String">
+        <Dimension DimensionID="72" ReadOnly="false" />
+      </Value>
+    </Entity>
+    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="4f6039dc-1b72-4e41-8fed-5ff6c97e62fb" AttributeSetName="News" EntityGUID="bf9698bc-6103-44bb-9ef0-768b5242139d">
+      <Value Key="Content" Value="" Type="String">
+        <Dimension DimensionID="72" ReadOnly="false" />
+      </Value>
+      <Value Key="Date" Value="2024-02-15T00:00:00" Type="DateTime">
+        <Dimension DimensionID="72" ReadOnly="false" />
+      </Value>
+      <Value Key="Image" Value="" Type="Hyperlink">
+        <Dimension DimensionID="72" ReadOnly="false" />
+      </Value>
+      <Value Key="Lightbox" Value="True" Type="Boolean">
+        <Dimension DimensionID="72" ReadOnly="false" />
+      </Value>
+      <Value Key="ShowFrom" Value="2024-02-15T00:00:00" Type="DateTime">
+        <Dimension DimensionID="72" ReadOnly="false" />
+      </Value>
+      <Value Key="ShowTeaserInDetail" Value="True" Type="Boolean">
+        <Dimension DimensionID="72" ReadOnly="false" />
+      </Value>
+      <Value Key="ShowTo" Value="" Type="DateTime">
+        <Dimension DimensionID="72" ReadOnly="false" />
+      </Value>
+      <Value Key="Teaser" Value="" Type="String">
+        <Dimension DimensionID="72" ReadOnly="false" />
+      </Value>
+      <Value Key="Title" Value="Future News" Type="String">
+        <Dimension DimensionID="72" ReadOnly="false" />
+      </Value>
+      <Value Key="UrlKey" Value="future-news" Type="String">
         <Dimension DimensionID="72" ReadOnly="false" />
       </Value>
     </Entity>
