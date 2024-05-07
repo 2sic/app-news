@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<SexyContent FileVersion="07.00.00" MinimumRequiredVersion="07.04.02" ModuleVersion="17.07.00" ExportDate="2024-05-07T08:24:48.5546698+02:00">
+<SexyContent FileVersion="07.00.00" MinimumRequiredVersion="07.04.02" ModuleVersion="17.07.00" ExportDate="2024-05-07T08:27:39.9887506+02:00">
   <Header>
     <App Guid="fee52b41-bf97-4f3a-a44f-e267180ad12c" />
     <Language Default="en-us" />
@@ -3561,39 +3561,6 @@
       </Value>
     </Entity>
     <Entity TargetType="4" AssignmentObjectType="Entity" AttributeSetStaticName="529ba3a2-d7d4-4f40-a81b-ff819de03a9e" AttributeSetName="IsDefaultDecorator" EntityGUID="0f97b31e-3167-40c1-80ab-348d72b19938" Json="True" KeyGuid="c86d67b3-840f-4d0e-8c94-f25d66f025d5" />
-    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="4f6039dc-1b72-4e41-8fed-5ff6c97e62fb" AttributeSetName="News" EntityGUID="30fb21a5-6ba6-47b9-8e91-fcebf66d39cd">
-      <Value Key="Categories" Value="ce241941-9a01-4b16-b910-f1ed9a709199" Type="Entity" />
-      <Value Key="Content" Value="" Type="String">
-        <Dimension DimensionID="72" ReadOnly="false" />
-      </Value>
-      <Value Key="Date" Value="2022-03-09T00:00:00" Type="DateTime">
-        <Dimension DimensionID="72" ReadOnly="false" />
-      </Value>
-      <Value Key="Image" Value="" Type="Hyperlink">
-        <Dimension DimensionID="72" ReadOnly="false" />
-      </Value>
-      <Value Key="Lightbox" Value="True" Type="Boolean">
-        <Dimension DimensionID="72" ReadOnly="false" />
-      </Value>
-      <Value Key="ShowFrom" Value="" Type="DateTime">
-        <Dimension DimensionID="72" ReadOnly="false" />
-      </Value>
-      <Value Key="ShowTeaserInDetail" Value="True" Type="Boolean">
-        <Dimension DimensionID="72" ReadOnly="false" />
-      </Value>
-      <Value Key="ShowTo" Value="" Type="DateTime">
-        <Dimension DimensionID="72" ReadOnly="false" />
-      </Value>
-      <Value Key="Teaser" Value="This is a test without any dates" Type="String">
-        <Dimension DimensionID="72" ReadOnly="false" />
-      </Value>
-      <Value Key="Title" Value="Test News v13.03" Type="String">
-        <Dimension DimensionID="72" ReadOnly="false" />
-      </Value>
-      <Value Key="UrlKey" Value="test-news-v13-03" Type="String">
-        <Dimension DimensionID="72" ReadOnly="false" />
-      </Value>
-    </Entity>
     <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="7edd0b8d-1405-44ed-ac33-d0d63a274bd6" AttributeSetName="⚙️Images" EntityGUID="2086ff76-74d5-4fc2-8e8f-0d9adae72370" Json="True">
       <Value Key="SettingsIdentifier" Value="Images" Type="String">
         <Dimension DimensionID="72" ReadOnly="false" />
@@ -3605,38 +3572,6 @@
         <Dimension DimensionID="72" ReadOnly="false" />
       </Value>
       <Value Key="Title" Value="System Settings" Type="String">
-        <Dimension DimensionID="72" ReadOnly="false" />
-      </Value>
-    </Entity>
-    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="4f6039dc-1b72-4e41-8fed-5ff6c97e62fb" AttributeSetName="News" EntityGUID="77eb8ae5-486b-48ba-bcc4-c6c0192394c8">
-      <Value Key="Content" Value="&lt;p&gt;Article to test the optional Teaser in the list view. The teaser should take the context text and display it. The teaser should not display anything in the detail view.&lt;/p&gt;" Type="String">
-        <Dimension DimensionID="72" ReadOnly="false" />
-      </Value>
-      <Value Key="Date" Value="2022-04-25T00:00:00" Type="DateTime">
-        <Dimension DimensionID="72" ReadOnly="false" />
-      </Value>
-      <Value Key="Image" Value="" Type="Hyperlink">
-        <Dimension DimensionID="72" ReadOnly="false" />
-      </Value>
-      <Value Key="Lightbox" Value="True" Type="Boolean">
-        <Dimension DimensionID="72" ReadOnly="false" />
-      </Value>
-      <Value Key="ShowFrom" Value="" Type="DateTime">
-        <Dimension DimensionID="72" ReadOnly="false" />
-      </Value>
-      <Value Key="ShowTeaserInDetail" Value="True" Type="Boolean">
-        <Dimension DimensionID="72" ReadOnly="false" />
-      </Value>
-      <Value Key="ShowTo" Value="" Type="DateTime">
-        <Dimension DimensionID="72" ReadOnly="false" />
-      </Value>
-      <Value Key="Teaser" Value="" Type="String">
-        <Dimension DimensionID="72" ReadOnly="false" />
-      </Value>
-      <Value Key="Title" Value="Optional teaser test" Type="String">
-        <Dimension DimensionID="72" ReadOnly="false" />
-      </Value>
-      <Value Key="UrlKey" Value="optional-teaser-test" Type="String">
         <Dimension DimensionID="72" ReadOnly="false" />
       </Value>
     </Entity>
@@ -3683,38 +3618,6 @@
         <Dimension DimensionID="72" ReadOnly="false" />
       </Value>
       <Value Key="Description" Value="The new News App v4" Type="String">
-        <Dimension DimensionID="72" ReadOnly="false" />
-      </Value>
-    </Entity>
-    <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="4f6039dc-1b72-4e41-8fed-5ff6c97e62fb" AttributeSetName="News" EntityGUID="bf9698bc-6103-44bb-9ef0-768b5242139d">
-      <Value Key="Content" Value="" Type="String">
-        <Dimension DimensionID="72" ReadOnly="false" />
-      </Value>
-      <Value Key="Date" Value="2024-02-15T00:00:00" Type="DateTime">
-        <Dimension DimensionID="72" ReadOnly="false" />
-      </Value>
-      <Value Key="Image" Value="" Type="Hyperlink">
-        <Dimension DimensionID="72" ReadOnly="false" />
-      </Value>
-      <Value Key="Lightbox" Value="True" Type="Boolean">
-        <Dimension DimensionID="72" ReadOnly="false" />
-      </Value>
-      <Value Key="ShowFrom" Value="2024-02-15T00:00:00" Type="DateTime">
-        <Dimension DimensionID="72" ReadOnly="false" />
-      </Value>
-      <Value Key="ShowTeaserInDetail" Value="True" Type="Boolean">
-        <Dimension DimensionID="72" ReadOnly="false" />
-      </Value>
-      <Value Key="ShowTo" Value="" Type="DateTime">
-        <Dimension DimensionID="72" ReadOnly="false" />
-      </Value>
-      <Value Key="Teaser" Value="" Type="String">
-        <Dimension DimensionID="72" ReadOnly="false" />
-      </Value>
-      <Value Key="Title" Value="Future News" Type="String">
-        <Dimension DimensionID="72" ReadOnly="false" />
-      </Value>
-      <Value Key="UrlKey" Value="future-news" Type="String">
         <Dimension DimensionID="72" ReadOnly="false" />
       </Value>
     </Entity>
