@@ -14,6 +14,9 @@
   }
 
   // 4. Include styles of the App
+  if (Kit.Css.Is("bs5")) {
+    <link rel="stylesheet" href="@MyView.Folder.Url/theme/theme.css" @Kit.Page.AssetAttributes()/>
+  }  
   <link rel="stylesheet" href="@MyView.Folder.Url/dist/styles.min.css" @Kit.Page.AssetAttributes()/>
 
   // 5. When we are on the details page we need Fancebox and we can activate this via script true

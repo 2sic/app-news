@@ -29,12 +29,12 @@
 
 <div class="app-news5 app-news5-detail" @articleToolbar.For(article)>
   @* Head of the article *@
-  <div class="app-news5-content">
+  <div class="app-news5-content mb-3 mb-lg-4">
     @* "Will publish"/"expired" notes for admin *@
     @AdminArticleInformation(article)
     <h2>@title</h2>
     @* Show Date and categories *@
-    <span class='app-news5-date @(displayCategories ? "app-news5-date-border" : "")'>@article.Date.ToString("d")</span>
+    <span class='app-news5-date @(displayCategories ? "pe-1 me-1 pr-1 mr-1 border-end border-right" : "")'>@article.Date.ToString("d")</span>
     @if (displayCategories)
     {
       <span class="app-news5-categories">
@@ -46,7 +46,7 @@
   </div>
 
   @* Body of the article *@
-  <div class="app-news5-content">
+  <div class="app-news5-content mb-3 mb-lg-4">
     @* Show image or placeholder *@
     @if (article.Lightbox && article.IsNotEmpty("Image"))
     {
@@ -54,7 +54,7 @@
             
       @:<a class="fancybox" @GetFancyboxData(lbPic) data-app-news5-fancybox="@UniqueKey" title="@lbPic.Alt">
     }
-      <div class="app-news5-detail-img">
+      <div class="app-news5-detail-img mb-4">
         <span class="overlay"></span>
 
         @(article.IsNotEmpty("Image")

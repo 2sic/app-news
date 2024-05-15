@@ -8,13 +8,13 @@
   var displayCategories = App.Settings.ActivateCategories && article.Categories.Any();
 }
 
-<div class="app-text">
+<div class="app-news5-text">
   @* "Will publish" / "expired" info for admin *@
   @AdminArticleInformation(article)
 
   @* Create a heading tag with specified type *@
   @Tag.Custom(headingType).Class("app-news5-list").Wrap(article.Title)
-  <span class='app-news5-date @(displayCategories ? "app-date-border" : "")'>
+  <span class='app-news5-date @(displayCategories ? "pe-1 me-1 pr-1 mr-1 border-end border-right" : "")'>
     @article.Date.ToString("d")
   </span>
 
