@@ -67,3 +67,5 @@ If you want to customize the CSS, you will usually follow the ["Create Custom St
   * Auto Generated Class
   * Typed MyItem
   * Merge List Columns and List Columns without Image into List Columns
+* v05.17.01 2024-07
+  * Update app.sln and app.csproj
