@@ -21,10 +21,6 @@
 @import "../../node_modules/bs5/scss/_mixins.scss";
 
 
-// Include needed variables and mixins from Bootstrap 
-// You must adapt these paths to match your Bootstrap skin
-// @import "../../../_default/Skins/2sxcBootstrap-B4/src/scss/_variables.scss";
-
 // Now parse the News5 CSS Rules
 @import "_style.scss";
 @import "_detail.scss";      // CSS for the details view

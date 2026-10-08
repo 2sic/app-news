@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<SexyContent FileVersion="07.00.00" MinimumRequiredVersion="07.04.02" ModuleVersion="21.08.00" ExportDate="2026-06-16T08:41:30.1026715+02:00">
+<SexyContent FileVersion="07.00.00" MinimumRequiredVersion="07.04.02" ModuleVersion="22.00.00" ExportDate="2026-10-08T14:55:43.6173526+02:00">
   <Header>
     <App Guid="fee52b41-bf97-4f3a-a44f-e267180ad12c" />
     <Language Default="en-us" />
@@ -1894,7 +1894,7 @@
       <Value Key="ActivateCategories" Value="True" Type="Boolean">
         <Dimension DimensionID="72" ReadOnly="false" />
       </Value>
-      <Value Key="DetailsPage" Value="page:911" Type="Hyperlink">
+      <Value Key="DetailsPage" Value="" Type="Hyperlink">
         <Dimension DimensionID="72" ReadOnly="false" />
       </Value>
       <Value Key="DetailsPageShowWarning" Value="True" Type="Boolean">
@@ -2613,7 +2613,7 @@
     </Entity>
     <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="4f6039dc-1b72-4e41-8fed-5ff6c97e62fb" AttributeSetName="News" EntityGUID="ac6564c4-700a-4d80-85cc-ba62e7fff5d8">
       <Value Key="Categories" Value="34d3610a-59a1-41c2-8cfe-95eb453c2cb2" Type="Entity" />
-      <Value Key="Content" Value="&lt;p&gt;Take a look at these azing checklists, if you need help.&amp;nbsp;&lt;/p&gt;&#xA;&lt;p&gt;Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. &amp;nbsp;&lt;/p&gt;&#xA;&lt;p&gt;Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. &amp;nbsp;&lt;/p&gt;&#xA;&lt;p&gt;Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. &amp;nbsp;&lt;/p&gt;&#xA;&lt;p&gt;Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer&lt;/p&gt;" Type="String">
+      <Value Key="Content" Value="&lt;p&gt;Take a look at these azing checklists, if you need help. &lt;/p&gt;&#xA;&lt;p&gt;Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.  &lt;/p&gt;&#xA;&lt;p&gt;Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.  &lt;/p&gt;&#xA;&lt;p&gt;Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.  &lt;/p&gt;&#xA;&lt;p&gt;Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer&lt;/p&gt;" Type="String">
         <Dimension DimensionID="72" ReadOnly="false" />
       </Value>
       <Value Key="Date" Value="2021-12-17T00:00:00" Type="DateTime">
@@ -2649,6 +2649,9 @@
       </Value>
       <Value Key="UrlKey" Value="demo-future-news" Type="String">
         <Dimension DimensionID="72" ReadOnly="false" />
+      </Value>
+      <Value Key="UrlKey" Value="demo-zukunft-news" Type="String">
+        <Dimension DimensionID="73" ReadOnly="false" />
       </Value>
     </Entity>
     <Entity TargetType="1" AssignmentObjectType="Default" AttributeSetStaticName="2SexyContent-ContentGroup" AttributeSetName="2SexyContent-ContentGroup" EntityGUID="f0dc9347-3996-4e49-b068-57800be9fdb3" Json="True">
@@ -3624,9 +3627,9 @@
     </Entity>
   </Entities>
   <PortalFiles>
-    <File Id="4450" RelativePath="adam\News4\6mEAgQFmvUWxWCf7dC1Ogg\PlaceholderMissingImage\PLaceholder.jpg" />
-    <File Id="4315" RelativePath="adam\News4\GYNtiVYjW0SVtS1Am021nw\Image\2sxc-News 3.0 released.jpg" />
-    <File Id="4448" RelativePath="adam\News4\xGRlrApwgE2FzLpi5__12A\Image\2020-2SXCv11-New-App-News.jpg" />
+    <File Id="4450" RelativePath="adam/News4/6mEAgQFmvUWxWCf7dC1Ogg/PlaceholderMissingImage/PLaceholder.jpg" />
+    <File Id="4315" RelativePath="adam/News4/GYNtiVYjW0SVtS1Am021nw/Image/2sxc-News 3.0 released.jpg" />
+    <File Id="4448" RelativePath="adam/News4/xGRlrApwgE2FzLpi5__12A/Image/2020-2SXCv11-New-App-News.jpg" />
   </PortalFiles>
   <PortalFolders>
     <Folder Id="861" RelativePath="adam/News4/6mEAgQFmvUWxWCf7dC1Ogg/PlaceholderMissingImage/" />
