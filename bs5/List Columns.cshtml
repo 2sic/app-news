@@ -21,7 +21,7 @@
     .Edit(tweak: b => b.Color("#15585F"))
     .Delete(tweak: b => b.Color("gray"));
   
-  var col = Kit.Css.Is("bs3") ? "col-xs-12 col-sm-6 col-lg-4" : "col-12 col-md-6 col-lg-4";
+  var col = "col-12 col-md-6 col-lg-4";
 
   // Check if the view is an image view or not
   var isImageView = MyView.Name == "Columns" && MyView.Name != "Columns without Images";

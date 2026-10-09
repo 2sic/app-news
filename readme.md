@@ -18,8 +18,8 @@ A standard news / announcements app to use with 2sxc
 | App Catalog         | ✅    | See [app catalog](https://2sxc.org/en/apps/app/news-app-v5-hybrid-for-dnn-and-oqtane)
 | Screenshots         | ✅    | See [app catalog](https://2sxc.org/en/apps/app/news-app-v5-hybrid-for-dnn-and-oqtane)
 | Best Practices      | ✅    | Uses v13.10 conventions
-| Bootstrap 3         | ✅    |
-| Bootstrap 4         | ✅    |
+| Bootstrap 3         | ❌    | Last supported in v05.21.01
+| Bootstrap 4         | ❌    | Last supported in v05.21.01
 | Bootstrap 5         | ✅    |
 
 ## Customize the App
@@ -29,6 +29,10 @@ The News App has an important app setting which you can configure with the ["Con
 If you want to customize the CSS, you will usually follow the ["Create Custom Styles in a Standard 2sxc App" checklist](https://azing.org/2sxc/r/gg_aB9FD)
 
 ## History
+
+* v05.21.02 2026-10
+  * Removed Bootstrap 3 and Bootstrap 4 support; the app is now Bootstrap 5 only
+  * For Bootstrap 3 or Bootstrap 4, use v05.21.01
 
 * v.12.05 2021-12
   * Updated to 2sxc 12.5 standards

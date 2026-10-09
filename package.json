@@ -4,11 +4,7 @@
   "description": "A news app for 2sxc",
   "main": "(none)",
   "scripts": {
-    "build-prod-bs3": "concurrently -n vite,tsc -c cyan,yellow \"npm run build-bs3\" \"npm run build:tsc\"",
-    "build-prod-bs4": "concurrently -n vite,tsc -c cyan,yellow \"npm run build-bs4\" \"npm run build:tsc\"",
     "build-prod-bs5": "concurrently -n vite,tsc -c cyan,yellow \"npm run build-bs5\" \"npm run build:tsc\"",
-    "build-bs3": "cross-env STYLE=bs3 vite build --watch",
-    "build-bs4": "cross-env STYLE=bs4 vite build --watch",
     "build-bs5": "cross-env STYLE=bs5 vite build --watch",
     "build:tsc": "tsc --noEmit --watch --preserveWatchOutput"
   },
@@ -24,7 +20,6 @@
     "vite": "^8.1.5"
   },
   "dependencies": {
-    "bootstrap": "^4.4.1",
     "bs5": "npm:bootstrap@^5.3.8"
   }
 }
